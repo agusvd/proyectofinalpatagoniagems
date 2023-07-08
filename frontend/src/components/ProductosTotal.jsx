@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BiCart } from 'react-icons/bi';
-
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import ProductoTest from '../assets/producto1.png';

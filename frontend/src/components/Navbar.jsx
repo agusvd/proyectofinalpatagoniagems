@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BiChevronDown, BiCart, BiUserCircle, BiSearch, BiMenu } from 'react-icons/bi';
+import { BiChevronDown, BiUserCircle, BiSearch, BiMenu } from 'react-icons/bi';
+import { BsCart3 } from "react-icons/bs";
+
 import axios from 'axios';
 import Icono from '../assets/crystal.png'
 import Cart from './Cart';
@@ -99,41 +101,42 @@ const Navbar = () => {
     return (
         <div>
             <nav className="antialiased">
-                <div className="font-primary flex justify-around items-center text-center py-3 bg-black text-white">
+                <div className="font-primary flex justify-around text-center py-3 bg-black text-white">
                     <div className="hidden md:inline-flex items-center ">{/* Ocultar en pantallas más pequeñas */}
-                        <div className="flex gap-2 text-base">
+                        <div className="flex gap-2 text-lg">
                             <Link to="/" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>Inicio</Link>
                         </div>
-                        <div className="group relative text-base justify-center">
+                        <div className="group relative items-center text-center text-lg">
                             <button className="py-2 px-4 rounded inline-flex items-center">
                                 <Link to="/tienda" className={`hover:text-purple-500 mr-1 cursor-pointer ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
                                 <BiChevronDown />
                             </button>
-                            <ul className="fixed hidden text-black group-hover:block  shadow-xl z-[99] bg-white rounded-lg">
+                            <ul className="fixed hidden text-black group-hover:block  shadow-xl z-[99] rounded-lg">
+                                <p className='mt-3'></p>
                                 {categorias.map(categoria => (
-                                    <li key={categoria.id}>
-                                        <Link to={`/tienda/${categoria.id}`} className="rounded-t rounded-b bg-white hover:text-purple-500 p-2 mx-10 text-start block whitespace-no-wrap cursor-pointer t">{categoria.categoria}</Link>
+                                    <li className='bg-white' key={categoria.id}>
+                                        <Link to={`/tienda/${categoria.id}`} className="rounded-t rounded-b bg-white hover:text-purple-500 p-2 mx-10 text-start block whitespace-no-wrap cursor-pointer">{categoria.categoria}</Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div className="flex gap-2 text-base">
+                        <div className="flex gap-2 text-lg">
                             <Link to="/blogs" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-white'}`}>Blogs</Link>
                             <Link to="/nosotros" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-white'}`}>Nosotros</Link>
                             <Link to="/contacto" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-white'}`}>Contacto</Link>
                         </div>
                     </div>
                     <div className="hidden md:inline-flex relative gap-4 text-center items-center">{/* Ocultar en pantallas más pequeñas */}
-                        <div className="group relative items-center text-center">
+                        <div className="group relative items-center text-center text-lg">
                             <button className="inline-flex items-center hover:text-purple-500">
                                 <p className='text-purple-500'>{message}</p>
-                                <p className='text-purple-500'>{nombre + ' ' + apellido}</p><BiUserCircle style={{ fontSize: '1.5rem' }} className='ml-4 hover:scale-125 ease-in duration-150 cursor-pointer' />
+                                <p className='text-purple-500'>{nombre + ' ' + apellido}</p><BiUserCircle size={30} className='ml-4 hover:scale-125 ease-in duration-150 cursor-pointer' />
                             </button>
                             <div className="rounded absolute hidden text-black pt-1 group-hover:block whitespace-no-wrap shadow-lg text-center right-0 w-48 origin-top-right z-[99]">
                                 {
                                     auth ?
                                         <div>
-                                            <Link className="mt-4 bg-white rounded-t hover:text-purple-500 py-2 px-4 block whitespace-no-wrap" onClick={handleDelete}>Cerrar sesion</Link>
+                                            <Link className="mt-3 bg-white rounded-t hover:text-purple-500 py-2 px-4 block whitespace-no-wrap" onClick={handleDelete}>Cerrar sesion</Link>
                                             <Link to="/perfil" className="bg-white rounded-b hover:text-purple-500 py-2 px-4 block whitespace-no-wrap">Perfil</Link>
                                             {isAdmin === 'admin' && (
                                                 <Link to="/dashboard" className="bg-white rounded-b hover:text-purple-500 py-2 px-4 block whitespace-no-wrap">
@@ -150,7 +153,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <button onClick={handleOpenSearchClick}>
-                            <BiSearch style={{ fontSize: '1.5rem' }} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
+                            <BiSearch size={30} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
                         </button>
                         {searchVisible && (
                             <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
@@ -158,9 +161,7 @@ const Navbar = () => {
                             </div>
                         )}
                         <button onClick={handleOpenCarritoClick}>
-                            <BiCart
-                                style={{ fontSize: '1.5rem' }}
-                                className="hover:scale-125 ease-in duration-150 cursor-pointer ml-auto"
+                            <BsCart3 size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer ml-auto"
                             />
                         </button>
                         {carritoVisible && (
@@ -170,32 +171,32 @@ const Navbar = () => {
                         )}
 
                     </div>
-                    <div className="md:hidden flex flex-grow items-center space-x-4 pr-4"> {/* Agrega la clase 'items-center space-x-4 pr-4' */}
+                    <div className="md:hidden flex justify-between items-center pr-4">
                         {/* Botón de menú para dispositivos móviles */}
-                        <button className="absolute left-4 md:hidden" onClick={handleOpenNavbarClick}>
-                            <BiMenu className="h-6 w-6 flex-sh" />
+                        <button className='fixed left-5' onClick={handleOpenNavbarClick}>
+                            <BiMenu size={30} className="flex-sh" />
                         </button>
-                        <img src={Icono} className='h-10 mx-auto absolute right-44' />
-                        <div className="flex-grow"></div> {/* Espacio flexible */}
-                        <button onClick={handleOpenSearchClick}>
-                            <BiSearch style={{ fontSize: '1.5rem' }} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
-                        </button>
-                        {searchVisible && (
-                            <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
-                                <Search onClose={handleCloseSearchClick} />
-                            </div>
-                        )}
-                        <button onClick={handleOpenCarritoClick}>
-                            <BiCart
-                                style={{ fontSize: '1.5rem' }}
-                                className="hover:scale-125 ease-in duration-150 cursor-pointer ml-auto"
-                            />
-                        </button>
-                        {carritoVisible && (
-                            <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
-                                <Cart onClose={handleCloseCarritoClick} />
-                            </div>
-                        )}
+                        <div className="flex items-center right-2 left-2">
+                            <img src={Icono} className="h-10 mx-auto" />
+                        </div>
+                        <div className="right-5 fixed space-x-5">
+                            <button onClick={handleOpenSearchClick}>
+                                <BiSearch fontSize={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
+                            </button>
+                            {searchVisible && (
+                                <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                                    <Search onClose={handleCloseSearchClick} />
+                                </div>
+                            )}
+                            <button onClick={handleOpenCarritoClick}>
+                                <BsCart3 size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
+                            </button>
+                            {carritoVisible && (
+                                <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                                    <Cart onClose={handleCloseCarritoClick} />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
                 {/* Contenido del menú para dispositivos móviles */}

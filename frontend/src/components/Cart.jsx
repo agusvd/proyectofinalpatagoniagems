@@ -133,8 +133,10 @@ const Cart = ({ onClose }) => {
                         <h2 className="text-black font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
                     </div>
                 )}
-                {/* Ocultar los botones si no hay productos en el carrito */}
-                {carritoItems.length > 0 && (
+                
+            </div>
+            {/* Ocultar los botones si no hay productos en el carrito */}
+            {carritoItems.length > 0 && (
                     <footer className="p-2 flex flex-col">
                         <button className="bg-gray-100 text-black py-2 px-4 rounded mb-2 hover:bg-gray-200">
                             Ver Carrito
@@ -144,7 +146,6 @@ const Cart = ({ onClose }) => {
                         </button>
                     </footer>
                 )}
-            </div>
         </div>
     );
 };
