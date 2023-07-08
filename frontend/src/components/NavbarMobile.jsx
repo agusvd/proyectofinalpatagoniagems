@@ -8,6 +8,8 @@ const NavbarMobile = ({ onClose }) => {
     const [showCategories, setShowCategories] = useState(false);
     const [auth, setAuth] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false);
+    const [categorias, setCategorias] = useState([]);
+
 
 
     axios.defaults.withCredentials = true
@@ -42,6 +44,15 @@ const NavbarMobile = ({ onClose }) => {
         setShowCategories(!showCategories);
     };
 
+    useEffect(() => {
+        // Obtener las categorías desde el backend
+        axios.get('http://localhost:8000/categorias')
+            .then(res => {
+                setCategorias(res.data);
+            })
+            .catch(err => console.error('Error al obtener las categorías:', err));
+    }, []);
+
     return (
         <div className="bg-gray-200 p-4 left-0 absolute top-0 w-3/5 h-screen z-99 font-primary">
             <div className='flex items-center justify-between'>
@@ -65,21 +76,11 @@ const NavbarMobile = ({ onClose }) => {
                     </a>
                     {showCategories && (
                         <ul className="ml-4">
-                            <li>
-                                <Link to="/tienda" className="block py-2 px-4 hover:text-purple-500" onClick={onClose}>
-                                    Todos los productos
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/categoria-1" className="block py-2 px-4 hover:text-purple-500" onClick={onClose}>
-                                    Categoría 1
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/categoria-1" className="block py-2 px-4 hover:text-purple-500" onClick={onClose}>
-                                    Categoría 2
-                                </Link>
-                            </li>
+                            {categorias.map(categoria => (
+                                <li className='' key={categoria.id}>
+                                    <Link to={`/tienda/${categoria.id}`} className="rounded-t rounded-b hover:text-purple-500 p-2 text-start block whitespace-no-wrap cursor-pointer">{categoria.categoria}</Link>
+                                </li>
+                            ))}
                         </ul>
                     )}
                 </li>

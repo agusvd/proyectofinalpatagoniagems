@@ -14,7 +14,7 @@ const ProductosDestacados = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/productos')
+            .get('http://localhost:8000/productos/')
             .then((res) => {
                 console.log(res.data);
                 setProductos(res.data);
