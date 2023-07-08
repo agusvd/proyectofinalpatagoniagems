@@ -74,7 +74,7 @@ const ProductosDestacados = () => {
             <div className="bg-white py-20 text-center px-8 mb-4">
                 <h1 className="text-3xl font-bold">Productos Destacados</h1>
             </div>
-            <div className="flex justify-center overflow-y-auto">
+            <div className="flex flex-col items-center sm:flex-row sm:justify-center overflow-y-auto">
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (
                         <div
