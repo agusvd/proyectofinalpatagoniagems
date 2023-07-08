@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-07-2023 a las 08:45:40
+-- Tiempo de generación: 08-07-2023 a las 10:44:14
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,8 +40,9 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`id`, `usuario_id`, `producto_id`, `precio_total`, `cantidad_total`) VALUES
-(22, 1, 9, 1500, 1),
-(24, 1, 15, 2800, 1);
+(31, 2, 5, 100, 1),
+(32, 2, 21, 30000, 1),
+(38, 1, 33, 980000, 1);
 
 -- --------------------------------------------------------
 
@@ -59,8 +60,8 @@ CREATE TABLE `categoria_id` (
 --
 
 INSERT INTO `categoria_id` (`id`, `categoria`) VALUES
-(1, 'categoria 1'),
-(6, 'categoria 50');
+(1, 'random'),
+(6, 'tecnologia');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `stock`, `cate
 (15, 'jabon 6', 'jabon 6', 2800, 7, 1, 'no'),
 (21, 'joya 1', 'joya 1', 30000, 1, 1, 'no'),
 (29, 'otra cosa 3', 'otra cosa 3', 1500, 40, 1, 'no'),
-(31, 'otra cosa 6', 'orta cosa 6', 7000, 20, 1, 'no');
+(31, 'otra cosa 6', 'orta cosa 6', 7000, 20, 1, 'no'),
+(33, 'macbook', 'macbook', 980000, 4, 6, 'no');
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `role`, `region`, `comuna`, `nombreCalle`, `numeroCalle`, `ciudad`, `numeroDepa`) VALUES
 (1, 'Agustin', 'Villarroel', 'agus@gmail.com', '$2b$10$.HGssuNG2.iFLQCVoewx6.adML8/yFRpgPBaskftyhq5VbdqQFdgu', 'admin', NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'Claudio', 'Arias', 'claudio@gmail.com', '$2b$10$l/BQmYG0XwXIq3Wyb/WtH.L90XoFKS9UFoGtkUxfVhW2rO0Fj//Ba', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Manuel', 'Poto', 'manuel@gmail.com', '$2b$10$1Kb63ot8EVLgwYviIgeDGurAX4V/gd06viLUPRPtEX98H62CVme22', 'user', NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 'Manuel', 'Poto', 'manuel@gmail.com', '$2b$10$1Kb63ot8EVLgwYviIgeDGurAX4V/gd06viLUPRPtEX98H62CVme22', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Sebastian', 'Godoy', 'seba@gmail.com', '$2b$10$W3VmpvkBwY3BNws58SUWz.RBANA.pdibEcHEjVqy2jtYi63o0K8jW', 'user', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -181,7 +184,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_id`
@@ -199,13 +202,13 @@ ALTER TABLE `imagenes_productos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
