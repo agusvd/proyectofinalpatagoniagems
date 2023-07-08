@@ -16,6 +16,7 @@ import Clientes from './pages/dashboard/Clientes';
 import NCategoria from './pages/dashboard/NCategoria';
 import ProductosTotal from './components/ProductosTotal';
 import CartPage from './pages/CartPage';
+import ProductosCategoria from './components/ProductosCategoria';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/tienda" element={<div><Navbar /><ProductosTotal /><Footer /></div>}/>
+        <Route path="/tienda/:categoriaId" element={<div><Navbar /><ProductosCategoria /><Footer /></div>}/>
         <Route path="/perfil" element={<div><Navbar /><Perfil /><Footer /></div>}/>
         <Route path='/carrito' element={<div><Navbar /><CartPage /><Footer /></div>}/>
         <Route path="/404" element={<Error />} />

@@ -34,7 +34,7 @@ const CategoriasP = () => {
             return;
         }
         axios
-            .put(`http://localhost:8000/${editingId}`, { categoria: nombre })
+            .put(`http://localhost:8000/categorias/${editingId}`, { categoria: nombre })
             .then((res) => {
                 console.log(res);
                 fetchCategorias();
@@ -74,7 +74,6 @@ const CategoriasP = () => {
                 console.log(error);
             });
     };
-
     return (
         <div className="flex-1 h-screen font-primary">
             <div className="md:m-5 m-auto bg-violet-900 md:rounded-md md:p-5 p-20">

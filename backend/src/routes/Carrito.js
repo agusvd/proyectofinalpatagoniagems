@@ -3,16 +3,18 @@ import db from '../db.js';
 
 const router = express.Router();
 
-// Ruta para obtener los productos del carrito
 router.get('/carrito', (req, res) => {
-    const sql = `
-  SELECT c.id, c.usuario_id, c.producto_id, c.precio_total, c.cantidad_total, p.nombre, p.precio, cat.categoria
-  FROM carrito c
-  JOIN productos p ON c.producto_id = p.id
-  JOIN categoria_id cat ON p.categoria_id = cat.id
-`;
+    const { usuario_id } = req.query;
 
-    db.query(sql, (err, result) => {
+    const sql = `
+        SELECT c.id, c.usuario_id, c.producto_id, c.precio_total, c.cantidad_total, p.nombre, p.precio, cat.categoria
+        FROM carrito c
+        JOIN productos p ON c.producto_id = p.id
+        JOIN categoria_id cat ON p.categoria_id = cat.id
+        WHERE c.usuario_id = ?
+    `;
+
+    db.query(sql, [usuario_id], (err, result) => {
         if (err) {
             console.error('Error al obtener los productos del carrito:', err);
             return res.status(500).json({ error: 'No se pudieron obtener los productos del carrito' });

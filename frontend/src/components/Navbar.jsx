@@ -17,6 +17,8 @@ const Navbar = () => {
     const [searchVisible, setSearchVisible] = useState(false)
     const [carritoVisible, setCarritoVisible] = useState(false);
     const [productosCarrito, setProductosCarrito] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+
     const location = useLocation();
 
 
@@ -48,6 +50,27 @@ const Navbar = () => {
             .catch(err => console.log(err));
     };
 
+
+    useEffect(() => {
+        // Obtener los datos del carrito desde el backend
+        axios.get('http://localhost:8000/carrito')
+            .then((res) => {
+                setProductosCarrito(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }, []);
+
+    useEffect(() => {
+        // Obtener las categorías desde el backend
+        axios.get('http://localhost:8000/categorias')
+            .then(res => {
+                setCategorias(res.data);
+            })
+            .catch(err => console.error('Error al obtener las categorías:', err));
+    }, []);
+
     const handleOpenNavbarClick = () => {
         setMobileMenuVisible(true)
     }
@@ -72,40 +95,26 @@ const Navbar = () => {
         setCarritoVisible(false);
     };
 
-    useEffect(() => {
-        // Obtener los datos del carrito desde el backend
-        axios.get('http://localhost:8000/carrito')
-            .then((res) => {
-                setProductosCarrito(res.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }, []);
 
     return (
         <div>
             <nav className="antialiased">
-                <div className="shadow-xl font-primary text-sm flex justify-around items-center text-center py-3 bg-black text-white">
+                <div className="font-primary flex justify-around items-center text-center py-3 bg-black text-white">
                     <div className="hidden md:inline-flex items-center ">{/* Ocultar en pantallas más pequeñas */}
                         <div className="flex gap-2 text-base">
                             <Link to="/" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>Inicio</Link>
                         </div>
-                        <div className="group relative text-base">
+                        <div className="group relative text-base justify-center">
                             <button className="py-2 px-4 rounded inline-flex items-center">
                                 <Link to="/tienda" className={`hover:text-purple-500 mr-1 cursor-pointer ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
                                 <BiChevronDown />
                             </button>
-                            <ul className="absolute hidden text-black group-hover:block whitespace-no-wrap shadow-xl z-[99]">
-                                <li>
-                                    <a className="mt-3 rounded-t bg-white hover:text-purple-500 py-2 px-10 block whitespace-no-wrap cursor-pointer">Categoría 1</a>
-                                </li>
-                                <li>
-                                    <a className="bg-white hover:text-purple-500 py-2 px-10 block whitespace-no-wrap cursor-pointer">Categoría 2</a>
-                                </li>
-                                <li>
-                                    <a className="rounded-b bg-white hover:text-purple-500 py-2 px-10 block whitespace-no-wrap cursor-pointer">Categoría 3</a>
-                                </li>
+                            <ul className="fixed hidden text-black group-hover:block  shadow-xl z-[99] bg-white rounded-lg">
+                                {categorias.map(categoria => (
+                                    <li key={categoria.id}>
+                                        <Link to={`/tienda/${categoria.id}`} className="rounded-t rounded-b bg-white hover:text-purple-500 p-2 mx-10 text-start block whitespace-no-wrap cursor-pointer t">{categoria.categoria}</Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         <div className="flex gap-2 text-base">

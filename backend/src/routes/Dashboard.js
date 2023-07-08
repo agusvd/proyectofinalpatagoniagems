@@ -170,17 +170,22 @@ router.post('/categorias', (req, res) => {
 
 // Actualizar una categoría existente
 router.put('/categorias/:id', (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     const { categoria } = req.body;
-    const sql = 'UPDATE categoria_id SET categoria = ? WHERE id = ?';
-    db.query(sql, [categoria, id], (err, data) => {
+
+    // Realiza la actualización de la categoría en la base de datos
+    const sql = `
+      UPDATE categoria_id
+      SET categoria = ?
+      WHERE id = ?
+    `;
+    db.query(sql, [categoria, id], (err, result) => {
         if (err) {
-            return res.status(500).json({ error: 'Error al actualizar la categoría' });
+            console.error('Error al actualizar la categoría:', err);
+            return res.status(500).json({ error: 'No se pudo actualizar la categoría' });
         }
-        if (data.affectedRows === 0) {
-            return res.status(404).json({ error: 'Categoría no encontrada' });
-        }
-        return res.json(data);
+        // La categoría se actualizó exitosamente
+        return res.json({ message: 'Categoría actualizada correctamente' });
     });
 });
 

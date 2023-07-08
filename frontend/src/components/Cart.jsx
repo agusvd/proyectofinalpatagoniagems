@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BiArrowFromLeft, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import ProductoEjemplo from '../assets/producto1.png'
 
 
@@ -12,7 +15,10 @@ const Cart = ({ onClose }) => {
         // Obtener los productos del carrito desde el backend
         const fetchCarritoItems = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/carrito');
+                const token = Cookies.get('token');
+                const decodedToken = jwtDecode(token);
+                const usuario_id = decodedToken.id;
+                const response = await axios.get(`http://localhost:8000/carrito?usuario_id=${usuario_id}`);
                 setCarritoItems(response.data);
             } catch (error) {
                 console.error('Error al obtener los productos del carrito:', error);
@@ -81,12 +87,17 @@ const Cart = ({ onClose }) => {
             </header>
             <div className="p-2 h-4/5 overflow-y-auto">
                 {carritoItems.length === 0 ? (
-                    <p>No hay productos en el carrito</p>
+                    <div className='flex flex-col justify-center items-center m-2 gap-4'>
+                        <h1 className='text-black text-xl text-center pt-6'>Tu carrito está vacío.</h1>
+                        <Link to="/tienda" onClick={onClose} className='flex px-4 py-2 text-white font-bold text-xl bg-purple-600 rounded-full hover:bg-black duration-300 transition-all ease-in'>
+                            Ir de compras
+                        </Link>
+                    </div>
                 ) : (
                     carritoItems.map((item) => (
                         <div className='md:flex md:justify-center'>
                             <div className="ml-2 flex p-2" key={item.id}>
-                                <div className="m-2 border-2 shadow-lg transition-shadow duration-500 hover:shadow-purple-500">
+                                <div className="m-2 border-2 shadow-lg">
                                     <img src={ProductoEjemplo} className="h-44 w-32 sm:h-48 sm:w-36 object-center" alt={item.nombre} />
                                 </div>
                                 <div className="flex flex-col justify-center ml-5 text-black text-start gap-1">
@@ -122,15 +133,18 @@ const Cart = ({ onClose }) => {
                         <h2 className="text-black font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
                     </div>
                 )}
+                {/* Ocultar los botones si no hay productos en el carrito */}
+                {carritoItems.length > 0 && (
+                    <footer className="p-2 flex flex-col">
+                        <button className="bg-gray-100 text-black py-2 px-4 rounded mb-2 hover:bg-gray-200">
+                            Ver Carrito
+                        </button>
+                        <button className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-purple-500">
+                            Proceder al pago
+                        </button>
+                    </footer>
+                )}
             </div>
-            <footer className="p-2 flex flex-col">
-                <button className="bg-gray-100 text-black py-2 px-4 rounded mb-2 hover:bg-gray-200">
-                    Ver Carrito
-                </button>
-                <button className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-purple-500">
-                    Proceder al pago
-                </button>
-            </footer>
         </div>
     );
 };

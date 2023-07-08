@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
-
+import ProductoTest from '../assets/producto1.png';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import ProductoTest from '../assets/producto1.png';
 import Cart from './Cart';
 
-const ProductosTotal = () => {
+const ProductosCategoria = () => {
+    const { categoriaId } = useParams();
     const [productos, setProductos] = useState([]);
-    const [categorias, setCategorias] = useState([]);
     const [carritoVisible, setCarritoVisible] = useState(false);
-
+    const [categoriaNombre, setCategoriaNombre] = useState('');
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/productos')
+            .get(`http://localhost:8000/tienda/${categoriaId}`)
             .then((res) => {
                 console.log(res.data);
                 setProductos(res.data);
@@ -23,18 +23,13 @@ const ProductosTotal = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get('http://localhost:8000/categorias')
+            .get(`http://localhost:8000/categorias/${categoriaId}`)
             .then((res) => {
                 console.log(res.data);
-                setCategorias(res.data);
+                setCategoriaNombre(res.data.categoria);
             })
             .catch((err) => console.log(err));
-    }, []);
-
-    const getCategoriaNombre = (categoriaId) => {
-        const categoria = categorias.find((c) => c.id === categoriaId);
-        return categoria ? categoria.categoria : '';
-    };
+    }, [categoriaId]);
 
     const handleAgregarCarro = (producto) => {
         // primero obtenemos el id del usuario guardado en el token 
@@ -64,15 +59,14 @@ const ProductosTotal = () => {
             });
     };
 
-
     return (
         <div className='flex flex-col justify-center'>
             <div className=" bg-purple-600 text-center py-4 px-8 mb-4">
-                <h1 className="text-3xl font-bold text-white">Todos los productos</h1>
+                <h1 className="text-3xl font-bold text-white">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
-                    {Array.isArray(productos) ? (
+                    {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
                             <div
                                 key={producto.id}
@@ -84,7 +78,7 @@ const ProductosTotal = () => {
                                 <div className="flex justify-between">
                                     <div className="flex flex-col">
                                         <h2 className="text-md font-bold">{producto.nombre}</h2>
-                                        <p className="text-sm sm:text-md text-gray-800">{getCategoriaNombre(producto.categoria_id)}</p>
+                                        <p className="text-sm sm:text-md text-gray-800">{producto.categoria}</p>
                                         <p className="text-md text-gray-400">${producto.precio}</p>
                                     </div>
                                 </div>
@@ -94,22 +88,22 @@ const ProductosTotal = () => {
                                         handleAgregarCarro(producto);
                                     }}><BiCart size={30} /></button>
                                 </div>
-
                             </div>
                         ))
                     ) : (
-                        <div className='flex justify-center items-center'>
-                            <h1 className='text-center text-3xl'>No hay productos disponibles.</h1>
+                        <div className='items-center flex justify-center'>
+                            <h1 className='text-center'>No hay productos disponibles en esta categoría.</h1>
                         </div>
                     )}
                 </div>
-                {carritoVisible && <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
-                    <Cart onClose={() => setCarritoVisible(false)} />
-                </div>}
+                {carritoVisible && (
+                    <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                        <Cart onClose={() => setCarritoVisible(false)} />
+                    </div>
+                )}
             </div>
         </div>
-
     );
 };
 
-export default ProductosTotal;
+export default ProductosCategoria;
