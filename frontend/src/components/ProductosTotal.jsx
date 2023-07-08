@@ -37,7 +37,7 @@ const ProductosTotal = () => {
                     productos.map((producto) => (
                         <div
                             key={producto.id}
-                            className="h-98 w-64 ml-16 mr-16 sm:ml-8 sm:mr-8 md:mr-4 md:ml-4 my-5 md:m-4 bg-white shadow-sm hover:shadow-xl rounded-md p-2 hover:scale-105 transition-all duration-300 ease-out relative"
+                            className="h-98 w-64 ml-16 mr-16 sm:ml-8 sm:mr-8 md:mr-4 md:ml-4 my-5 md:m-4 bg-white hover:shadow-lg rounded-md p-2 hover:scale-105  ease-out relative shadow-lg transition-shadow duration-500 hover:shadow-purple-500"
                         >
                             <div className="flex flex-wrap items-center justify-center">
                                 <img src={ProductoTest} className="h-full w-full object-cover" alt="Producto" />
