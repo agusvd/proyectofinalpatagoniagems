@@ -71,15 +71,15 @@ const ProductosDestacados = () => {
 
     return (
         <div className="flex flex-col justify-center font-primary pb-20">
-            <div className="bg-white py-20 text-center px-8 mb-4">
-                <h1 className="text-3xl font-bold">Productos Destacados</h1>
+            <div className="text-center py-10 sm:py-20 px-8 mb-4">
+                <h1 className="text-3xl sm:text-5xl font-bold">Productos desctacados</h1>
             </div>
-            <div className="flex flex-col items-center sm:flex-row sm:justify-center overflow-y-auto">
+            <div className="grid grid-cols-2 sm:flex items-center sm:flex-row justify-center overflow-y-auto">
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (
                         <div
                             key={producto.id}
-                            className="h-98 w-64 ml-16 mr-16 sm:ml-8 sm:mr-8 md:mr-4 md:ml-4 my-5 md:m-4 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
+                            className="w-52 ml-4 mr-1 my-5 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
                         >
                             <div className="flex flex-wrap items-center justify-center">
                                 <img src={ProductoTest} className="h-full w-full object-cover" alt="Producto" />

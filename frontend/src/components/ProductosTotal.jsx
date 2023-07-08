@@ -66,16 +66,16 @@ const ProductosTotal = () => {
 
     return (
         <div className='flex flex-col justify-center'>
-            <div className=" bg-purple-600 text-center py-4 px-8 mb-4">
-                <h1 className="text-3xl font-bold text-white">Todos los productos</h1>
+            <div className=" bg-purple-600 text-center py-10 sm:py-20 px-8 mb-4">
+                <h1 className="text-3xl sm:text-5xl font-bold text-white">Todos los productos</h1>
             </div>
             <div className='flex justify-center'>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
                     {Array.isArray(productos) ? (
                         productos.map((producto) => (
                             <div
                                 key={producto.id}
-                                className="h-98 w-64 ml-16 mr-16 sm:ml-8 sm:mr-8 md:mr-4 md:ml-4 my-5 md:m-4 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
+                                className="w-52 ml-4 mr-1 my-5 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
                             >
                                 <div className="flex flex-wrap items-center justify-center">
                                     <img src={ProductoTest} className="h-full w-full object-cover" alt="Producto" />

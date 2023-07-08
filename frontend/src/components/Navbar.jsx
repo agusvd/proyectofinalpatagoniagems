@@ -101,8 +101,8 @@ const Navbar = () => {
     return (
         <div>
             <nav className="antialiased">
-                <div className="font-primary flex justify-around text-center py-3 bg-black text-white">
-                    <div className="hidden md:inline-flex items-center ">{/* Ocultar en pantallas más pequeñas */}
+                <div className="font-primary text-center py-3 px-2 md:justify-around md:flex md:items-center bg-black text-white">
+                    <div className="hidden md:inline-flex md:justify-between md:items-center ">{/* Ocultar en pantallas más pequeñas */}
                         <div className="flex gap-2 text-lg">
                             <Link to="/" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>Inicio</Link>
                         </div>
@@ -173,26 +173,26 @@ const Navbar = () => {
                     </div>
                     <div className="md:hidden flex justify-between items-center pr-4">
                         {/* Botón de menú para dispositivos móviles */}
-                        <button className='fixed left-5' onClick={handleOpenNavbarClick}>
+                        <button className='' onClick={handleOpenNavbarClick}>
                             <BiMenu size={30} className="flex-sh" />
                         </button>
-                        <div className="flex items-center right-2 left-2">
+                        <div className="">
                             <img src={Icono} className="h-10 mx-auto" />
                         </div>
-                        <div className="right-5 fixed space-x-5">
+                        <div className="">
                             <button onClick={handleOpenSearchClick}>
                                 <BiSearch fontSize={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
                             </button>
                             {searchVisible && (
-                                <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                                <div className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                                     <Search onClose={handleCloseSearchClick} />
                                 </div>
                             )}
-                            <button onClick={handleOpenCarritoClick}>
+                            <button onClick={handleOpenCarritoClick} className=''>
                                 <BsCart3 size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
                             </button>
                             {carritoVisible && (
-                                <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                                <div className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                                     <Cart onClose={handleCloseCarritoClick} />
                                 </div>
                             )}
