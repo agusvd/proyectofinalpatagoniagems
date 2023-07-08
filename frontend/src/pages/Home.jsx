@@ -34,7 +34,7 @@ const Home = () => {
                 >
                     <img
                         src={aceiteFrontal}
-                        className="block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full object-cover"
+                        className="block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full object-center"
                         alt="..."
                     />
                     <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-bold">
@@ -51,7 +51,7 @@ const Home = () => {
                 >
                     <img
                         src={Humificador}
-                        className="block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full object-cover"
+                        className="block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full object-center"
                         alt="..."
                     />
                     <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-bold">
