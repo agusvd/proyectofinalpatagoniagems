@@ -1,12 +1,14 @@
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import LoginRouter from './Routes/Login.js';
-import RegisterRouter from './Routes/Register.js';
+import express from 'express'
+import morgan from 'morgan'
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+import LoginRouter from './Routes/Login.js'
+import RegisterRouter from './Routes/Register.js'
 import MiddlewareRouter from './routes/Middleware.js'
 import DashboardRouter from './routes/Dashboard.js'
 import ProductosRoutes from './routes/Productos.js'
+import CarritoRoutes from './routes/Carrito.js'
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -28,6 +30,7 @@ app.use(RegisterRouter);
 app.use(MiddlewareRouter);
 app.use(DashboardRouter);
 app.use(ProductosRoutes);
+app.use(CarritoRoutes);
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-07-2023 a las 03:57:32
+-- Tiempo de generación: 08-07-2023 a las 08:45:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `precio_total` int(11) NOT NULL,
+  `cantidad_total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`id`, `usuario_id`, `producto_id`, `precio_total`, `cantidad_total`) VALUES
+(22, 1, 9, 1500, 1),
+(24, 1, 15, 2800, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categoria_id`
 --
 
@@ -38,7 +60,6 @@ CREATE TABLE `categoria_id` (
 
 INSERT INTO `categoria_id` (`id`, `categoria`) VALUES
 (1, 'categoria 1'),
-(2, 'categoria 2'),
 (6, 'categoria 50');
 
 -- --------------------------------------------------------
@@ -75,25 +96,13 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `stock`, `categoria_id`, `es_destacado`) VALUES
 (3, 'producto 1', 'producto 1', 100, 10, 1, 'no'),
-(4, 'producto 2', 'producto 2', 4000, 15, 2, 'no'),
 (5, 'producto 3', 'producto 3', 100, 12, 1, 'si'),
 (9, 'jabon 2', 'jabon 2', 1500, 10, 1, 'no'),
 (10, 'vela 1', 'vela 1', 2000, 5, 1, 'no'),
 (12, 'jabon 3', 'jabon 3', 2400, 6, 1, 'no'),
-(13, 'jabon 4', 'jabon 4', 2400, 9, 2, 'no'),
-(14, 'jabon 5', 'jabon 5', 2000, 2, 2, 'no'),
 (15, 'jabon 6', 'jabon 6', 2800, 7, 1, 'no'),
-(18, 'tarot 1', 'tarot 1', 15800, 3, 2, 'no'),
-(19, 'tarot 2', 'tarot 2', 17000, 4, 2, 'no'),
-(20, 'tarot 3', 'tarot 3', 20000, 5, 2, 'no'),
 (21, 'joya 1', 'joya 1', 30000, 1, 1, 'no'),
-(22, 'joya 2', 'joya 2', 14000, 3, 2, 'no'),
-(23, 'collar 1', 'collar 1', 21800, 2, 2, 'no'),
-(24, 'collar 3', 'collar 3', 13900, 3, 2, 'no'),
-(27, 'otra cosa 1', 'otra cosa 1', 500, 10, 2, 'no'),
-(28, 'otra cosa 2', 'otra cosa 2', 1000, 10, 2, 'no'),
 (29, 'otra cosa 3', 'otra cosa 3', 1500, 40, 1, 'no'),
-(30, 'otra cosa 4', 'otra cosa 4', 1400, 3, 2, 'no'),
 (31, 'otra cosa 6', 'orta cosa 6', 7000, 20, 1, 'no');
 
 -- --------------------------------------------------------
@@ -131,6 +140,14 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `rol
 --
 
 --
+-- Indices de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `producto_id` (`producto_id`);
+
+--
 -- Indices de la tabla `categoria_id`
 --
 ALTER TABLE `categoria_id`
@@ -161,6 +178,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT de la tabla `categoria_id`
 --
 ALTER TABLE `categoria_id`
@@ -187,6 +210,13 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `imagenes_productos`

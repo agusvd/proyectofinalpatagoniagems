@@ -11,4 +11,8 @@ router.get('/productos', (req, res) => {
     })
 });
 
+
+
+
 export default router
+

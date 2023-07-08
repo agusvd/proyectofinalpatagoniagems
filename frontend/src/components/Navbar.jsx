@@ -16,8 +16,7 @@ const Navbar = () => {
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
     const [searchVisible, setSearchVisible] = useState(false)
     const [carritoVisible, setCarritoVisible] = useState(false);
-
-
+    const [productosCarrito, setProductosCarrito] = useState([]);
     const location = useLocation();
 
 
@@ -72,6 +71,17 @@ const Navbar = () => {
     const handleCloseCarritoClick = () => {
         setCarritoVisible(false);
     };
+
+    useEffect(() => {
+        // Obtener los datos del carrito desde el backend
+        axios.get('http://localhost:8000/carrito')
+            .then((res) => {
+                setProductosCarrito(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }, []);
 
     return (
         <div>
@@ -149,6 +159,7 @@ const Navbar = () => {
                                 <Cart onClose={handleCloseCarritoClick} />
                             </div>
                         )}
+
                     </div>
                     <div className="md:hidden flex flex-grow items-center space-x-4 pr-4"> {/* Agrega la clase 'items-center space-x-4 pr-4' */}
                         {/* Botón de menú para dispositivos móviles */}

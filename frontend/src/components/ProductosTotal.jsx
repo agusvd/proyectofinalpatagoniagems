@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import ProductoTest from '../assets/producto1.png';
+import Cart from './Cart';
 
 const ProductosTotal = () => {
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
+    const [carritoVisible, setCarritoVisible] = useState(false);
+
 
     useEffect(() => {
         axios
@@ -30,6 +34,35 @@ const ProductosTotal = () => {
         return categoria ? categoria.categoria : '';
     };
 
+    const handleAgregarCarro = (producto) => {
+        // primero obtenemos el id del usuario guardado en el token 
+        const token = Cookies.get('token');
+        const decodedToken = jwtDecode(token);
+
+        const usuario_id = decodedToken.id;
+
+        // creamos una variable que va guardar los datos del carrito
+        const datosCarrito = {
+            usuario_id: usuario_id, // tiene la id del token
+            producto_id: producto.id, // la id del producto 
+            precio_total: producto.precio, // el precio del producto guardado
+            cantidad_total: 1 // por defecto se guarda 1 porque es un producto el que se guardo
+        };
+
+        // ahora cuando se quieran enviar los datos al backend, se enviara datosCarrito
+
+        axios.post('http://localhost:8000/carrito', datosCarrito)
+            .then((res) => {
+                console.log(res.data);
+                console.log(datosCarrito)
+                setCarritoVisible(true); // Mostrar el componente Cart
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
+
+
     return (
         <div className='flex justify-center'>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
@@ -50,7 +83,9 @@ const ProductosTotal = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col text-center'>
-                                <button className='bg-gray-300 text-black flex text-center justify-center py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Agregar al carro</button>
+                                <button className='bg-gray-300 text-black flex text-center justify-center py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white' onClick={() => {
+                                    handleAgregarCarro(producto);
+                                }}>Agregar al carrito</button>
                                 <button className='bg-gray-300 text-black flex text-center justify-center  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Vista Previa</button>
                             </div>
                         </div>
@@ -61,6 +96,9 @@ const ProductosTotal = () => {
                     </div>
                 )}
             </div>
+            {carritoVisible && <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                <Cart onClose={() => setCarritoVisible(false)} />
+            </div>}
         </div>
     );
 };

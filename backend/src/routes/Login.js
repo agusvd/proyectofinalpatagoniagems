@@ -24,6 +24,7 @@ router.post('/login', (req, res) => {
                             Error: "Error en la comparacion de la contraseña",
                         });
                     if (response) {
+                        const id = data[0].id; // Obtén el usuarioId de la consulta SQL
                         const role = data[0].role;
                         const nombre = data[0].nombre;
                         const apellido = data[0].apellido;
@@ -42,14 +43,15 @@ router.post('/login', (req, res) => {
                                 apellido,
                                 role,
                                 isAdmin,
+                                id,
                             },
                             secretKey,
                             { expiresIn: "3h" }
                         );
                         res.cookie("token", token); // Almacenar token en una cookie
-                        console.log(token);
-                        console.log(nombre + " " + apellido + " tipo: " + role);
-                        return res.json({ Status: "Perfecto", token, message });
+                        console.log("token: " + token);
+                        console.log(nombre + " " + apellido + " tipo: " + role + "id: " + id);
+                        return res.json({ Status: "Perfecto", token, message});
                     } else {
                         return res.json({ Error: "Contraseña invalida" });
                     }
