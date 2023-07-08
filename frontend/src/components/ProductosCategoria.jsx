@@ -6,12 +6,16 @@ import ProductoTest from '../assets/producto1.png';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import Cart from './Cart';
+import { Link } from 'react-router-dom';
+import {BiMessageSquareX} from 'react-icons/bi'
 
 const ProductosCategoria = () => {
     const { categoriaId } = useParams();
     const [productos, setProductos] = useState([]);
     const [carritoVisible, setCarritoVisible] = useState(false);
     const [categoriaNombre, setCategoriaNombre] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         axios
@@ -29,9 +33,20 @@ const ProductosCategoria = () => {
                 setCategoriaNombre(res.data.categoria);
             })
             .catch((err) => console.log(err));
+
+        // Verificar si el usuario ha iniciado sesión
+        const token = Cookies.get('token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
     }, [categoriaId]);
 
     const handleAgregarCarro = (producto) => {
+        if (!isLoggedIn) {
+            setShowModal(true);
+            return;
+        }
+
         // primero obtenemos el id del usuario guardado en el token 
         const token = Cookies.get('token');
         const decodedToken = jwtDecode(token);
@@ -99,6 +114,25 @@ const ProductosCategoria = () => {
                 {carritoVisible && (
                     <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                         <Cart onClose={() => setCarritoVisible(false)} />
+                    </div>
+                )}
+                {showModal && (
+                    <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] font-primary">
+                        <div className="bg-white p-4 rounded-md">
+                            <button className="absolute top-2 right-2 focus:outline-none"
+                                onClick={() => setShowModal(false)}>
+                                <BiMessageSquareX size={50} className='text-white hover:text-red-500' />
+                            </button>
+                            <h2 className='text-xl text-center'>Necesitas estar registrado!</h2>
+                            <div className="flex justify-center">
+                                <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
+                                    Iniciar sesión
+                                </Link>
+                                <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
+                                    Registrarse
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>

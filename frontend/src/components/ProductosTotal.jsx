@@ -5,11 +5,15 @@ import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import ProductoTest from '../assets/producto1.png';
 import Cart from './Cart';
+import { Link } from 'react-router-dom';
+import {BiMessageSquareX} from 'react-icons/bi'
 
 const ProductosTotal = () => {
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const [carritoVisible, setCarritoVisible] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
 
     useEffect(() => {
@@ -28,6 +32,12 @@ const ProductosTotal = () => {
                 setCategorias(res.data);
             })
             .catch((err) => console.log(err));
+
+        // Verificar si el usuario ha iniciado sesión
+        const token = Cookies.get('token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
     }, []);
 
     const getCategoriaNombre = (categoriaId) => {
@@ -36,11 +46,16 @@ const ProductosTotal = () => {
     };
 
     const handleAgregarCarro = (producto) => {
+        if (!isLoggedIn) {
+            setShowModal(true);
+            return;
+        }
         // primero obtenemos el id del usuario guardado en el token 
         const token = Cookies.get('token');
         const decodedToken = jwtDecode(token);
 
         const usuario_id = decodedToken.id;
+
 
         // creamos una variable que va guardar los datos del carrito
         const datosCarrito = {
@@ -63,9 +78,8 @@ const ProductosTotal = () => {
             });
     };
 
-
     return (
-        <div className='flex flex-col justify-center'>
+        <div className='flex flex-col justify-center font-primary'>
             <div className=" bg-purple-600 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl sm:text-5xl font-bold text-white">Todos los productos</h1>
             </div>
@@ -89,11 +103,15 @@ const ProductosTotal = () => {
                                 </div>
                                 <div className='flex text-center justify-between items-center'>
                                     <button className='bg-gray-100 text-black flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Vista Previa</button>
-                                    <button className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white' onClick={() => {
-                                        handleAgregarCarro(producto);
-                                    }}><BiCart size={30} /></button>
+                                    <button
+                                        className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white'
+                                        onClick={() => {
+                                            handleAgregarCarro(producto);
+                                        }}
+                                    >
+                                        <BiCart size={30} />
+                                    </button>
                                 </div>
-
                             </div>
                         ))
                     ) : (
@@ -102,12 +120,32 @@ const ProductosTotal = () => {
                         </div>
                     )}
                 </div>
-                {carritoVisible && <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
-                    <Cart onClose={() => setCarritoVisible(false)} />
-                </div>}
+                {carritoVisible && (
+                    <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                        <Cart onClose={() => setCarritoVisible(false)} />
+                    </div>
+                )}
+                {showModal && (
+                    <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] font-primary">
+                        <div className="bg-white p-4 rounded-md">
+                            <button className="absolute top-2 right-2 focus:outline-none"
+                                onClick={() => setShowModal(false)}>
+                                <BiMessageSquareX size={50} className='text-white hover:text-red-500'/>
+                            </button>
+                            <h2 className='text-xl text-center'>Necesitas estar registrado!</h2>
+                            <div className="flex justify-center">
+                                <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
+                                    Iniciar sesión
+                                </Link>
+                                <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
+                                    Registrarse
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
-
     );
 };
 
