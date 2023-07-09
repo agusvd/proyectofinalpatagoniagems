@@ -11,6 +11,16 @@ router.get('/productos', (req, res) => {
     })
 });
 
+router.get('/tienda/producto/:nombre', (req, res) => {
+    const nombre = req.params.nombre;
+    const sql = "SELECT * FROM productos WHERE nombre = ?"
+
+    db.query(sql, [nombre], (err, data) => {
+        if (err) return res.json('Error')
+        return res.json(data)
+    })
+});
+
 router.get('/productos/buscar', (req, res) => {
     const { searchText } = req.query;
 

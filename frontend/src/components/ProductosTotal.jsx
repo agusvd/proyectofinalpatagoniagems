@@ -96,13 +96,13 @@ const ProductosTotal = () => {
                                 </div>
                                 <div className="flex justify-between">
                                     <div className="flex flex-col">
-                                        <h2 className="text-md font-bold">{producto.nombre}</h2>
-                                        <p className="text-sm sm:text-md text-gray-800">{getCategoriaNombre(producto.categoria_id)}</p>
+                                        <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">{producto.nombre}</Link>
+                                        <p className="text-sm sm:text-md text-gray-800 capitalize">{getCategoriaNombre(producto.categoria_id)}</p>
                                         <p className="text-md text-gray-400">${producto.precio}</p>
                                     </div>
                                 </div>
                                 <div className='flex text-center justify-between items-center'>
-                                    <button className='bg-gray-100 text-black flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Vista Previa</button>
+                                    <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
                                     <button
                                         className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white'
                                         onClick={() => {

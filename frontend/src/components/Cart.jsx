@@ -138,12 +138,12 @@ const Cart = ({ onClose }) => {
             {/* Ocultar los botones si no hay productos en el carrito */}
             {carritoItems.length > 0 && (
                     <footer className="p-2 flex flex-col">
-                        <button className="bg-gray-100 text-black py-2 px-4 rounded mb-2 hover:bg-gray-200">
+                        <Link to="/carrito" className="bg-gray-100 text-black py-2 px-4 rounded mb-2 hover:bg-gray-200">
                             Ver Carrito
-                        </button>
-                        <button className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-purple-500">
+                        </Link>
+                        <Link to="/pago" className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-purple-500">
                             Proceder al pago
-                        </button>
+                        </Link>
                     </footer>
                 )}
         </div>

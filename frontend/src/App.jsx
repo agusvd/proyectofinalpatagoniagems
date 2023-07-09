@@ -19,6 +19,8 @@ import CartPage from './pages/CartPage';
 import ProductosCategoria from './components/ProductosCategoria';
 import ProductosDestacados from "./components/ProductosDestacados";
 import Anuncio from './components/Anuncio';
+import ProductPage from './pages/ProductPage';
+import PagoPage from './pages/PagoPage';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/tienda/:categoriaId" element={<div><Anuncio /><Navbar /><ProductosCategoria /><Footer /></div>} />
           <Route path="/perfil" element={<div><Navbar /><Perfil /><Footer /></div>} />
           <Route path="/carrito" element={<div><Navbar /><Anuncio /><CartPage /><Footer /></div>} />
+          <Route path='/pago' element={<div><Navbar /><PagoPage/><Footer /></div>} />
+          <Route path='/tienda/producto/:nombre' element={<ProductPage/>}/>
           <Route path="/404" element={<Error />} />
           <Route path="*" element={<Navigate to="/404" />} />
           <Route exact path="/dashboard" element={<PrivateRoute />}>

@@ -1,103 +1,126 @@
-import React, { useState } from 'react';
-import ProductoEjemplo from '../assets/producto1.png'
-import { BiTrash, BiEdit } from 'react-icons/bi';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { BiArrowFromLeft, BiTrash, BiEdit } from 'react-icons/bi';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+import ProductoEjemplo from '../assets/producto1.png';
 
-const CartPage = () => {
-    const [mobileCart, setMobileCart] = useState(true);
+const Cart = ({ onClose }) => {
+    const [cantidad, setCantidad] = useState(1);
+    const [carritoItems, setCarritoItems] = useState([]);
+
+    useEffect(() => {
+        const fetchCarritoItems = async () => {
+            try {
+                const token = Cookies.get('token');
+                const decodedToken = jwtDecode(token);
+                const usuario_id = decodedToken.id;
+                const response = await axios.get(`http://localhost:8000/carrito?usuario_id=${usuario_id}`);
+                setCarritoItems(response.data);
+            } catch (error) {
+                console.error('Error al obtener los productos del carrito:', error);
+            }
+        };
+
+        fetchCarritoItems();
+    }, []);
 
 
+    const calcularPrecioTotal = (producto) => {
+        return producto.precio * producto.cantidad;
+    };
+
+    const calcularPrecioTotalCarrito = () => {
+        let total = 0;
+        carritoItems.forEach((item) => {
+            total += item.precio_total;
+        });
+        return total;
+    };
+
+    const eliminarProductoCarrito = (id) => {
+        axios
+            .delete(`http://localhost:8000/carrito/${id}`)
+            .then((res) => {
+                console.log(res);
+                setCarritoItems((prevCarritoItems) =>
+                    prevCarritoItems.filter((item) => item.id !== id)
+                );
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
-        <div className='flex-grow font-primary'>
-            <div className='bg-gray-300 p-10 text-center text-3xl'>
-                Carrito
-            </div>
-            <div className='flex justify-center'>
-                <div className={mobileCart ? 'sm:hidden' : 'block'}>
-                    <div>
-                        {/* card mobile */}
-                        <div className='flex'>
-                            <div className='m-2 border-2 border-gray-100/50'>
-                                <img src={ProductoEjemplo} className=' h-64 w-44 object-center' />
-                            </div>
-                            <div className='px-2 py-1 text-center justify-start flex flex-col'>
-                                <div className='flex flex-col items-start p-2'>
-                                    <h1 className='text-md font-extrabold'>Nombre</h1>
-                                </div>
-                                <div className='flex gap-3 text-2xl items-start py-2 ml-2'>
-                                    <button className='py-2'>
-                                        <BiEdit size={30} className='hover:text-purple-500' />
-                                    </button>
-                                    <button className='py-2'>
-                                        <BiTrash size={30} className='hover:text-purple-500' />
-                                    </button>
-                                </div>
-                                <div className='flex flex-col items-start p-2 py-3'>
-                                    <h2 className='text-sm text-gray-600'>$10.000</h2>
-                                </div>
-                                <div className='flex text-xl justify-center rounded-full'>
-                                    <button className='px-5 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2'>-</button>
-                                    <p className='px-4 py-2 bg-white border-t-2 border-b-2'>1</p>
-                                    <button className='px-5 bg-white rounded-r-full border-l-0 hover:bg-gray-100 border-2'>+</button>
-                                </div>
-                            </div>
-                        </div>
-                        {/*Fin de la primera card */}
-                        <div className='flex flex-col items-center justify-center p-2 border-t-2 border-b-2 text-lg'>
-                            <h1>Total</h1>
-                            <h2>$10.000</h2>
-                        </div>
+        <div className="min-h-full bg-white shadow-md font-primary">
+
+            <div className="p-2 h-4/5 overflow-y-auto">
+                {carritoItems.length === 0 ? (
+                    <div className="flex flex-col justify-center items-center m-2 gap-4">
+                        <h1 className="text-black text-xl text-center pt-6">Tu carrito está vacío.</h1>
+                        <Link
+                            to="/tienda"
+                            onClick={onClose}
+                            className="flex px-4 py-2 text-white font-bold text-xl bg-purple-600 rounded-full hover:bg-black duration-300 transition-all ease-in"
+                        >
+                            Ir de compras
+                        </Link>
                     </div>
-                </div>
-            </div>
-            {/* CARD NORMAL */}
-            <div>
-                <div className={mobileCart ? 'hidden sm:block' : 'hidden'}>
-                    <div className='ml-2 flex'>
-                        <div className='m-2 border-2 border-gray-100'>
-                            <img src={ProductoEjemplo} className='h-64 w-44 sm:h-72 sm:w-64 object-center' />
-                        </div>
-                        <div className='flex flex-col justify-center ml-5'>
-                            <h1 className='text-lg'>Nombre</h1>
-                            <h2 className='text-sm'>Descripcion</h2>
-                            <div className='space-x-3 text-2xl py-2 '>
-                                <button className='py-2'>
-                                    <BiEdit size={30} className='hover:text-purple-500' />
-                                </button>
-                                <button className='py-2'>
-                                    <BiTrash size={30} className='hover:text-purple-500' />
-                                </button>
+                ) : (
+                    carritoItems.map((item) => (
+                        <div className="md:flex md:justify-center" key={item.id}>
+                            <div className="ml-2 flex p-2">
+                                <div className="m-2 border-2 shadow-lg">
+                                    <img
+                                        src={ProductoEjemplo}
+                                        className="h-44 w-32 sm:h-48 sm:w-36 object-center"
+                                        alt={item.nombre}
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-center ml-5 text-black text-start gap-1">
+                                    <h1 className="text-md font-bold">{item.nombre}</h1>
+                                    <h2 className="text-sm text-gray-500">{item.categoria}</h2>
+                                    <h3 className="text-gray-500 text-md font-bold pb-3">${item.precio}</h3>
+                                    {carritoItems.length > 0 && (
+                                        <div className="flex text-sm justify-around rounded-full text-black">
+                                            <div className="flex">
+                                                <button className="px-4 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2 border-gray-500">-</button>
+                                                <p className="px-4 py-2 bg-white border-t-2 border-b-2 border-gray-500 font-bold">1</p>
+                                                <button className="px-4 bg-white rounded-r-full border-l-0 hover:bg-gray-100 border-2 border-gray-500">+</button>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div className="space-x-3 text-2xl py-2">
+                                        <button className="py-2">
+                                            <BiEdit size={20} className="hover:text-purple-500 text-gray-600" />
+                                        </button>
+                                        <button onClick={() => eliminarProductoCarrito(item.id)} className="py-2">
+                                            <BiTrash size={20} className="hover:text-purple-500 text-gray-600" />
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    ))
+                )}
+                {carritoItems.length > 0 && (
+                    <div className="ml-2 items-center justify-center gap-2 flex p-2 border-t-2 border-b-2 text-lg">
+                        <h1 className="text-black font-bold">Subtotal:</h1>
+                        <h2 className="text-black font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
                     </div>
-                    <div className=' ml-2 border-2 py-2'>
-                        <div className='ml-10 absolute py-3 px-10'>
-                            <h3 className='text-gray-500'>$10.000</h3>
-                        </div>
-                        <div className='flex flex-row text-xl justify-center rounded-full'>
-                            <button className='px-5 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2'>-</button>
-                            <p className='px-4 py-2 bg-white border-t-2 border-b-2'>1</p>
-                            <button className='px-5 bg-white rounded-r-full border-l-0 hover:bg-gray-100 border-2'>+</button>
-                        </div>
-                        <div className='ml-10 px-10 absolute right-12 -my-10'>
-                            <h3 className='text-black'>$10.000</h3>
-                        </div>
-                    </div>
-                    <div className='flex flex-col items-center justify-center p-2 border-t-2 border-b-2 text-lg m-2'>
-                            <h1>Total</h1>
-                            <h2>$10.000</h2>
-                        </div>
-                </div>
+                )}
             </div>
-            {/* FIN card normal */}
-            {/* Bton de pagar */}
-            <div className='justify-center flex flex-col p-2 sm:flex sm:flex-row sm:justify-end'>
-                <button className='p-2 text-center bg-gray-300 rounded-full px-5 mx-5 hover:bg-purple-500 hover:text-white'>
-                    Ir al pago
-                </button>
-            </div>
+            {carritoItems.length > 0 && (
+                <footer className="p-2 flex items-center justify-center">
+                    <Link to="/pago" className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-purple-500">
+                        Proceder al pago
+                    </Link>
+                </footer>
+            )}
         </div>
     );
 };
 
-export default CartPage;
+export default Cart;
