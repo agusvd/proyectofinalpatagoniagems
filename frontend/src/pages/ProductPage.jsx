@@ -130,7 +130,7 @@ const ProductPage = () => {
                                 <p className="text-lg text-start capitalize">{descripcion}</p>
                             </div>
                         )}
-                        <div className="flex items-center gap-5 text-center">
+                        <div className="flex items-center gap-5 text-center justify-between sm:justify-normal">
                             <div className="flex">
                                 <button
                                     className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
@@ -155,13 +155,19 @@ const ProductPage = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex pt-2 gap-2">
+                        <div className="flex flex-col p-2 gap-2 border-t-2 border-b-2 justify-center sm:justify-normal sm:border-0 sm:gap-2">
+                            <div className='sm:text-start text-center'>
+                                <h1>Redes sociales</h1>
+                            </div>
+                            <div className='justify-center flex gap-5 sm:justify-normal'>
                             <a href="https://www.facebook.com/Patagoniagems/" target="_blank" className="text-black">
                                 <FaFacebook size={25} />
                             </a>
                             <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank" className="text-black">
                                 <FaInstagram size={25} />
                             </a>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
