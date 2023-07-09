@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BiChevronDown, BiUserCircle, BiSearch, BiMenu } from 'react-icons/bi';
 import { BsCart3 } from "react-icons/bs";
-
+import { GiCrystalGrowth } from 'react-icons/gi'
 import axios from 'axios';
-import Icono from '../assets/crystal.png'
 import Cart from './Cart';
 import Search from './Search';
 import NavbarMobile from './NavbarMobile';
@@ -152,6 +151,7 @@ const Navbar = () => {
                                 }
                             </div>
                         </div>
+
                         <button onClick={handleOpenSearchClick}>
                             <BiSearch size={30} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
                         </button>
@@ -171,17 +171,15 @@ const Navbar = () => {
                         )}
 
                     </div>
-                    <div className="md:hidden flex justify-between items-center pr-4">
-                        {/* Botón de menú para dispositivos móviles */}
-                        <button className='' onClick={handleOpenNavbarClick}>
-                            <BiMenu size={30} className="flex-sh" />
-                        </button>
-                        <div className="">
-                            <img src={Icono} className="h-10 mx-auto" />
-                        </div>
-                        <div className="">
+
+                    <div className="md:hidden flex flex-col">
+                        <div className='flex justify-between items-center'>
+                            {/* Botón de menú para dispositivos móviles */}
+                            <button onClick={handleOpenNavbarClick}>
+                                <BiMenu size={30} />
+                            </button>
                             <button onClick={handleOpenSearchClick}>
-                                <BiSearch fontSize={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
+                                <BiSearch size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
                             </button>
                             {searchVisible && (
                                 <div className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
@@ -197,6 +195,13 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
+                    </div>
+                </div>
+                <div>
+                    <div className='bg-black text-white flex justify-center items-center p-5'>
+                        <Link to="/">
+                            <GiCrystalGrowth size={50} className='hover:scale-125 hover:rotate-45 hover:text-purple-500 transition-all ease-in duration-300' />
+                        </Link>
                     </div>
                 </div>
                 {/* Contenido del menú para dispositivos móviles */}

@@ -85,16 +85,16 @@ const ProductosDestacados = () => {
 
     return (
         <div className="flex flex-col justify-center font-primary pb-20 bg-gray-200">
+            {/* TITULO */}
             <div className="text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl sm:text-5xl font-bold">Productos desctacados</h1>
             </div>
+            {/* CONTENEDOR DE CARDS */}
             <div className="grid grid-cols-2 sm:flex items-center sm:flex-row justify-center overflow-y-auto">
+                {/* CARDS */}
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (
-                        <div
-                            key={producto.id}
-                            className="w-52 ml-4 mr-1 my-5 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
-                        >
+                        <div key={producto.id} className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all">
                             <div className="flex flex-wrap items-center justify-center">
                                 <img src={ProductoTest} className="h-full w-full object-cover" alt="Producto" />
                             </div>
@@ -111,7 +111,6 @@ const ProductosDestacados = () => {
                                     handleAgregarCarro(producto);
                                 }}><BiCart size={30} /></button>
                             </div>
-
                         </div>
                     ))
                 ) : (

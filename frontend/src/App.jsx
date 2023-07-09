@@ -17,6 +17,7 @@ import NCategoria from './pages/dashboard/NCategoria';
 import ProductosTotal from './components/ProductosTotal';
 import CartPage from './pages/CartPage';
 import ProductosCategoria from './components/ProductosCategoria';
+import ProductosDestacados from "./components/ProductosDestacados";
 import Anuncio from './components/Anuncio';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
@@ -26,7 +27,7 @@ const App = () => {
     <GoogleReCaptchaProvider reCaptchaKey="6LfxqAknAAAAADX06900xrbOBnjIZGUjcq7YQEZ4">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<div><Anuncio /><Navbar /><Home /><Footer /></div>} />
+          <Route path="/" element={<div><Anuncio /><Navbar /><Home /><ProductosDestacados /><Footer /></div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/tienda" element={<div><Anuncio /><Navbar /><ProductosTotal /><Footer /></div>} />
