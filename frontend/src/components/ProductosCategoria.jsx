@@ -80,16 +80,16 @@ const ProductosCategoria = () => {
                 <h1 className="text-3xl sm:text-5xl font-bold text-white uppercase">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
                     {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
                             <div
                                 key={producto.id}
-                                className="w-52 ml-4 mr-1 my-5 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
+                                className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
                             >
-                                <div className="flex flex-wrap items-center justify-center">
+                                <Link to={`/tienda/producto/${producto.nombre}`} className="flex flex-wrap items-center justify-center">
                                     <img src={ProductoTest} className="h-full w-full object-cover" alt="Producto" />
-                                </div>
+                                </Link>
                                 <div className="flex justify-between">
                                     <div className="flex flex-col">
                                         <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">{producto.nombre}</Link>
@@ -98,7 +98,7 @@ const ProductosCategoria = () => {
                                     </div>
                                 </div>
                                 <div className='flex text-center justify-between items-center'>
-                                    <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
+                                    <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black hidden sm:flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
                                     <button className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white' onClick={() => {
                                         handleAgregarCarro(producto);
                                     }}><BiCart size={30} /></button>
@@ -106,8 +106,8 @@ const ProductosCategoria = () => {
                             </div>
                         ))
                     ) : (
-                        <div className='items-center flex justify-center'>
-                            <h1 className='text-center'>No hay productos disponibles en esta categoría.</h1>
+                        <div className='col-span-4 p-4 h-screen text-center'>
+                            <h1 className='text-3xl'>No hay productos disponibles en esta categoría.</h1>
                         </div>
                     )}
                 </div>

@@ -124,9 +124,9 @@ const PagoPage = () => {
     };
 
     return (
-        <div className='h-screen p-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-primary'>
-            <div className="flex justify-center items-center h-full">
-                <div className="max-w-xl w-full bg-white p-8 rounded-lg shadow-md">
+        <div className='h-auto p-5 flex justify-center  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-primary'>
+            <div className="flex justify-center items-center h-screen">
+                <div className=" bg-white h-full justify-center items-center flex flex-col sm:h-auto sm:block p-8 rounded-lg shadow-md">
                     <h2 className="text-2xl font-semibold mb-4">Datos Personales</h2>
                     <div className="space-y-4">
                         {/* Campos de entrada para el email y el teléfono */}
@@ -197,7 +197,7 @@ const PagoPage = () => {
                         </div>
                         {/* Sección de dirección de envío */}
                         {shippingMethod === 'envio' && (
-                            <div>
+                            <div className=''>
                                 <h2 className="text-2xl font-semibold mb-4">Dirección de envío</h2>
                                 <div className="space-y-4">
                                     {/* Selección de región y comuna */}
@@ -288,10 +288,11 @@ const PagoPage = () => {
                                         </label>
                                     </div>
                                 </div>
+                                
                             </div>
                         )}
                         {/* Botones para volver al carrito y continuar al pago */}
-                        <div className="flex justify-between">
+                        <div className="flex justify-around  flex-col gap-2 sm:flex-row">
                             <button className="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
                                 Volver al carrito
                             </button>

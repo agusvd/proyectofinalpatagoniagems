@@ -71,6 +71,11 @@ const NavbarMobile = ({ onClose }) => {
                     </Link>
                 </li>
                 <li>
+                    <Link to="/tienda" className="block py-2 px-4 hover:text-purple-500" onClick={onClose}>
+                        Todos los productos
+                    </Link>
+                </li>
+                <li>
                     <a href="#" className="flex items-center justify-between py-2 px-4 hover:text-purple-500" onClick={handleToggleCategories}>
                         Tienda {showCategories ? <BiMinus /> : <BiPlus />}
                     </a>
