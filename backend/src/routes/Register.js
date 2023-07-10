@@ -1,7 +1,7 @@
 import express from 'express'
 import db from '../db.js'
 import bcrypt from 'bcrypt'
-import { body } from 'express-validator'
+import { body, validationResult } from 'express-validator'
 
 const router = express.Router()
 
@@ -25,11 +25,15 @@ const validarRegistro = () => {
 
 // Ruta /register
 router.post('/register', validarRegistro(), async (req, res) => {
-    try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ Error: "Faltan campos requeridos" });
+    }
 
+    try {
         // valores que guardamos del formulario
         const { nombre, apellido, email, contraseña } = req.body
-        
+
         // Hash de la contraseña usando bcrypt
         const hashedPassword = await bcrypt.hash(contraseña, rondas)
 
@@ -42,7 +46,7 @@ router.post('/register', validarRegistro(), async (req, res) => {
         res.json({ Status: "Perfecto" })
     } catch (error) {
         console.error(error)
-        res.status(500).json({ Error: "Error al resgitrar el usuario "})
+        res.status(500).json({ Error: "Error al resgitrar el usuario" })
     }
 })
 

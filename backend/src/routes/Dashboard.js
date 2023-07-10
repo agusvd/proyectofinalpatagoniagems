@@ -2,13 +2,16 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import db from '../db.js';
 
+// Definir una clave secreta para firmar y verificar los tokens JWT
 const secretKey = "jwt-secret-key";
 
 const router = express.Router();
 
+// Middleware de autenticación
 const auth = (req, res, next) => {
-    const token = req.cookies.token;
+    const token = req.cookies.token; // Obtener el token JWT de las cookies de la solicitud
     if (token) {
+        // Verificar el token con la clave secreta
         jwt.verify(token, secretKey, (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
@@ -28,16 +31,18 @@ const auth = (req, res, next) => {
     }
 };
 
+// Ruta para el panel de control (dashboard)
 router.get('/dashboard', auth, (req, res) => {
     return res.json({ Status: 'Perfecto' });
 });
 
+// Ruta para obtener el inventario de productos
 router.get('/dashboard/inventario', (req, res) => {
     const sql = "SELECT id, nombre, precio, stock, es_destacado FROM productos";
     db.query(sql, (err, data) => {
-        if (err) return res.json("Error")
-        return res.json(data)
-    })
+        if (err) return res.json("Error"); // Devolver un mensaje de error si ocurre un error en la consulta a la base de datos
+        return res.json(data); // Devolver los datos obtenidos de la base de datos como respuesta JSON
+    });
 });
 
 
@@ -55,9 +60,9 @@ router.post('/dashboard/inventario/agregar', (req, res) => {
     db.query(sql, values, (err, data) => {
         if (err) {
             console.log(err);
-            return res.json("Error");
+            return res.json("Error");// Devolver un mensaje de error si ocurre un error en la consulta a la base de datos
         }
-        return res.json(data);
+        return res.json(data); // Devolver los datos obtenidos de la base de datos como respuesta JSON
     });
 });
 
@@ -72,6 +77,7 @@ router.get('/dashboard/search/:id', (req, res) => {
     })
 })
 
+// Ruta para obtener los datos de un producto específico para su actualización
 router.put('/dashboard/actualizar/:id', (req, res) => {
     const id = req.params.id;
     const sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, es_destacado = ? WHERE id = ?";
@@ -84,8 +90,8 @@ router.put('/dashboard/actualizar/:id', (req, res) => {
         req.body.es_destacado
     ];
     db.query(sql, [...values, id], (err, data) => {
-        if (err) return res.json(err);
-        return res.json('Actualizado');
+        if (err) return res.json(err); // Devolver un mensaje de error si ocurre un error en la consulta a la base de datos
+        return res.json('Actualizado'); // Devolver los datos obtenidos de la base de datos como respuesta JSON
     });
 });
 
