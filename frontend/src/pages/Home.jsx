@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import aceiteFrontal from "../assets/aceite-frontal.jpeg";
 import Humificador from "../assets/humificador.jpeg";
+import imagen2 from '../assets/imagen2.jpeg'
 import { VscCircle, VscCircleFilled } from 'react-icons/vsc'
 import { Link } from 'react-router-dom'
 import '../index.css'
@@ -38,13 +39,13 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="flex justify-center">
-                            <img src={aceiteFrontal} className="sm:h-96 sm:w-96 object-center" alt="imagen" />
+                            <img src={aceiteFrontal} className="sm:h-96 sm:w-96 object-center rounded-xl" alt="imagen" />
                         </div>
                     </div>
                 </div>
                 <div className={`overflow-hidden relative min-h-md item-center justify-center flex ${currentIndex === 1 ? 'animate-slide-in-from-left' : ''}`} style={{ display: currentIndex === 1 ? "block" : "none" }}>
                     <div className="flex-row sm:flex items-center justify-center text-center gap-20">
-                        <img src={Humificador} className="sm:h-96 sm:w-96 object-center" alt="imagen" />
+                        <img src={imagen2} className="sm:h-96 sm:w-96 object-center rounded-xl" alt="imagen" />
                         <div className="flex-row sm:flex items-center justify-center text-center">
                             <div className="flex flex-col space-y-4">
                                 <h1 className="text-4xl font-bold">PatagoniaGems</h1>
