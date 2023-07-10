@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import ProductoTest from '../assets/producto1.png';
 import Cart from './Cart';
 import { Link } from 'react-router-dom';
-import {BiMessageSquareX} from 'react-icons/bi'
+import { BiMessageSquareX } from 'react-icons/bi'
 
 const ProductosTotal = () => {
     const [productos, setProductos] = useState([]);
@@ -79,7 +79,7 @@ const ProductosTotal = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center font-primary'>
+        <div className='flex flex-col justify-center font-primary bg-gray-200'>
             <div className=" bg-purple-600 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl sm:text-5xl font-bold text-white">Todos los productos</h1>
             </div>
@@ -103,14 +103,9 @@ const ProductosTotal = () => {
                                 </div>
                                 <div className='flex text-center justify-between items-center'>
                                     <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black hidden sm:flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
-                                    <button
-                                        className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white'
-                                        onClick={() => {
-                                            handleAgregarCarro(producto);
-                                        }}
-                                    >
-                                        <BiCart size={30} />
-                                    </button>
+                                    <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' onClick={() => {
+                                        handleAgregarCarro(producto);
+                                    }}><BiCart size={25} /></button>
                                 </div>
                             </div>
                         ))
@@ -130,7 +125,7 @@ const ProductosTotal = () => {
                         <div className="bg-white p-4 rounded-md">
                             <button className="absolute top-2 right-2 focus:outline-none"
                                 onClick={() => setShowModal(false)}>
-                                <BiMessageSquareX size={50} className='text-white hover:text-red-500'/>
+                                <BiMessageSquareX size={50} className='text-white hover:text-red-500' />
                             </button>
                             <h2 className='text-xl text-center'>Necesitas estar registrado!</h2>
                             <div className="flex justify-center">

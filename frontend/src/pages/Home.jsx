@@ -45,9 +45,9 @@ const Home = () => {
                     <div className="flex-row sm:flex items-center justify-center text-center gap-20">
                         <img src={Humificador} className="sm:h-96 sm:w-96 object-center" alt="imagen" />
                         <div className="flex-row sm:flex items-center justify-center text-center">
-                            <div className="flex flex-col">
+                            <div className="flex flex-col space-y-4">
                                 <h1 className="text-4xl font-bold">PatagoniaGems</h1>
-                                <p className="text-lg font-bold pt-2 pb-2">Ir de compras</p>
+                                <button className="text-lg  rounded-full bg-purple-500 hover:bg-pink-600 text-white duration-300 transition-all ease-out hover:scale-125">Ir de compras</button>
                             </div>
                         </div>
                         

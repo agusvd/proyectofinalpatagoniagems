@@ -108,7 +108,6 @@ const ProductPage = () => {
 
     return (
         <div>
-            <Navbar />
             <div className="max-w-4xl mx-auto px-4 py-8 font-primary">
                 <div className="flex flex-wrap -mx-4">
                     <div className="w-full lg:w-1/2 px-4">
@@ -172,10 +171,7 @@ const ProductPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="mb-8">
-                <ProductosRelacionados />
-            </div>
-            <Footer />
+
             {carritoVisible && (
                 <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                     <Cart onClose={() => setCarritoVisible(false)} />

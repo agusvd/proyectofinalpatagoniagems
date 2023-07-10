@@ -84,7 +84,7 @@ const ProductosRelacionados = () => {
 
 
     return (
-        <div className="flex flex-col justify-center font-primary pb-20">
+        <div className="flex flex-col justify-center font-primary pb-20 bg-gray-200">
             {/* TITULO */}
             <div className="text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl sm:text-5xl font-bold">Tambien te puede interesar</h1>
@@ -107,9 +107,9 @@ const ProductosRelacionados = () => {
                             </div>
                             <div className='flex text-center justify-between items-center'>
                                 <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black hidden sm:flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
-                                <button className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white' onClick={() => {
+                                <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' onClick={() => {
                                     handleAgregarCarro(producto);
-                                }}><BiCart size={30} /></button>
+                                }}><BiCart size={25} /></button>
                             </div>
                         </div>
                     ))

@@ -107,9 +107,9 @@ const ProductosDestacados = () => {
                             </div>
                             <div className='flex text-center justify-between items-center'>
                                 <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black hidden text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white sm:flex'>Ver producto</Link>
-                                <button className='bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white' onClick={() => {
+                                <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' onClick={() => {
                                     handleAgregarCarro(producto);
-                                }}><BiCart size={30} /></button>
+                                }}><BiCart size={25} /></button>
                             </div>
                         </div>
                     ))
