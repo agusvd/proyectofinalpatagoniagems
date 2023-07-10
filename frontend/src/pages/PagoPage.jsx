@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Regiones from '../components/Regiones';
+import { Link } from 'react-router-dom';
 
 const PagoPage = () => {
     // Definición de los estados utilizando el hook useState
@@ -293,9 +294,9 @@ const PagoPage = () => {
                         )}
                         {/* Botones para volver al carrito y continuar al pago */}
                         <div className="flex justify-around  flex-col gap-2 sm:flex-row">
-                            <button className="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
+                            <Link to="/carrito" className="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
                                 Volver al carrito
-                            </button>
+                            </Link>
                             <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                                 Continuar al pago
                             </button>

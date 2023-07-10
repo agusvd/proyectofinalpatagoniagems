@@ -7,6 +7,7 @@ import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
 import NavbarMobile from './NavbarMobile';
+import logo1 from '../assets/logo1.jpg'
 
 const Navbar = () => {
     const [auth, setAuth] = useState(false)
@@ -33,7 +34,7 @@ const Navbar = () => {
                     setNombre(res.data.nombre);
                     setApellido(res.data.apellido);
                     setIsAdmin(res.data.role)
-                    setMensaje2('😃'); 
+                    setMensaje2('😃');
                 } else {
                     setAuth(false);
                     setMensaje(res.data.Error);
@@ -129,6 +130,7 @@ const Navbar = () => {
                             <Link to="/nosotros" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-white'}`}>Nosotros</Link>
                             <Link to="/contacto" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-white'}`}>Contacto</Link>
                         </div>
+                        
                     </div>
                     <div className="hidden md:inline-flex relative gap-4 text-center items-center">{/* Ocultar en pantallas más pequeñas */}
                         <div className="group relative items-center text-center text-lg">
@@ -205,7 +207,7 @@ const Navbar = () => {
                 <div>
                     <div className='bg-black text-white flex justify-center items-center p-5'>
                         <Link to="/">
-                            <GiCrystalGrowth size={50} className='hover:scale-125 hover:rotate-45 hover:text-purple-500 transition-all ease-in duration-300' />
+                            <img src={logo1} className='h-32 w-44 object-center rounded-xl' />
                         </Link>
                     </div>
                 </div>
