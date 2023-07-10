@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import aceiteFrontal from "../assets/aceite-frontal.jpeg";
 import Humificador from "../assets/humificador.jpeg";
 import { VscCircle, VscCircleFilled } from 'react-icons/vsc'
+import { Link } from 'react-router-dom'
 import '../index.css'
 const Home = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,7 +48,7 @@ const Home = () => {
                         <div className="flex-row sm:flex items-center justify-center text-center">
                             <div className="flex flex-col space-y-4">
                                 <h1 className="text-4xl font-bold">PatagoniaGems</h1>
-                                <button className="text-lg  rounded-full bg-purple-500 hover:bg-pink-600 text-white duration-300 transition-all ease-out hover:scale-125">Ir de compras</button>
+                                <Link to="/tienda" className="text-lg rounded-full bg-purple-500 hover:bg-pink-600 text-white duration-300 transition-all ease-out hover:scale-125">Ir de compras</Link>
                             </div>
                         </div>
                         
