@@ -1,6 +1,6 @@
 import React from 'react'
 import IconMercadopago from '../assets/mercado-pago.svg'
-import Crystal from  '../assets/crystal.png'
+import logo1 from  '../assets/logo1.jpg'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className='bg-black text-white'>
             <div className='grid grid-cols-1 pt-12 py-4 sm:grid-cols-3 sm:pt-0 sm:py-0'>
                 <div className='flex justify-center items-center'>
-                    <img src={Crystal} alt="Logo PatagoniaGems" className='w-16 h-16'/>
+                    <img src={logo1} alt="Logo PatagoniaGems" className='w-28'/>
                 </div>
                 <div className='flex flex-col justify-center items-center space-y-2 pt-10 sm:flex sm:pt-0'>
                     <p className='text-white-500'>

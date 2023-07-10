@@ -53,7 +53,7 @@ const Login = () => {
     return (
         <div className="flex h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-primary justify-center items-center ">
             <Toaster />
-            <div className="w-full max-w-md m-auto bg-white shadow-xl rounded-md p-10">
+            <div className="w-full max-w-md m-auto bg-white shadow-xl rounded-md p-5 hover:shadow-3xl hover:shadow-purple-400 transition-all ease-in duration-500 hover:">
                 <header className="text-center pt-10 pb-20">
                     <a className="text-4xl font-bold text-center text-purple-600">PatagoniaGems</a>
                 </header>
