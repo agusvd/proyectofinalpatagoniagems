@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import aceiteFrontal from "../assets/aceite-frontal.jpeg";
-import Humificador from "../assets/humificador.jpeg";
 import imagen2 from '../assets/imagen2.jpeg'
 import { VscCircle, VscCircleFilled } from 'react-icons/vsc'
 import { Link } from 'react-router-dom'
