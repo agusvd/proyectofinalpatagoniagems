@@ -11,6 +11,7 @@ import NavbarMobile from './NavbarMobile';
 const Navbar = () => {
     const [auth, setAuth] = useState(false)
     const [mensaje, setMensaje] = useState('')
+    const [mensaje2, setMensaje2] = useState('')
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
     const [isAdmin, setIsAdmin] = useState(false);
@@ -32,6 +33,7 @@ const Navbar = () => {
                     setNombre(res.data.nombre);
                     setApellido(res.data.apellido);
                     setIsAdmin(res.data.role)
+                    setMensaje2('😃'); 
                 } else {
                     setAuth(false);
                     setMensaje(res.data.Error);
@@ -114,9 +116,9 @@ const Navbar = () => {
                                 <p className='mt-3'></p>
                                 {categorias.map(categoria => (
                                     <li className='bg-white' key={categoria.id}>
-                                        <Link to={`/tienda/${categoria.id}`} className="rounded-t rounded-b bg-white hover:text-purple-500 text-start block whitespace-no-wrap cursor-pointer p-2">{categoria.categoria}</Link>
+                                        <Link to={`/tienda/${categoria.id}`} className="rounded-t rounded-b bg-white hover:text-purple-500 text-start block whitespace-no-wrap cursor-pointer p-2 px-10">{categoria.categoria}</Link>
                                         <ul>
-                                            <li className="border-t border-gray-400"></li>
+                                            <li className="border-t border-gray-200"></li>
                                         </ul>
                                     </li>
                                 ))}
@@ -130,9 +132,9 @@ const Navbar = () => {
                     </div>
                     <div className="hidden md:inline-flex relative gap-4 text-center items-center">{/* Ocultar en pantallas más pequeñas */}
                         <div className="group relative items-center text-center text-lg">
-                            <button className="inline-flex items-center hover:text-purple-500">
-                                <p className='text-purple-500'>{mensaje}</p>
-                                <p className='text-purple-500'>{nombre + ' ' + apellido}</p><BiUserCircle size={30} className='ml-4 hover:scale-125 ease-in duration-150 cursor-pointer' />
+                            <button className="inline-flex items-center">
+                                <p className='text-purple-500 hover:text-white'>  {mensaje}</p>
+                                <p className='text-purple-500 hover:text-white text-center '>{mensaje2 + ' ' + nombre + ' ' + apellido}</p><BiUserCircle size={30} className='ml-4 text-white cursor-pointer' />
                             </button>
                             <div className="rounded absolute hidden text-black pt-1 group-hover:block whitespace-no-wrap shadow-lg text-center right-0 w-48 origin-top-right z-[99]">
                                 {

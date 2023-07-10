@@ -6,11 +6,11 @@ const router = express.Router();
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
-        return res.json({ Error: "Acceder" });
+        return res.json({ Error: "😞 Acceder" });
     } else {
         jwt.verify(token, "jwt-secret-key", (err, decoded) => {
             if (err) {
-                return res.json({ Error: "Sesion expirada" });
+                return res.json({ Error: "😞 Sesion expirada" });
             } else {
                 req.nombre = decoded.nombre;
                 req.apellido = decoded.apellido;
