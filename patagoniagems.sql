@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-07-2023 a las 10:44:14
+-- Tiempo de generación: 10-07-2023 a las 17:35:18
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,9 +40,10 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`id`, `usuario_id`, `producto_id`, `precio_total`, `cantidad_total`) VALUES
-(31, 2, 5, 100, 1),
-(32, 2, 21, 30000, 1),
-(38, 1, 33, 980000, 1);
+(62, 4, 3, 100, 1),
+(65, 1, 35, 1200000, 1),
+(66, 1, 10, 2000, 1),
+(75, 2, 10, 2000, 1);
 
 -- --------------------------------------------------------
 
@@ -60,8 +61,11 @@ CREATE TABLE `categoria_id` (
 --
 
 INSERT INTO `categoria_id` (`id`, `categoria`) VALUES
-(1, 'random'),
-(6, 'tecnologia');
+(1, 'Aceites'),
+(6, 'Sprays'),
+(8, 'Jabones'),
+(9, 'Joyas'),
+(10, 'Cartas');
 
 -- --------------------------------------------------------
 
@@ -99,13 +103,15 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `stock`, `cate
 (3, 'producto 1', 'producto 1', 100, 10, 1, 'no'),
 (5, 'producto 3', 'producto 3', 100, 12, 1, 'si'),
 (9, 'jabon 2', 'jabon 2', 1500, 10, 1, 'no'),
-(10, 'vela 1', 'vela 1', 2000, 5, 1, 'no'),
+(10, 'vela 1', 'vela 1', 2000, 5, 1, 'si'),
 (12, 'jabon 3', 'jabon 3', 2400, 6, 1, 'no'),
 (15, 'jabon 6', 'jabon 6', 2800, 7, 1, 'no'),
-(21, 'joya 1', 'joya 1', 30000, 1, 1, 'no'),
+(21, 'joya', 'joya 1', 30000, 1, 1, 'no'),
 (29, 'otra cosa 3', 'otra cosa 3', 1500, 40, 1, 'no'),
 (31, 'otra cosa 6', 'orta cosa 6', 7000, 20, 1, 'no'),
-(33, 'macbook', 'macbook', 980000, 4, 6, 'no');
+(34, 'bmx 2022', 'una bici pa', 300000, 3, 1, 'si'),
+(35, 'iphone 25', 'iphone moderno', 1200000, 5, 6, 'si'),
+(36, 'collar proteccion', 'collar maceta', 15000, 10, 8, 'si');
 
 -- --------------------------------------------------------
 
@@ -135,7 +141,6 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `role`, `region`, `comuna`, `nombreCalle`, `numeroCalle`, `ciudad`, `numeroDepa`) VALUES
 (1, 'Agustin', 'Villarroel', 'agus@gmail.com', '$2b$10$.HGssuNG2.iFLQCVoewx6.adML8/yFRpgPBaskftyhq5VbdqQFdgu', 'admin', NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'Claudio', 'Arias', 'claudio@gmail.com', '$2b$10$l/BQmYG0XwXIq3Wyb/WtH.L90XoFKS9UFoGtkUxfVhW2rO0Fj//Ba', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Manuel', 'Poto', 'manuel@gmail.com', '$2b$10$1Kb63ot8EVLgwYviIgeDGurAX4V/gd06viLUPRPtEX98H62CVme22', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 'Sebastian', 'Godoy', 'seba@gmail.com', '$2b$10$W3VmpvkBwY3BNws58SUWz.RBANA.pdibEcHEjVqy2jtYi63o0K8jW', 'user', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
@@ -184,13 +189,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_id`
 --
 ALTER TABLE `categoria_id`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes_productos`
@@ -202,7 +207,7 @@ ALTER TABLE `imagenes_productos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
