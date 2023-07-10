@@ -126,7 +126,7 @@ const ProductPage = () => {
                                     {getCategoriaNombre(categoria_id)}
                                 </h2>
                                 <p className="text-lg text-gray-500 mb-5">${precio} CLP</p>
-                                <p className="text-lg text-start uppercase">{descripcion}</p>
+                                <p className="text-lg text-start ">{descripcion}</p>
                             </div>
                         )}
                         <div className="flex items-center gap-5 text-center justify-between sm:justify-normal">
