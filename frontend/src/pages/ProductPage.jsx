@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import ProductoEjemplo from '../assets/producto1.png';
-import ProductosRelacionados from '../components/ProductosRelacionados';
-import Footer from '../components/Footer';
 import axios from 'axios';
 import Cart from '../components/Cart';
 import Cookies from 'js-cookie';
@@ -11,42 +7,29 @@ import jwtDecode from 'jwt-decode';
 import { BiCart } from 'react-icons/bi';
 import { BiMessageSquareX } from 'react-icons/bi';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
+import { toast, Toaster } from 'react-hot-toast';
+import productoEjemplo from '../assets/producto1.png'
 
 const ProductPage = () => {
-    const [quantity, setQuantity] = useState(1);
+    const [cantidad, setCantidad] = useState(1);
     const [producto, setProducto] = useState(null);
-    const [categorias, setCategorias] = useState([]);
     const [carritoVisible, setCarritoVisible] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [nombreP, setNombreP] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [precio, setPrecio] = useState('');
-    const [stock, setStock] = useState('');
-    const [categoria_id, setCategoria_id] = useState('');
+    const [carritoItems, setCarritoItems] = useState([]);
+    const [cantidadProductos, setCantidadProductos] = useState({});
+
     const { nombre } = useParams();
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/tienda/producto/' + nombre)
+            .get(`http://localhost:8000/tienda/producto/${nombre}`)
             .then((res) => {
                 if (res.data.length === 0) {
                     setProducto(null); // No se encontró el producto, establecer producto a null
                 } else {
                     setProducto(res.data[0]);
-                    setNombreP(res.data[0].nombre);
-                    setDescripcion(res.data[0].descripcion);
-                    setPrecio(res.data[0].precio);
-                    setStock(res.data[0].stock);
-                    setCategoria_id(res.data[0].categoria_id);
                 }
-            })
-            .catch((err) => console.log(err));
-
-        axios
-            .get('http://localhost:8000/categorias')
-            .then((res) => {
-                setCategorias(res.data);
             })
             .catch((err) => console.log(err));
 
@@ -57,34 +40,42 @@ const ProductPage = () => {
         }
     }, [nombre]);
 
-    const getCategoriaNombre = (categoriaId) => {
-        const categoria = categorias.find((c) => c.id === categoriaId);
-        return categoria ? categoria.categoria : '';
-    };
-
     const handleAgregarCarro = (producto) => {
         if (!isLoggedIn) {
             setShowModal(true);
             return;
         }
 
+        const productoExistente = carritoItems.find(item => item.nombre === producto.nombre);
+        if (productoExistente) {
+            toast.error('El producto ya está en el carrito');
+            return;
+        }
+
+        // Obtener el ID del usuario del token
         const token = Cookies.get('token');
         const decodedToken = jwtDecode(token);
         const usuario_id = decodedToken.id;
 
+        // Crear un objeto con los datos del carrito
         const datosCarrito = {
             usuario_id: usuario_id,
             producto_id: producto.id,
             precio_total: producto.precio,
-            cantidad_total: 1
+            cantidad_total: cantidad,
         };
 
         axios
             .post('http://localhost:8000/carrito', datosCarrito)
             .then((res) => {
                 console.log(res.data);
-                console.log(datosCarrito);
                 setCarritoVisible(true);
+                setCarritoItems((prevCarritoItems) => [...prevCarritoItems, producto]);
+                setCantidadProductos((prevCantidadProductos) => ({
+                    ...prevCantidadProductos,
+                    [producto.id]: 1,
+                }));
+                toast.success('Producto agregado al carrito');
             })
             .catch((err) => {
                 console.error(err);
@@ -108,39 +99,30 @@ const ProductPage = () => {
 
     return (
         <div>
+            <Toaster />
             <div className="max-w-4xl mx-auto px-4 py-8 font-primary">
                 <div className="flex flex-wrap -mx-4">
                     <div className="w-full lg:w-1/2 px-4">
-                        <img
-                            src={ProductoEjemplo}
-                            alt="Nombre del producto"
-                            className="w-full rounded-lg shadow-md"
-                        />
+                        <img src={productoEjemplo} alt="imagen" className="w-full rounded-lg shadow-md" />
                     </div>
                     <div className="w-full lg:w-1/2 px-4 flex flex-col">
-                        {nombreP && (
-                            <div>
-                                <p className="text-sm text-purple-600">PatagoniaGems</p>
-                                <h1 className="text-3xl capitalize">{nombreP}</h1>
-                                <h2 className="text-xl text-gray-600 capitalize">
-                                    {getCategoriaNombre(categoria_id)}
-                                </h2>
-                                <p className="text-lg text-gray-500 mb-5">${precio} CLP</p>
-                                <p className="text-lg text-start">{descripcion}</p>
-                            </div>
-                        )}
+                        <p className="text-sm text-purple-600">PatagoniaGems</p>
+                        <h1 className="text-3xl capitalize">{producto.nombre}</h1>
+                        <h2 className="text-xl text-gray-600 capitalize">{producto.categoria}</h2>
+                        <p className="text-lg text-gray-500 mb-5">${producto.precio} CLP</p>
+                        <p className="text-lg text-start">{producto.descripcion}</p>
                         <div className="flex items-center gap-5 text-center justify-between sm:justify-normal">
                             <div className="flex">
                                 <button
                                     className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
-                                    onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+                                    onClick={() => setCantidad(cantidad > 1 ? cantidad - 1 : 1)}
                                 >
                                     -
                                 </button>
-                                <p className="bg-purple-500 text-white py-2 px-4 mx-2 rounded">{quantity}</p>
+                                <p className="bg-purple-500 text-white py-2 px-4 mx-2 rounded">{cantidad}</p>
                                 <button
                                     className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
-                                    onClick={() => setQuantity(quantity + 1)}
+                                    onClick={() => setCantidad(cantidad + 1)}
                                 >
                                     +
                                 </button>
@@ -155,18 +137,17 @@ const ProductPage = () => {
                             </div>
                         </div>
                         <div className="flex flex-col p-2 gap-2 border-t-2 border-b-2 justify-center sm:justify-normal sm:border-0 sm:gap-2">
-                            <div className='sm:text-start text-center'>
+                            <div className="sm:text-start text-center">
                                 <h1>Redes sociales</h1>
                             </div>
-                            <div className='justify-center flex gap-5 sm:justify-normal'>
-                            <a href="https://www.facebook.com/Patagoniagems/" target="_blank" className="text-black">
-                                <FaFacebook size={25} />
-                            </a>
-                            <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank" className="text-black">
-                                <FaInstagram size={25} />
-                            </a>
+                            <div className="justify-center flex gap-5 sm:justify-normal">
+                                <a href="https://www.facebook.com/Patagoniagems/" target="_blank" className="text-black">
+                                    <FaFacebook size={25} />
+                                </a>
+                                <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank" className="text-black">
+                                    <FaInstagram size={25} />
+                                </a>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

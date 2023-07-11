@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Regiones from '../components/Regiones';
 import { Link } from 'react-router-dom';
+import CartPage from './CartPage.jsx'
 
 const PagoPage = () => {
     // Definición de los estados utilizando el hook useState
@@ -74,51 +75,51 @@ const PagoPage = () => {
 
     // Objeto que contiene las comunas por región
     const comunasPorRegion = {
-        'Región Metropolitana': ['Cerrillos', 'La Reina', 'Pudahuel','Cerro Navia','Las Condes','Quilicura','Conchalí','Lo Barnechea','Quinta Normal',
-        'El Bosque','Lo Espejo','Recoleta','Estación Central','Lo Prado','Renca','Huechuraba','Macul','San Miguel','Independencia','Maipú','San Joaquín',
-        'La Cisterna', 'Ñuñoa','San Ramón','La Florida', 'Pedro Aguirre Cerda', 'Santiago (Centro)', 'La Pintana', 'Peñalolén', 'Vitacura', 'La Granja',
-        'Providencia'],
+        'Región Metropolitana': ['Cerrillos', 'La Reina', 'Pudahuel', 'Cerro Navia', 'Las Condes', 'Quilicura', 'Conchalí', 'Lo Barnechea', 'Quinta Normal',
+            'El Bosque', 'Lo Espejo', 'Recoleta', 'Estación Central', 'Lo Prado', 'Renca', 'Huechuraba', 'Macul', 'San Miguel', 'Independencia', 'Maipú', 'San Joaquín',
+            'La Cisterna', 'Ñuñoa', 'San Ramón', 'La Florida', 'Pedro Aguirre Cerda', 'Santiago (Centro)', 'La Pintana', 'Peñalolén', 'Vitacura', 'La Granja',
+            'Providencia'],
 
-        'Región de Arica y Parinacota (XV)': ['Arica', 'Camarones', 'General Lagos','Putre'],
+        'Región de Arica y Parinacota (XV)': ['Arica', 'Camarones', 'General Lagos', 'Putre'],
 
-        'Región de Tarapacá (I)':['Camiña', 'Colchane', 'Huara','Iquique', 'Pica','Pozo Almonte', 'Alto Hospicio'],
+        'Región de Tarapacá (I)': ['Camiña', 'Colchane', 'Huara', 'Iquique', 'Pica', 'Pozo Almonte', 'Alto Hospicio'],
 
-        'Región de Antofagasta (II)':['Antofagasta','Calama','María Elena','Mejillones','Ollagüe','San Pedro De Atacama','Sierra Gorda','Taltal','Tocopilla'],
+        'Región de Antofagasta (II)': ['Antofagasta', 'Calama', 'María Elena', 'Mejillones', 'Ollagüe', 'San Pedro De Atacama', 'Sierra Gorda', 'Taltal', 'Tocopilla'],
 
-        'Región de Atacama (III)':['Alto Del Carmen','Caldera','Chañaral','Copiapó','Diego De Almagro','Freirina','Huasco','Tierra Amarilla','Vallenar'],
+        'Región de Atacama (III)': ['Alto Del Carmen', 'Caldera', 'Chañaral', 'Copiapó', 'Diego De Almagro', 'Freirina', 'Huasco', 'Tierra Amarilla', 'Vallenar'],
 
-        'Región de Coquimbo (IV)':['Andacollo','Canela','Caleta Hornos','Combarbalá','Coquimbo','Guanaqueros','Illapel','La Higuera','La Serena','Las Tacas','Los Vilos',
-        'Monte Patria','Morrillos','Ovalle','Paihuano','Playa Blanca','Puerto Velero','Punitaqui','Río Hurtado','Salamanca','Toncoy','Totoralillo','Vicuña'],
+        'Región de Coquimbo (IV)': ['Andacollo', 'Canela', 'Caleta Hornos', 'Combarbalá', 'Coquimbo', 'Guanaqueros', 'Illapel', 'La Higuera', 'La Serena', 'Las Tacas', 'Los Vilos',
+            'Monte Patria', 'Morrillos', 'Ovalle', 'Paihuano', 'Playa Blanca', 'Puerto Velero', 'Punitaqui', 'Río Hurtado', 'Salamanca', 'Toncoy', 'Totoralillo', 'Vicuña'],
 
-        'Región de Valparaíso (V)':['Algarrobo','Cabildo','Calle Larga','Cartagena','Casablanca','Catemu','Concón','El Quisco','El Tabo','Hijuelas','Isla De Pascua','Juan Fernández','La Calera',
-        'La Cruz','La Ligua','Limache','Llay-Llay','Los Angeles','Nogales','Olmué','Panquehue','Papudo','Petorca','Puchuncaví','Putaendo','Quillota','Quilpué','Quintero','Rinconada','San Antonio',
-        'San Esteban','San Felipe','Santa María','Santo Domingo','Valparaíso','Villa Alemana','Viña Del Mar','Zapallar'],
+        'Región de Valparaíso (V)': ['Algarrobo', 'Cabildo', 'Calle Larga', 'Cartagena', 'Casablanca', 'Catemu', 'Concón', 'El Quisco', 'El Tabo', 'Hijuelas', 'Isla De Pascua', 'Juan Fernández', 'La Calera',
+            'La Cruz', 'La Ligua', 'Limache', 'Llay-Llay', 'Los Angeles', 'Nogales', 'Olmué', 'Panquehue', 'Papudo', 'Petorca', 'Puchuncaví', 'Putaendo', 'Quillota', 'Quilpué', 'Quintero', 'Rinconada', 'San Antonio',
+            'San Esteban', 'San Felipe', 'Santa María', 'Santo Domingo', 'Valparaíso', 'Villa Alemana', 'Viña Del Mar', 'Zapallar'],
 
-        'Region del Libertador General Bernando O´Higgins(VI)':['Chépica','Chimbarongo','Codegua','Coinco','Coltauco','Doñihue','Graneros','La Estrella','Lago Rapel',
-        'Las Cabras','Litueche','Lolol','Machalí','Malloa','Marchigüe','Mostazal','Nancagua','Navidad','Olivar','Palmilla','Paredones','Peralillo','Peumo','Pichidegua',
-        'Pichilemu','Placilla','Pumanque','Quinta De Tilcoco','Rancagua','Rengo','Requinoa','San Fernando','San Vicente','Santa Cruz'],
+        'Region del Libertador General Bernando O´Higgins(VI)': ['Chépica', 'Chimbarongo', 'Codegua', 'Coinco', 'Coltauco', 'Doñihue', 'Graneros', 'La Estrella', 'Lago Rapel',
+            'Las Cabras', 'Litueche', 'Lolol', 'Machalí', 'Malloa', 'Marchigüe', 'Mostazal', 'Nancagua', 'Navidad', 'Olivar', 'Palmilla', 'Paredones', 'Peralillo', 'Peumo', 'Pichidegua',
+            'Pichilemu', 'Placilla', 'Pumanque', 'Quinta De Tilcoco', 'Rancagua', 'Rengo', 'Requinoa', 'San Fernando', 'San Vicente', 'Santa Cruz'],
 
-        'Región del Maule (VII)':['Cauquenes','Chanco','Colbún','Constitución','Curepto','Curicó','Empedrado','Hualañe','Lincantén','Linares','Longaví','Maule','Molina',
-        'Parral','Pelarco','Pelluhue','Pencahue','Rauco','Retiro','Río Claro','Romeral','Sagrada Familia','San Clemente','San Javier','San Rafael','Talca','Teno','Vichuquén','Villa Alegre','Yerbas Buenas'],
+        'Región del Maule (VII)': ['Cauquenes', 'Chanco', 'Colbún', 'Constitución', 'Curepto', 'Curicó', 'Empedrado', 'Hualañe', 'Lincantén', 'Linares', 'Longaví', 'Maule', 'Molina',
+            'Parral', 'Pelarco', 'Pelluhue', 'Pencahue', 'Rauco', 'Retiro', 'Río Claro', 'Romeral', 'Sagrada Familia', 'San Clemente', 'San Javier', 'San Rafael', 'Talca', 'Teno', 'Vichuquén', 'Villa Alegre', 'Yerbas Buenas'],
 
-        'Regíon del Ñuble (XVI)':['Bulnes','Chillán','Chillán Viejo','Cobquecura','Coelemu','El Carmen','Ninhue','Ñiquén','Pemuco','Pinto','Portezuelo','Quillón','Quirihue','Ranquil','San Carlos','San Fabián',
-        'San Ignacio','San Nicolás','Treguaco','Yungay'],
+        'Regíon del Ñuble (XVI)': ['Bulnes', 'Chillán', 'Chillán Viejo', 'Cobquecura', 'Coelemu', 'El Carmen', 'Ninhue', 'Ñiquén', 'Pemuco', 'Pinto', 'Portezuelo', 'Quillón', 'Quirihue', 'Ranquil', 'San Carlos', 'San Fabián',
+            'San Ignacio', 'San Nicolás', 'Treguaco', 'Yungay'],
 
-        'Región del Biobío (VIII)':['Alto Biobío','Antuco','Arauco','Cabrero','Cañete','Chiguayante','Concepción','Contulmo','Coronel','Curanilahue','Dichato','Florida','Hualpén','Hualqui','Laja','Lebu','Lirquen','Los Alamos',
-        'Los Ángeles','Lota','Mulchén','Nacimiento','Negrete','Penco','Pingueral','Quilaco','Quilleco','Recinto','San Pedro De La Paz','San Rosendo','Santa Bárbara','Santa Juana','Talcahuano','Tirúa','Tomé','Tucapel','Yumbel'],
+        'Región del Biobío (VIII)': ['Alto Biobío', 'Antuco', 'Arauco', 'Cabrero', 'Cañete', 'Chiguayante', 'Concepción', 'Contulmo', 'Coronel', 'Curanilahue', 'Dichato', 'Florida', 'Hualpén', 'Hualqui', 'Laja', 'Lebu', 'Lirquen', 'Los Alamos',
+            'Los Ángeles', 'Lota', 'Mulchén', 'Nacimiento', 'Negrete', 'Penco', 'Pingueral', 'Quilaco', 'Quilleco', 'Recinto', 'San Pedro De La Paz', 'San Rosendo', 'Santa Bárbara', 'Santa Juana', 'Talcahuano', 'Tirúa', 'Tomé', 'Tucapel', 'Yumbel'],
 
-        'Región de La Araucania (IX)':['Angol','Caburga','Calafquen','Carahue','Cholchol','Collipulli','Corralco','Cunco','Curacautín','Curarrehue','Ercilla','Freire','Galvarino','Gorbea','Lago Cólico','Lago Cólico Norte','Lago Cólico Sur',
-        'Lautaro','Lincanray','Loncoche','Lonquimay','Los Sauces','Lumaco','Malalcahuello','Melipeuco','Nueva Imperial','Padre Las Casas','Perquenco','Pitrufquén','Pucón','Puerto Saavedra','Purén',
-        'Renaico','Temuco','Teodoro Schmidt','Toltén','Traiguén','Victoria','Vilcún','Villarrica'],
+        'Región de La Araucania (IX)': ['Angol', 'Caburga', 'Calafquen', 'Carahue', 'Cholchol', 'Collipulli', 'Corralco', 'Cunco', 'Curacautín', 'Curarrehue', 'Ercilla', 'Freire', 'Galvarino', 'Gorbea', 'Lago Cólico', 'Lago Cólico Norte', 'Lago Cólico Sur',
+            'Lautaro', 'Lincanray', 'Loncoche', 'Lonquimay', 'Los Sauces', 'Lumaco', 'Malalcahuello', 'Melipeuco', 'Nueva Imperial', 'Padre Las Casas', 'Perquenco', 'Pitrufquén', 'Pucón', 'Puerto Saavedra', 'Purén',
+            'Renaico', 'Temuco', 'Teodoro Schmidt', 'Toltén', 'Traiguén', 'Victoria', 'Vilcún', 'Villarrica'],
 
-        'Region de Los Ríos (XIV)':['Coñaripe','Corral','Futrono','La Union','Lago Ranco','Lanco','Los Lagos','Mafil','Mariquina','Paillaco','Panquipulli','Rio Bueno','Valdivia'],
+        'Region de Los Ríos (XIV)': ['Coñaripe', 'Corral', 'Futrono', 'La Union', 'Lago Ranco', 'Lanco', 'Los Lagos', 'Mafil', 'Mariquina', 'Paillaco', 'Panquipulli', 'Rio Bueno', 'Valdivia'],
 
-        'Región de Los Lagos (X)':['Ancud','Calbuco','Castro','Chaitén','Chonchi','Cochamó','Curaco De Vélez','Dalcahue','El Islote','Ensenada','Fresia','Frutillar','Futaleufú','Hualaihué','Llanquihue','Los Muermos','Marina Rupanco','Maullín','Osorno',
-        'Palena','Puerto Montt','Puerto Octay','Puerto Varas','Puqueldón','Purranque','Puyehue','Queilén','Quellón','Quemchi','Quinchao', 'Río Negro','San Juan De la Costa','San Pablo'],
+        'Región de Los Lagos (X)': ['Ancud', 'Calbuco', 'Castro', 'Chaitén', 'Chonchi', 'Cochamó', 'Curaco De Vélez', 'Dalcahue', 'El Islote', 'Ensenada', 'Fresia', 'Frutillar', 'Futaleufú', 'Hualaihué', 'Llanquihue', 'Los Muermos', 'Marina Rupanco', 'Maullín', 'Osorno',
+            'Palena', 'Puerto Montt', 'Puerto Octay', 'Puerto Varas', 'Puqueldón', 'Purranque', 'Puyehue', 'Queilén', 'Quellón', 'Quemchi', 'Quinchao', 'Río Negro', 'San Juan De la Costa', 'San Pablo'],
 
-        'Region de Aysén del General Carlos Ibáñez del Campo (XI)':['Aysén','Chile Chico','Cisnes','Cochrane','Coyhaique','Guaitecas','Lago Verde','0´Higgins','Río Ibáñez','Tortel'],
+        'Region de Aysén del General Carlos Ibáñez del Campo (XI)': ['Aysén', 'Chile Chico', 'Cisnes', 'Cochrane', 'Coyhaique', 'Guaitecas', 'Lago Verde', '0´Higgins', 'Río Ibáñez', 'Tortel'],
 
-        'Región de Magallanes y la Antártica Chilena (XII)':['Antártica','Cabo De Hornos','Laguna Blanca','Porvenir','Primavera','Puerto Natales','Punta Arenas','Río Verde','San Gregorio','Timaukel','Torres Del Paine']
+        'Región de Magallanes y la Antártica Chilena (XII)': ['Antártica', 'Cabo De Hornos', 'Laguna Blanca', 'Porvenir', 'Primavera', 'Puerto Natales', 'Punta Arenas', 'Río Verde', 'San Gregorio', 'Timaukel', 'Torres Del Paine']
 
 
 
@@ -126,7 +127,7 @@ const PagoPage = () => {
 
     return (
         <div className='h-auto p-5 flex justify-center  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-primary'>
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center h-full">
                 <div className=" bg-white h-full justify-center items-center flex flex-col sm:h-auto sm:block p-8 rounded-lg shadow-md">
                     <h2 className="text-2xl font-semibold mb-4">Datos Personales</h2>
                     <div className="space-y-4">
@@ -274,7 +275,7 @@ const PagoPage = () => {
                                             onChange={handleAddressLineChange}
                                         />
                                     </div>
-                                    
+
                                     {/* Checkbox para guardar información para futuras compras */}
                                     <div className="flex items-center">
                                         <input
@@ -289,7 +290,7 @@ const PagoPage = () => {
                                         </label>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         )}
                         {/* Botones para volver al carrito y continuar al pago */}
@@ -302,6 +303,9 @@ const PagoPage = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+                <div className='pl-10'>
+                    <CartPage />
                 </div>
             </div>
         </div>

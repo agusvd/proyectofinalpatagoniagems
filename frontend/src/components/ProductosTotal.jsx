@@ -6,7 +6,8 @@ import jwtDecode from 'jwt-decode';
 import ProductoTest from '../assets/producto1.png';
 import Cart from './Cart';
 import { Link } from 'react-router-dom';
-import { BiMessageSquareX } from 'react-icons/bi'
+import { BiMessageSquareX } from 'react-icons/bi';
+import { toast, Toaster } from 'react-hot-toast';
 
 const ProductosTotal = () => {
     const [productos, setProductos] = useState([]);
@@ -14,7 +15,8 @@ const ProductosTotal = () => {
     const [carritoVisible, setCarritoVisible] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showModal, setShowModal] = useState(false);
-
+    const [carritoItems, setCarritoItems] = useState([]);
+    const [cantidadProductos, setCantidadProductos] = useState({});
 
     useEffect(() => {
         axios
@@ -38,6 +40,26 @@ const ProductosTotal = () => {
         if (token) {
             setIsLoggedIn(true);
         }
+
+        // Obtener los productos del carrito desde el backend
+        const fetchCarritoItems = async () => {
+            try {
+                const token = Cookies.get('token');
+                const decodedToken = jwtDecode(token);
+                const usuario_id = decodedToken.id;
+                const response = await axios.get(`http://localhost:8000/carrito?usuario_id=${usuario_id}`);
+                setCarritoItems(response.data);
+                const cantidadInicial = {};
+                response.data.forEach((item) => {
+                    cantidadInicial[item.producto_id] = item.cantidad_total;
+                });
+                setCantidadProductos(cantidadInicial);
+            } catch (error) {
+                console.error('Error al obtener los productos del carrito:', error);
+            }
+        };
+
+        fetchCarritoItems();
     }, []);
 
     const getCategoriaNombre = (categoriaId) => {
@@ -50,28 +72,37 @@ const ProductosTotal = () => {
             setShowModal(true);
             return;
         }
-        // primero obtenemos el id del usuario guardado en el token 
+
+        const productoExistente = carritoItems.find((item) => item.producto_id === producto.id);
+        if (productoExistente) {
+            toast.error('El producto ya está en el carrito');
+            return;
+        }
+
+        // Obtener el ID del usuario del token
         const token = Cookies.get('token');
         const decodedToken = jwtDecode(token);
-
         const usuario_id = decodedToken.id;
 
-
-        // creamos una variable que va guardar los datos del carrito
+        // Crear un objeto con los datos del carrito
         const datosCarrito = {
-            usuario_id: usuario_id, // tiene la id del token
-            producto_id: producto.id, // la id del producto 
-            precio_total: producto.precio, // el precio del producto guardado
-            cantidad_total: 1 // por defecto se guarda 1 porque es un producto el que se guardo
+            usuario_id: usuario_id,
+            producto_id: producto.id,
+            precio_total: producto.precio,
+            cantidad_total: 1,
         };
 
-        // ahora cuando se quieran enviar los datos al backend, se enviara datosCarrito
-
-        axios.post('http://localhost:8000/carrito', datosCarrito)
+        axios
+            .post('http://localhost:8000/carrito', datosCarrito)
             .then((res) => {
                 console.log(res.data);
-                console.log(datosCarrito)
-                setCarritoVisible(true); // Mostrar el componente Cart
+                setCarritoVisible(true);
+                setCarritoItems((prevCarritoItems) => [...prevCarritoItems, producto]);
+                setCantidadProductos((prevCantidadProductos) => ({
+                    ...prevCantidadProductos,
+                    [producto.id]: 1,
+                }));
+                toast.success('Producto agregado al carrito');
             })
             .catch((err) => {
                 console.error(err);
@@ -79,11 +110,12 @@ const ProductosTotal = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center font-primary bg-gray-200'>
+        <div className="flex flex-col justify-center font-primary bg-gray-200">
+            <Toaster />
             <div className=" bg-purple-600 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl sm:text-5xl font-bold text-white">Todos los productos</h1>
             </div>
-            <div className='flex justify-center'>
+            <div className="flex justify-center">
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
                     {Array.isArray(productos) ? (
                         productos.map((producto) => (
@@ -96,22 +128,36 @@ const ProductosTotal = () => {
                                 </Link>
                                 <div className="flex justify-between">
                                     <div className="flex flex-col">
-                                        <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">{producto.nombre}</Link>
-                                        <p className="text-sm sm:text-md text-gray-800 capitalize">{getCategoriaNombre(producto.categoria_id)}</p>
+                                        <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">
+                                            {producto.nombre}
+                                        </Link>
+                                        <p className="text-sm sm:text-md text-gray-800 capitalize">
+                                            {getCategoriaNombre(producto.categoria_id)}
+                                        </p>
                                         <p className="text-md text-gray-400">${producto.precio}</p>
                                     </div>
                                 </div>
-                                <div className='flex text-center justify-between items-center'>
-                                    <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black hidden sm:flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
-                                    <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' onClick={() => {
-                                        handleAgregarCarro(producto);
-                                    }}><BiCart size={25} /></button>
+                                <div className="flex text-center justify-between items-center">
+                                    <Link
+                                        to={`/tienda/producto/${producto.nombre}`}
+                                        className="bg-gray-100 text-black hidden sm:flex text-center justify-center px-5 py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white"
+                                    >
+                                        Ver producto
+                                    </Link>
+                                    <button
+                                        className="bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125"
+                                        onClick={() => {
+                                            handleAgregarCarro(producto);
+                                        }}
+                                    >
+                                        <BiCart size={25} />
+                                    </button>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <div className='flex justify-center items-center'>
-                            <h1 className='text-center text-3xl'>No hay productos disponibles.</h1>
+                        <div className="flex justify-center items-center">
+                            <h1 className="text-center text-3xl">No hay productos disponibles.</h1>
                         </div>
                     )}
                 </div>
@@ -123,16 +169,21 @@ const ProductosTotal = () => {
                 {showModal && (
                     <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] font-primary">
                         <div className="bg-white p-4 rounded-md">
-                            <button className="absolute top-2 right-2 focus:outline-none"
-                                onClick={() => setShowModal(false)}>
-                                <BiMessageSquareX size={50} className='text-white hover:text-red-500' />
+                            <button className="absolute top-2 right-2 focus:outline-none" onClick={() => setShowModal(false)}>
+                                <BiMessageSquareX size={50} className="text-white hover:text-red-500" />
                             </button>
-                            <h2 className='text-xl text-center'>Necesitas estar registrado!</h2>
+                            <h2 className="text-xl text-center">¡Necesitas estar registrado!</h2>
                             <div className="flex justify-center">
-                                <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
+                                <Link
+                                    to="/login"
+                                    className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white"
+                                >
                                     Iniciar sesión
                                 </Link>
-                                <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
+                                <Link
+                                    to="/register"
+                                    className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white"
+                                >
                                     Registrarse
                                 </Link>
                             </div>

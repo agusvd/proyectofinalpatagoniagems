@@ -8,6 +8,8 @@ import jwtDecode from 'jwt-decode';
 import Cart from './Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi'
+import { toast, Toaster } from 'react-hot-toast';
+
 
 const ProductosCategoria = () => {
     const { categoriaId } = useParams();
@@ -16,6 +18,8 @@ const ProductosCategoria = () => {
     const [categoriaNombre, setCategoriaNombre] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [carritoItems, setCarritoItems] = useState([]);
+    const [cantidadProductos, setCantidadProductos] = useState({});
 
     useEffect(() => {
         axios
@@ -47,27 +51,36 @@ const ProductosCategoria = () => {
             return;
         }
 
-        // primero obtenemos el id del usuario guardado en el token 
+        const productoExistente = carritoItems.find(item => item.nombre === producto.nombre);
+        if (productoExistente) {
+            toast.error('El producto ya está en el carrito');
+            return;
+        }
+
+        // Obtener el ID del usuario del token
         const token = Cookies.get('token');
         const decodedToken = jwtDecode(token);
-
         const usuario_id = decodedToken.id;
 
-        // creamos una variable que va guardar los datos del carrito
+        // Crear un objeto con los datos del carrito
         const datosCarrito = {
-            usuario_id: usuario_id, // tiene la id del token
-            producto_id: producto.id, // la id del producto 
-            precio_total: producto.precio, // el precio del producto guardado
-            cantidad_total: 1 // por defecto se guarda 1 porque es un producto el que se guardo
+            usuario_id: usuario_id,
+            producto_id: producto.id,
+            precio_total: producto.precio,
+            cantidad_total: 1,
         };
 
-        // ahora cuando se quieran enviar los datos al backend, se enviara datosCarrito
-
-        axios.post('http://localhost:8000/carrito', datosCarrito)
+        axios
+            .post('http://localhost:8000/carrito', datosCarrito)
             .then((res) => {
                 console.log(res.data);
-                console.log(datosCarrito)
-                setCarritoVisible(true); // Mostrar el componente Cart
+                setCarritoVisible(true);
+                setCarritoItems((prevCarritoItems) => [...prevCarritoItems, producto]);
+                setCantidadProductos((prevCantidadProductos) => ({
+                    ...prevCantidadProductos,
+                    [producto.id]: 1,
+                }));
+                toast.success('Producto agregado al carrito');
             })
             .catch((err) => {
                 console.error(err);
@@ -76,6 +89,7 @@ const ProductosCategoria = () => {
 
     return (
         <div className='flex flex-col justify-center font-primary bg-gray-200'>
+            <Toaster />
             <div className=" bg-purple-600 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl sm:text-5xl font-bold text-white uppercase">{categoriaNombre}</h1>
             </div>

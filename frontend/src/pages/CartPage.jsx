@@ -54,7 +54,7 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="min-h-full bg-white shadow-md font-primary">
+        <div className="min-h-full bg-white shadow-md font-primary rounded-xl">
 
             <div className="p-2 h-4/5 overflow-y-auto">
                 {carritoItems.length === 0 ? (

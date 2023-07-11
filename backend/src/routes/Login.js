@@ -31,6 +31,7 @@ router.post('/login', (req, res) => {
                         const role = data[0].role;
                         const nombre = data[0].nombre;
                         const apellido = data[0].apellido;
+                        const email = data[0].email;
                         let isAdmin = false;
                         let message = "";
 
@@ -48,6 +49,7 @@ router.post('/login', (req, res) => {
                                 role,
                                 isAdmin,
                                 id,
+                                email,
                             },
                             secretKey,
                             { expiresIn: "3h" }
@@ -55,7 +57,7 @@ router.post('/login', (req, res) => {
 
                         res.cookie("token", token);
                         console.log("token:", token);
-                        console.log("Usuario:", nombre, apellido, "Tipo:", role, "ID:", id);
+                        console.log("Usuario:", nombre, apellido, email, "Tipo:", role, "ID:", id);
                         return res.json({ Status: "Perfecto", token, message });
                     } else {
                         console.log("Contraseña incorrecta");
