@@ -2,11 +2,11 @@ import React from 'react'
 
 const Terminos = () => {
     return (
-        <div className='h-screen font-primary'>
+        <div className='h-full font-primary'>
             <div className='bg-gray-100 p-2'>
                 <h1 className="text-2xl text-purple-500 text-center font-bold mt-8 mb-8">Términos & Condiciones</h1>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center mt-4 ">
+            <div className="flex flex-col gap-4 text-center mt-4 h-full">
                 <div className='p-8'>
                     <div className='mb-8'>
                         <h2 className='text-xl font-bold mb-4'>Condiciones Generales</h2>
