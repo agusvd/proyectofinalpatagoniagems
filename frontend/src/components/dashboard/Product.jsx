@@ -10,6 +10,7 @@ const Product = () => {
     const [categoria_id, setCategoria_id] = useState('');
     const [categorias, setCategorias] = useState([]);
     const [es_destacado, setEs_destacado] = useState('');
+    const [imagen, setImagen] = useState('')
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const Product = () => {
                 stock,
                 categoria_id,
                 es_destacado,
+                imagen,
             })
             .then((res) => {
                 console.log(res);
@@ -92,6 +94,11 @@ const Product = () => {
                             <option value="Si">Si</option>
                             <option value="No">No</option>
                         </select>
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-white">Link de la imagen</label>
+                        <input required className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" type="text" placeholder="Nombre" value={imagen}
+                            onChange={(e) => setImagen(e.target.value)} />
                     </div>
                 </table>
                 <div>

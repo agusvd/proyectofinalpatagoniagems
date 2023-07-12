@@ -124,7 +124,7 @@ const ProductosTotal = () => {
                                 className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
                             >
                                 <Link to={`/tienda/producto/${producto.nombre}`} className="flex flex-wrap items-center justify-center">
-                                    <img src={ProductoTest} className="h-full w-full object-cover" alt="Producto" />
+                                    <img src={producto.imagen} className="h-56 w-full object-contain" alt="Producto" />
                                 </Link>
                                 <div className="flex justify-between">
                                     <div className="flex flex-col">

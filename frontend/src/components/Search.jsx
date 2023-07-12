@@ -65,7 +65,7 @@ const Search = ({ onClose }) => {
 
     return (
         <div className="bg-white text-black absolute right-0 top-0 w-3/4 h-screen z-99 font-primary md:w-2/6">
-            <div className="flex-col items-center">
+            <div className="flex-col items-center h-screen">
                 <div className="flex items-center justify-between m-4">
                     <h2 className="text-black mr-4 text-xl">Buscar</h2>
                     <BiArrowFromLeft
@@ -92,7 +92,7 @@ const Search = ({ onClose }) => {
                     </div>
                 </div>
                 {/* Mostrar los resultados de la búsqueda */}
-                <div className="" style={{ maxHeight: '700px', overflowY: 'scroll' }} onScroll={handleScroll}>
+                <div className="" style={{ maxHeight: '900px', overflowY: 'scroll' }} onScroll={handleScroll}>
                     {searchText.trim() !== '' && (
                         <div className='text-center bg-white border-t border-b p-2 mt-10 shadow-lg'>
                             <h3 className='text-sm font-bold'>Resultados de la búsqueda</h3>
@@ -102,7 +102,7 @@ const Search = ({ onClose }) => {
                         {searchResults.slice(0, currentPage * 10).map((producto) => (
                             <li key={producto.id} className="flex m-2 shadow-xl border-2">
                                 <Link to={`/tienda/producto/${producto.nombre}`} className="flex p-2">
-                                    <img src={ProductoEjemplo} alt={producto.nombre} className="h-44 w-36 mr-2" />
+                                    <img src={producto.imagen} alt={producto.nombre} className="h-56 w-56 object-contain" />
                                 </Link>
                                 <div className="flex flex-col text-start p-2">
                                     <Link to={`/tienda/producto/${producto.nombre}`} className="text-black">{producto.nombre}</Link>

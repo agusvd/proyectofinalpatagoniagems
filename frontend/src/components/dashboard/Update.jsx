@@ -9,6 +9,7 @@ const Update = () => {
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [precio, setPrecio] = useState('');
+    const [imagen, setImagen] = useState('')
     const [stock, setStock] = useState('');
     const [categoria_id, setCategoria_id] = useState('');
     const [categorias, setCategorias] = useState([]);
@@ -36,6 +37,7 @@ const Update = () => {
                 setStock(res.data[0].stock);
                 setCategoria_id(res.data[0].categoria_id);
                 setEs_destacado(res.data[0].es_destacado)
+                setImagen(res.data[0].imagen)
             })
             .catch(error => {
                 console.log(error);
@@ -44,7 +46,7 @@ const Update = () => {
     }, []);
     function handleUpdate(event) {
         event.preventDefault();
-        const updatedData = { nombre, descripcion, precio, stock, categoria_id, es_destacado };
+        const updatedData = { nombre, descripcion, precio, stock, categoria_id, es_destacado, imagen };
         axios.put('http://localhost:8000/dashboard/actualizar/' + id, updatedData)
             .then(res => {
                 console.log(res);
@@ -102,6 +104,11 @@ const Update = () => {
                             <option value="Si">Si</option>
                             <option value="No">No</option>
                         </select>
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-white">Link de la imagen</label>
+                        <input required className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" type="text" placeholder="Link de la imagen" value={imagen}
+                            onChange={(e) => setImagen(e.target.value)} />
                     </div>
                 </table>
                 <div>

@@ -7,7 +7,7 @@ router.get('/carrito', (req, res) => {
     const { usuario_id } = req.query;
 
     const sql = `
-        SELECT c.id, c.usuario_id, c.producto_id, c.precio_total, c.cantidad_total, p.nombre, p.precio, cat.categoria
+        SELECT c.id, c.usuario_id, c.producto_id, c.precio_total, c.cantidad_total, p.nombre, p.precio, p.imagen, cat.categoria
         FROM carrito c
         JOIN productos p ON c.producto_id = p.id
         JOIN categoria_id cat ON p.categoria_id = cat.id

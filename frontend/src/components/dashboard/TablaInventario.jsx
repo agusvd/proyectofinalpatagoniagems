@@ -85,52 +85,42 @@ const TablaInventario = () => {
                             }} />
                     </div>
                 </div>
-                <div className="flex-grow overflow-auto bg-violet-900 rounded-md">
-                    <table className="min-w-full m-2">
-                        <thead className="text-white">
-                            <tr className="text-xl uppercase">
-                                <th className="py-2 px-4">ID</th>
-                                <th className="py-2 px-4">Nombre</th>
-                                <th className='py-2 px-4'>Categoria</th>
-                                <th className="py-2 px-4">stock</th>
-                                <th className="py-2 px-4">Precio</th>
-                                <th className="py-2 px-4">Destacado</th>
-                                <th className="py-2 px-4">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-center text-md text-white">
-                            {productosActuales.map((producto, i) => (
-                                <tr key={i}>
-                                    <td className="py-2 px-4">{producto.id}</td>
-                                    <td className="py-2 px-4">{producto.nombre}</td>
-                                    <td className="py-2 px-4">{getCategoriaNombre(producto.categoria_id)}</td>
+                <div className="flex-grow overflow-auto rounded-md">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-2">
+                        {productosActuales.map((producto, i) => (
+                            <div key={i} className="bg-violet-800 text-white rounded-md p-4 justify-between flex">
+                                <div className='flex flex-col border-2 rounded-xl w-full'>
+                                    <div className='flex justify-between'>
+                                        <div className='text-white text-xl font-bold bortder-t-0 flex justify-start gap-2 p-2'>
+                                            <a className='text-white'>ID: </a>
+                                            {producto.id}
+                                        </div>
+                                        <div className="flex items-center justify-center gap-4 p-2">
+                                            <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-white hover:text-green-700">
+                                                <BiEdit size={30} />
+                                            </Link>
+                                            <button onClick={() => eliminarProducto(producto.id)} className="text-white hover:text-red-700">
+                                                <BiTrash size={30} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className='flex border-t-2'>
+                                        <div className='flex w-55 w-44 p-2'>
+                                            <img src={producto.imagen} alt="Producto" className="h-56 w-full object-contain rounded-xl" />
+                                        </div>
+                                        <div className='flex flex-col p-2 items-start justify-center'>
+                                            <div>Nombre: {producto.nombre}</div>
+                                            <div>Categoría: {getCategoriaNombre(producto.categoria_id)}</div>
+                                            <div>Precio: ${producto.precio} CLP</div>
+                                            <div>Stock: {producto.stock}</div>
+                                        </div>
+                                    </div>
 
-                                    <td className="py-2 px-4">{producto.stock}</td>
-                                    <td className="py-2 px-4">{producto.precio}</td>
-                                    <td className="py-2 px-4">{producto.es_destacado}</td>
-                                    <td className="py-2 px-4 space-x-2 flex justify-center gap-2 items-center">
-                                        <Link
-                                            className="rounded-md p-1 text-white ring-1 ring-transparent hover:ring-purple-500"
-                                        >
-                                            <BiInfoCircle className="text-xl" />
-                                        </Link>
-                                        <Link
-                                            to={`/dashboard/inventario/actualizar/${producto.id}`}
-                                            className="rounded-md p-1 text-white ring-1 ring-transparent hover:ring-purple-500"
-                                        >
-                                            <BiEdit className="text-xl" />
-                                        </Link>
-                                        <button
-                                            onClick={() => eliminarProducto(producto.id)}
-                                            className="rounded-md p-1 text-white ring-1 ring-transparent hover:ring-purple-500 inline-flex"
-                                        >
-                                            <BiTrash className="text-xl" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                </div>
+
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 {totalPaginas > 1 && (
                     <div className="flex justify-center my-4">
@@ -153,4 +143,5 @@ const TablaInventario = () => {
     );
 };
 
-export default TablaInventario
+export default TablaInventario;
+

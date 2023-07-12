@@ -98,19 +98,19 @@ const ProductPage = () => {
     }
 
     return (
-        <div className='flex h-screen justify-center items-center'>
+        <div className='flex justify-center items-center h-full'>
             <Toaster />
             <div className="max-w-4xl mx-auto px-4 py-8 font-primary">
-                <div className="flex flex-wrap -mx-4">
+                <div className="flex flex-col h-full sm:flex-row">
                     <div className="w-full lg:w-1/2 px-4">
-                        <img src={productoEjemplo} alt="imagen" className="w-full rounded-lg shadow-md" />
+                        <img src={producto.imagen} alt="imagen" className="w-full h-full rounded-lg shadow-md object-" />
                     </div>
                     <div className="w-full lg:w-1/2 px-4 flex flex-col">
                         <p className="text-sm text-purple-600">PatagoniaGems</p>
                         <h1 className="text-3xl capitalize">{producto.nombre}</h1>
                         <h2 className="text-xl text-gray-600 capitalize">{producto.categoria}</h2>
                         <p className="text-lg text-gray-500 mb-5">${producto.precio} CLP</p>
-                        <p className="text-lg text-start">{producto.descripcion}</p>
+                        <p className="text-lg text-jusitfy">{producto.descripcion}</p>
                         <div className="flex items-center gap-5 text-center justify-between sm:justify-normal">
                             <div className="flex">
                                 <button

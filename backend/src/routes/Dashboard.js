@@ -38,7 +38,7 @@ router.get('/dashboard', auth, (req, res) => {
 
 // Ruta para obtener el inventario de productos
 router.get('/dashboard/inventario', (req, res) => {
-    const sql = "SELECT id, nombre, categoria_id, precio, stock, es_destacado FROM productos";
+    const sql = "SELECT id, nombre, categoria_id, precio, stock, es_destacado, imagen FROM productos";
     db.query(sql, (err, data) => {
         if (err) return res.json("Error"); // Devolver un mensaje de error si ocurre un error en la consulta a la base de datos
         return res.json(data); // Devolver los datos obtenidos de la base de datos como respuesta JSON
@@ -48,14 +48,15 @@ router.get('/dashboard/inventario', (req, res) => {
 
 // ruta para el formulario de crear productos
 router.post('/dashboard/inventario/agregar', (req, res) => {
-    const sql = "INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, es_destacado) VALUES (?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, es_destacado, imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const values = [
         req.body.nombre,
         req.body.descripcion,
         req.body.precio,
         req.body.stock,
         req.body.categoria_id,
-        req.body.es_destacado
+        req.body.es_destacado,
+        req.body.imagen
     ];
     db.query(sql, values, (err, data) => {
         if (err) {
@@ -80,14 +81,15 @@ router.get('/dashboard/search/:id', (req, res) => {
 // Ruta para obtener los datos de un producto específico para su actualización
 router.put('/dashboard/actualizar/:id', (req, res) => {
     const id = req.params.id;
-    const sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, es_destacado = ? WHERE id = ?";
+    const sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, es_destacado = ?, imagen = ? WHERE id = ?";
     const values = [
         req.body.nombre,
         req.body.descripcion,
         req.body.precio,
         req.body.stock,
         req.body.categoria_id,
-        req.body.es_destacado
+        req.body.es_destacado,
+        req.body.imagen
     ];
     db.query(sql, [...values, id], (err, data) => {
         if (err) return res.json(err); // Devolver un mensaje de error si ocurre un error en la consulta a la base de datos

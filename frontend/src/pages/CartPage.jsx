@@ -114,7 +114,7 @@ const Cart = ({ onClose }) => {
                             <div className="ml-2 flex p-2">
                                 <Link to={`/tienda/producto/${item.nombre}`} className="m-2 border-2 shadow-lg">
                                     <img
-                                        src={ProductoEjemplo}
+                                        src={item.imagen}
                                         className="h-44 w-32 sm:h-48 sm:w-36 object-center"
                                         alt={item.nombre}
                                     />

@@ -95,7 +95,7 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="fixed top-0 right-0 w-full sm:w-2/3 md:w-1/3 h-screen bg-white shadow-md font-primary">
+        <div className="fixed top-0 right-0 w-full sm:w-2/3 md:w-2/3 lg:w-1/3 h-screen bg-white shadow-md font-primary">
             <header className="bg-gray-300 p-2 flex justify-between items-center">
                 <h2 className="text-black text-lg font-bold">CARRITO</h2>
                 <button className="text-gray-600 hover:text-purple-500" onClick={onClose}>
@@ -116,49 +116,32 @@ const Cart = ({ onClose }) => {
                     </div>
                 ) : (
                     carritoItems.map((item) => (
-                        <div className="md:flex md:justify-center" key={item.id}>
+                        <div className="md:flex md:justify-start" key={item.id}>
                             <div className="ml-2 flex p-2">
-                                <Link to={`/tienda/producto/${item.nombre}`} className="m-2 border-2 shadow-lg">
+                                <Link to={`/tienda/producto/${item.nombre}`} className="items-center border-2 shadow-lg">
                                     <img
-                                        src={ProductoEjemplo}
-                                        className="h-44 w-32 sm:h-48 sm:w-36 object-center"
+                                        src={item.imagen}
+                                        className=" h-56 w-56 sm:w-65 sm:h-64 object-container"
                                         alt={item.nombre}
                                     />
                                 </Link>
-                                <div className="flex flex-col justify-center ml-5 text-black text-start gap-1">
+                                <div className="flex flex-col justify-center ml-2 sm:ml-5 text-black text-start gap-1">
                                     <Link to={`/tienda/producto/${item.nombre}`} className="text-md font-bold">{item.nombre}</Link>
                                     <h2 className="text-sm text-gray-500">{item.categoria}</h2>
                                     <h3 className="text-gray-500 text-md font-bold pb-3">${item.precio}</h3>
                                     {carritoItems.length > 0 && (
                                         <div className="flex text-sm justify-around rounded-full text-black">
                                             <div className="flex">
-                                                <button
-                                                    className="px-4 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2 border-gray-500"
-                                                    onClick={() =>
-                                                        actualizarProductoCarrito(
-                                                            item.producto_id,
-                                                            cantidadProductos[item.producto_id] > 1
-                                                                ? cantidadProductos[item.producto_id] - 1
-                                                                : 1
-                                                        )
-                                                    }
-                                                >
-                                                    -
-                                                </button>
+                                                <button className="px-4 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2 border-gray-500" onClick={() => actualizarProductoCarrito( item.producto_id, cantidadProductos[item.producto_id] > 1 ? cantidadProductos[item.producto_id] - 1 : 1)}>-</button>
                                                 <p className="px-4 py-2 bg-white border-t-2 border-b-2 border-gray-500 font-bold">
                                                     {cantidadProductos[item.producto_id]}
                                                 </p>
-                                                <button
-                                                    className="px-4 bg-white rounded-r-full border-l-0 hover:bg-gray-100 border-2 border-gray-500"
-                                                    onClick={() =>
+                                                <button className="px-4 bg-white rounded-r-full border-l-0 hover:bg-gray-100 border-2 border-gray-500" onClick={() =>
                                                         actualizarProductoCarrito(
                                                             item.producto_id,
                                                             cantidadProductos[item.producto_id] + 1
                                                         )
-                                                    }
-                                                >
-                                                    +
-                                                </button>
+                                                    }>+</button>
                                             </div>
                                         </div>
                                     )}

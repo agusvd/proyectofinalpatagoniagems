@@ -127,18 +127,9 @@ const ProductosDestacados = () => {
                 {/* CARDS */}
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (
-                        <div
-                            key={producto.id}
-                            className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all"
-                        >
-                            <Link
-                                to={`/tienda/producto/${producto.nombre}`}
-                                className="flex flex-wrap items-center justify-center"
-                            >
-                                <img
-                                    src={ProductoTest}
-                                    className="h-full w-full object-cover"
-                                    alt="Producto"
+                        <div key={producto.id} className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all">
+                            <Link to={`/tienda/producto/${producto.nombre}`} className="flex flex-wrap items-center justify-center">
+                                <img src={producto.imagen} className="h-56 w-full object-contain" alt="Producto"
                                 />
                             </Link>
                             <div className="flex justify-between">
@@ -154,22 +145,14 @@ const ProductosDestacados = () => {
                                     </p>
                                     <p className="text-md text-gray-400">${producto.precio}</p>
                                 </div>
-                            </div>
-                            <div className="flex text-center justify-between items-center">
-                                <Link
-                                    to={`/tienda/producto/${producto.nombre}`}
-                                    className="bg-gray-100 text-black hidden sm:flex text-center justify-center px-5 py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white"
-                                >
-                                    Ver producto
-                                </Link>
-                                <button
-                                    className="bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125"
+                                <div className="flex text-center items-center">
+                                <button className="bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125"
                                     onClick={() => {
                                         handleAgregarCarro(producto);
-                                    }}
-                                >
+                                    }}>
                                     <BiCart size={25} />
                                 </button>
+                            </div>
                             </div>
                         </div>
                     ))
