@@ -28,7 +28,7 @@ import Terminos from './pages/Terminos';
 
 const App = () => {
   return (
-    <GoogleReCaptchaProvider reCaptchaKey="6LfxqAknAAAAADX06900xrbOBnjIZGUjcq7YQEZ4">
+    <GoogleReCaptchaProvider reCaptchaKey="6LfS5RsnAAAAAHNasTesF3XiLU3ZNJtyNclR7ycz">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<div><Anuncio /><Navbar /><Home /><ProductosDestacados /><Footer /></div>} />

@@ -57,7 +57,7 @@ const Login = () => {
                 <header className="text-center pt-10 pb-20">
                     <a className="text-4xl font-bold text-center text-purple-600">PatagoniaGems</a>
                 </header>
-                <GoogleReCaptchaProvider reCaptchaKey="6LfxqAknAAAAADX06900xrbOBnjIZGUjcq7YQEZ4">
+                <GoogleReCaptchaProvider reCaptchaKey="6LfS5RsnAAAAAHNasTesF3XiLU3ZNJtyNclR7ycz">
                     <form onSubmit={handleSubmit}>
                         <div className=""></div>
                         <div>
