@@ -55,9 +55,9 @@ export default function Sidebar() {
 
 	return (
 		<div className=''>
-			<AiOutlineMenu onClick={handleNav} size={24} className="absolute top-4 left-4 z-[99] md:hidden text-white" />
+			<AiOutlineMenu onClick={handleNav} size={24} className="absolute top-4 left-4 z-[99] md:hidden text-white cursor-pointer" />
 			{nav ? (
-				<div className='fixed w-full h-screen bg-violet-900 flex flex-col pt-12 items-center z-20 text-center gap-2 text-xl'>
+				<div className='fixed w-full h-screen bg-violet-950 flex flex-col pt-12 items-center z-20 text-center gap-2 text-xl'>
 					<Link to="/dashboard" onClick={handleNav} className='p-2 text-white w-full'>Inicio</Link>
 					<Link to="/dashboard/inventario" onClick={handleNav} className='p-2 text-white w-full'>Inventario</Link>
 					<Link to="/dashboard/inventario/agregar" onClick={handleNav} className='p-2 text-white w-full'>Agregar productos</Link>
@@ -71,16 +71,16 @@ export default function Sidebar() {
 				: (
 					''
 				)}
-			<div className="hidden bg-violet-900 text-white w-60 font-primary md:flex md:flex-col  md:overflow-auto md:h-screen">
+			<div className="hidden bg-black text-white w-60 font-primary md:flex md:flex-col  md:overflow-auto md:h-screen">
 				<div className="flex items-center gap-2 px-1 py-3">
 					<span className="text-xl p-2 text-white font-bold">PatagoniaGems</span>
 				</div>
 				<div className="py-4 flex flex-1 flex-col gap-4 m-2">
 					<p className='text-sm text-gray-500'>Panel de administrador</p>
-					<Link to="/dashboard" className='inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800'>
+					<Link to="/dashboard" className='inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black'>
 						<IoHomeSharp className='text-xl' />Dashboard
 					</Link>
-					<Link onClick={inventoryNav} className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800">
+					<Link onClick={inventoryNav} className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
 						<AiOutlinePlus className="text-xl" />
 						Inventario {inv ? <CgChevronDown className='ml-auto text-xl' /> : <CgChevronRight className='ml-auto text-xl' />}
 					</Link>
@@ -88,23 +88,23 @@ export default function Sidebar() {
 					{inv ? (
 						<>
 							{showViewInventory && (
-								<Link to="/dashboard/inventario" className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800">
+								<Link to="/dashboard/inventario" className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
 									<IoRadioButtonOffOutline className="text-sm ml-5" />Ver inventario
 								</Link>
 							)}
 							{showAddProduct && (
-								<Link to="/dashboard/inventario/agregar" className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800">
-									<IoRadioButtonOffOutline className="text-sm ml-5" />Agregar producto
+								<Link to="/dashboard/inventario/agregar" className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
+									<IoRadioButtonOffOutline className="text-sm ml-5" />Nuevo producto
 								</Link>
 							)}
 							{showCreateCategory && (
-								<Link to="/dashboard/categorias" className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800">
+								<Link to="/dashboard/categorias" className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
 									<IoRadioButtonOffOutline className="text-sm ml-5" />Categorias
 								</Link>
 							)}
 							{showViewCategories && (
-								<button className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800">
-									<IoRadioButtonOffOutline className="text-sm ml-5" />Algo mas
+								<button className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
+									<IoRadioButtonOffOutline className="text-sm ml-5" />Proximamente
 								</button>
 							)}
 						</>
@@ -112,14 +112,14 @@ export default function Sidebar() {
 						: (
 							''
 						)}
-					<Link to="/dashboard/clientes" className='inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800'><IoPeopleSharp className='text-xl' />Clientes</Link>
+					<Link to="/dashboard/clientes" className='inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black'><IoPeopleSharp className='text-xl' />Clientes</Link>
 				</div>
-				<div className='flex flex-col m-2 border-2 border-white rounded-md'>
-					<Link to="/" className="inline-flex items-center gap-2 p-1 hover:rounded-md hover:bg-violet-800">
+				<div className='flex flex-col bg-black pl-2 border-t-2'>
+					<Link to="/" className="inline-flex items-center gap-2 p-1 hover:rounded-md hover:bg-gray-200 hover:text-black">
 						<IoArrowBackSharp className="inline-block mr-2" />
 						Ir a la tienda
 					</Link>
-					<Link to="/" onClick={handleLogout} className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-violet-800">
+					<Link to="/" onClick={handleLogout} className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
 						<HiOutlineLogout className="inline-block mr-2" />
 						Cerrar sesión
 					</Link>

@@ -116,11 +116,11 @@ const ProductosDestacados = () => {
     );
 
     return (
-        <div className="flex flex-col justify-center font-primary pb-20 bg-gray-200">
+        <div className="flex flex-col justify-center font-primary pb-20 bg-white">
             <Toaster />
             {/* TITULO */}
-            <div className="text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-3xl sm:text-5xl font-bold">Productos destacados</h1>
+            <div className="text-center py-5 sm:py-20 px-8 mb-4 text-black">
+                <h1 className="text-3xl">Productos destacados</h1>
             </div>
             {/* CONTENEDOR DE CARDS */}
             <div className="grid grid-cols-2 sm:flex items-center sm:flex-row justify-center overflow-y-auto">

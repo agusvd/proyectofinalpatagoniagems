@@ -88,10 +88,10 @@ const ProductosCategoria = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center font-primary bg-gray-200'>
+        <div className='flex flex-col justify-center font-primary bg-white'>
             <Toaster />
-            <div className=" bg-purple-600 text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-3xl sm:text-5xl font-bold text-white uppercase">{categoriaNombre}</h1>
+            <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
+                <h1 className="text-3xl font-bold text-black uppercase">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
@@ -110,13 +110,13 @@ const ProductosCategoria = () => {
                                         <p className="text-sm sm:text-md text-gray-800 capitalize">{producto.categoria}</p>
                                         <p className="text-md text-gray-400">${producto.precio}</p>
                                     </div>
+                                    <div className='flex text-center justify-between items-center'>
+                                        <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' onClick={() => {
+                                            handleAgregarCarro(producto);
+                                        }}><BiCart size={25} /></button>
+                                    </div>
                                 </div>
-                                <div className='flex text-center justify-between items-center'>
-                                    <Link to={`/tienda/producto/${producto.nombre}`} className='bg-gray-100 text-black hidden sm:flex text-center justify-center px-5  py-1 m-1 rounded-xl hover:bg-purple-500 hover:text-white'>Ver producto</Link>
-                                    <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' onClick={() => {
-                                        handleAgregarCarro(producto);
-                                    }}><BiCart size={25} /></button>
-                                </div>
+
                             </div>
                         ))
                     ) : (

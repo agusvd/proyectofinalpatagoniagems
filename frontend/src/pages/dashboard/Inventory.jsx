@@ -6,7 +6,7 @@ const Inventory = () => {
     return (
         <div className="flex flex-row bg-black overflow-auto w-screen">
             <Sidebar />
-            <div className="flex-1 bg-violet-900 md:bg-black overflow-hidden">
+            <div className="flex-1 bg-violet-900 overflow-hidden">
                 <TablaInventario />
             </div>
         </div>

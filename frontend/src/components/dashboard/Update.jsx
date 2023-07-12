@@ -55,119 +55,65 @@ const Update = () => {
             });
     }
     return (
-        <div className="flex-1 h-screen font-primary md:mt-5">
-            <div className="md:m-10 m-auto bg-violet-900 md:rounded-md p-5 mt-10 md:mt-0">
-            <h2 className="text-center text-3xl text-white pb-4">Actualizando producto</h2>
-                <form className='grid grid-cols-2 gap-4' onSubmit={handleUpdate}>
-                <div className="col-span-2">
-                        <table className="w-full">
-                            <tbody className='text-xl'>
-                                <tr>
-                                    <td className="py-2">
-                                        <label className="block mb-2 text-white">Nombre producto</label>
-                                    </td>
-                                    <td>
-                                        <input
-                                            required
-                                            className="w-full p-2 mb-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950"
-                                            type="text"
-                                            placeholder="Nombre"
-                                            value={nombre}
-                                            onChange={(e) => setNombre(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="py-2">
-                                        <label className="block mb-2 text-white">Descripción</label>
-                                    </td>
-                                    <td>
-                                        <textarea
-                                            required
-                                            className="w-full p-2 mb-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950"
-                                            type="text"
-                                            placeholder="Descripción"
-                                            value={descripcion}
-                                            onChange={(e) => setDescripcion(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="py-2">
-                                        <label className="block mb-2 text-white">Precio</label>
-                                    </td>
-                                    <td>
-                                        <input
-                                            required
-                                            className="w-full p-2 mb-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950"
-                                            type="number"
-                                            placeholder="Precio"
-                                            value={precio}
-                                            onChange={(e) => setPrecio(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="py-2">
-                                        <label className="block mb-2 text-white">Stock</label>
-                                    </td>
-                                    <td>
-                                        <input
-                                            required
-                                            className="w-full p-2 mb-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950"
-                                            type="number"
-                                            placeholder="Stock"
-                                            value={stock}
-                                            onChange={(e) => setStock(e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="py-2">
-                                        <label className="block mb-2 text-white">Categoría</label>
-                                    </td>
-                                    <td>
-                                        <select
-                                            required
-                                            className="w-full p-2 mb-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950"
-                                            value={categoria_id}
-                                            onChange={(e) => setCategoria_id(e.target.value)}
-                                        >
-                                            <option value="">Seleccione una categoría</option>
-                                            {categorias.map((categoria) => (
-                                                <option key={categoria.id} value={categoria.id}>
-                                                    {categoria.categoria}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="py-2">
-                                        <label className="block mb-2 text-white">¿Es destacado?</label>
-                                    </td>
-                                    <td>
-                                        <select
-                                            className="w-full p-2 mb-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950"
-                                            value={es_destacado}
-                                            onChange={(e) => setEs_destacado(e.target.value)}
-                                        >
-                                            <option value="">Seleccione una opción</option>
-                                            <option value="Si">Si</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <div className="h-screen font-primary justify-center items-center flex flex-col overflow-auto bg-violet-950">
+            <h2 className="text-center text-3xl text-white pt-5 md:pt-0">Actualizando producto</h2>
+            <form className="flex flex-col justify-between border-2 p-2 w-full md:w-1/2 overflow-auto rounded-xl" onSubmit={handleUpdate}>
+                <table className='grid sm:grid-cols-2 gap-4'>
+                    <div>
+                        <label className="block mb-2 text-white">Nombre producto</label>
+                        <input required className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" type="text" placeholder="Nombre" value={nombre}
+                            onChange={(e) => setNombre(e.target.value)} />
                     </div>
-                    <div className='col-span-2'>
-                        <button className="w-full py-2 mb-2 font-bold text-white bg-purple-600 rounded-lg focus:outline-none hover:bg-purple-800" type="submit">Actualizar</button>
+                    <div className='flex flex-col sm:flex-row justify-between gap-2'>
+                        <div>
+                            <label className="block mb-2 text-white">Categoría</label>
+                            <select required className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" value={categoria_id} onChange={(e) => setCategoria_id(e.target.value)}>
+                                <option value="">Seleccione una categoría</option>
+                                {categorias.map((categoria) => (
+                                    <option key={categoria.id} value={categoria.id}>
+                                        {categoria.categoria}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
-                </form>
-                <div className='text-center'>
-                    <Link to="/dashboard/inventario" className='text-sm text-purple-600'>Volver</Link>
+                    <div className='sm:col-span-2'>
+                        <label className="block mb-2 text-white">Descripción</label>
+                        <textarea required className="w-full text-sm text-white outline-none rounded-md bg-violet-800" type="text" placeholder="Descripción" value={descripcion}
+                            onChange={(e) => setDescripcion(e.target.value)} />
+                    </div>
+                    <div className='flex flex-col sm:flex-row justify-between gap-2'>
+                        <div>
+                            <label className="block mb-2 text-white">Precio</label>
+                            <input required className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)} />
+                        </div>
+                        <div>
+                            <label className="block mb-2 text-white">Stock</label>
+                            <input required className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" type="number" placeholder="Stock" value={stock}
+                                onChange={(e) => setStock(e.target.value)} />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="block mb-2 text-white">¿Es destacado?</label>
+                        <select className="w-full p-2 mb-2 text-white outline-none rounded-md bg-violet-800" value={es_destacado}
+                            onChange={(e) => setEs_destacado(e.target.value)}>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </table>
+                <div>
+                    <button className="w-full py-2 mb-2 font-bold text-white bg-purple-600 rounded-lg focus:outline-none hover:bg-green-500 duration-300 transition-all" type="submit">
+                        GUARDAR
+                    </button>
                 </div>
+            </form>
+            <div className="text-center p-2">
+                <Link to="/dashboard/inventario" className="text-md text-white hover:text-pink-500 duration-300 transition-all">
+                    Ver productos
+                </Link>
             </div>
         </div>
     );

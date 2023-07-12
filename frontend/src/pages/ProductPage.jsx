@@ -98,7 +98,7 @@ const ProductPage = () => {
     }
 
     return (
-        <div>
+        <div className='flex h-screen justify-center items-center'>
             <Toaster />
             <div className="max-w-4xl mx-auto px-4 py-8 font-primary">
                 <div className="flex flex-wrap -mx-4">

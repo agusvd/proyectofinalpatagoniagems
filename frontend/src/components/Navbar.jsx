@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BiChevronDown, BiUserCircle, BiSearch, BiMenu } from 'react-icons/bi';
 import { BsCart3 } from "react-icons/bs";
-import { GiCrystalGrowth } from 'react-icons/gi'
 import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
@@ -104,11 +103,11 @@ const Navbar = () => {
         <div>
             <nav className="antialiased">
                 <div className="font-primary text-center py-3 px-2 md:justify-around md:flex md:items-center bg-black text-white">
-                    <div className="hidden md:inline-flex md:justify-between md:items-center ">{/* Ocultar en pantallas más pequeñas */}
-                        <div className="flex gap-2 text-lg">
+                    <div className="hidden md:inline-flex md:items-center">
+                        <div className="flex gap-2 text-sm">
                             <Link to="/" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>Inicio</Link>
                         </div>
-                        <div className="group relative items-center text-center text-lg">
+                        <div className="group relative items-center text-center text-sm">
                             <button className="py-2 px-4 rounded inline-flex items-center">
                                 <Link to="/tienda" className={`hover:text-purple-500 mr-1 cursor-pointer ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
                                 <BiChevronDown />
@@ -125,25 +124,25 @@ const Navbar = () => {
                                 ))}
                             </ul>
                         </div>
-                        <div className="flex gap-2 text-lg">
+                        <div className="flex gap-2 text-sm">
                             <Link to="/blogs" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-white'}`}>Blogs</Link>
                             <Link to="/nosotros" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-white'}`}>Nosotros</Link>
                             <Link to="/contacto" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-white'}`}>Contacto</Link>
                         </div>
-                        
                     </div>
-                    <div className="hidden md:inline-flex relative gap-4 text-center items-center">{/* Ocultar en pantallas más pequeñas */}
-                        <div className="group relative items-center text-center text-lg">
+                    <div className="hidden md:inline-flex relative gap-4 text-center items-center">
+                        <div className="group relative items-center text-center text-sm">
                             <button className="inline-flex items-center">
-                                <p className='text-purple-500 hover:text-white'>  {mensaje}</p>
-                                <p className='text-purple-500 hover:text-white text-center '>{mensaje2 + ' ' + nombre + ' ' + apellido}</p><BiUserCircle size={30} className='ml-4 text-white cursor-pointer' />
+                                <p className='text-purple-500 hover:text-white'>{mensaje}</p>
+                                <BiUserCircle size={20} className='ml-4 text-white cursor-pointer' />
                             </button>
                             <div className="rounded absolute hidden text-black pt-1 group-hover:block whitespace-no-wrap shadow-lg text-center right-0 w-48 origin-top-right z-[99]">
                                 {
                                     auth ?
                                         <div>
-                                            <Link className="mt-3 bg-white rounded-t hover:text-purple-500 py-2 px-4 block whitespace-no-wrap" onClick={handleDelete}>Cerrar sesion</Link>
-                                            <Link to="/perfil" className="bg-white rounded-b hover:text-purple-500 py-2 px-4 block whitespace-no-wrap">Perfil</Link>
+                                            <p className='mt-3 bg-white rounded-t hover:text-purple-500 py-2 px-4 block whitespace-no-wrap'>{mensaje2 + ' ' + nombre + ' ' + apellido}</p>
+                                            <Link className="bg-white hover:text-purple-500 py-2 px-4 block whitespace-no-wrap" onClick={handleDelete}>Cerrar sesion</Link>
+                                            <Link to="/perfil" className="bg-white hover:text-purple-500 py-2 px-4 block whitespace-no-wrap">Perfil</Link>
                                             {isAdmin === 'admin' && (
                                                 <Link to="/dashboard" className="bg-white rounded-b hover:text-purple-500 py-2 px-4 block whitespace-no-wrap">
                                                     Dashboard
@@ -158,9 +157,8 @@ const Navbar = () => {
                                 }
                             </div>
                         </div>
-
                         <button onClick={handleOpenSearchClick}>
-                            <BiSearch size={30} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
+                            <BiSearch size={20} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
                         </button>
                         {searchVisible && (
                             <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
@@ -168,7 +166,7 @@ const Navbar = () => {
                             </div>
                         )}
                         <button onClick={handleOpenCarritoClick}>
-                            <BsCart3 size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer ml-auto"
+                            <BsCart3 size={20} className="hover:scale-125 ease-in duration-150 cursor-pointer ml-auto"
                             />
                         </button>
                         {carritoVisible && (
@@ -178,7 +176,6 @@ const Navbar = () => {
                         )}
 
                     </div>
-
                     <div className="md:hidden flex flex-col">
                         <div className='flex justify-between items-center'>
                             {/* Botón de menú para dispositivos móviles */}
@@ -204,21 +201,12 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div className='bg-black text-white flex justify-center items-center p-5'>
-                        <Link to="/">
-                            <img src={logo1} className='h-32 w-44 object-center rounded-xl' />
-                        </Link>
-                    </div>
-                </div>
                 {/* Contenido del menú para dispositivos móviles */}
                 {mobileMenuVisible && (
                     <div className="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                         <NavbarMobile onClose={handleCloseNavbarClick} />
                     </div>
                 )}
-
-
             </nav>
         </div>
     );

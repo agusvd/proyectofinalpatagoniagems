@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { BiArrowFromLeft } from 'react-icons/bi';
 import axios from 'axios';
 import ProductoEjemplo from '../assets/producto1.png';
+import { Link } from 'react-router-dom';
 
 const Search = ({ onClose }) => {
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [categorias, setCategorias] = useState([]);
+
 
     const handleSearch = async () => {
         if (searchText.trim() === '') {
@@ -29,6 +32,20 @@ const Search = ({ onClose }) => {
         } catch (error) {
             console.error('Error al buscar productos:', error);
         }
+    };
+    useEffect(() => {
+        axios
+        .get('http://localhost:8000/categorias')
+        .then((res) => {
+            console.log(res.data);
+            setCategorias(res.data);
+        })
+        .catch((err) => console.log(err));
+    }, []);
+
+    const getCategoriaNombre = (categoriaId) => {
+        const categoria = categorias.find((c) => c.id === categoriaId);
+        return categoria ? categoria.categoria : '';
     };
 
     useEffect(() => {
@@ -83,12 +100,13 @@ const Search = ({ onClose }) => {
                     )}
                     <ul>
                         {searchResults.slice(0, currentPage * 10).map((producto) => (
-                            <li key={producto.id} className="flex m-4">
-                                <div className="flex p-2">
+                            <li key={producto.id} className="flex m-2 shadow-xl border-2">
+                                <Link to={`/tienda/producto/${producto.nombre}`} className="flex p-2">
                                     <img src={ProductoEjemplo} alt={producto.nombre} className="h-44 w-36 mr-2" />
-                                </div>
-                                <div className="flex flex-col text-start">
-                                    <span className="text-gray-700">{producto.nombre}</span>
+                                </Link>
+                                <div className="flex flex-col text-start p-2">
+                                    <Link to={`/tienda/producto/${producto.nombre}`} className="text-black">{producto.nombre}</Link>
+                                    <p className='text-gray-600'>{getCategoriaNombre(producto.categoria_id)}</p>
                                     <p className="text-gray-700">${producto.precio}</p>
                                 </div>
                             </li>

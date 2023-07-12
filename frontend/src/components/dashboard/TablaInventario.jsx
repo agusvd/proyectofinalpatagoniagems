@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BiTrash, BiEdit, BiSearch, BiInfoCircle } from 'react-icons/bi';
-import { CgChevronDown, CgChevronUp } from 'react-icons/cg';
 
 const TablaInventario = () => {
     const [productos, setProductos] = useState([]);
     const [productosFiltrados, setProductosFiltrados] = useState([]);
     const [consulta, setConsulta] = useState('');
+    const [categorias, setCategorias] = useState([]);
     const [paginaActual, setPaginaActual] = useState(1);
-    const [ordenStock, setOrdenStock] = useState(null); // Nuevo estado para el orden
     const productosPorPagina = 13;
 
     useEffect(() => {
@@ -21,7 +20,17 @@ const TablaInventario = () => {
                 setProductosFiltrados(res.data); // Inicialmente, mostrar todos los productos
             })
             .catch((err) => console.log(err));
+
+        axios
+            .get('http://localhost:8000/categorias')
+            .then((res) => {
+                setCategorias(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }, []);
+
 
     const eliminarProducto = (id) => {
         axios
@@ -39,14 +48,9 @@ const TablaInventario = () => {
         setOrdenStock(null); // Reiniciar el estado del orden al cambiar de página
     };
 
-    const ordenarTabla = () => {
-        if (ordenStock === 'asc') {
-            setProductosFiltrados([...productosFiltrados].sort((a, b) => a.stock - b.stock));
-            setOrdenStock('desc');
-        } else {
-            setProductosFiltrados([...productosFiltrados].sort((a, b) => b.stock - a.stock));
-            setOrdenStock('asc');
-        }
+    const getCategoriaNombre = (categoriaId) => {
+        const categoria = categorias.find((c) => c.id === categoriaId);
+        return categoria ? categoria.categoria : '';
     };
 
     const indiceUltimoProducto = paginaActual * productosPorPagina;
@@ -61,43 +65,33 @@ const TablaInventario = () => {
     }
 
     return (
-        <div className="font-primary h-screen overflow-auto mt-10 md:mt-5">
-            <div className="bg-violet-900 md:rounded-lg shadow-md md:p-2 md:mx-4 flex flex-col">
-                <h2 className="text-2xl text-center text-white pt-2 md:pb-2">Inventario</h2>
-                <div className="flex items-center justify-center">
-                    <div className="flex items-center justify-center border-2 border-purple-500 m-3 md:p-2 md:rounded-md w-full md:w-2/5">
-                        <BiSearch size={30} className="text-purple-500" />
-                        <input
-                            type="text"
-                            placeholder="Nombre del producto..."
-                            className="search py-2 px-5 ml-2 bg-violet-900 text-white outline-none w-full"
+        <div className="font-primary h-screen overflow-auto bg-violet-950">
+            <div className="md:p-2 md:mx-4 flex flex-col">
+                <div className="flex flex-col sm:flex-row items-center justify-center pt-10 sm:pt-0 sm:pl-10 sm:pr-10 sm:justify-between">
+                    <Link to="/dashboard/inventario/agregar" className='bg-violet-900 shadow-xl rounded-xl p-2 hover:bg-black text-white'>
+                        Nuevo producto
+                    </Link>
+                    <div className="flex items-center justify-center border-2 border-violet-900 p-2 md:rounded-full w-full md:w-1/4 m-4">
+                        <BiSearch size={20} className="text-white" />
+                        <input type="text" placeholder="Nombre del producto..."
+                            className="search py-1 px-3 ml-2 bg-violet-950 text-white outline-none w-full"
                             onChange={(e) => {
                                 setConsulta(e.target.value);
                                 const filtrados = productos.filter((producto) =>
                                     producto.nombre.toLowerCase().includes(e.target.value.toLowerCase())
                                 );
                                 setProductosFiltrados(filtrados);
-                            }}
-                        />
+                            }} />
                     </div>
                 </div>
-                <div className="flex-grow overflow-auto">
+                <div className="flex-grow overflow-auto bg-violet-900 rounded-md">
                     <table className="min-w-full m-2">
-                        <thead className="text-purple-500">
-                            <tr className="text-xl">
+                        <thead className="text-white">
+                            <tr className="text-xl uppercase">
                                 <th className="py-2 px-4">ID</th>
                                 <th className="py-2 px-4">Nombre</th>
-                                <th
-                                    className="py-2 px-4 cursor-pointer"
-                                    onClick={ordenarTabla}
-                                >
-                                    Stock{' '}
-                                    {ordenStock === 'asc' ? (
-                                        <CgChevronUp className="inline-block" />
-                                    ) : (
-                                        <CgChevronDown className="inline-block" />
-                                    )}
-                                </th>
+                                <th className='py-2 px-4'>Categoria</th>
+                                <th className="py-2 px-4">stock</th>
                                 <th className="py-2 px-4">Precio</th>
                                 <th className="py-2 px-4">Destacado</th>
                                 <th className="py-2 px-4">Acciones</th>
@@ -108,6 +102,8 @@ const TablaInventario = () => {
                                 <tr key={i}>
                                     <td className="py-2 px-4">{producto.id}</td>
                                     <td className="py-2 px-4">{producto.nombre}</td>
+                                    <td className="py-2 px-4">{getCategoriaNombre(producto.categoria_id)}</td>
+
                                     <td className="py-2 px-4">{producto.stock}</td>
                                     <td className="py-2 px-4">{producto.precio}</td>
                                     <td className="py-2 px-4">{producto.es_destacado}</td>

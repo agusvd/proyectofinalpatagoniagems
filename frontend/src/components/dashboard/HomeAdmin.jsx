@@ -34,7 +34,7 @@ const HomeAdmin = () => {
 
   return (
     <div className="flex flex-col m-4 mt-10 md:m-4">
-      <div className='md:m-2 bg-violet-900 md:rounded-md'>
+      <div className='md:m-2 md:rounded-md'>
         <div className='flex flex-wrap p-4'>
           <div className="bg-purple-500 rounded-lg shadow-md p-4 mx-4 mb-4 flex-grow">
             <h2 className="text-2xl text-white font-bold mb-2">Total de productos</h2>

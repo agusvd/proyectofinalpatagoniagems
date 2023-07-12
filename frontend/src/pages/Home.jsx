@@ -71,7 +71,7 @@ const Home = () => {
                     className="justify-center items-center p-2 cursor-pointer group focus:outline-none text-black"
                     onClick={handleNext}>
                     {currentIndex === 1 ? (
-                        <VscCircleFilled className="text-white animate-pulse" size={30} />
+                        <VscCircleFilled className="text-white animate-pulse " size={30} />
                     ) : (
                         <VscCircle className="text-white" size={30} />
                     )}
