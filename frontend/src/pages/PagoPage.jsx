@@ -304,9 +304,7 @@ const PagoPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className='pl-10'>
-                    <CartPage />
-                </div>
+
             </div>
         </div>
     );

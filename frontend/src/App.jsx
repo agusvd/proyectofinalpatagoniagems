@@ -23,6 +23,7 @@ import ProductPage from './pages/ProductPage';
 import PagoPage from './pages/PagoPage';
 import ProductosRelacionados from './components/ProductosRelacionados';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import Terminos from './pages/Terminos';
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/carrito" element={<div><Navbar /><Anuncio /><CartPage /><Footer /></div>} />
           <Route path='/pago' element={<div><Navbar /><PagoPage/><Footer /></div>} />
           <Route path='/tienda/producto/:nombre' element={<div><Navbar/><ProductPage/><ProductosRelacionados/><Footer/></div>}/>
+          <Route path='/terminos-y-condiciones' element={<div><Navbar/><Terminos/><Footer/></div>} />
           <Route path="/404" element={<Error />} />
           <Route path="*" element={<Navigate to="/404" />} />
           <Route exact path="/dashboard" element={<PrivateRoute />}>

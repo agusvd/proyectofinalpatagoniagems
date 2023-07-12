@@ -38,7 +38,7 @@ router.get('/dashboard', auth, (req, res) => {
 
 // Ruta para obtener el inventario de productos
 router.get('/dashboard/inventario', (req, res) => {
-    const sql = "SELECT id, nombre, precio, stock, es_destacado FROM productos";
+    const sql = "SELECT id, nombre, categoria_id, precio, stock, es_destacado FROM productos";
     db.query(sql, (err, data) => {
         if (err) return res.json("Error"); // Devolver un mensaje de error si ocurre un error en la consulta a la base de datos
         return res.json(data); // Devolver los datos obtenidos de la base de datos como respuesta JSON

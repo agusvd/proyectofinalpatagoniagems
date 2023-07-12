@@ -112,7 +112,7 @@ const ProductosTotal = () => {
     return (
         <div className="flex flex-col justify-center font-primary bg-white">
             <Toaster />
-            <div className="bg-white text-center py-10 sm:py-20 px-8 mb-4">
+            <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl text-black">Todos los productos</h1>
             </div>
             <div className="flex justify-center">

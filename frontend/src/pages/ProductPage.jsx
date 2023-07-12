@@ -141,10 +141,10 @@ const ProductPage = () => {
                                 <h1>Redes sociales</h1>
                             </div>
                             <div className="justify-center flex gap-5 sm:justify-normal">
-                                <a href="https://www.facebook.com/Patagoniagems/" target="_blank" className="text-black">
+                                <a href="https://www.facebook.com/Patagoniagems/" target="_blank" className="text-black hover:text-blue-700">
                                     <FaFacebook size={25} />
                                 </a>
-                                <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank" className="text-black">
+                                <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank" className="text-black hover:text-orange-500">
                                     <FaInstagram size={25} />
                                 </a>
                             </div>

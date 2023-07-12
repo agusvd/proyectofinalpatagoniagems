@@ -18,7 +18,7 @@ const Footer = () => {
                         <Link to="/politicas-de-privacidad" className='cursor-pointer hover:text-purple-500'>Politicas de Privacidad</Link>
                     </p>
                     <p className='text-white-500'>
-                        <Link to="/contacto" className='cursor-pointer hover:text-purple-500'>Contacto</Link>
+                        <Link to="/terminos-y-condiciones" className='cursor-pointer hover:text-purple-500'>Terminos y condiciones</Link>
                     </p>
                 </div>
                 <div className='flex justify-center items-center'>

@@ -118,15 +118,15 @@ const Cart = ({ onClose }) => {
                     carritoItems.map((item) => (
                         <div className="md:flex md:justify-center" key={item.id}>
                             <div className="ml-2 flex p-2">
-                                <div className="m-2 border-2 shadow-lg">
+                                <Link to={`/tienda/producto/${item.nombre}`} className="m-2 border-2 shadow-lg">
                                     <img
                                         src={ProductoEjemplo}
                                         className="h-44 w-32 sm:h-48 sm:w-36 object-center"
                                         alt={item.nombre}
                                     />
-                                </div>
+                                </Link>
                                 <div className="flex flex-col justify-center ml-5 text-black text-start gap-1">
-                                    <h1 className="text-md font-bold">{item.nombre}</h1>
+                                    <Link to={`/tienda/producto/${item.nombre}`} className="text-md font-bold">{item.nombre}</Link>
                                     <h2 className="text-sm text-gray-500">{item.categoria}</h2>
                                     <h3 className="text-gray-500 text-md font-bold pb-3">${item.precio}</h3>
                                     {carritoItems.length > 0 && (

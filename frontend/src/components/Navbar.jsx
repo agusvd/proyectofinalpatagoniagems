@@ -132,9 +132,9 @@ const Navbar = () => {
                     </div>
                     <div className="hidden md:inline-flex relative gap-4 text-center items-center">
                         <div className="group relative items-center text-center text-sm">
-                            <button className="inline-flex items-center">
+                            <button className="inline-flex items-center hover:scale-110 duration-300 transition-all ease-in">
                                 <p className='text-purple-500 hover:text-white'>{mensaje}</p>
-                                <BiUserCircle size={20} className='ml-4 text-white cursor-pointer' />
+                                <BiUserCircle size={25} className='ml-4 text-white cursor-pointer' />
                             </button>
                             <div className="rounded absolute hidden text-black pt-1 group-hover:block whitespace-no-wrap shadow-lg text-center right-0 w-48 origin-top-right z-[99]">
                                 {

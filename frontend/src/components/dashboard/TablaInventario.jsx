@@ -25,6 +25,7 @@ const TablaInventario = () => {
             .get('http://localhost:8000/categorias')
             .then((res) => {
                 setCategorias(res.data);
+                console.log(categorias)
             })
             .catch((error) => {
                 console.log(error);
