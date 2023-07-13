@@ -125,14 +125,7 @@ const TablaInventario = () => {
                 {totalPaginas > 1 && (
                     <div className="flex justify-center my-4">
                         {numerosPagina.map((numero) => (
-                            <button
-                                key={numero}
-                                onClick={() => cambiarPagina(numero)}
-                                className={`mx-1 px-3 py-1 rounded-md ${paginaActual === numero
-                                    ? 'bg-purple-500 text-white'
-                                    : 'bg-white text-purple-500'
-                                    }`}
-                            >
+                            <button key={numero} onClick={() => cambiarPagina(numero)} className={`mx-1 px-3 py-1 rounded-md ${paginaActual === numero ? 'bg-purple-500 text-white' : 'bg-white text-purple-500'}`}>
                                 {numero}
                             </button>
                         ))}

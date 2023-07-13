@@ -62,30 +62,15 @@ const Login = () => {
                         <div className=""></div>
                         <div>
                             <label className="block mb-2 text-purple-600 float-left">Correo</label>
-                            <input
-                                required
-                                className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none"
-                                type="email"
-                                onChange={(e) => setValues({ ...values, email: e.target.value })}
-                                placeholder="Escriba su correo electrónico"
-                            />
+                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none" type="email" onChange={(e) => setValues({ ...values, email: e.target.value })} placeholder="Escriba su correo electrónico" />
                         </div>
                         <div>
                             <label className="block mb-2 text-purple-600">Contraseña</label>
-                            <input
-                                required
-                                className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none"
-                                type="password"
-                                onChange={(e) => setValues({ ...values, contraseña: e.target.value })}
-                                placeholder="Escriba su contraseña"
-                            />
+                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none" type="password" onChange={(e) => setValues({ ...values, contraseña: e.target.value })} placeholder="Escriba su contraseña"/>
                         </div>
                         <div className="flex items-center justify-between">
                             <Link to="/">
-                                <GiCrystalGrowth
-                                    size={35}
-                                    className="hover:scale-125 text-purple-600 hover:text-red-600 mb-2 transition duration-300 transform hover:rotate-45"
-                                />
+                                <GiCrystalGrowth size={35} className="hover:scale-125 text-purple-600 hover:text-red-600 mb-2 transition duration-300 transform hover:rotate-45"/>
                             </Link>
                             <Link to="/" className="text-gray-500 hover:text-pink-700 text-sm">
                                 Olvidaste la contraseña?

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProductoTest from '../assets/producto1.png';
 import { BiCart } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
@@ -89,8 +88,25 @@ const ProductosRelacionados = () => {
                     ...prevCantidadProductos,
                     [producto.id]: 1,
                 }));
-                toast.success('Producto agregado al carrito');
-            })
+                toast.custom((t) => (
+                    <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
+                        <div className="flex-1 w-0 p-4">
+                            <div className="flex items-start">
+                                <div className="flex-shrink-0">
+                                    <img className="h-32 w-32 object-contain" src={producto.imagen} alt="" />
+                                </div>
+                                <div className="ml-3 flex-1">
+                                    <p className="text-sm font-medium text-purple-600">
+                                        {producto.nombre}
+                                    </p>
+                                    <p className="mt-1 text-md text-black">
+                                        Producto agregado al carrito
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))            })
             .catch((err) => {
                 console.error(err);
             });
@@ -99,7 +115,7 @@ const ProductosRelacionados = () => {
 
     return (
         <div className="flex flex-col justify-center font-primary pb-20 bg-white">
-            <Toaster />
+            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{duration: 3000}}/>            
             {/* TITULO */}
             <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl text-black">Tambien te puede interesar</h1>
@@ -149,12 +165,8 @@ const ProductosRelacionados = () => {
                         </button>
                         <h2 className='text-xl text-center'>Necesitas estar registrado!</h2>
                         <div className="flex justify-center">
-                            <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
-                                Iniciar sesión
-                            </Link>
-                            <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
-                                Registrarse
-                            </Link>
+                            <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">Iniciar sesión</Link>
+                            <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">Registrarse</Link>
                         </div>
                     </div>
                 </div>

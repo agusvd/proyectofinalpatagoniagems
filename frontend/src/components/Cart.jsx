@@ -4,7 +4,6 @@ import { BiArrowFromLeft, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import ProductoEjemplo from '../assets/producto1.png';
 import { toast } from 'react-hot-toast';
 
 const Cart = ({ onClose }) => {
@@ -58,9 +57,7 @@ const Cart = ({ onClose }) => {
             (item) => item.producto_id === producto_id
         );
         if (!carritoItem) {
-            console.error(
-                `No se encontró el elemento del carrito con el producto_id ${producto_id}`
-            );
+            console.error( `No se encontró el elemento del carrito con el producto_id ${producto_id}`);
             return;
         }
 
@@ -106,11 +103,7 @@ const Cart = ({ onClose }) => {
                 {carritoItems.length === 0 ? (
                     <div className="flex flex-col justify-center items-center m-2 gap-4">
                         <h1 className="text-black text-xl text-center pt-6">Tu carrito está vacío.</h1>
-                        <Link
-                            to="/tienda"
-                            onClick={onClose}
-                            className="flex px-4 py-2 text-white font-bold text-xl bg-purple-600 rounded-full hover:bg-black duration-300 transition-all ease-in"
-                        >
+                        <Link to="/tienda" onClick={onClose} className="flex px-4 py-2 text-white font-bold text-xl bg-purple-600 rounded-full hover:bg-black duration-300 transition-all ease-in">
                             Ir de compras
                         </Link>
                     </div>
@@ -130,7 +123,7 @@ const Cart = ({ onClose }) => {
                                     <h2 className="text-sm text-gray-500">{item.categoria}</h2>
                                     <h3 className="text-gray-500 text-md font-bold pb-3">${item.precio}</h3>
                                     {carritoItems.length > 0 && (
-                                        <div className="flex text-sm justify-around rounded-full text-black">
+                                        <div className="flex text-sm justify-start rounded-full text-black">
                                             <div className="flex">
                                                 <button className="px-4 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2 border-gray-500" onClick={() => actualizarProductoCarrito( item.producto_id, cantidadProductos[item.producto_id] > 1 ? cantidadProductos[item.producto_id] - 1 : 1)}>-</button>
                                                 <p className="px-4 py-2 bg-white border-t-2 border-b-2 border-gray-500 font-bold">
@@ -167,16 +160,10 @@ const Cart = ({ onClose }) => {
             </div>
             {carritoItems.length > 0 && (
                 <footer className="p-2 flex flex-col">
-                    <Link
-                        to="/carrito"
-                        className="bg-gray-100 text-black py-2 px-4 rounded mb-2 hover:bg-gray-200"
-                    >
+                    <Link to="/carrito" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-gray-500" >
                         Ver Carrito
                     </Link>
-                    <Link
-                        to="/pago"
-                        className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-purple-500"
-                    >
+                    <Link to="/pago" className=" text-white py-2 px-4 rounded bg-purple-500 hover:bg-green-500">
                         Proceder al pago
                     </Link>
                 </footer>

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { BiCart } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import ProductoTest from '../assets/producto1.png';
 import Cart from './Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi';
@@ -104,8 +103,25 @@ const ProductosDestacados = () => {
                     ...prevCantidadProductos,
                     [producto.id]: 1,
                 }));
-                toast.success('Producto agregado al carrito');
-            })
+                toast.custom((t) => (
+                    <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
+                        <div className="flex-1 w-0 p-4">
+                            <div className="flex items-start">
+                                <div className="flex-shrink-0">
+                                    <img className="h-32 w-32 object-contain" src={producto.imagen} alt="" />
+                                </div>
+                                <div className="ml-3 flex-1">
+                                    <p className="text-sm font-medium text-purple-600">
+                                        {producto.nombre}
+                                    </p>
+                                    <p className="mt-1 text-md text-black">
+                                        Producto agregado al carrito
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))            })
             .catch((err) => {
                 console.error(err);
             });
@@ -117,7 +133,7 @@ const ProductosDestacados = () => {
 
     return (
         <div className="flex flex-col justify-center font-primary pb-20 bg-white">
-            <Toaster />
+            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{duration: 3000}}/>            
             {/* TITULO */}
             <div className="text-center py-5 sm:py-20 px-8 mb-4 text-black">
                 <h1 className="text-3xl">Productos destacados</h1>
@@ -129,15 +145,11 @@ const ProductosDestacados = () => {
                     productosDestacados.map((producto) => (
                         <div key={producto.id} className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all">
                             <Link to={`/tienda/producto/${producto.nombre}`} className="flex flex-wrap items-center justify-center">
-                                <img src={producto.imagen} className="h-56 w-full object-contain" alt="Producto"
-                                />
+                                <img src={producto.imagen} className="h-56 w-full object-contain" alt="Producto" />
                             </Link>
                             <div className="flex justify-between">
                                 <div className="flex flex-col">
-                                    <Link
-                                        to={`/tienda/producto/${producto.nombre}`}
-                                        className="text-md font-bold capitalize"
-                                    >
+                                    <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">
                                         {producto.nombre}
                                     </Link>
                                     <p className="text-sm sm:text-md text-gray-800 capitalize">
@@ -146,13 +158,13 @@ const ProductosDestacados = () => {
                                     <p className="text-md text-gray-400">${producto.precio}</p>
                                 </div>
                                 <div className="flex text-center items-center">
-                                <button className="bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125"
-                                    onClick={() => {
-                                        handleAgregarCarro(producto);
-                                    }}>
-                                    <BiCart size={25} />
-                                </button>
-                            </div>
+                                    <button className="bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125"
+                                        onClick={() => {
+                                            handleAgregarCarro(producto);
+                                        }}>
+                                        <BiCart size={25} />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))
@@ -172,29 +184,13 @@ const ProductosDestacados = () => {
             {showModal && (
                 <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] font-primary">
                     <div className="bg-white p-4 rounded-md">
-                        <button
-                            className="absolute top-2 right-2 focus:outline-none"
-                            onClick={() => setShowModal(false)}
-                        >
-                            <BiMessageSquareX
-                                size={50}
-                                className="text-white hover:text-red-500"
-                            />
+                        <button className="absolute top-2 right-2 focus:outline-none" onClick={() => setShowModal(false)}>
+                            <BiMessageSquareX size={50} className="text-white hover:text-red-500"/>
                         </button>
                         <h2 className="text-xl text-center">¡Necesitas estar registrado!</h2>
                         <div className="flex justify-center">
-                            <Link
-                                to="/login"
-                                className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white"
-                            >
-                                Iniciar sesión
-                            </Link>
-                            <Link
-                                to="/register"
-                                className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white"
-                            >
-                                Registrarse
-                            </Link>
+                            <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">Iniciar sesión</Link>
+                            <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">Registrarse</Link>
                         </div>
                     </div>
                 </div>

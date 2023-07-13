@@ -56,11 +56,7 @@ const NavbarMobile = ({ onClose }) => {
     return (
         <div className="bg-gray-200 p-4 left-0 absolute top-0 w-3/5 h-screen z-99 font-primary">
             <div className='flex items-center justify-between'>
-                <BiArrowFromRight
-                    size={30}
-                    className="text-black cursor-pointer"
-                    onClick={onClose}
-                />
+                <BiArrowFromRight size={30} className="text-black cursor-pointer"onClick={onClose}/>
                 <h2 className='text-black mr-4 text-xl'>Menu</h2>
             </div>
             <ul>

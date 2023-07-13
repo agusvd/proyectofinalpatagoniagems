@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BiArrowFromLeft } from 'react-icons/bi';
 import axios from 'axios';
-import ProductoEjemplo from '../assets/producto1.png';
 import { Link } from 'react-router-dom';
 
 const Search = ({ onClose }) => {
@@ -68,27 +67,17 @@ const Search = ({ onClose }) => {
             <div className="flex-col items-center h-screen">
                 <div className="flex items-center justify-between m-4">
                     <h2 className="text-black mr-4 text-xl">Buscar</h2>
-                    <BiArrowFromLeft
-                        size={30}
-                        className="text-black cursor-pointer hover:text-purple-500"
-                        onClick={onClose}
-                    />
+                    <BiArrowFromLeft size={30} className="text-black cursor-pointer hover:text-purple-500" onClick={onClose}/>
                 </div>
                 <br />
                 <ul>
                     <li className="border-t border-gray-400 pt-2 pb-2"></li>
                 </ul>
                 <br />
-                <div className="">
+                <div>
                     <div className="flex items-center">
-                        <input
-                            type="text"
-                            placeholder="Buscar"
-                            className="py-2 px-5 bg-white text-black outline-none w-full border-2 rounded-full mx-10"
-                            value={searchText}
-                            onChange={(e) => setSearchText(e.target.value)}
-                            onKeyUp={handleSearch} // Llamar a handleSearch en cada pulsación de tecla
-                        />
+                        <input type="text" placeholder="Buscar" className="py-2 px-5 bg-white text-black outline-none w-full border-2 rounded-full mx-10" value={searchText} onChange={(e) => setSearchText(e.target.value)}
+                            onKeyUp={handleSearch}/>
                     </div>
                 </div>
                 {/* Mostrar los resultados de la búsqueda */}

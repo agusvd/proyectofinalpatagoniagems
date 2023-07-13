@@ -136,33 +136,16 @@ const PagoPage = () => {
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email
                             </label>
-                            <input
-                                id="email"
-                                type="text"
-                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm p-2"
-                                value={email}
-                                onChange={handleEmailChange}
-                            />
+                            <input id="email" type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm p-2" value={email} onChange={handleEmailChange}/>
                             <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                                 Teléfono
                             </label>
-                            <input
-                                id="phone"
-                                type="text"
-                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm p-2"
-                                value={phone}
-                                onChange={handlePhoneChange}
+                            <input id="phone" type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm p-2" value={phone} onChange={handlePhoneChange}
                             />
                         </div>
                         {/* Checkbox para suscripción a ofertas */}
                         <div className="flex items-center">
-                            <input
-                                id="subscribe"
-                                type="checkbox"
-                                className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded"
-                                checked={subscribe}
-                                onChange={handleSubscribeChange}
-                            />
+                            <input id="subscribe" type="checkbox" className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded" checked={subscribe} onChange={handleSubscribeChange}/>
                             <label htmlFor="subscribe" className="text-sm font-medium text-gray-700">
                                 Recibir nuevas ofertas
                             </label>
@@ -171,27 +154,13 @@ const PagoPage = () => {
                         <h2 className="text-2xl font-semibold mb-4">Método de envío</h2>
                         <div className="space-y-4">
                             <div className="flex items-center">
-                                <input
-                                    id="shipping"
-                                    type="radio"
-                                    value="envio"
-                                    className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded"
-                                    checked={shippingMethod === 'envio'}
-                                    onChange={handleShippingMethodChange}
-                                />
+                                <input id="shipping" type="radio" value="envio" className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded" checked={shippingMethod === 'envio'} onChange={handleShippingMethodChange}/>
                                 <label htmlFor="shipping" className="text-sm font-medium text-gray-700">
                                     Envío
                                 </label>
                             </div>
                             <div className="flex items-center">
-                                <input
-                                    id="pickup"
-                                    type="radio"
-                                    value="retiro"
-                                    className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded"
-                                    checked={shippingMethod === 'retiro'}
-                                    onChange={handleShippingMethodChange}
-                                />
+                                <input id="pickup" type="radio" value="retiro" className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded" checked={shippingMethod === 'retiro'} onChange={handleShippingMethodChange}/>
                                 <label htmlFor="pickup" className="text-sm font-medium text-gray-700">
                                     Retiro
                                 </label>
@@ -205,25 +174,13 @@ const PagoPage = () => {
                                     {/* Selección de región y comuna */}
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <Regiones
-                                                selectedRegion={selectedRegion}
-                                                handleRegionChange={handleRegionChange}
-                                                handleComunaChange={handleComunaChange}
-                                                comunas={comunas}
-                                                selectedComuna={selectedComuna} // Agrega esta línea
-                                            />
+                                            <Regiones selectedRegion={selectedRegion} handleRegionChange={handleRegionChange} handleComunaChange={handleComunaChange} comunas={comunas} selectedComuna={selectedComuna}/>
                                         </div>
                                         <div>
                                             <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700">
                                                 Código Postal
                                             </label>
-                                            <input
-                                                id="postalCode"
-                                                type="text"
-                                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
-                                                value={postalCode}
-                                                onChange={handlePostalCodeChange}
-                                            />
+                                            <input id="postalCode" type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={postalCode} onChange={handlePostalCodeChange}/>
                                         </div>
                                     </div>
                                     {/* Campos de entrada para el nombre, apellido, dirección, etc. */}
@@ -231,60 +188,31 @@ const PagoPage = () => {
                                         <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                                             Nombre
                                         </label>
-                                        <input
-                                            id="firstName"
-                                            type="text"
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
-                                            value={firstName}
-                                            onChange={handleFirstNameChange}
-                                        />
+                                        <input id="firstName" type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={firstName} onChange={handleFirstNameChange}/>
                                     </div>
                                     <div>
                                         <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                                             Apellido
                                         </label>
-                                        <input
-                                            id="lastName"
-                                            type="text"
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
-                                            value={lastName}
-                                            onChange={handleLastNameChange}
-                                        />
+                                        <input id="lastName" type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={lastName} onChange={handleLastNameChange} />
                                     </div>
                                     <div>
                                         <label htmlFor="address" className="block text-sm font-medium text-gray-700">
                                             Dirección
                                         </label>
-                                        <input
-                                            id="address"
-                                            type="text"
-                                            className="mt-1 block w-full border-gray-300 roundedMis-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
-                                            value={address}
-                                            onChange={handleAddressChange}
-                                        />
+                                        <input id="address" type="text" className="mt-1 block w-full border-gray-300 roundedMis-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={address} onChange={handleAddressChange}/>
                                     </div>
                                     <div>
                                         <label htmlFor="addressLine" className="block text-sm font-medium text-gray-700">
                                             Casa, Dpto, etc.
                                         </label>
-                                        <input
-                                            id="addressLine"
-                                            type="text"
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
-                                            value={addressLine}
-                                            onChange={handleAddressLineChange}
-                                        />
+                                        <input id="addressLine" type="text" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={addressLine}
+                                            onChange={handleAddressLineChange}/>
                                     </div>
 
                                     {/* Checkbox para guardar información para futuras compras */}
                                     <div className="flex items-center">
-                                        <input
-                                            id="saveInfo"
-                                            type="checkbox"
-                                            className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-700 border-gray-300 rounded"
-                                            checked={saveInfo}
-                                            onChange={handleSaveInfoChange}
-                                        />
+                                        <input id="saveInfo" type="checkbox" className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-700 border-gray-300 rounded" checked={saveInfo} onChange={handleSaveInfoChange} />
                                         <label htmlFor="saveInfo" className="text-sm font-medium text-gray-700">
                                             Guardar esta información para futuras compras
                                         </label>

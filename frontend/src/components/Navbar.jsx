@@ -6,7 +6,6 @@ import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
 import NavbarMobile from './NavbarMobile';
-import logo1 from '../assets/logo1.jpg'
 
 const Navbar = () => {
     const [auth, setAuth] = useState(false)
