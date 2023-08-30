@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import Cart from './Cart';
+import Cart from '../shared/Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi'
 import { toast, Toaster } from 'react-hot-toast';

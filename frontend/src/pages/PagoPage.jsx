@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Regiones from '../components/Regiones';
+import Regiones from '../components/pago/Regiones';
 import { Link } from 'react-router-dom';
-import CartPage from './CartPage.jsx'
 
 const PagoPage = () => {
     // Definición de los estados utilizando el hook useState

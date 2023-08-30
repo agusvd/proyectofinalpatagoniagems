@@ -1,29 +1,33 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Footer from './components/Footer';
+{/* Componentes shared */}
+import Navbar from './components/shared/Navbar';
+import Footer from './components/shared/Footer';
+import Anuncio from './components/shared/Anuncio';
+{/* Componentes productos */}
+import ProductosCategoria from './components/productos/ProductosCategoria';
+import ProductosDestacados from "./components/productos/ProductosDestacados";
+import ProductosTotal from './components/productos/ProductosTotal';
+import ProductosRelacionados from './components/productos/ProductosRelacionados';
+{/* Pages */}
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
 import Perfil from './pages/Perfil';
-import Navbar from './components/Navbar';
 import PrivateRoute from './utils/PrivateRoute';
 import Inventory from './pages/dashboard/Inventory';
 import NewProduct from './pages/dashboard/NewProduct';
 import UpdateProduct from './pages/dashboard/UpdateProduct'
 import Clientes from './pages/dashboard/Clientes';
 import NCategoria from './pages/dashboard/NCategoria';
-import ProductosTotal from './components/ProductosTotal';
 import CartPage from './pages/CartPage';
-import ProductosCategoria from './components/ProductosCategoria';
-import ProductosDestacados from "./components/ProductosDestacados";
-import Anuncio from './components/Anuncio';
 import ProductPage from './pages/ProductPage';
 import PagoPage from './pages/PagoPage';
-import ProductosRelacionados from './components/ProductosRelacionados';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Terminos from './pages/Terminos';
+{/* Seguridad de google */}
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 
 const App = () => {

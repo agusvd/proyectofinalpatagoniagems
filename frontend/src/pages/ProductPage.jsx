@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Cart from '../components/Cart';
+import Cart from '../components/shared/Cart';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { BiCart } from 'react-icons/bi';

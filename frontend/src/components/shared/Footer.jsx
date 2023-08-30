@@ -1,6 +1,6 @@
 import React from 'react'
-import IconMercadopago from '../assets/mercado-pago.svg'
-import logo1 from  '../assets/logo1.jpg'
+import IconMercadopago from '../../assets/mercado-pago.svg'
+import logo1 from  '../../assets/logo1.jpg'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
