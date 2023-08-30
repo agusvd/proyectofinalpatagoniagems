@@ -61,6 +61,9 @@ const Search = ({ onClose }) => {
             setCurrentPage((prevPage) => prevPage + 1); // Cargar la siguiente página de resultados
         }
     };
+    const handleClose = (e) => {
+        if( e.target.id === 'closeOut') onClose()
+    }
 
     return (
         <div className="bg-white text-black absolute right-0 top-0 w-3/4 h-screen z-99 font-primary md:w-2/6">
@@ -90,11 +93,11 @@ const Search = ({ onClose }) => {
                     <ul>
                         {searchResults.slice(0, currentPage * 10).map((producto) => (
                             <li key={producto.id} className="flex m-2 shadow-xl border-2">
-                                <Link to={`/tienda/producto/${producto.nombre}`} className="flex p-2">
+                                <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="flex p-2">
                                     <img src={producto.imagen} alt={producto.nombre} className="h-56 w-56 object-contain" />
                                 </Link>
                                 <div className="flex flex-col text-start p-2">
-                                    <Link to={`/tienda/producto/${producto.nombre}`} className="text-black">{producto.nombre}</Link>
+                                    <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="text-black">{producto.nombre}</Link>
                                     <p className='text-gray-600'>{getCategoriaNombre(producto.categoria_id)}</p>
                                     <p className="text-gray-700">${producto.precio}</p>
                                 </div>

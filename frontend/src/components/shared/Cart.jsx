@@ -111,7 +111,7 @@ const Cart = ({ onClose }) => {
                     carritoItems.map((item) => (
                         <div className="md:flex md:justify-start" key={item.id}>
                             <div className="ml-2 flex p-2">
-                                <Link to={`/tienda/producto/${item.nombre}`} className="items-center border-2 shadow-lg">
+                                <Link onClick={onClose} to={`/tienda/producto/${item.nombre}`} className="items-center border-2 shadow-lg">
                                     <img
                                         src={item.imagen}
                                         className=" h-56 w-56 sm:w-65 sm:h-64 object-container"
@@ -119,7 +119,7 @@ const Cart = ({ onClose }) => {
                                     />
                                 </Link>
                                 <div className="flex flex-col justify-center ml-2 sm:ml-5 text-black text-start gap-1">
-                                    <Link to={`/tienda/producto/${item.nombre}`} className="text-md font-bold">{item.nombre}</Link>
+                                    <Link onClick={onClose} to={`/tienda/producto/${item.nombre}`} className="text-md font-bold">{item.nombre}</Link>
                                     <h2 className="text-sm text-gray-500">{item.categoria}</h2>
                                     <h3 className="text-gray-500 text-md font-bold pb-3">${item.precio}</h3>
                                     {carritoItems.length > 0 && (

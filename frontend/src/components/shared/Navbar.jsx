@@ -97,7 +97,14 @@ const Navbar = () => {
         setCarritoVisible(false);
     };
 
-
+    const handleClose = (e) => {
+        if (e.target.id === 'closeOut') {
+            handleCloseSearchClick();
+            handleCloseCarritoClick();
+            console.log("click")
+        }
+    };
+    
     return (
         <div>
             <nav className="antialiased">
@@ -160,7 +167,7 @@ const Navbar = () => {
                             <BiSearch size={20} className='hover:scale-125 ease-in duration-150 cursor-pointer' />
                         </button>
                         {searchVisible && (
-                            <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                            <div id='closeOut' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]" onClick={handleClose}>
                                 <Search onClose={handleCloseSearchClick} />
                             </div>
                         )}
@@ -169,7 +176,7 @@ const Navbar = () => {
                             />
                         </button>
                         {carritoVisible && (
-                            <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                            <div id='closeOut' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]" onClick={handleClose}>
                                 <Cart onClose={handleCloseCarritoClick} />
                             </div>
                         )}
@@ -185,7 +192,7 @@ const Navbar = () => {
                                 <BiSearch size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
                             </button>
                             {searchVisible && (
-                                <div className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                                <div id='closeOut' onClick={handleClose} className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                                     <Search onClose={handleCloseSearchClick} />
                                 </div>
                             )}
@@ -193,7 +200,7 @@ const Navbar = () => {
                                 <BsCart3 size={30} className="hover:scale-125 ease-in duration-150 cursor-pointer" />
                             </button>
                             {carritoVisible && (
-                                <div className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
+                                <div id='closeOut' onClick={handleClose} className="absolute top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                                     <Cart onClose={handleCloseCarritoClick} />
                                 </div>
                             )}
