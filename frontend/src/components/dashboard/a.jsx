@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { BiTrash, BiEdit, BiSearch } from 'react-icons/bi';
+import { BiTrash, BiEdit, BiSearch, BiInfoCircle } from 'react-icons/bi';
 
 const TablaInventario = () => {
     const [productos, setProductos] = useState([]);
@@ -69,7 +69,7 @@ const TablaInventario = () => {
         <div className="font-primary h-screen overflow-auto bg-black">
             <div className="md:p-2 md:mx-6 md:my-6 flex flex-col bg-[#202020]  rounded-md">
                 {/* header */}
-                <div className="flex flex-col sm:flex-row items-center justify-center pt-10 sm:pt-0 sm:justify-between">
+                <div className="flex flex-col sm:flex-row items-center justify-center pt-10 sm:pt-0 sm:pl-10 sm:pr-10 sm:justify-between">
                     <div className="flex items-center justify-center border-2 border-white p-2 md:rounded-full w-full md:w-2/4 m-4">
                         <BiSearch size={20} className="text-white" />
                         <input type="text" placeholder="Nombre del producto..."
@@ -82,56 +82,22 @@ const TablaInventario = () => {
                                 setProductosFiltrados(filtrados);
                             }} />
                     </div>
-                    <Link to="/dashboard/inventario/agregar" className='hover:bg-white hover:text-black shadow-xl rounded-xl p-2 bg-purple-600 text-white'>
+                    <Link to="/dashboard/inventario/agregar" className='bg-white text-black shadow-xl rounded-xl p-2 hover:bg-purple-800 hover:text-white'>
                         Nuevo producto
                     </Link>
                 </div>
                 {/* fin header */}
 
-                <div className="foverflow-x-auto rounded-lg shadow overflow-y-auto relative">
-                    <table className='border-collapse table-auto w-full whitespace-no-wrap table-striped relative'>
-                        <thead className='text-white'>
-                            <tr className='text-left'>
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Imagen
-                                </th>
-                                <th className='text-center'>
-                                    Nombre
-                                </th>
-                                <th>
-                                    Precio
-                                </th>
-                                <th>
-                                    Stock
-                                </th>
-                                <th className='text-center'>
-                                    Acciones
-                                </th>
-                            </tr>
-                        </thead>
-                        {productosActuales.length > 0 ? (
-                            productosActuales.map((producto, i) => (
-                            <tbody>
-                                <tr className='text-white'>
-                                    <td>
-                                        {producto.id}
-                                    </td>
-                                    <td className='w-[50px]'>
-                                        <img src={producto.imagen} alt={producto.nombre} />
-                                    </td>
-                                    <td className='text-center'>
-                                        {producto.nombre}
-                                    </td>
-                                    <td>
-                                        {producto.precio}
-                                    </td>
-                                    <td>
-                                        {producto.stock}
-                                    </td>
-                                    <td>
+                <div className="flex-grow overflow-auto rounded-md">
+                    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 m-2">
+                        {productosActuales.map((producto, i) => (
+                            <div key={i} className="flex text-white rounded-md p-4 justify-between ">
+                                <div className='flex flex-col border-2 rounded-xl w-full'>
+                                    <div className='flex justify-between'>
+                                        <div className='text-white text-xl font-bold bortder-t-0 flex justify-start gap-2 p-2'>
+                                            <a className='text-white'>ID: </a>
+                                            {producto.id}
+                                        </div>
                                         <div className="flex items-center justify-center gap-4 p-2">
                                             <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-white hover:text-green-700">
                                                 <BiEdit size={30} />
@@ -140,20 +106,28 @@ const TablaInventario = () => {
                                                 <BiTrash size={30} />
                                             </button>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        ))
-                        ) : (
-                            <p className='text-white text-xl'>No hay productos disponibles</p>
-                        )}
+                                    </div>
+                                    <div className='flex border-t-2'>
+                                        <div className='flex justify-start h-56 w-56 rounded-xl'>
+                                            <img src={producto.imagen} alt="Producto" className=" object-contain" />
+                                        </div>
+                                        <div className='flex flex-col p-2 items-start justify-center'>
+                                            <div>Nombre: {producto.nombre}</div>
+                                            <div>Categoría: {getCategoriaNombre(producto.categoria_id)}</div>
+                                            <div>Precio: ${producto.precio} CLP</div>
+                                            <div>Stock: {producto.stock}</div>
+                                        </div>
+                                    </div>
 
-                    </table>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 {totalPaginas > 1 && (
                     <div className="flex justify-center my-4">
                         {numerosPagina.map((numero) => (
-                            <button key={numero} onClick={() => cambiarPagina(numero)} className={`mx-1 px-3 py-1 rounded-md ${paginaActual === numero ? 'bg-black text-white' : 'bg-white text-black'}`}>
+                            <button key={numero} onClick={() => cambiarPagina(numero)} className={`mx-1 px-3 py-1 rounded-md ${paginaActual === numero ? 'bg-purple-500 text-white' : 'bg-white text-purple-500'}`}>
                                 {numero}
                             </button>
                         ))}

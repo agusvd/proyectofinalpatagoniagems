@@ -61,9 +61,7 @@ const Search = ({ onClose }) => {
             setCurrentPage((prevPage) => prevPage + 1); // Cargar la siguiente página de resultados
         }
     };
-    const handleClose = (e) => {
-        if( e.target.id === 'closeOut') onClose()
-    }
+
 
     return (
         <div className="bg-white text-black absolute right-0 top-0 w-3/4 h-screen z-99 font-primary md:w-2/6">

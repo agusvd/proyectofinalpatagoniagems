@@ -34,20 +34,32 @@ const HomeAdmin = () => {
 
   return (
     <div className="flex flex-col m-4 mt-10 md:m-4">
-      <div className='md:m-2 md:rounded-md'>
+      {/* header */}
+      <div className='md:m-2 md:rounded-md bg-[#202020]'>
         <div className='flex flex-wrap p-4'>
-          <div className="bg-purple-500 rounded-lg shadow-md p-4 mx-4 mb-4 flex-grow">
+          <div className="p-4 mx-4 mb-4 flex-grow border-r">
             <h2 className="text-2xl text-white font-bold mb-2">Total de productos</h2>
-            <p className="text-2xl text-gray-900">{totalProductos}</p>
+            <p className="text-2xl text-white">{totalProductos}</p>
           </div>
-          <div className="bg-purple-500 rounded-lg shadow-md p-4 mx-4 mb-4 flex-grow">
+          <div className="p-4 mx-4 mb-4 flex-grow border-r">
             <h2 className="text-2xl text-white mb-2 font-bold">Valor total del inventario</h2>
-            <p className="text-2xl text-gray-900">${valorTotalTienda} CLP</p>
+            <p className="text-2xl text-white">${valorTotalTienda} CLP</p>
           </div>
-          <div className="bg-purple-500 rounded-lg shadow-md p-4 mx-4 mb-4 flex-grow">
+          <div className=" p-4 mx-4 mb-4 flex-grow">
             <h2 className="text-2xl text-white mb-2 font-bold">Cantidad de usuarios registrados</h2>
-            <p className="text-2xl text-gray-900">{cantidadUsuarios}</p>
+            <p className="text-2xl text-white">{cantidadUsuarios}</p>
           </div>
+        </div>
+      </div>
+      {/* fin hedader */}
+      <div className='bg-[#202020] md:m-2 md:rounded-md'>
+        <div className='flex flew-wrap gap-2 p-4'>
+            <div>
+                <a className='text-white'>Aqui va ver los productos vendidos</a>
+            </div>
+            <div>
+                <a className='text-white'>Aqui va ver graficos</a>
+            </div>
         </div>
       </div>
     </div>

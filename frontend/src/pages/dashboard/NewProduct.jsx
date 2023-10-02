@@ -7,7 +7,7 @@ const NewProduct = () => {
     return (
         <div className="flex flex-row overflow-auto w-screen">
             <Sidebar />
-            <div className="flex-1 h-screen w-full overflow-hidden bg-violet-900">
+            <div className="flex-1 h-screen w-full overflow-hidden bg-black">
                 <Product />
             </div>
         </div>

@@ -77,13 +77,13 @@ const CategoriasP = () => {
     };
 
     return (
-        <div className="flex flex-col h-screen font-primary bg-violet-950">
-            <div className="md:m-5 m-auto bg-violet-800 md:rounded-md md:p-5 p-20">
+        <div className="flex flex-col h-screen font-primary bg-black">
+            <div className="md:m-5 m-auto bg-[#202020] md:rounded-md md:p-5 p-20">
                 <h2 className="text-3xl text-white mb-4 text-center">Categorías</h2>
                 <form onSubmit={handleSubmit} className="mb-4">
                     <div className="flex items-center justify-center">
-                        <input required className="w-3/5 p-2 mr-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950" type="text" placeholder="Nombre de la categoría" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
-                        <button className="py-2 px-4 font-bold text-white bg-purple-600 rounded-lg focus:outline-none hover:bg-purple-800" type="submit">
+                        <input required className="w-3/5 p-2 mr-2 text-white border-b-2 outline-none rounded-md border-2 bg-[#202020]" type="text" placeholder="Nombre de la categoría" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                        <button className="py-2 px-4 font-bold text-white bg-purple-600 rounded-lg focus:outline-none hover:bg-white hover:text-black" type="submit">
                             Agregar
                         </button>
                     </div>
@@ -91,7 +91,7 @@ const CategoriasP = () => {
                 <div className="grid grid-cols-3 gap-4">
                     {categorias.length > 0 ? (
                         categorias.map((categoria) => (
-                            <div key={categoria.id} className="bg-gray-950 text-white rounded-md p-4 flex flex-col justify-between">
+                            <div key={categoria.id} className="bg-purple-600 text-white rounded-md p-4 flex flex-col justify-between items-center">
                                 {editingId === categoria.id ? (
                                     <input className="w-full p-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950" type="text" value={editingNombre} onChange={(e) => setEditingNombre(e.target.value)} />
                                 ) : (
@@ -113,7 +113,7 @@ const CategoriasP = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <button className="mr-2 text-white hover:text-purple-600" onClick={() => handleEdit(categoria.id)}>
+                                            <button className="mr-2 text-white hover:text-green-500" onClick={() => handleEdit(categoria.id)}>
                                                 Editar
                                             </button>
                                             <button className="text-white hover:text-red-600" onClick={() => handleDelete(categoria.id)}>

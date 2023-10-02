@@ -118,7 +118,7 @@ const Navbar = () => {
                                 <Link to="/tienda" className={`hover:text-purple-500 mr-1 cursor-pointer ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
                                 <BiChevronDown />
                             </button>
-                            <ul className="fixed hidden text-black group-hover:block  shadow-xl z-[99] rounded-lg">
+                            <ul className="fixed hidden text-black group-hover:block shadow-xl z-[99] rounded-lg">
                                 <p className='mt-3'></p>
                                 {categorias.map(categoria => (
                                     <li className='bg-white' key={categoria.id}>
