@@ -1,12 +1,12 @@
 import React from 'react'
 
-const ClientesR = () => {
+const Pedidos = () => {
     return (
         <div className='font-primary h-screen overflow-auto bg-black'>
             <div className='md:p-2 md:mx-6 md:my-6 flex flex-col bg-[#202020] rounded-xl'>
                 {/* Header */}
                 <div className=''>
-                    <h1 className='text-5xl text-white font-extrabold '>Clientes</h1>
+                    <h1 className='text-5xl text-white font-extrabold '>Pedidos</h1>
                 </div>
                 {/* Fin Header */}
                 {/* Tabla de pedidos */}
@@ -18,13 +18,22 @@ const ClientesR = () => {
                                     ID
                                 </th>
                                 <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                                <th>
                                     Nombre
                                 </th>
                                 <th>
-                                    Correo
+                                    Producto
                                 </th>
                                 <th>
-                                    Compras
+                                    Precio
+                                </th>
+                                <th>
+                                    Cantidad
                                 </th>
                             </tr>
                         </thead>
@@ -35,4 +44,4 @@ const ClientesR = () => {
     )
 }
 
-export default ClientesR
+export default Pedidos

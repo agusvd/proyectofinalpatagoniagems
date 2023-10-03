@@ -25,10 +25,10 @@ const TablaInventario = () => {
             .get('http://localhost:8000/categorias')
             .then((res) => {
                 setCategorias(res.data);
-                console.log('Categorías cargadas:', res.data); // Agrega este console.log
+                console.log('Categorías cargadas:', res.data); 
             })
             .catch((error) => {
-                console.log('Error al cargar categorías:', error); // Agrega este console.log
+                console.log('Error al cargar categorías:', error); 
             });
     }, []);
 

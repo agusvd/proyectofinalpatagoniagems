@@ -212,6 +212,17 @@ router.delete('/categorias/:id', (req, res) => {
     });
 });
 
+// Mostrar los usuarios registrados 
+router.get('/clientes', (req, res) => {
+    const sql = 'SELECT * FROM usuarios';
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error al obtener los usuarios' });
+        }
+        return res.json(data);
+    });
+})
+
 
 
 export default router

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { IoPeopleSharp, IoRadioButtonOffOutline } from 'react-icons/io5'
+import { IoPeopleSharp } from 'react-icons/io5'
 import { HiOutlineLogout } from 'react-icons/hi';
-import { BiBarChart, BiSpreadsheet, BiAddToQueue, BiGridAlt, BiDotsVerticalRounded } from 'react-icons/bi'
+import { BiBarChart, BiSpreadsheet, BiAddToQueue, BiGridAlt, BiDotsVerticalRounded, BiShoppingBag } from 'react-icons/bi'
 import { IoArrowBackSharp } from 'react-icons/io5';
 import axios from 'axios'
 
@@ -111,6 +111,9 @@ export default function Sidebar() {
 						<BiGridAlt size={25} />Categorias
 					</Link>
 					<p className='text-sm text-gray-500'>Informacion</p>
+					<Link to="/dashboard/pedidos" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/pedidos' ? 'bg-purple-800 text-white' : ''}`}>
+						<BiShoppingBag size={25} />Pedidos
+					</Link>
 					<Link to="/dashboard/clientes" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/clientes' ? 'bg-purple-800 text-white' : ''}`}>
 						<IoPeopleSharp size={20} />Clientes
 					</Link>

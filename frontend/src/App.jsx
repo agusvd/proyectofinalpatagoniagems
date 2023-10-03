@@ -21,11 +21,13 @@ import Inventory from './pages/dashboard/Inventory';
 import NewProduct from './pages/dashboard/NewProduct';
 import UpdateProduct from './pages/dashboard/UpdateProduct'
 import Clientes from './pages/dashboard/Clientes';
+import PedidosP from './pages/dashboard/PedidosP';
 import NCategoria from './pages/dashboard/NCategoria';
 import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import PagoPage from './pages/PagoPage';
 import Terminos from './pages/Terminos';
+
 {/* Seguridad de google */}
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
@@ -61,6 +63,9 @@ const App = () => {
           </Route>
           <Route exact path="/dashboard/clientes" element={<PrivateRoute />}>
             <Route exact path="/dashboard/clientes" element={<Clientes />} />
+          </Route>
+          <Route exact path="/dashboard/pedidos" element={<PrivateRoute />}>
+            <Route exact path="/dashboard/pedidos" element={<PedidosP />} />
           </Route>
           <Route exact path="/dashboard/categorias" element={<PrivateRoute />}>
             <Route exact path="/dashboard/categorias" element={<NCategoria />} />
