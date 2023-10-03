@@ -91,27 +91,27 @@ export default function Sidebar() {
 				: (
 					''
 				)}
-			<div className="hidden bg-[#202020] text-white w-60 font-primary md:flex md:flex-col  md:overflow-auto md:h-screen">
+			<div className="hidden bg-[#202020] text-white w-60 font-primary md:flex md:flex-col md:overflow-auto h-screen md:h-[700px] md:m-4 md:rounded-xl">
 				<div className="flex items-center gap-2 px-1 py-3">
 					<span className="text-xl p-2 text-white font-bold">PatagoniaGems</span>
 				</div>
 				<div className="py-4 flex flex-1 flex-col gap-4 m-2">
 					<p className='text-sm text-gray-500'>Panel de administrador</p>
-					<Link to="/dashboard" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard' ? 'bg-purple-800 text-white' : ''}`}>
+					<Link to="/dashboard" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard' ? 'bg-purple-800 text-white' : ''}`}>
 						<BiBarChart size={25} />Inicio
 					</Link>
 					<p className='text-sm text-gray-500'>Inventario</p>
-					<Link to="/dashboard/inventario" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard/inventario' ? 'bg-purple-800 text-white' : ''}`}>
+					<Link to="/dashboard/inventario" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario' ? 'bg-purple-800 text-white' : ''}`}>
 						<BiSpreadsheet size={25} />Productos
 					</Link>
-					<Link to="/dashboard/inventario/agregar" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard/inventario/agregar' ? 'bg-purple-800 text-white' : ''}`}>
+					<Link to="/dashboard/inventario/agregar" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario/agregar' ? 'bg-purple-800 text-white' : ''}`}>
 						<BiAddToQueue size={25} />Agregar productos
 					</Link>
 					<Link to="/dashboard/categorias" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard/categorias' ? 'bg-purple-800 text-white' : ''}`}>
 						<BiGridAlt size={25} />Categorias
 					</Link>
 					<p className='text-sm text-gray-500'>Informacion</p>
-					<Link to="/dashboard/clientes" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard/clientes' ? 'bg-purple-800 text-white' : ''}`}>
+					<Link to="/dashboard/clientes" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/clientes' ? 'bg-purple-800 text-white' : ''}`}>
 						<IoPeopleSharp size={20} />Clientes
 					</Link>
 				</div>
@@ -136,11 +136,11 @@ export default function Sidebar() {
 							</button>
 							<ul className='fixed hidden group-hover:block bottom-12 left-20 z-[99] text-sm'>
 								<li className='text-white bg-[#202020] shadow-2xl  gap-2 rounded-xl p-2 space-y-2 whitespace-no-wrap flex flex-col'>
-									<Link to="/" className="inline-flex items-center gap-2 p-1 hover:rounded-md hover:bg-gray-200 hover:text-black">
+									<Link to="/" className="inline-flex items-center gap-2 p-1 hover:rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100">
 										<IoArrowBackSharp className="inline-block mr-2" />
 										Ir a la tienda
 									</Link>
-									<Link to="/" onClick={handleLogout} className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black">
+									<Link to="/" onClick={handleLogout} className="inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100">
 										<HiOutlineLogout className="inline-block mr-2" />
 										Cerrar sesión
 									</Link>

@@ -21,14 +21,14 @@ const TablaInventario = () => {
             })
             .catch((err) => console.log(err));
 
-        axios
+            axios
             .get('http://localhost:8000/categorias')
             .then((res) => {
                 setCategorias(res.data);
-                console.log(categorias)
+                console.log('Categorías cargadas:', res.data); // Agrega este console.log
             })
             .catch((error) => {
-                console.log(error);
+                console.log('Error al cargar categorías:', error); // Agrega este console.log
             });
     }, []);
 
@@ -46,12 +46,11 @@ const TablaInventario = () => {
 
     const cambiarPagina = (numeroPagina) => {
         setPaginaActual(numeroPagina);
-        setOrdenStock(null); // Reiniciar el estado del orden al cambiar de página
     };
 
     const getCategoriaNombre = (categoriaId) => {
         const categoria = categorias.find((c) => c.id === categoriaId);
-        return categoria ? categoria.categoria : '';
+        return categoria ? categoria.categoria : 'Categoría no encontrada';
     };
 
     const indiceUltimoProducto = paginaActual * productosPorPagina;
@@ -67,7 +66,7 @@ const TablaInventario = () => {
 
     return (
         <div className="font-primary h-screen overflow-auto bg-black">
-            <div className="md:p-2 md:mx-6 md:my-6 flex flex-col bg-[#202020]  rounded-md">
+            <div className="md:p-2 md:mx-6 md:my-6 flex flex-col bg-[#202020] rounded-xl">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center pt-10 sm:pt-0 sm:justify-between">
                     <div className="flex items-center justify-center border-2 border-white p-2 md:rounded-full w-full md:w-2/4 m-4">
@@ -88,7 +87,7 @@ const TablaInventario = () => {
                 </div>
                 {/* fin header */}
 
-                <div className="foverflow-x-auto rounded-lg shadow overflow-y-auto relative">
+                <div className="foverflow-x-auto overflow-y-auto relative">
                     <table className='border-collapse table-auto w-full whitespace-no-wrap table-striped relative'>
                         <thead className='text-white'>
                             <tr className='text-left'>
@@ -100,6 +99,9 @@ const TablaInventario = () => {
                                 </th>
                                 <th className='text-center'>
                                     Nombre
+                                </th>
+                                <th>
+                                    Categoria
                                 </th>
                                 <th>
                                     Precio
@@ -114,7 +116,7 @@ const TablaInventario = () => {
                         </thead>
                         {productosActuales.length > 0 ? (
                             productosActuales.map((producto, i) => (
-                            <tbody>
+                            <tbody  key={producto.id}>
                                 <tr className='text-white'>
                                     <td>
                                         {producto.id}
@@ -124,6 +126,9 @@ const TablaInventario = () => {
                                     </td>
                                     <td className='text-center'>
                                         {producto.nombre}
+                                    </td>
+                                    <td>
+                                        {getCategoriaNombre(producto.categoria_id)}
                                     </td>
                                     <td>
                                         {producto.precio}

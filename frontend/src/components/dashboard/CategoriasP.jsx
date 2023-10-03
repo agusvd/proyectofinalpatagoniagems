@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BiEdit, BiTrash } from 'react-icons/bi';
 
 const CategoriasP = () => {
     const [categorias, setCategorias] = useState([]);
@@ -29,6 +30,8 @@ const CategoriasP = () => {
             setEditingNombre(categoria.categoria);
         }
     };
+
+    
 
     const handleUpdate = () => {
         if (editingNombre.trim() === '') {
@@ -114,10 +117,10 @@ const CategoriasP = () => {
                                     ) : (
                                         <>
                                             <button className="mr-2 text-white hover:text-green-500" onClick={() => handleEdit(categoria.id)}>
-                                                Editar
+                                                <BiEdit size={30}/>
                                             </button>
                                             <button className="text-white hover:text-red-600" onClick={() => handleDelete(categoria.id)}>
-                                                Eliminar
+                                                <BiTrash size={30}/>
                                             </button>
                                         </>
                                     )}

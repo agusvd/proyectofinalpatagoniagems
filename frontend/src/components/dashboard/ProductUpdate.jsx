@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { BiRadioCircle, BiRadioCircleMarked } from 'react-icons/bi'
 import axios from 'axios';
 
 const Product = () => {
+    const { id } = useParams();
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [precio, setPrecio] = useState('');
@@ -28,26 +29,36 @@ const Product = () => {
             });
     }, []);
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        axios
-            .post('http://localhost:8000/dashboard/inventario/agregar', {
-                nombre,
-                descripcion,
-                precio,
-                stock,
-                categoria_id,
-                es_destacado,
-                imagen,
+    useEffect(() => {
+        axios.get('http://localhost:8000/dashboard/search/' + id)
+            .then(res => {
+                setNombre(res.data[0].nombre);
+                setDescripcion(res.data[0].descripcion);
+                setPrecio(res.data[0].precio);
+                setStock(res.data[0].stock);
+                setCategoria_id(res.data[0].categoria_id);
+                setEs_destacado(res.data[0].es_destacado)
+                setImagen(res.data[0].imagen)
             })
-            .then((res) => {
+            .catch(error => {
+                console.log(error);
+                // Manejar el error aquí
+            });
+    }, []);
+
+    function handleUpdate(event) {
+        event.preventDefault();
+        const updatedData = { nombre, descripcion, precio, stock, categoria_id, es_destacado, imagen };
+        axios.put('http://localhost:8000/dashboard/actualizar/' + id, updatedData)
+            .then(res => {
                 console.log(res);
                 navigate('/dashboard/inventario');
             })
-            .catch((error) => {
+            .catch(error => {
                 console.log(error);
             });
     }
+
 
     const nextStep = () => {
         setStep(step + 1);
@@ -68,7 +79,7 @@ const Product = () => {
 
     return (
         <div className="flex flex-col m-4 md:m-4 rounded-xl">
-            <form className="flex flex-col p-2 " onSubmit={handleSubmit}>
+            <form className="flex flex-col p-2 " onSubmit={handleUpdate}>
                 <h2 className='mb-4 text-4xl text-white font-extrabold leading-none text-center'>Agregar un nuevo producto</h2>
                 <div className='flex flex-col justify-center items-center pt-10 relative'>
                     <div className='bg-purple-600 text-white p-2 rounded-xl w-[600px] text-center relative top-6 z-[99]'>
