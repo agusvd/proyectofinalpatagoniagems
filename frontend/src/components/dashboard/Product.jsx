@@ -42,6 +42,7 @@ const Product = () => {
             })
             .then((res) => {
                 console.log(res);
+                
                 navigate('/dashboard/inventario');
             })
             .catch((error) => {
