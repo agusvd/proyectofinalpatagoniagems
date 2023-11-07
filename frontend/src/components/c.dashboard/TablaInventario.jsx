@@ -66,7 +66,7 @@ const TablaInventario = () => {
 
     return (
         <div className="font-primary h-screen overflow-auto bg-black">
-            <div className="md:p-2 md:mx-6 md:my-6 flex flex-col bg-[#202020] rounded-xl">
+            <div className="flex flex-col bg-[#202020] p-2">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center pt-10 sm:pt-0 sm:justify-between">
                     <div className="flex items-center justify-center border-2 border-white p-2 md:rounded-full w-full md:w-2/4 m-4">

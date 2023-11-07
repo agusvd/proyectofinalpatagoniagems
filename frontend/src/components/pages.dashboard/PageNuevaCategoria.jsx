@@ -1,12 +1,14 @@
 import React from 'react';
-import Sidebar from '../shared.dashboard/Sidebar';
 import CategoriasP from '../c.dashboard/CategoriasP';
+import NormalMenu from '../shared.dashboard/NormalMenu';
+import MobileMenu from '../shared.dashboard/MobileMenu';
 
 const PageNuevaCategoria = () => {
     return (
-        <div className="flex flex-row bg-black overflow-auto w-screen">
-            <Sidebar />
+        <div className="flex flex-col sm:flex sm:flex-row bg-black overflow-auto w-screen">
+            <NormalMenu />
             <div className="flex-1 w-full overflow-hidden bg-black">
+                <MobileMenu />
                 <CategoriasP />
             </div>
         </div>

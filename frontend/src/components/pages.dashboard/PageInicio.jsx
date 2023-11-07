@@ -1,13 +1,15 @@
 import React from 'react';
-import Sidebar from '../shared.dashboard/Sidebar';
 import HomeAdmin from '../c.dashboard/HomeAdmin';
+import NormalMenu from '../shared.dashboard/NormalMenu';
+import MobileMenu from '../shared.dashboard/MobileMenu';
 
 
 const PageInicio = () => {
     return (
         <div className="flex flex-row bg-black overflow-auto w-screen">
-        <Sidebar />
+        <NormalMenu />
         <div className="flex-1 h-screen w-full overflow-hidden bg-violet-900 md:bg-black sm:mt-0">
+            <MobileMenu />
             <HomeAdmin />
         </div>
     </div>

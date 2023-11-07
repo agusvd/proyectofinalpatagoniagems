@@ -1,13 +1,15 @@
 import React from 'react';
-import Sidebar from '../shared.dashboard/Sidebar'
 import Product from '../c.dashboard/Product';
+import NormalMenu from '../shared.dashboard/NormalMenu';
+import MobileMenu from '../shared.dashboard/MobileMenu';
 
 
 const PageAgregarProducto = () => {
     return (
-        <div className="flex flex-row overflow-auto w-screen bg-black">
-            <Sidebar />
+        <div className="flex flex-row overflow-auto w-screen h-screen bg-black">
+            <NormalMenu />
             <div className="flex-1 w-full overflow-hidden bg-black">
+                <MobileMenu/>
                 <Product />
             </div>
         </div>
