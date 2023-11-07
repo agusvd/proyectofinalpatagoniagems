@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { BiCart } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import Cart from '../shared/Cart';
+import Cart from '../shared.tienda/Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi'
 import { toast, Toaster } from 'react-hot-toast';
-
+import CardProductoCategoriaMini from '../cards/CardProductoCategoriaMini';
+import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
 
 const ProductosCategoria = () => {
     const { categoriaId } = useParams();
@@ -80,24 +80,9 @@ const ProductosCategoria = () => {
                     [producto.id]: 1,
                 }));
                 toast.custom((t) => (
-                    <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
-                        <div className="flex-1 w-0 p-4">
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0">
-                                    <img className="h-32 w-32 object-contain" src={producto.imagen} alt="" />
-                                </div>
-                                <div className="ml-3 flex-1">
-                                    <p className="text-sm font-medium text-purple-600">
-                                        {producto.nombre}
-                                    </p>
-                                    <p className="mt-1 text-md text-black">
-                                        Producto agregado al carrito
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))            })
+                    <CardToastAgregarCarro producto={producto} visible={t.visible} />
+                ))
+            })
             .catch((err) => {
                 console.error(err);
             });
@@ -105,7 +90,7 @@ const ProductosCategoria = () => {
 
     return (
         <div className='flex flex-col justify-center font-primary bg-white'>
-            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{duration: 3000}}/>            
+            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl font-bold text-black uppercase">{categoriaNombre}</h1>
             </div>
@@ -113,27 +98,7 @@ const ProductosCategoria = () => {
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
                     {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
-                            <div key={producto.id} className="w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all">
-                                <Link to={`/tienda/producto/${producto.nombre}`} className="flex flex-wrap items-center justify-center">
-                                    <img src={producto.imagen} className="h-56 w-full object-contain" alt="Producto" />
-                                </Link>
-                                <div className="flex justify-between">
-                                    <div className="flex flex-col">
-                                        <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">{producto.nombre}</Link>
-                                        <p className="text-sm sm:text-md text-gray-800 capitalize">{producto.categoria}</p>
-                                        <p className="text-md text-gray-400">${producto.precio}</p>
-                                    </div>
-                                    <div className='flex text-center justify-between items-center'>
-                                        <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125' 
-                                        onClick={() => {
-                                            handleAgregarCarro(producto);
-                                        }}>
-                                            <BiCart size={25} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
+                            <CardProductoCategoriaMini key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />
                         ))
                     ) : (
                         <div className='col-span-4 p-4 h-screen text-center'>

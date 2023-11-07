@@ -4,7 +4,6 @@ import { BiArrowFromLeft, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import ProductoEjemplo from '../assets/producto1.png';
 import { toast } from 'react-hot-toast';
 
 const Cart = ({ onClose }) => {

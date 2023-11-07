@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Regiones from '../components/pago/Regiones';
+import Regiones from './Regiones';
 import { Link } from 'react-router-dom';
 
 const PagoPage = () => {

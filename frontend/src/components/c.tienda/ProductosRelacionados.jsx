@@ -3,11 +3,11 @@ import axios from 'axios';
 import { BiCart } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import Cart from '../shared/Cart';
+import Cart from '../shared.tienda/Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi'
 import { toast, Toaster } from 'react-hot-toast';
-
+import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
 
 const ProductosRelacionados = () => {
     const [productos, setProductos] = useState([]);
@@ -89,24 +89,9 @@ const ProductosRelacionados = () => {
                     [producto.id]: 1,
                 }));
                 toast.custom((t) => (
-                    <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
-                        <div className="flex-1 w-0 p-4">
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0">
-                                    <img className="h-32 w-32 object-contain" src={producto.imagen} alt="" />
-                                </div>
-                                <div className="ml-3 flex-1">
-                                    <p className="text-sm font-medium text-purple-600">
-                                        {producto.nombre}
-                                    </p>
-                                    <p className="mt-1 text-md text-black">
-                                        Producto agregado al carrito
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))            })
+                    <CardToastAgregarCarro producto={producto} visible={t.visible} />
+                ))
+            })
             .catch((err) => {
                 console.error(err);
             });
@@ -115,7 +100,7 @@ const ProductosRelacionados = () => {
 
     return (
         <div className="flex flex-col justify-center font-primary pb-20 bg-white">
-            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{duration: 3000}}/>            
+            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             {/* TITULO */}
             <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
                 <h1 className="text-3xl text-black">Tambien te puede interesar</h1>

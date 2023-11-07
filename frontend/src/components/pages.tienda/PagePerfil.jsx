@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-const Perfil = () => {
+const PagePerfil = () => {
     return (
         <div className='h-screen flex justify-center items-center bg-gray-200'>
             <div className='text-center'>
@@ -13,4 +12,4 @@ const Perfil = () => {
     )
 }
 
-export default Perfil
+export default PagePerfil

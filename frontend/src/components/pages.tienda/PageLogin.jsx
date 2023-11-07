@@ -6,7 +6,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import jwtDecode from 'jwt-decode';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
-const Login = () => {
+const PageLogin = () => {
     const [values, setValues] = useState({
         email: '',
         contraseña: '',
@@ -94,4 +94,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default PageLogin;

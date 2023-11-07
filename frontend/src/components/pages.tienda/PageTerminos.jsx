@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Terminos = () => {
+const PageTerminos = () => {
     return (
         <div className='h-full font-primary'>
             <div className='bg-gray-100 p-2'>
@@ -43,4 +43,4 @@ const Terminos = () => {
     )
 }
 
-export default Terminos
+export default PageTerminos

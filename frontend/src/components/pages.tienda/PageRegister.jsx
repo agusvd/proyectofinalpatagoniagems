@@ -5,7 +5,7 @@ import { toast, Toaster } from 'react-hot-toast'
 import { GiCrystalGrowth } from 'react-icons/gi';
 
 
-const Register = () => {
+const PageRegister = () => {
     const [passwordValid, setPasswordValid] = useState(true);
     const [values, setValues] = useState({
         nombre: '',
@@ -89,4 +89,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default PageRegister

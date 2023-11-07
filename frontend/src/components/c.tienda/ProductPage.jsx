@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Cart from '../components/shared/Cart';
+import Cart from '../shared.tienda/Cart';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { BiCart } from 'react-icons/bi';
 import { BiMessageSquareX } from 'react-icons/bi';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { toast, Toaster } from 'react-hot-toast';
-import productoEjemplo from '../assets/producto1.png'
 
 const ProductPage = () => {
     const [cantidad, setCantidad] = useState(1);

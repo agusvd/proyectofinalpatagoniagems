@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from '../../components/dashboard/Sidebar'
-import Product from '../../components/dashboard/Product';
+import Sidebar from '../shared.dashboard/Sidebar'
+import Product from '../c.dashboard/Product';
 
 
-const NewProduct = () => {
+const PageAgregarProducto = () => {
     return (
         <div className="flex flex-row overflow-auto w-screen bg-black">
             <Sidebar />
@@ -14,4 +14,4 @@ const NewProduct = () => {
     )
 }
 
-export default NewProduct
+export default PageAgregarProducto

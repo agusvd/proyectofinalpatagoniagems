@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from '../components/dashboard/Sidebar';
-import HomeAdmin from '../components/dashboard/HomeAdmin';
+import Sidebar from '../shared.dashboard/Sidebar';
+import HomeAdmin from '../c.dashboard/HomeAdmin';
 
 
-const Dashboard = () => {
+const PageInicio = () => {
     return (
         <div className="flex flex-row bg-black overflow-auto w-screen">
         <Sidebar />
@@ -14,4 +14,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default PageInicio;

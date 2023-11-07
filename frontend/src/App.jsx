@@ -1,32 +1,32 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-{/* Componentes shared */}
-import Navbar from './components/shared/Navbar';
-import Footer from './components/shared/Footer';
-import Anuncio from './components/shared/Anuncio';
+{/* Componentes tienda */}
+import Navbar from './components/shared.tienda/Navbar';
+import Footer from './components/shared.tienda/Footer';
+import Anuncio from './components/shared.tienda/Anuncio';
 {/* Componentes productos */}
-import ProductosCategoria from './components/productos/ProductosCategoria';
-import ProductosDestacados from "./components/productos/ProductosDestacados";
-import ProductosTotal from './components/productos/ProductosTotal';
-import ProductosRelacionados from './components/productos/ProductosRelacionados';
+import ProductosCategoria from './components/c.tienda/ProductosCategoria';
+import ProductosDestacados from "./components/c.tienda/ProductosDestacados";
+import ProductosTotal from './components/c.tienda/ProductosTotal';
+import ProductosRelacionados from './components/c.tienda/ProductosRelacionados';
 {/* Pages */}
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Error from './pages/Error';
-import Perfil from './pages/Perfil';
+import Home from './components/c.tienda/Home';
+import Login from './components/pages.tienda/PageLogin';
+import Register from './components/pages.tienda/PageRegister';
+import Dashboard from './components/pages.dashboard/PageInicio';
+import Error from './components/pages.tienda/PageError';
+import Perfil from './components/pages.tienda/PagePerfil';
 import PrivateRoute from './utils/PrivateRoute';
-import Inventory from './pages/dashboard/Inventory';
-import NewProduct from './pages/dashboard/NewProduct';
-import UpdateProduct from './pages/dashboard/UpdateProduct'
-import Clientes from './pages/dashboard/Clientes';
-import PedidosP from './pages/dashboard/PedidosP';
-import NCategoria from './pages/dashboard/NCategoria';
-import CartPage from './pages/CartPage';
-import ProductPage from './pages/ProductPage';
-import PagoPage from './pages/PagoPage';
-import Terminos from './pages/Terminos';
+import Inventory from './components/pages.dashboard/PageInventario';
+import NewProduct from './components/pages.dashboard/PageAgregarProducto';
+import UpdateProduct from './components/pages.dashboard/PageActualizarProducto'
+import Clientes from './components/pages.dashboard/PageClientes';
+import PedidosP from './components/pages.dashboard/PagePedidos';
+import NCategoria from './components/pages.dashboard/PageNuevaCategoria';
+import CartPage from './components/c.tienda/CartPage';
+import ProductPage from './components/c.tienda/ProductPage';
+import PagoPage from './components/c.tienda/PagoPage';
+import Terminos from './components/pages.tienda/PageTerminos';
 
 {/* Seguridad de google */}
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';

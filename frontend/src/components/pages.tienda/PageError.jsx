@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Error = () => {
+const PageError = () => {
     return (
         <div className='h-screen flex justify-center items-center bg-black font-primary'>
             <div className='p-10 items-center text-center justify-center'>
@@ -13,4 +13,4 @@ const Error = () => {
     )
 }
 
-export default Error
+export default PageError

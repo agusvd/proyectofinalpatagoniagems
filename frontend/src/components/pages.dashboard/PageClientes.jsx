@@ -1,16 +1,16 @@
 import React from 'react'
-import Sidebar from '../../components/dashboard/Sidebar'
-import Pedidos from '../../components/dashboard/Pedidos'
+import Sidebar from '../shared.dashboard/Sidebar'
+import ClientesR from '../c.dashboard/ClientesR'
 
-const PedidosP = () => {
+const PageClientes = () => {
     return (
         <div className="flex flex-row bg-black overflow-auto w-screen">
             <Sidebar />
             <div className="flex-1 w-full overflow-hidden bg-black">
-                <Pedidos />
+                <ClientesR />
             </div>
         </div>
     )
 }
 
-export default PedidosP
+export default PageClientes

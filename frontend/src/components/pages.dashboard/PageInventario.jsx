@@ -1,8 +1,8 @@
 import React from 'react';
-import Sidebar from '../../components/dashboard/Sidebar';
-import TablaInventario from '../../components/dashboard/TablaInventario';
+import Sidebar from '../shared.dashboard/Sidebar';
+import TablaInventario from '../c.dashboard/TablaInventario';
 
-const Inventory = () => {
+const PageInventario = () => {
     return (
         <div className="flex flex-row bg-black overflow-auto w-screen">
             <Sidebar />
@@ -13,4 +13,4 @@ const Inventory = () => {
     );
 };
 
-export default Inventory;
+export default PageInventario;

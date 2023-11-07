@@ -1,16 +1,16 @@
 import React from 'react'
-import Sidebar from '../../components/dashboard/Sidebar'
-import ClientesR from '../../components/dashboard/ClientesR'
+import Sidebar from '../shared.dashboard/Sidebar'
+import ProductUpdate from '../c.dashboard/ProductUpdate';
 
-const Clientes = () => {
+const PageActualizarProducto = () => {
     return (
         <div className="flex flex-row bg-black overflow-auto w-screen">
             <Sidebar />
             <div className="flex-1 w-full overflow-hidden bg-black">
-                <ClientesR />
+                <ProductUpdate />
             </div>
         </div>
     )
 }
 
-export default Clientes
+export default PageActualizarProducto
