@@ -21,14 +21,14 @@ const TablaInventario = () => {
             })
             .catch((err) => console.log(err));
 
-            axios
+        axios
             .get('http://localhost:8000/categorias')
             .then((res) => {
                 setCategorias(res.data);
-                console.log('Categorías cargadas:', res.data); 
+                console.log('Categorías cargadas:', res.data);
             })
             .catch((error) => {
-                console.log('Error al cargar categorías:', error); 
+                console.log('Error al cargar categorías:', error);
             });
     }, []);
 
@@ -68,11 +68,11 @@ const TablaInventario = () => {
         <div className="font-primary h-screen overflow-auto bg-black">
             <div className="flex flex-col bg-[#202020] p-2">
                 {/* header */}
-                <div className="flex flex-col sm:flex-row items-center justify-center pt-10 sm:pt-0 sm:justify-between">
-                    <div className="flex items-center justify-center border-2 border-white p-2 md:rounded-full w-full md:w-2/4 m-4">
-                        <BiSearch size={20} className="text-white" />
+                <div className="flex flex-col sm:flex-row items-center justify-center">
+                    <div className="flex items-center justify-center bg-white text-black p-2 rounded-xl w-full md:w-2/4 m-4">
+                        <BiSearch size={20} className="text-black" />
                         <input type="text" placeholder="Nombre del producto..."
-                            className="search py-1 px-3 ml-2 bg-[#202020] text-white outline-none w-full"
+                            className="search py-1 px-3 ml-2 bg-white text-black outline-none w-full"
                             onChange={(e) => {
                                 setConsulta(e.target.value);
                                 const filtrados = productos.filter((producto) =>
@@ -88,7 +88,7 @@ const TablaInventario = () => {
                 {/* fin header */}
 
                 <div className="foverflow-x-auto overflow-y-auto relative">
-                    <table className='border-collapse table-auto w-full whitespace-no-wrap table-striped relative'>
+                    <table className='table-auto w-full  p-2 rounded-xl'>
                         <thead className='text-white'>
                             <tr className='text-left'>
                                 <th>
@@ -116,39 +116,39 @@ const TablaInventario = () => {
                         </thead>
                         {productosActuales.length > 0 ? (
                             productosActuales.map((producto, i) => (
-                            <tbody  key={producto.id}>
-                                <tr className='text-white'>
-                                    <td>
-                                        {producto.id}
-                                    </td>
-                                    <td className='w-[50px]'>
-                                        <img src={producto.imagen} alt={producto.nombre} />
-                                    </td>
-                                    <td className='text-center'>
-                                        {producto.nombre}
-                                    </td>
-                                    <td>
-                                        {getCategoriaNombre(producto.categoria_id)}
-                                    </td>
-                                    <td>
-                                        {producto.precio}
-                                    </td>
-                                    <td>
-                                        {producto.stock}
-                                    </td>
-                                    <td>
-                                        <div className="flex items-center justify-center gap-4 p-2">
-                                            <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-white hover:text-green-700">
-                                                <BiEdit size={30} />
-                                            </Link>
-                                            <button onClick={() => eliminarProducto(producto.id)} className="text-white hover:text-red-700">
-                                                <BiTrash size={30} />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        ))
+                                <tbody key={producto.id}>
+                                    <tr className='text-white'>
+                                        <td>
+                                            {producto.id}
+                                        </td>
+                                        <td className='w-[50px]'>
+                                            <img src={producto.imagen} alt={producto.nombre} />
+                                        </td>
+                                        <td className='text-center'>
+                                            {producto.nombre}
+                                        </td>
+                                        <td>
+                                            {getCategoriaNombre(producto.categoria_id)}
+                                        </td>
+                                        <td>
+                                            {producto.precio}
+                                        </td>
+                                        <td>
+                                            {producto.stock}
+                                        </td>
+                                        <td>
+                                            <div className="flex items-center justify-center gap-4 p-2">
+                                                <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-white hover:text-green-700">
+                                                    <BiEdit size={30} />
+                                                </Link>
+                                                <button onClick={() => eliminarProducto(producto.id)} className="text-white hover:text-red-700">
+                                                    <BiTrash size={30} />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            ))
                         ) : (
                             <p className='text-white text-xl'>No hay productos disponibles</p>
                         )}

@@ -35,7 +35,7 @@ const NormalMenu = () => {
 	};
     
     return (
-        <div className="hidden bg-[#202020] text-white w-60 font-primary md:flex md:flex-col md:overflow-auto h-screen md:h-[700px]">
+        <div className="hidden bg-[#202020] text-white w-60 font-primary md:flex md:flex-col md:overflow-auto h-screen">
             <div className="flex items-center gap-2 px-1 py-3">
                 <span className="text-xl p-2 text-white font-bold">PatagoniaGems</span>
             </div>

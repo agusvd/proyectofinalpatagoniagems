@@ -2,8 +2,8 @@ import React from 'react'
 
 const ClientesR = () => {
     return (
-        <div className='font-primary h-screen overflow-auto bg-black'>
-            <div className='md:p-2 md:mx-6 md:my-6 flex flex-col bg-[#202020] rounded-xl'>
+        <div className='font-primary h-screen overflow-auto'>
+            <div className='p-2 flex flex-col rounded-xl'>
                 {/* Header */}
                 <div className=''>
                     <h1 className='text-5xl text-white font-extrabold '>Clientes</h1>

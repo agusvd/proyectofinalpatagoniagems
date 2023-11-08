@@ -5,9 +5,9 @@ import MobileMenu from '../shared.dashboard/MobileMenu';
 
 const PageInventario = () => {
     return (
-        <div className="flex flex-col sm:flex sm:flex-row bg-black overflow-auto w-screen">
+        <div className="flex flex-col sm:flex sm:flex-row bg-[#202020] overflow-auto w-screen">
             <NormalMenu/>
-            <div className="flex-1 bg-black overflow-hidden">
+            <div className="flex-1 bg-[#202020] overflow-hidden">
                 <MobileMenu/>
                 <TablaInventario />
             </div>

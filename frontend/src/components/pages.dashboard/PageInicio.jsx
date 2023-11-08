@@ -6,9 +6,9 @@ import MobileMenu from '../shared.dashboard/MobileMenu';
 
 const PageInicio = () => {
     return (
-        <div className="flex flex-row bg-black overflow-auto w-screen">
+        <div className="flex flex-row bg-[#202020] overflow-auto w-screen">
         <NormalMenu />
-        <div className="flex-1 h-screen w-full overflow-hidden bg-violet-900 md:bg-black sm:mt-0">
+        <div className="flex-1 h-screen w-full overflow-hidden bg-[#202020] sm:mt-0">
             <MobileMenu />
             <HomeAdmin />
         </div>

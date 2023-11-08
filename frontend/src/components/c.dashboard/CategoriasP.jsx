@@ -80,8 +80,8 @@ const CategoriasP = () => {
     };
 
     return (
-        <div className="flex flex-col h-screen font-primary bg-black">
-            <div className="md:m-5 m-auto bg-[#202020] md:rounded-md md:p-5 p-20">
+        <div className="flex flex-col h-screen font-primary">
+            <div className="md:m-5 m-auto md:rounded-md md:p-5 p-20">
                 <h2 className="text-3xl text-white mb-4 text-center">Categorías</h2>
                 <form onSubmit={handleSubmit} className="mb-4">
                     <div className="flex items-center justify-center">

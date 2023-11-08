@@ -6,9 +6,9 @@ import MobileMenu from '../shared.dashboard/MobileMenu';
 
 const PageAgregarProducto = () => {
     return (
-        <div className="flex flex-row overflow-auto w-screen h-screen bg-black">
+        <div className="flex flex-row overflow-auto w-screen h-screen bg-[#202020]">
             <NormalMenu />
-            <div className="flex-1 w-full overflow-hidden bg-black">
+            <div className="flex-1 w-full overflow-hidden bg-[#202020]">
                 <MobileMenu/>
                 <Product />
             </div>

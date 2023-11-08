@@ -68,74 +68,18 @@ const Product = () => {
     };
 
     return (
-        <div className="flex flex-col m-4 md:m-4 rounded-xl">
+        <div className="flex flex-col rounded-xl">
             <form className="flex flex-col p-2 " onSubmit={handleSubmit}>
-                <h2 className='mb-4 text-4xl text-white font-extrabold leading-none text-center'>Agregar un nuevo producto</h2>
-                <div className='flex flex-col justify-center items-center pt-10 relative'>
-                    <div className='bg-purple-600 text-white p-2 rounded-xl w-[600px] text-center relative top-6 z-[99]'>
-                        <div className='flex gap-2 justify-between'>
-                            {step === 1 && (
-                                <>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircleMarked size={30} className='animate-pulse duration-75' />
-                                        <a className='text-sm'>Informacion del producto</a>
-                                    </div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircle size={30} />
-                                        <a className='text-sm'>Imagen</a>
-                                    </div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircle size={30} />
-                                        <a className='text-sm'>Precio</a>
-                                    </div>
-                                </>
-                            )}
-                            {step === 2 && (
-                                <>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircleMarked size={30} />
-                                        <a className='text-sm'>Informacion del producto</a>
-                                    </div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircleMarked size={30} className='animate-pulse duration-75' />
-                                        <a className='text-sm'>Imagen</a>
-                                    </div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircle size={30} />
-                                        <a className='text-sm'>Precio</a>
-                                    </div>
-                                </>
-                            )}
-                            {step === 3 && (
-                                <>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircleMarked size={30} />
-                                        <a className='text-sm'>Informacion del producto</a>
-                                    </div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircleMarked size={30} />
-                                        <a className='text-sm'>Imagen</a>
-                                    </div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <BiRadioCircleMarked size={30} className='animate-pulse duration-75' />
-                                        <a className='text-sm'>Precio</a>
-                                    </div>
-                                </>
-                            )}
-
-                        </div>
-                    </div>
-
-                </div>
+                <h2 className=' text-4xl text-white font-extrabold leading-none text-center'>Agregar un nuevo producto</h2>
                 <div className='flex justify-center items-center'>
                     <div className='w-[800px] bg-[#202020] pt-10 rounded-xl p-2'>
                         {step === 1 && (
-                            <>
-                                <h2 className='text-3xl text-white pb-10 p-2'>Informacion del producto</h2>
+                            <div className='border-2 rounded-xl bg-white pb-10'>
+                                <h2 className='text-2xl text-black pb-4 p-2 font-bold'>Informacion del producto</h2>
                                 <div className='grid grid-cols-2 gap-10'>
-                                    <input required className="w-full p-2 mb-2 text-white bg-[#202020] border-gray-500 outline-none border-b-2" type="text" placeholder="Nombre" value={nombre}
+                                    <input required className="w-full p-2 mb-2 text-black bg-white border-gray-300 outline-none border-b-2" type="text" placeholder="Nombre" value={nombre}
                                         onChange={(e) => setNombre(e.target.value)} />
-                                    <select required className="w-full p-2 mb-2 text-white bg-[#202020] border-gray-500 outline-none border-b-2" value={categoria_id} onChange={(e) => setCategoria_id(e.target.value)}>
+                                    <select required className="w-full p-2 mb-2 text-gray-500 bg-white border-gray-300 outline-none border-b-2" value={categoria_id} onChange={(e) => setCategoria_id(e.target.value)}>
                                         <option value="">Seleccione una categoría</option>
                                         {categorias.map((categoria) => (
                                             <option key={categoria.id} value={categoria.id}>
@@ -143,9 +87,9 @@ const Product = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    <textarea required className="text-white bg-[#202020] border-gray-500 outline-none border-b-2 mb-2 p-2" type="text" placeholder="Descripción" value={descripcion}
+                                    <textarea required className="text-black bg-white border-gray-300 outline-none border-b-2 mb-2 p-2" type="text" placeholder="Descripción" value={descripcion}
                                         onChange={(e) => setDescripcion(e.target.value)} />
-                                    <input required className="p-2 mb-2 text-white bg-[#202020] border-gray-500 outline-none border-b-2" type="number" placeholder="Stock" value={stock}
+                                    <input required className="p-2 mb-2 text-black bg-white border-gray-300 outline-none border-b-2" type="number" placeholder="Stock" value={stock}
                                         onChange={(e) => setStock(e.target.value)} />
                                 </div>
                                 <div className='flex justify-end p-2'>
@@ -153,14 +97,14 @@ const Product = () => {
                                         Siguiente
                                     </button>
                                 </div>
-                            </>
+                            </div>
                         )}
                         {step === 2 && (
-                            <>
-                                <h2 className='text-3xl text-white pb-10 p-2'>Imagen del producto</h2>
-                                <div className='grid grid-cols-1'>
-                                    <label className="p-2 block mb-2 text-white">Link de la imagen</label>
-                                    <input required className=" p-2 mb-2 text-white bg-[#202020] border-gray-500 outline-none border-b-2" type="text" placeholder="url" value={imagen}
+                            <div className='bg-white rounded-xl pb-10'>
+                                <h2 className='text-2xl text-black pb-4 p-2 font-bold'>Imagen del producto</h2>
+                                <div className='grid grid-cols-1 p-2'>
+                                    <label className="p-2 block text-black font-bold">Link de la imagen</label>
+                                    <input required className=" p-2 mb-2 text-black bg-white border-gray-300 outline-none border-b-2" type="text" placeholder="url" value={imagen}
                                         onChange={handleImagenChange} />
                                     <a onClick={seeImagePreview} className="bg-purple-800 text-white px-4 py-2 rounded-xl mt-2 hover:bg-black hover:text-white duration-100 transition-all ease-in-out cursor-pointer text-center">
                                         Cargar Vista Previa
@@ -168,8 +112,8 @@ const Product = () => {
                                 </div>
 
                                 {imagenPreview && (
-                                    <div className='border-2'>
-                                        <h3>Imagen previa:</h3>
+                                    <div className='justify-center flex items-center flex-col'>
+                                        <h3 className='font-bold'>Imagen previa</h3>
                                         <img
                                             src={imagenPreview}
                                             alt="Vista previa de la imagen"
@@ -186,14 +130,14 @@ const Product = () => {
                                         Siguiente
                                     </button>
                                 </div>
-                            </>
+                            </div>
                         )}
                         {step === 3 && (
-                            <>
-                                <h2 className='text-3xl text-white pb-10 p-2'>Precio</h2>
-                                <div className='grid grid-cols-2 gap-10'>
-                                    <input required className="p-2 mb-2 text-white bg-[#202020] border-gray-500 outline-none border-b-2" type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)} />
-                                    <select className="p-2 mb-2 text-white bg-[#202020] border-gray-500 outline-none border-b-2" value={es_destacado}
+                            <div className='bg-white rounded-xl pb-10'>
+                                <h2 className='text-3xl text-black pb-4 p-2 font-bold'>Precio</h2>
+                                <div className='grid p-2 items-center gap-10'>
+                                    <input required className="p-2 text-black bg-white border-gray-300 outline-none border-b-2" type="number" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)} />
+                                    <select className="p-2 mb-2 text-black bg-white border-gray-300 outline-none border-b-2" value={es_destacado}
                                         onChange={(e) => setEs_destacado(e.target.value)}>
                                         <option value="">¿Es destacado?</option>
                                         <option value="Si">Si</option>
@@ -208,8 +152,63 @@ const Product = () => {
                                         Guardar producto
                                     </button>
                                 </div>
-                            </>
+                            </div>
                         )}
+                    </div>
+                </div>
+                <div className='flex flex-col justify-center items-center'>
+                    <div className='bg-purple-800 text-white p-2 rounded-xl w-[600px] text-center relative bottom-10 z-[99]'>
+                        <div className='flex gap-2 justify-around text-justify'>
+                            {step === 1 && (
+                                <>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircleMarked size={30} className='animate-pulse duration-75' />
+                                        <a className='text-sm'>Informacion</a>
+                                    </div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircle size={30} />
+                                        <a className='text-sm'>Imagen</a>
+                                    </div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircle size={30} />
+                                        <a className='text-sm'>Precio</a>
+                                    </div>
+                                </>
+                            )}
+                            {step === 2 && (
+                                <>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircleMarked size={30} />
+                                        <a className='text-sm'>Informacion</a>
+                                    </div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircleMarked size={30} className='animate-pulse duration-75' />
+                                        <a className='text-sm'>Imagen</a>
+                                    </div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircle size={30} />
+                                        <a className='text-sm'>Precio</a>
+                                    </div>
+                                </>
+                            )}
+                            {step === 3 && (
+                                <>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircleMarked size={30} />
+                                        <a className='text-sm'>Informacion</a>
+                                    </div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircleMarked size={30} />
+                                        <a className='text-sm'>Imagen</a>
+                                    </div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <BiRadioCircleMarked size={30} className='animate-pulse duration-75' />
+                                        <a className='text-sm'>Precio</a>
+                                    </div>
+                                </>
+                            )}
+
+                        </div>
                     </div>
                 </div>
             </form>
