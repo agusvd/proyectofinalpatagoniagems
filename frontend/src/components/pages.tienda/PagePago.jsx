@@ -1,16 +1,16 @@
 import React from 'react'
 import Navbar from '../shared.tienda/Navbar'
-import Perfil from '../c.tienda/Perfil'
+import PagoPage from '../c.tienda/PagoPage'
 import Footer from '../shared.tienda/Footer'
 
-const PagePerfil = () => {
+const PagePago = () => {
     return (
         <div>
             <Navbar />
-            <Perfil/>
-            <Footer/>
+            <PagoPage />
+            <Footer />
         </div>
     )
 }
 
-export default PagePerfil
+export default PagePago

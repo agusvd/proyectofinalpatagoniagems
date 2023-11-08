@@ -19,7 +19,7 @@ const Navbar = () => {
     const [carritoVisible, setCarritoVisible] = useState(false);
     const [productosCarrito, setProductosCarrito] = useState([]);
     const [categorias, setCategorias] = useState([]);
-
+    const [menuTienda, setMenuTienda] = useState(false)
     const location = useLocation();
 
 
@@ -104,16 +104,16 @@ const Navbar = () => {
             console.log("click")
         }
     };
-    
+
     return (
         <div>
             <nav className="antialiased">
                 <div className="font-primary text-center py-3 px-2 md:justify-around md:flex md:items-center bg-black text-white">
                     <div className="hidden md:inline-flex md:items-center">
-                        <div className="flex gap-2 text-sm">
+                        <div className="flex gap-2 text-lg">
                             <Link to="/" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>Inicio</Link>
                         </div>
-                        <div className="group relative items-center text-center text-sm">
+                        <div className="group relative items-center text-center text-lg">
                             <button className="py-2 px-4 rounded inline-flex items-center">
                                 <Link to="/tienda" className={`hover:text-purple-500 mr-1 cursor-pointer ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
                                 <BiChevronDown />
@@ -130,7 +130,7 @@ const Navbar = () => {
                                 ))}
                             </ul>
                         </div>
-                        <div className="flex gap-2 text-sm">
+                        <div className="flex gap-2 text-lg">
                             <Link to="/blogs" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-white'}`}>Blogs</Link>
                             <Link to="/nosotros" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-white'}`}>Nosotros</Link>
                             <Link to="/contacto" className={`hover:text-purple-500 cursor-pointer ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-white'}`}>Contacto</Link>
