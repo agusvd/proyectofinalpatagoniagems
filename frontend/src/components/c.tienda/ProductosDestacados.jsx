@@ -118,14 +118,14 @@ const ProductosDestacados = () => {
     );
 
     return (
-        <div className="flex flex-col justify-center font-primary pb-20 bg-[#202020]">
+        <div className="flex flex-col justify-center font-primary pb-5 bg-white">
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             {/* TITULO */}
-            <div className="text-center py-5 sm:py-20 px-8 mb-4 text-black">
+            <div className="text-center py-5 sm:py-20 px-8 mb-4 bg-[#202020]">
                 <h1 className="text-3xl text-white">Productos destacados</h1>
             </div>
             {/* CONTENEDOR DE CARDS */}
-            <div className="grid grid-cols-2 sm:flex items-center sm:flex-row justify-center overflow-y-auto">
+            <div className="grid grid-cols-2 gap-10 p-5 sm:flex items-center sm:flex-row justify-center overflow-y-auto bg-white">
                 {/* CARDS */}
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (

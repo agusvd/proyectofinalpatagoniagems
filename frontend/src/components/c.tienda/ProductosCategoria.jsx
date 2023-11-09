@@ -95,7 +95,7 @@ const ProductosCategoria = () => {
                 <h1 className="text-3xl font-bold text-black uppercase">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 font-primary justify-center items-center gap-10 pb-5">
                     {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
                             <CardProductoCategoriaMini key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />

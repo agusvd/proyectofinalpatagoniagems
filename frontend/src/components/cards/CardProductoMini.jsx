@@ -5,9 +5,9 @@ import { BiCart } from 'react-icons/bi';
 const CardProductoMini = ({ producto, getCategoriaNombre, handleAgregarCarro }) => {
 
     return (
-        <div key={producto.id} className='w-44 m-2 sm:h-98 sm:w-64 sm:m-4 md:mr-0 md:ml-4 md:m-10 bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all'>
-            <Link to={`/tienda/producto/${producto.nombre}`} className="flex flex-wrap items-center justify-center">
-                <img src={producto.imagen} className="h-56 w-full object-contain" alt="Producto" />
+        <div key={producto.id} className='bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all w-[250px] h-[350px] justify-between flex flex-col'>
+            <Link to={`/tienda/producto/${producto.nombre}`} className="flex items-center justify-center w-full h-[180px]">
+                <img src={producto.imagen} className="h-[180px] w-full object-contain" alt="Producto" />
             </Link>
             <div className="flex justify-between">
                 <div className="flex flex-col">

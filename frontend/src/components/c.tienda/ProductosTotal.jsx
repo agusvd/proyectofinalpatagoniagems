@@ -132,7 +132,7 @@ const ProductosTotal = () => {
                 <h1 className="text-3xl text-black">Todos los productos</h1>
             </div>
             <div className="flex justify-center">
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-0 sm:m-2 md:m-4 font-primary justify-center items-center ">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 pb-5 gap-6 font-primary justify-center items-center ">
                     {Array.isArray(productos) ? (
                         productos.map((producto) => (
                             <CardProductoMini key={producto.id} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
