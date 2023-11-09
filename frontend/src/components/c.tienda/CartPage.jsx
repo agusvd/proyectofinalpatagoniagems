@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BiArrowFromLeft, BiTrash, BiEdit } from 'react-icons/bi';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { toast } from 'react-hot-toast';
+import CardProductoCarritoGrande from '../cards/CardProductoCarritoGrande';
+
 
 const Cart = ({ onClose }) => {
     const [carritoItems, setCarritoItems] = useState([]);
@@ -96,6 +97,9 @@ const Cart = ({ onClose }) => {
     return (
         <div className="h-full bg-white shadow-md font-primary">
             <div className="p-2 h-4/5 overflow-y-auto">
+                <div>
+                    <h1 className='text-4xl pl-10'>Tu carrito</h1>
+                </div>
                 {carritoItems.length === 0 ? (
                     <div className="flex flex-col justify-center items-center m-2 gap-4">
                         <h1 className="text-black text-xl text-center pt-6">Tu carrito está vacío.</h1>
@@ -104,54 +108,28 @@ const Cart = ({ onClose }) => {
                         </Link>
                     </div>
                 ) : (
-                    carritoItems.map((item) => (
-                        <div className="md:flex items-center md:justify-center" key={item.id}>
-                            <div className="ml-2 flex p-2">
-                                <Link to={`/tienda/producto/${item.nombre}`} className="m-2 border-2 shadow-lg">
-                                    <img src={item.imagen} className="h-44 w-32 sm:h-48 sm:w-36 object-center" alt={item.nombre} />
-                                </Link>
-                                <div className="flex flex-col justify-center ml-5 text-black text-start gap-1">
-                                    <Link to={`/tienda/producto/${item.nombre}`} className="text-md font-bold">{item.nombre}</Link>
-                                    <h2 className="text-sm text-gray-500">{item.categoria}</h2>
-                                    <h3 className="text-gray-500 text-md font-bold pb-3">${item.precio}</h3>
-                                    {carritoItems.length > 0 && (
-                                        <div className="flex text-sm justify-start rounded-full text-black">
-                                            <div className="flex">
-                                                <button className="px-4 bg-white hover:bg-gray-100 rounded-l-full border-r-0 border-2 border-gray-500" onClick={() => actualizarProductoCarrito( item.producto_id, cantidadProductos[item.producto_id] > 1 ? cantidadProductos[item.producto_id] - 1 : 1)}>-</button>
-                                                <p className="px-4 py-2 bg-white border-t-2 border-b-2 border-gray-500 font-bold">
-                                                    {cantidadProductos[item.producto_id]}
-                                                </p>
-                                                <button className="px-4 bg-white rounded-r-full border-l-0 hover:bg-gray-100 border-2 border-gray-500" onClick={() => actualizarProductoCarrito( item.producto_id, cantidadProductos[item.producto_id] + 1)}>+</button>
-                                            </div>
-                                        </div>
-                                    )}
-                                    <div className="space-x-3 text-2xl py-2">
-                                        <button className="py-2">
-                                            <BiEdit size={20} className="hover:text-purple-500 text-gray-600" />
-                                        </button>
-                                        <button onClick={() => eliminarProductoCarrito(item.id)} className="py-2">
-                                            <BiTrash size={20} className="hover:text-purple-500 text-gray-600" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                    carritoItems.map((producto) => (
+                        <div className='p-2 w-full'>
+                            <CardProductoCarritoGrande key={producto.id} producto={producto} onClose={onClose} carritoItem={carritoItems} cantidadProductos={cantidadProductos} carritoItems={carritoItems} actualizarProductoCarrito={actualizarProductoCarrito} eliminarProductoCarrito={eliminarProductoCarrito} />
                         </div>
                     ))
                 )}
             </div>
-            {carritoItems.length > 0 && (
-                    <div className="ml-2 items-center justify-end flex p-2 border-t-2 border-b-2 text-lg gap-5">
-                        <h1 className="text-black font-bold">Subtotal:</h1>
-                        <h2 className="text-black font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
+            <div className='bg-[#202020]'>
+                {carritoItems.length > 0 && (
+                    <div className="ml-2 items-center justify-end flex p-2 text-lg gap-5">
+                        <h1 className="text-white font-bold">Subtotal:</h1>
+                        <h2 className="text-white font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
                     </div>
                 )}
                 {carritoItems.length > 0 && (
-                <footer className="p-2 flex justify-end">
-                    <Link to="/pago" className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-green-500">
-                        Proceder al pago
-                    </Link>
-                </footer>
-            )}
+                    <footer className="p-2 flex justify-end">
+                        <Link to="/pago" className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-green-500">
+                            Proceder al pago
+                        </Link>
+                    </footer>
+                )}
+            </div>
         </div>
     );
 };

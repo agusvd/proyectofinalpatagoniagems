@@ -29,3 +29,13 @@
 .animate-slide-in-from-left {
     animation: slideInFromLeft 0.5s ease-in-out;
 }
+
+.nav{
+    @apply relative tracking-[1px] font-bold text-gray-200 hover:text-white
+}
+.nav::after{
+    @apply content-[''] bg-purple-600 h-[3px] w-[0%] -bottom-[5px] rounded-xl absolute duration-300 left-0
+}
+.nav:hover::after{
+    @apply w-[100%]
+}

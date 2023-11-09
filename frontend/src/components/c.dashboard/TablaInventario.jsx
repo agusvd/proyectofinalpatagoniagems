@@ -65,14 +65,14 @@ const TablaInventario = () => {
     }
 
     return (
-        <div className="font-primary h-screen overflow-auto bg-black">
-            <div className="flex flex-col bg-[#202020] p-2">
+        <div className="font-primary h-screen overflow-auto bg-gray-200">
+            <div className="flex flex-col bg-white p-2 border-2 m-4 rounded-xl shadow-2xl">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center">
-                    <div className="flex items-center justify-center bg-white text-black p-2 rounded-xl w-full md:w-2/4 m-4">
-                        <BiSearch size={20} className="text-black" />
+                    <div className="flex items-center justify-center bg-[#202020] text-white p-2 rounded-xl w-full md:w-2/4 m-4">
+                        <BiSearch size={20} className="text-white" />
                         <input type="text" placeholder="Nombre del producto..."
-                            className="search py-1 px-3 ml-2 bg-white text-black outline-none w-full"
+                            className="search py-1 px-3 ml-2 bg-[#202020] text-white outline-none w-full"
                             onChange={(e) => {
                                 setConsulta(e.target.value);
                                 const filtrados = productos.filter((producto) =>
@@ -89,7 +89,7 @@ const TablaInventario = () => {
 
                 <div className="foverflow-x-auto overflow-y-auto relative">
                     <table className='table-auto w-full  p-2 rounded-xl'>
-                        <thead className='text-white'>
+                        <thead className='text-black'>
                             <tr className='text-left'>
                                 <th>
                                     ID
@@ -117,7 +117,7 @@ const TablaInventario = () => {
                         {productosActuales.length > 0 ? (
                             productosActuales.map((producto, i) => (
                                 <tbody key={producto.id}>
-                                    <tr className='text-white'>
+                                    <tr className='text-black'>
                                         <td>
                                             {producto.id}
                                         </td>
@@ -138,10 +138,10 @@ const TablaInventario = () => {
                                         </td>
                                         <td>
                                             <div className="flex items-center justify-center gap-4 p-2">
-                                                <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-white hover:text-green-700">
+                                                <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-[#202020] hover:text-purple-500">
                                                     <BiEdit size={30} />
                                                 </Link>
-                                                <button onClick={() => eliminarProducto(producto.id)} className="text-white hover:text-red-700">
+                                                <button onClick={() => eliminarProducto(producto.id)} className="text-[#202020] hover:text-red-700">
                                                     <BiTrash size={30} />
                                                 </button>
                                             </div>

@@ -27,8 +27,8 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="font-primary bg-black text-white pt-10 items-center justify-center">
-            <div className="overflow-hidden relative h-96] item-center justify-center flex flex-col bg-black">
+        <div className="font-primary bg-white text-black pt-10 items-center justify-center">
+            <div className="overflow-hidden relative h-96] item-center justify-center flex flex-col bg-white">
                 <div className={`overflow-hidden relative min-h-md item-center justify-center flex ${currentIndex === 0 ? 'animate-slide-in-from-right' : ''}`} style={{ display: currentIndex === 0 ? "block" : "none" }}>
                     <div className="lex-row sm:flex items-center justify-center text-center gap-20">
                         <div className="flex-row sm:flex items-center justify-center text-center">
@@ -61,9 +61,9 @@ const Home = () => {
                     className="justify-center items-center cursor-pointer group focus:outline-none text-black"
                     onClick={handlePrevious}>
                     {currentIndex === 0 ? (
-                        <VscCircleFilled className="text-white animate-pulse" size={30} />
+                        <VscCircleFilled className="text-black animate-pulse" size={30} />
                     ) : (
-                        <VscCircle className="text-white" size={30} />
+                        <VscCircle className="text-black" size={30} />
                     )}
                 </button>
                 <button
@@ -71,9 +71,9 @@ const Home = () => {
                     className="justify-center items-center p-2 cursor-pointer group focus:outline-none text-black"
                     onClick={handleNext}>
                     {currentIndex === 1 ? (
-                        <VscCircleFilled className="text-white animate-pulse " size={30} />
+                        <VscCircleFilled className="text-black animate-pulse " size={30} />
                     ) : (
-                        <VscCircle className="text-white" size={30} />
+                        <VscCircle className="text-black" size={30} />
                     )}
                 </button>
             </div>

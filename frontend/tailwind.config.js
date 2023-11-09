@@ -14,6 +14,8 @@ export default {
       display: ["group-hover"]
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 

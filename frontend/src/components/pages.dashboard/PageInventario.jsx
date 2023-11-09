@@ -7,7 +7,7 @@ const PageInventario = () => {
     return (
         <div className="flex flex-col sm:flex sm:flex-row bg-[#202020] overflow-auto w-screen">
             <NormalMenu/>
-            <div className="flex-1 bg-[#202020] overflow-hidden">
+            <div className="flex-1 bg-white overflow-hidden">
                 <MobileMenu/>
                 <TablaInventario />
             </div>

@@ -8,7 +8,7 @@ const PageAgregarProducto = () => {
     return (
         <div className="flex flex-row overflow-auto w-screen h-screen bg-[#202020]">
             <NormalMenu />
-            <div className="flex-1 w-full overflow-hidden bg-[#202020]">
+            <div className="flex-1 w-full overflow-hidden bg-white">
                 <MobileMenu/>
                 <Product />
             </div>

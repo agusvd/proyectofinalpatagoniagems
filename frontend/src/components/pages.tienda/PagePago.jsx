@@ -1,12 +1,15 @@
 import React from 'react'
-import Navbar from '../shared.tienda/Navbar'
 import PagoPage from '../c.tienda/PagoPage'
 import Footer from '../shared.tienda/Footer'
+import NavbarNormal from '../shared.tienda/NavbarNormal'
+import NavbarMobile from '../shared.tienda/NavbarMobile'
+
 
 const PagePago = () => {
     return (
         <div>
-            <Navbar />
+            <NavbarNormal />
+            <NavbarMobile/>
             <PagoPage />
             <Footer />
         </div>

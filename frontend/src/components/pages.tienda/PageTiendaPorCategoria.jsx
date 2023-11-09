@@ -1,14 +1,16 @@
 import React from 'react'
 import Anuncio from '../shared.tienda/Anuncio'
-import Navbar from '../shared.tienda/Navbar'
 import Footer from '../shared.tienda/Footer'
 import ProductosCategoria from '../c.tienda/ProductosCategoria'
+import NavbarNormal from '../shared.tienda/NavbarNormal'
+import NavbarMobile from '../shared.tienda/NavbarMobile'
 
 const PageTiendaPorCategoria = () => {
     return (
         <div>
             <Anuncio />
-            <Navbar />
+            <NavbarNormal />
+            <NavbarMobile />
             <ProductosCategoria />
             <Footer />
         </div>
