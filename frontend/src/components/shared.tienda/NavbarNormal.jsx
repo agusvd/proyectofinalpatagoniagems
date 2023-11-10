@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BiUserCircle, BiSearch, BiCart, } from 'react-icons/bi';
-import { FaInstagram, FaFacebook } from 'react-icons/fa'
+import { BiSearch, BiCart, } from 'react-icons/bi';
+import { FaInstagram } from 'react-icons/fa'
+import { AiFillFacebook } from 'react-icons/ai'
 import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
@@ -143,8 +144,12 @@ const NavbarNormal = () => {
                 </div>
                 <div className='flex items-center justify-around w-full p-5'>
                     <div className='flex gap-2'>
-                        <FaInstagram size={30} className="text-white hover:text-purple-500 duration-300 ease-in-out cursor-pointer" />
-                        <FaFacebook size={30} className='text-white hover:text-purple-500 duration-300 ease-in-out cursor-pointer' />
+                        <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank">
+                            <FaInstagram size={30} className="text-white hover:text-purple-500 duration-300 ease-in-out cursor-pointer" />
+                        </a>
+                        <a href="https://www.facebook.com/Patagoniagems/" target="_blank">
+                            <AiFillFacebook size={30} className='text-white hover:text-purple-500 duration-300 ease-in-out cursor-pointer' />
+                        </a>
                     </div>
                     <div className='flex items-center justify-center'>
                         <h2 className='text-white text-center text-2xl'>Patagoniagems</h2>

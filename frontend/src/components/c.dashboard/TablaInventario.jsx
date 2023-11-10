@@ -107,6 +107,9 @@ const TablaInventario = () => {
                                     Precio
                                 </th>
                                 <th>
+                                    Cantidad en "g" o "ml"
+                                </th>
+                                <th>
                                     Stock
                                 </th>
                                 <th className='text-center'>
@@ -132,6 +135,9 @@ const TablaInventario = () => {
                                         </td>
                                         <td>
                                             {producto.precio}
+                                        </td>
+                                        <td>
+                                            {producto.cantidad_gramos}
                                         </td>
                                         <td>
                                             {producto.stock}

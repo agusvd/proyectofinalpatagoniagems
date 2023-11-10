@@ -15,6 +15,8 @@ const Product = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [imagenPreview, setImagenPreview] = useState('')
+    const [cantidad_gramos, setCantidad_gramos] = useState('')
+    const [cantidad_ml, setCantidad_ml] = useState('')
 
     useEffect(() => {
         // Obtener las categorías desde el backend al cargar el componente
@@ -34,6 +36,8 @@ const Product = () => {
             .post('http://localhost:8000/dashboard/inventario/agregar', {
                 nombre,
                 descripcion,
+                cantidad_gramos,
+                cantidad_ml,
                 precio,
                 stock,
                 categoria_id,
@@ -132,7 +136,7 @@ const Product = () => {
                         {step === 1 && (
                             <div className='rounded-xl shadow-2xl pt-10 bg-gray-200 p-2'>
                                 <div className='flex flex-col justify-center items-center'>
-                                <h2 className='text-xl text-black pb-4 px-1 font-bold w-full pt-10'>Informacion del producto</h2>
+                                    <h2 className='text-xl text-black pb-4 px-1 font-bold w-full pt-10'>Informacion del producto</h2>
                                     <input required className="w-full rounded-full shadow-md p-2 mb-2 text-black bg-white  outline-purple-500 " type="text" placeholder="Nombre" value={nombre}
                                         onChange={(e) => setNombre(e.target.value)} />
                                     <div className='w-full flex gap-2'>
@@ -144,9 +148,15 @@ const Product = () => {
                                                 </option>
                                             ))}
                                         </select>
-                                        <input required className="w-full p-2 mb-2 text-black shadow-md rounded-full bg-white  outline-purple-500" type="number" placeholder="Stock" value={stock}
-                                            onChange={(e) => setStock(e.target.value)} />
                                     </div>
+                                    <div className='w-full flex gap-2'>
+                                        <input className="w-full p-2 mb-2 text-black shadow-md rounded-full bg-white  outline-purple-500" type="number" placeholder="Cantidad Gramos" value={cantidad_gramos}
+                                            onChange={(e) => setCantidad_gramos(e.target.value)} />
+                                        <input className="w-full p-2 mb-2 text-black shadow-md rounded-full bg-white  outline-purple-500" type="number" placeholder="Cantidad Mililitros" value={cantidad_ml}
+                                            onChange={(e) => setCantidad_ml(e.target.value)} />
+                                    </div>
+                                    <input required className="w-full p-2 mb-2 text-black shadow-md rounded-full bg-white  outline-purple-500" type="number" placeholder="Stock" value={stock}
+                                            onChange={(e) => setStock(e.target.value)} />
                                     <textarea required className="text-black w-full rounded-xl shadow-xl bg-white outline-purple-500 mb-2 p-2" type="text" placeholder="Descripción" value={descripcion}
                                         onChange={(e) => setDescripcion(e.target.value)} />
                                 </div>
@@ -214,7 +224,7 @@ const Product = () => {
                         )}
                     </div>
                 </div>
-                
+
             </form>
 
         </div>

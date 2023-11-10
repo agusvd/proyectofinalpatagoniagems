@@ -4,7 +4,7 @@ import db from '../db.js';
 const router = express.Router();
 
 router.get('/productos', (req, res) => {
-    const sql = "SELECT id, nombre, precio, categoria_id, es_destacado, imagen FROM productos";
+    const sql = "SELECT id, nombre, precio, categoria_id, es_destacado, cantidad_gramos, cantidad_ml, imagen FROM productos";
     db.query(sql, (err, data) => {
         if (err) return res.json("Error")
         return res.json(data)

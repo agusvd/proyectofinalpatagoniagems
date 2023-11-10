@@ -56,7 +56,7 @@ const Perfil = () => {
             {/* Ventanas */}
             <div className='flex flex-col h-full justify-start items-start w-full'>
                 {step === 1 && (
-                    <div className='p-5'>
+                    <div className='sm:m-10 p-5'>
                         <h1 className='text-5xl pb-10'>Perfil</h1>
                         <div className='border-2 border-[#202020] rounded-md'>
                             <h2 className='text-gray-500 font-bold text-lg pl-1'>Datos personales</h2>
@@ -91,7 +91,7 @@ const Perfil = () => {
                     </div>
                 )}
                 {step === 2 && (
-                    <div className=' sm:m-10 p-5 sm:[w-100%] '>
+                    <div className='sm:m-10 p-5 sm:[w-100%] '>
                         <button className='flex items-center gap-2 text-lg text-[#202020] hover:scale-110 duration-300 pb-4' onClick={stepPerfil}>
                             <BiArrowBack size={25} />Atras
                         </button>
