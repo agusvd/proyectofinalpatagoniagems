@@ -5,7 +5,7 @@ import { BiTrash, BiEdit } from 'react-icons/bi';
 
 const CardProductoCarritoMini = ({ producto, onClose, carritoItems, cantidadProductos, actualizarProductoCarrito, eliminarProductoCarrito }) => {
     return (
-        <div className="ml-2 flex p-2 bg-white w-full shadow-xl rounded-xl hover:scale-95 duration-300 ease-in-out">
+        <div className="ml-2 flex p-2 bg-white w-full shadow-md rounded-xl hover:scale-95 hover:shadow-white duration-300 ease-in-out">
             <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="items-center h-[180px] w-[180px]">
                 <img
                     src={producto.imagen}
@@ -20,11 +20,11 @@ const CardProductoCarritoMini = ({ producto, onClose, carritoItems, cantidadProd
                 {carritoItems.length > 0 && (
                     <div className="flex text-sm justify-start rounded-full text-black">
                         <div className="flex">
-                            <button className="px-4 bg-[#202020] hover:bg-gray-500 rounded-l-full border-r-0 border-2 border-gray-500 text-white" onClick={() => actualizarProductoCarrito(producto.producto_id, cantidadProductos[producto.producto_id] > 1 ? cantidadProductos[producto.producto_id] - 1 : 1)}>-</button>
-                            <p className="px-4 py-2 bg-[#202020] text-white border-t-2 border-b-2 border-gray-500 font-bold">
+                            <button className="px-4 bg-black hover:bg-gray-800 duration-150 ease-in-out hover:border-gray-800 rounded-l-full border-r-0 border-2 border-black text-white" onClick={() => actualizarProductoCarrito(producto.producto_id, cantidadProductos[producto.producto_id] > 1 ? cantidadProductos[producto.producto_id] - 1 : 1)}>-</button>
+                            <p className="px-4 py-2 bg-black text-white border-t-2 border-b-2 border-black font-bold">
                                 {cantidadProductos[producto.producto_id]}
                             </p>
-                            <button className="px-4 bg-[#202020] text-white hover:bg-gray-500 rounded-r-full border-l-0 border-2 border-gray-500" onClick={() =>
+                            <button className="px-4 bg-black text-white hover:bg-gray-800 duration-150 ease-in-out hover:border-gray-800 rounded-r-full border-l-0 border-2 border-black" onClick={() =>
                                 actualizarProductoCarrito(
                                     producto.producto_id,
                                     cantidadProductos[producto.producto_id] + 1
@@ -34,9 +34,6 @@ const CardProductoCarritoMini = ({ producto, onClose, carritoItems, cantidadProd
                     </div>
                 )}
                 <div className="space-x-3 text-2xl py-2">
-                    <button className="py-2">
-                        <BiEdit size={30} className="hover:text-purple-500 text-gray-600" />
-                    </button>
                     <button onClick={() => eliminarProductoCarrito(producto.id)} className="py-2">
                         <BiTrash size={30} className="hover:text-purple-500 text-gray-600" />
                     </button>

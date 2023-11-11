@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BiTrash, BiEdit, BiSearch } from 'react-icons/bi';
 
+
 const TablaInventario = () => {
     const [productos, setProductos] = useState([]);
     const [productosFiltrados, setProductosFiltrados] = useState([]);
@@ -65,7 +66,7 @@ const TablaInventario = () => {
     }
 
     return (
-        <div className="font-primary h-screen overflow-auto bg-gray-200">
+        <div className="font-primary h-screen overflow-auto bg-black">
             <div className="flex flex-col bg-white p-2 border-2 m-4 rounded-xl shadow-2xl">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center">
@@ -88,16 +89,16 @@ const TablaInventario = () => {
                 {/* fin header */}
 
                 <div className="foverflow-x-auto overflow-y-auto relative">
-                    <table className='table-auto w-full  p-2 rounded-xl'>
+                    <table className='table-auto w-full p-2 rounded-xl'>
                         <thead className='text-black'>
-                            <tr className='text-left'>
+                            <tr className='text-center'>
                                 <th>
                                     ID
                                 </th>
                                 <th>
                                     Imagen
                                 </th>
-                                <th className='text-center'>
+                                <th>
                                     Nombre
                                 </th>
                                 <th>
@@ -112,16 +113,16 @@ const TablaInventario = () => {
                                 <th>
                                     Stock
                                 </th>
-                                <th className='text-center'>
+                                <th>
                                     Acciones
                                 </th>
                             </tr>
                         </thead>
                         {productosActuales.length > 0 ? (
                             productosActuales.map((producto, i) => (
-                                <tbody key={producto.id}>
-                                    <tr className='text-black'>
-                                        <td>
+                                <tbody key={producto.id} className=''>
+                                    <tr className='text-black hover:bg-[#202020] hover:text-white duration-300 ease-in-out text-center'>
+                                        <td className='text-center'>
                                             {producto.id}
                                         </td>
                                         <td className='w-[50px]'>
@@ -144,10 +145,10 @@ const TablaInventario = () => {
                                         </td>
                                         <td>
                                             <div className="flex items-center justify-center gap-4 p-2">
-                                                <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className="text-[#202020] hover:text-purple-500">
+                                                <Link to={`/dashboard/inventario/actualizar/${producto.id}`} className=" hover:text-purple-500">
                                                     <BiEdit size={30} />
                                                 </Link>
-                                                <button onClick={() => eliminarProducto(producto.id)} className="text-[#202020] hover:text-red-700">
+                                                <button onClick={() => eliminarProducto(producto.id)} className=" hover:text-red-700">
                                                     <BiTrash size={30} />
                                                 </button>
                                             </div>

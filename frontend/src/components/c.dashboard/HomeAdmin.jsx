@@ -33,11 +33,12 @@ const HomeAdmin = () => {
   }, []);
 
   return (
-    <div className="flex flex-col m-4 sm:mt-10 md:m-4">
+    <div className="flex flex-col m-4 sm:mt-10 md:m-4 bg-black h-screen">
       {/* header */}
-      <div className='md:m-2 md:rounded-md bg-[#202020] rounded-t-xl'>
+
+      <div className='md:m-2 md:rounded-md bg-white rounded-t-xl'>
         <div className='flex flex-wrap p-4'>
-          <div className="p-4 mx-4 mb-4 flex-grow rounded-xl bg-purple-800">
+          <div className="p-4 mx-4 mb-4 flex-grow rounded-xl bg-[#202020]">
             <h2 className="text-2xl text-white font-bold mb-2">Total de productos</h2>
             <p className="text-2xl text-white">{totalProductos}</p>
           </div>

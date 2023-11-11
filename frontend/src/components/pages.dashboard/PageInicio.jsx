@@ -8,7 +8,7 @@ const PageInicio = () => {
     return (
         <div className="flex flex-row bg-[#202020] overflow-auto w-screen">
         <NormalMenu />
-        <div className="flex-1 h-screen w-full overflow-hidden bg-[#202020] sm:mt-0">
+        <div className="flex-1 h-screen w-full overflow-hidden bg-black sm:mt-0">
             <MobileMenu />
             <HomeAdmin />
         </div>

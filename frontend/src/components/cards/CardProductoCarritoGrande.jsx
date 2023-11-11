@@ -34,9 +34,6 @@ const CardProductoCarritoGrande = ({ producto, onClose, carritoItems, cantidadPr
                     </div>
                 )}
                 <div className="space-x-3 text-2xl py-2">
-                    <button className="py-2">
-                        <BiEdit size={30} className="hover:text-purple-500 text-gray-600" />
-                    </button>
                     <button onClick={() => eliminarProductoCarrito(producto.id)} className="py-2">
                         <BiTrash size={30} className="hover:text-purple-500 text-gray-600" />
                     </button>

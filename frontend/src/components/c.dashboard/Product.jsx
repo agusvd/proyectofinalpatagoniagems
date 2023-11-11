@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BiRadioCircle, BiRadioCircleMarked } from 'react-icons/bi'
 import axios from 'axios';
 
@@ -33,20 +33,9 @@ const Product = () => {
     function handleSubmit(event) {
         event.preventDefault();
         axios
-            .post('http://localhost:8000/dashboard/inventario/agregar', {
-                nombre,
-                descripcion,
-                cantidad_gramos,
-                cantidad_ml,
-                precio,
-                stock,
-                categoria_id,
-                es_destacado,
-                imagen,
-            })
+            .post('http://localhost:8000/dashboard/inventario/agregar', {nombre, categoria_id, cantidad_gramos, cantidad_ml, stock, descripcion, imagen,  precio, es_destacado })
             .then((res) => {
                 console.log(res);
-
                 navigate('/dashboard/inventario');
             })
             .catch((error) => {
@@ -72,9 +61,9 @@ const Product = () => {
     };
 
     return (
-        <div className="h-screen w-full bg-gray-200 overflow-auto">
+        <div className="h-screen w-full bg-black overflow-auto">
             <form className="flex flex-col m-4 rounded-xl border-2 shadow-xl bg-white h-screen" onSubmit={handleSubmit}>
-                <h2 className=' text-4xl text-gray-500 font-extrabold leading-none text-center pt-10'>Agregar un nuevo producto</h2>
+                <h2 className='text-4xl text-gray-500 font-extrabold leading-none text-center pt-10'>Agregar un nuevo producto</h2>
                 <div className='flex flex-col justify-center items-center'>
                     <div className='bg-purple-800 text-white p-2 rounded-xl w-[600px] text-center relative top-20 z-[99]'>
                         <div className='flex gap-2 justify-around text-justify'>
@@ -224,7 +213,6 @@ const Product = () => {
                         )}
                     </div>
                 </div>
-
             </form>
 
         </div>
