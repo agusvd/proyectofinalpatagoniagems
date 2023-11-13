@@ -27,7 +27,7 @@ const ProductPage = () => {
             .get(`http://localhost:8000/tienda/producto/${nombre}`)
             .then((res) => {
                 if (res.data.length === 0) {
-                    setProducto(null); // No se encontró el producto, establecer producto a null
+                    setProducto(null);
                 } else {
                     setProducto(res.data[0]);
                 }

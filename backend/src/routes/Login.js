@@ -44,11 +44,11 @@ router.post('/login', (req, res) => {
 
                         const token = jwt.sign(
                             {
+                                id,
                                 nombre,
                                 apellido,
                                 role,
                                 isAdmin,
-                                id,
                                 email,
                             },
                             secretKey,

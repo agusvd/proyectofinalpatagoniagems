@@ -15,6 +15,7 @@ const verifyUser = (req, res, next) => {
                 req.nombre = decoded.nombre;
                 req.apellido = decoded.apellido;
                 req.role = decoded.role;
+                req.id = decoded.id
                 next();
             }
         });
@@ -23,7 +24,7 @@ const verifyUser = (req, res, next) => {
 
 // Ruta de inicio, requiere autenticación
 router.get('/', verifyUser, (req, res) => {
-    return res.json({ Status: "Perfecto", nombre: req.nombre, apellido: req.apellido, role: req.role });
+    return res.json({ Status: "Perfecto", nombre: req.nombre, apellido: req.apellido, role: req.role, id: req.id });
 });
 
 export default router

@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/tienda" element={<PageTiendaGeneral />} />
           <Route path="/tienda/:categoriaId" element={<PageTiendaPorCategoria />} />
-          <Route path="/perfil" element={<PagePerfil />} />
+          <Route path="/perfil/:id" element={<PagePerfil />} />
           <Route path="/carrito" element={<PageCarrito />} />
           <Route path='/pago' element={<PagePago/>} />
           <Route path='/tienda/producto/:nombre' element={<PageProductoEspecifico />}/>

@@ -6,6 +6,7 @@ import { AiFillFacebook } from 'react-icons/ai'
 import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
+import jwtDecode from 'jwt-decode';
 
 const NavbarNormal = () => {
     const location = useLocation();
@@ -24,6 +25,7 @@ const NavbarNormal = () => {
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
     const [isAdmin, setIsAdmin] = useState(false);
+    const [usuarioId, setUsuarioId] = useState('')
 
     axios.defaults.withCredentials = true
     useEffect(() => {
@@ -31,6 +33,7 @@ const NavbarNormal = () => {
             .then(res => {
                 if (res.data.Status === "Perfecto") {
                     setAuth(true);
+                    setUsuarioId(res.data.id)
                     setNombre(res.data.nombre);
                     setApellido(res.data.apellido);
                     setIsAdmin(res.data.role)
@@ -130,7 +133,7 @@ const NavbarNormal = () => {
                                             Dashboard
                                         </Link>
                                     )}
-                                    <Link to="/perfil" className="nav">Perfil</Link>
+                                    <Link to={`/perfil/${usuarioId}`} className="nav">Perfil</Link>
                                     <Link className="nav" onClick={handleDelete}>Cerrar sesion</Link>
 
                                 </div>
