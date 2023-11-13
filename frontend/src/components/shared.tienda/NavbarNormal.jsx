@@ -6,7 +6,6 @@ import { AiFillFacebook } from 'react-icons/ai'
 import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
-import jwtDecode from 'jwt-decode';
 
 const NavbarNormal = () => {
     const location = useLocation();
@@ -45,13 +44,6 @@ const NavbarNormal = () => {
             })
             .catch(err => console.log(err));
     }, []);
-
-    // mostrar opcion de usuario
-    const [showUser, setShowUser] = useState(false)
-
-    const handleShowUser = () => {
-        setShowUser(!showUser)
-    }
 
     // logout usuario
     const handleDelete = () => {
@@ -98,8 +90,8 @@ const NavbarNormal = () => {
         setCarritoVisible(false);
     };
 
-
     // search productos
+    
     const [searchVisible, setSearchVisible] = useState(false)
 
     const handleOpenSearchClick = () => {
@@ -199,7 +191,7 @@ const NavbarNormal = () => {
             </div>
             {/* Categorias de la tienda */}
             {showTienda && (
-                <div className={`bg-[#202020] flex justify-around items-center w-full transition-all duration-500 gap-1 pt-2 pb-2 text-lg -space-x-32 ${showTienda ? " ease-in-out  animate-fade-down animate-duration-500 animate-delay-100" : "animate-duration-500"}`}>
+                <div id='tienda' className={`bg-[#202020] flex justify-around items-center w-full transition-all duration-500 gap-1 pt-2 pb-2 text-lg -space-x-32 ${showTienda ? " ease-in-out  animate-fade-down animate-duration-500 animate-delay-100" : "animate-duration-500"}`}>
                     <div className='flex flex-col items-center justify-center'>
                         <h2 className=' text-white text-start text-xl justify-center w-full'>Categorias</h2>
                         <div className='flex flex-col'>
