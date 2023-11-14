@@ -111,14 +111,13 @@ const CategoriasP = () => {
     return (
         <div className="flex flex-col h-screen bg-white">
             <Toaster position="top-right" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-            <h2 className="text-5xl text-black mb-4 text-center pt-10 pb-10">Categorías</h2>
             <form onSubmit={handleSubmit} className="mb-4">
-                <div className="flex items-center justify-center">
-                    <div className='flex p-2 bg-[#202020] w-2/3 rounded-full items-center shadow-2xl'>
-                        <div className='rounded-l-full text-white'>
+                <div className="flex items-center justify-center pt-5">
+                    <div className='flex p-2 bg-gray-200 w-2/3 rounded-lg items-center shadow-md'>
+                        <div className='rounded-l-full text-[#202020]'>
                             <BiPlus size={30} />
                         </div>
-                        <input required className="w-full p-2 mr-2 text-white outline-none rounded-md bg-[#202020]" type="text" placeholder="Nombre de la categoría" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                        <input required className="w-full p-2 mr-2 text-[#202020] outline-none rounded-md bg-gray-200" type="text" placeholder="Nombre de la categoría" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                         <div className='rounded-full bg-purple-500 hover:bg-purple-700 duration-300 p-2'>
                             <button className="text-white" type="submit">
                                 Agregar
@@ -130,7 +129,7 @@ const CategoriasP = () => {
             <div className="flex flex-col gap-4 p-2 overflow-auto justify-center items-center">
                 {categorias.length > 0 ? (
                     categorias.map((categoria) => (
-                        <div key={categoria.id} className="bg-[#202020] text-white rounded-md p-4 flex flex-col items-center w-1/2">
+                        <div key={categoria.id} className="text-[#202020] bg-gray-200 rounded-md p-4 flex flex-col items-center w-1/2">
                             {editingId === categoria.id ? (
                                 <input className="w-full p-2 text-white border-b-2 outline-none rounded-md border-2 bg-gray-950" type="text" value={editingNombre} onChange={(e) => setEditingNombre(e.target.value)} />
                             ) : (
@@ -139,10 +138,10 @@ const CategoriasP = () => {
                             <div className="flex justify-end mt-4">
                                 {editingId === categoria.id ? (
                                     <>
-                                        <button className="mr-2 text-white hover:text-purple-600" onClick={handleUpdate}>
+                                        <button className="mr-2 text-[#202020] hover:text-purple-600" onClick={handleUpdate}>
                                             Guardar
                                         </button>
-                                        <button className="text-white hover:text-red-600"
+                                        <button className="text-[#202020] hover:text-red-600"
                                             onClick={() => {
                                                 setEditingId(null);
                                                 setEditingNombre('');
@@ -152,10 +151,10 @@ const CategoriasP = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <button className="mr-2 text-white hover:text-purple-500" onClick={() => handleEdit(categoria.id)}>
+                                        <button className="mr-2 text-[#202020] hover:text-purple-500" onClick={() => handleEdit(categoria.id)}>
                                             <BiEdit size={30} />
                                         </button>
-                                        <button className="text-white hover:text-red-600" onClick={() => handleDelete(categoria.id)}>
+                                        <button className="text-[#202020] hover:text-red-600" onClick={() => handleDelete(categoria.id)}>
                                             <BiTrash size={30} />
                                         </button>
                                     </>
@@ -164,7 +163,7 @@ const CategoriasP = () => {
                         </div>
                     ))
                 ) : (
-                    <p className="text-white">No hay categorías disponibles.</p>
+                    <p className="text-[#202020]">No hay categorías disponibles.</p>
                 )}
             </div>
 

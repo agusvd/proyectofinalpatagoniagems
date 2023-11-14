@@ -101,7 +101,7 @@ const ProductosCategoria = () => {
                             <CardProductoCategoriaMini key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />
                         ))
                     ) : (
-                        <div className='col-span-4 p-4 h-screen text-center'>
+                        <div className='h-screen text-center w-screen flex justify-center items-center'>
                             <h1 className='text-3xl'>No hay productos disponibles en esta categoría.</h1>
                         </div>
                     )}

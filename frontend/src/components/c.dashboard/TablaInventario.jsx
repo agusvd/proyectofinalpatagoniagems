@@ -70,7 +70,7 @@ const TablaInventario = () => {
             <div className="flex flex-col p-2">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center">
-                    <div className="flex items-center justify-center bg-gray-200 text-[#202020] p-2 rounded-xl w-full md:w-2/4 m-4">
+                    <div className="flex items-center justify-center bg-gray-200 text-[#202020] p-2 rounded-lg w-full md:w-2/4 m-4">
                         <BiSearch size={20} className="text-[#202020]" />
                         <input type="text" placeholder="Nombre del producto..."
                             className="search py-1 px-3 ml-2 text-[#202020] bg-gray-200 outline-none w-full"

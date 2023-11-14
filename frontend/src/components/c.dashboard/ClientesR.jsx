@@ -41,14 +41,18 @@ const ClientesR = () => {
         <div className="h-screen overflow-auto bg-white">
             <div className="flex flex-col p-2">
                 <div className="flex flex-col sm:flex-row items-center justify-center">
-                    <div className="flex items-center justify-center bg-gray-200 text-[#202020] p-2 rounded-xl w-full md:w-2/4 m-4">
+                    <div className="flex items-center justify-center bg-gray-200 text-[#202020] p-2 rounded-lg w-full md:w-2/4 m-4">
                         <BiSearch size={20} className="text-[#202020]" />
                         <input type="text" placeholder="Buscar cliente"
                             className="search py-1 px-3 ml-2 text-[#202020] bg-gray-200 outline-none w-full"
                             onChange={(e) => {
                                 setConsulta(e.target.value);
                                 const filtrados = usuarios.filter((usuarios) =>
-                                    usuarios.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+                                    usuarios.nombre.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                                    usuarios.apellido.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                                    usuarios.email.toLowerCase().includes(e.target.value.toLocaleLowerCase()) ||
+                                    usuarios.role.toLowerCase().includes(e.target.value.toLocaleLowerCase())
+
                                 );
                                 setUsuariosFiltrados(filtrados);
                             }} />

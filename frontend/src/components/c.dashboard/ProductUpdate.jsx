@@ -84,7 +84,7 @@ const Product = () => {
     return (
         <div className="h-screen w-full overflow-auto bg-white">
             <form className="flex flex-col" onSubmit={handleUpdate}>
-                <h2 className='text-4xl text-gray-500 font-extrabold leading-none text-center pt-10'>Agregar un nuevo producto</h2>
+                <h2 className='text-4xl text-gray-500 font-extrabold leading-none text-center pt-10 flex justify-center  gap-2'>Actualizando <p className='text-purple-800'>{nombre}</p></h2>
                 <div className='flex flex-col justify-center items-center'>
                     <div className='bg-purple-800 text-white p-2 rounded-xl w-[600px] text-center relative top-20 z-[99]'>
                         <div className='flex gap-2 justify-around text-justify'>

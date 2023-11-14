@@ -44,24 +44,24 @@ const NormalMenu = () => {
             </div>
             <div className="py-4 flex flex-1 flex-col gap-4 m-2">
                 <p className='text-sm text-gray-500'>Panel de administrador</p>
-                <Link to="/dashboard" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard' ? 'bg-purple-800 text-white' : ''}`}>
+                <Link to="/dashboard" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard' ? 'bg-purple-800 text-white duration-300' : ''}`}>
                     <BiBarChart size={25} />Inicio
                 </Link>
                 <p className='text-sm text-gray-500'>Inventario</p>
-                <Link to="/dashboard/inventario/agregar" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario/agregar' ? 'bg-purple-800 text-white' : ''}`}>
+                <Link to="/dashboard/inventario/agregar" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario/agregar' ? 'bg-purple-800 text-white duration-300' : ''}`}>
                     <HiOutlineViewGridAdd size={25} />Agregar productos
                 </Link>
                 <Link to="/dashboard/categorias" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard/categorias' ? 'bg-purple-800 text-white' : ''}`}>
                     <BiSpreadsheet size={25} />Categorias
                 </Link>
-                <Link to="/dashboard/inventario" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario' ? 'bg-purple-800 text-white' : ''}`}>
+                <Link to="/dashboard/inventario" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario' ? 'bg-purple-800 text-white duration-300' : ''}`}>
                     <HiOutlineViewGrid size={25} />Productos
                 </Link>
                 <p className='text-sm text-gray-500'>Informacion</p>
-                <Link to="/dashboard/clientes" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/clientes' ? 'bg-purple-800 text-white' : ''}`}>
+                <Link to="/dashboard/clientes" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/clientes' ? 'bg-purple-800 text-white duration-300' : ''}`}>
                     <IoPeopleSharp size={20} />Clientes
                 </Link>
-                <Link to="/dashboard/pedidos" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/pedidos' ? 'bg-purple-800 text-white' : ''}`}>
+                <Link to="/dashboard/pedidos" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/pedidos' ? 'bg-purple-800 text-white duration-300' : ''}`}>
                     <BiShoppingBag size={25} />Pedidos
                 </Link>
             </div>

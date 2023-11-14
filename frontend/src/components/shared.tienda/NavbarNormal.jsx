@@ -147,7 +147,7 @@ const NavbarNormal = () => {
                         </a>
                     </div>
                     <div className='flex items-center justify-center'>
-                        <h2 className='text-white text-center text-2xl'>Patagoniagems</h2>
+                        <h2 className='text-white text-center text-2xl'>PatagoniaGems</h2>
                     </div>
                     <div className='flex gap-2'>
                         <button onClick={handleOpenSearchClick}>
