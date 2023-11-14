@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IoPeopleSharp } from 'react-icons/io5'
-import { HiOutlineLogout } from 'react-icons/hi';
-import { BiBarChart, BiSpreadsheet, BiAddToQueue, BiGridAlt, BiDotsVerticalRounded, BiShoppingBag } from 'react-icons/bi'
+import { HiOutlineLogout, HiOutlineViewGridAdd, HiOutlineViewGrid } from 'react-icons/hi';
+import { BiBarChart,BiSpreadsheet, BiShoppingBag } from 'react-icons/bi'
 import { IoArrowBackSharp } from 'react-icons/io5';
 import axios from 'axios'
 import { RiShieldUserFill } from "react-icons/ri";
+
 
 
 const NormalMenu = () => {
@@ -48,13 +49,13 @@ const NormalMenu = () => {
                 </Link>
                 <p className='text-sm text-gray-500'>Inventario</p>
                 <Link to="/dashboard/inventario/agregar" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario/agregar' ? 'bg-purple-800 text-white' : ''}`}>
-                    <BiAddToQueue size={25} />Agregar productos
+                    <HiOutlineViewGridAdd size={25} />Agregar productos
                 </Link>
                 <Link to="/dashboard/categorias" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black ${location.pathname === '/dashboard/categorias' ? 'bg-purple-800 text-white' : ''}`}>
-                    <BiGridAlt size={25} />Categorias
+                    <BiSpreadsheet size={25} />Categorias
                 </Link>
                 <Link to="/dashboard/inventario" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/inventario' ? 'bg-purple-800 text-white' : ''}`}>
-                    <BiSpreadsheet size={25} />Productos
+                    <HiOutlineViewGrid size={25} />Productos
                 </Link>
                 <p className='text-sm text-gray-500'>Informacion</p>
                 <Link to="/dashboard/clientes" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard/clientes' ? 'bg-purple-800 text-white' : ''}`}>

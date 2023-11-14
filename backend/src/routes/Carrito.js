@@ -26,7 +26,6 @@ router.get('/carrito', (req, res) => {
 });
 
 // Ruta para agregar un producto al carrito
-// Ruta para agregar un producto al carrito
 router.post('/carrito', (req, res) => {
     const { usuario_id, producto_id, precio_total, cantidad_total } = req.body;
 
