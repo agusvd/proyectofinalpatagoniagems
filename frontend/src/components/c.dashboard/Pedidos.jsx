@@ -4,11 +4,6 @@ const Pedidos = () => {
     return (
         <div className='h-screen overflow-auto'>
             <div className='p-2 flex flex-col rounded-xl'>
-                {/* Header */}
-                <div className=''>
-                    <h1 className='text-5xl text-[#202020] font-extrabold'>Pedidos</h1>
-                </div>
-                {/* Fin Header */}
                 {/* Tabla de pedidos */}
                 <div className='foverflow-x-auto overflow-y-auto relative text-[#202020]'>
                     <table className='border-collapse table-auto w-full whitespace-no-wrap table-striped relative'>

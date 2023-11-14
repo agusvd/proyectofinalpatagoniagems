@@ -40,7 +40,6 @@ const ClientesR = () => {
     return (
         <div className="h-screen overflow-auto bg-white">
             <div className="flex flex-col p-2">
-                {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="flex items-center justify-center bg-gray-200 text-[#202020] p-2 rounded-xl w-full md:w-2/4 m-4">
                         <BiSearch size={20} className="text-[#202020]" />
@@ -69,6 +68,9 @@ const ClientesR = () => {
                                 <th>
                                     Email
                                 </th>
+                                <th>
+                                    Rol
+                                </th>
                             </tr>
                         </thead>
                         {usuariosActuales.length > 0 ? (
@@ -84,6 +86,9 @@ const ClientesR = () => {
                                         </td>
                                         <td>
                                             {usuarios.email}
+                                        </td>
+                                        <td>
+                                            {usuarios.role}
                                         </td>
                                     </tr>
                                 </tbody>

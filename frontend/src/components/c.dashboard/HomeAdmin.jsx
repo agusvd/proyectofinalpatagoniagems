@@ -38,7 +38,7 @@ const HomeAdmin = () => {
 
       <div className='md:m-2 md:rounded-md bg-white rounded-t-xl'>
         <div className='flex flex-wrap p-4'>
-          <div className="p-4 mx-4 mb-4 flex-grow rounded-xl bg-[#202020]">
+          <div className="p-4 mx-4 mb-4 flex-grow rounded-xl bg-purple-800">
             <h2 className="text-2xl text-white font-bold mb-2">Total de productos</h2>
             <p className="text-2xl text-white">{totalProductos}</p>
           </div>
@@ -53,8 +53,8 @@ const HomeAdmin = () => {
         </div>
       </div>
       {/* fin hedader */}
-      <div className='bg-[#202020] md:m-2 md:rounded-md'>
-        <div className='flex flew-wrap gap-2 p-4'>
+      <div className='bg-purple-800 md:m-2 md:rounded-md'>
+        <div className='flex flex-col gap-2 p-4'>
             <div>
                 <a className='text-white'>Aqui va ver los productos vendidos</a>
             </div>
