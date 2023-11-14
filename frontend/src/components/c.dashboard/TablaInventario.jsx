@@ -10,7 +10,7 @@ const TablaInventario = () => {
     const [consulta, setConsulta] = useState('');
     const [categorias, setCategorias] = useState([]);
     const [paginaActual, setPaginaActual] = useState(1);
-    const productosPorPagina = 13;
+    const productosPorPagina = 10;
 
     useEffect(() => {
         axios
@@ -66,7 +66,7 @@ const TablaInventario = () => {
     }
 
     return (
-        <div className="font-primary h-screen overflow-auto bg-white">
+        <div className="h-screen overflow-auto bg-white">
             <div className="flex flex-col p-2">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center">
@@ -87,8 +87,7 @@ const TablaInventario = () => {
                     </Link>
                 </div>
                 {/* fin header */}
-
-                <div className="foverflow-x-auto overflow-y-auto relative">
+                <div className="overflow-y-auto relative">
                     <table className='table-auto w-full p-2'>
                         <thead className='text-[#202020]'>
                             <tr className='text-center'>

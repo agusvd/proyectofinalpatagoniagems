@@ -109,7 +109,7 @@ const CategoriasP = () => {
     };
 
     return (
-        <div className="flex flex-col h-screen font-primary bg-white">
+        <div className="flex flex-col h-screen bg-white">
             <Toaster position="top-right" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             <h2 className="text-5xl text-black mb-4 text-center pt-10 pb-10">Categorías</h2>
             <form onSubmit={handleSubmit} className="mb-4">

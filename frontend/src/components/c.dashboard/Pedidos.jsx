@@ -2,11 +2,11 @@ import React from 'react'
 
 const Pedidos = () => {
     return (
-        <div className='font-primary h-screen overflow-auto'>
+        <div className='h-screen overflow-auto'>
             <div className='p-2 flex flex-col rounded-xl'>
                 {/* Header */}
                 <div className=''>
-                    <h1 className='text-5xl text-white font-extrabold '>Pedidos</h1>
+                    <h1 className='text-5xl text-[#202020] font-extrabold'>Pedidos</h1>
                 </div>
                 {/* Fin Header */}
                 {/* Tabla de pedidos */}

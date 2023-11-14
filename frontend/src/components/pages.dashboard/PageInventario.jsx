@@ -5,7 +5,7 @@ import MobileMenu from '../shared.dashboard/MobileMenu';
 
 const PageInventario = () => {
     return (
-        <div className="flex flex-col sm:flex sm:flex-row bg-white overflow-auto w-screen">
+        <div className="flex flex-col sm:flex sm:flex-row bg-white overflow-auto w-screen font-primary">
             <NormalMenu/>
             <div className="flex-1 bg-white overflow-hidden">
                 <MobileMenu/>
