@@ -13,7 +13,7 @@ const ClientesR = () => {
                 <div className='foverflow-x-auto overflow-y-auto relative'>
                     <table className='border-collapse table-auto w-full whitespace-no-wrap table-striped relative'>
                         <thead className=''>
-                            <tr className='text-white first-letter:uppercase'>
+                            <tr className='text-[#202020] first-letter:uppercase'>
                                 <th>
                                     ID
                                 </th>

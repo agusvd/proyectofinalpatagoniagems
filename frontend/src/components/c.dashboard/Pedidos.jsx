@@ -10,10 +10,10 @@ const Pedidos = () => {
                 </div>
                 {/* Fin Header */}
                 {/* Tabla de pedidos */}
-                <div className='foverflow-x-auto overflow-y-auto relative'>
+                <div className='foverflow-x-auto overflow-y-auto relative text-[#202020]'>
                     <table className='border-collapse table-auto w-full whitespace-no-wrap table-striped relative'>
                         <thead className=''>
-                            <tr className='text-white first-letter:uppercase'>
+                            <tr className='first-letter:uppercase'>
                                 <th>
                                     ID
                                 </th>

@@ -33,7 +33,7 @@ const HomeAdmin = () => {
   }, []);
 
   return (
-    <div className="flex flex-col m-4 sm:mt-10 md:m-4 bg-black h-screen">
+    <div className="flex flex-col p-2 bg-white h-screen">
       {/* header */}
 
       <div className='md:m-2 md:rounded-md bg-white rounded-t-xl'>

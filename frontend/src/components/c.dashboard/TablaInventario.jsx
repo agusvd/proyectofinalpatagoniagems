@@ -66,14 +66,14 @@ const TablaInventario = () => {
     }
 
     return (
-        <div className="font-primary h-screen overflow-auto bg-black">
-            <div className="flex flex-col bg-white p-2 border-2 m-4 rounded-xl shadow-2xl">
+        <div className="font-primary h-screen overflow-auto bg-white">
+            <div className="flex flex-col p-2">
                 {/* header */}
                 <div className="flex flex-col sm:flex-row items-center justify-center">
-                    <div className="flex items-center justify-center bg-[#202020] text-white p-2 rounded-xl w-full md:w-2/4 m-4">
-                        <BiSearch size={20} className="text-white" />
+                    <div className="flex items-center justify-center bg-gray-200 text-[#202020] p-2 rounded-xl w-full md:w-2/4 m-4">
+                        <BiSearch size={20} className="text-[#202020]" />
                         <input type="text" placeholder="Nombre del producto..."
-                            className="search py-1 px-3 ml-2 bg-[#202020] text-white outline-none w-full"
+                            className="search py-1 px-3 ml-2 text-[#202020] bg-gray-200 outline-none w-full"
                             onChange={(e) => {
                                 setConsulta(e.target.value);
                                 const filtrados = productos.filter((producto) =>
@@ -89,8 +89,8 @@ const TablaInventario = () => {
                 {/* fin header */}
 
                 <div className="foverflow-x-auto overflow-y-auto relative">
-                    <table className='table-auto w-full p-2 rounded-xl'>
-                        <thead className='text-black'>
+                    <table className='table-auto w-full p-2'>
+                        <thead className='text-[#202020]'>
                             <tr className='text-center'>
                                 <th>
                                     ID
@@ -120,8 +120,8 @@ const TablaInventario = () => {
                         </thead>
                         {productosActuales.length > 0 ? (
                             productosActuales.map((producto, i) => (
-                                <tbody key={producto.id} className=''>
-                                    <tr className='text-black hover:bg-[#202020] hover:text-white duration-300 ease-in-out text-center'>
+                                <tbody key={producto.id}>
+                                    <tr className='text-[#202020] first-letter:uppercase cursor-pointer hover:bg-gray-200 duration-300 ease-in-out text-center'>
                                         <td className='text-center'>
                                             {producto.id}
                                         </td>
@@ -137,9 +137,15 @@ const TablaInventario = () => {
                                         <td>
                                             {producto.precio}
                                         </td>
-                                        <td>
-                                            {producto.cantidad_gramos}
-                                        </td>
+                                        {(producto.cantidad_gramos > 0 || producto.cantidad_ml > 0) ? (
+                                            <td>
+                                                {producto.cantidad_gramos && `${producto.cantidad_gramos}g`}{' '}
+                                                {producto.cantidad_ml && `${producto.cantidad_ml}ml`}
+                                                {!producto.cantidad_gramos && !producto.cantidad_ml && 'No tiene'}
+                                            </td>
+                                        ) : (
+                                            <td>No tiene</td>
+                                        )}
                                         <td>
                                             {producto.stock}
                                         </td>
