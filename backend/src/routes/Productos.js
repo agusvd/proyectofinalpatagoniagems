@@ -24,7 +24,6 @@ router.get('/tienda/producto/:nombre', (req, res) => {
 router.get('/productos/buscar', (req, res) => {
     const { searchText } = req.query;
 
-    // Realiza la consulta a la base de datos para buscar productos que coincidan con el texto de búsqueda
     const sql = `
       SELECT id, nombre, precio, categoria_id, imagen
       FROM productos
@@ -43,7 +42,6 @@ router.get('/productos/buscar', (req, res) => {
 router.get('/tienda/:categoriaId', (req, res) => {
     const { categoriaId } = req.params;
 
-    // Realiza la consulta a la base de datos para obtener los productos de la categoría
     const sql = `
       SELECT id, nombre, precio, categoria_id, imagen
       FROM productos
