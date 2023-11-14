@@ -44,7 +44,7 @@ const NormalMenu = () => {
             </div>
             <div className="py-4 flex flex-1 flex-col gap-4 m-2">
                 <p className='text-sm text-gray-500'>Panel de administrador</p>
-                <Link to="/dashboard" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard' ? 'bg-purple-800 text-white duration-300' : ''}`}>
+                <Link to="/dashboard" className={`inline-flex items-center gap-2 p-1 rounded-md hover:bg-gray-200 hover:text-black transition-all  ease-in-out duration-100 ${location.pathname === '/dashboard' ? 'bg-purple-800 text-white duration-300   ' : ''}`}>
                     <BiBarChart size={25} />Inicio
                 </Link>
                 <p className='text-sm text-gray-500'>Inventario</p>
