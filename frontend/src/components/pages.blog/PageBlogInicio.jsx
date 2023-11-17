@@ -1,21 +1,20 @@
 import React from 'react'
-import CartPage from '../c.tienda/CartPage'
-import Anuncio from '../shared.tienda/Anuncio'
 import Footer from '../shared.tienda/Footer'
 import NavbarNormal from '../shared.tienda/NavbarNormal'
 import NavbarMobile from '../shared.tienda/NavbarMobile'
 import NavMini from '../shared.tienda/NavMini'
-const PageCarrito = () => {
+import BlogPublicados from '../c.blog/BlogPublicados'
+
+const PageBlogInicio = () => {
     return (
         <div>
             <NavMini/>
-            <Anuncio />
             <NavbarNormal/>
             <NavbarMobile/>
-            <CartPage />
-            <Footer />
+            <BlogPublicados/>
+            <Footer/>
         </div>
     )
 }
 
-export default PageCarrito
+export default PageBlogInicio

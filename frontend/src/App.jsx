@@ -24,6 +24,9 @@ import PageTerminos from './components/pages.tienda/PageTerminos';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 {/* Proteccion de rutas */}
 import PrivateRoute from './utils/PrivateRoute';
+{/* Pagina blog */}
+import PageBlogInicio from './components/pages.blog/PageBlogInicio';
+import PageActualizarCategoria from './components/pages.dashboard/PageActualizarCategoria';
 
 
 
@@ -42,6 +45,7 @@ const App = () => {
           <Route path='/pago' element={<PagePago/>} />
           <Route path='/tienda/producto/:nombre' element={<PageProductoEspecifico />}/>
           <Route path='/terminos-y-condiciones' element={<PageTerminos/>} />
+          <Route path='/blogs' element={<PageBlogInicio />} />
           <Route path="/404" element={<Error />} />
           <Route path="*" element={<Navigate to="/404" />} />
           <Route exact path="/dashboard" element={<PrivateRoute />}>
@@ -64,7 +68,9 @@ const App = () => {
           </Route>
           <Route exact path="/dashboard/categorias" element={<PrivateRoute />}>
             <Route exact path="/dashboard/categorias" element={<NCategoria />} />
-            <Route exact path="/dashboard/categorias/:id" element={<NCategoria />} />
+          </Route>
+          <Route exact path="/dashboard/categorias/actualizar/:id" element={<PrivateRoute />}>
+            <Route exact path="/dashboard/categorias/actualizar/:id" element={<PageActualizarCategoria/>} />
           </Route>
         </Routes>
       </BrowserRouter>

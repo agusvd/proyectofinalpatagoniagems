@@ -129,7 +129,7 @@ const ProductosTotal = () => {
         <div className="flex flex-col justify-center font-primary bg-white">
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-3xl text-black">Todos los productos</h1>
+                <h1 className="text-3xl text-purple-600">Todos los productos</h1>
             </div>
             <div className="flex justify-center">
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 pb-5 gap-6 font-primary justify-center items-center ">

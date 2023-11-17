@@ -46,7 +46,6 @@ const Product = () => {
             })
             .catch(error => {
                 console.log(error);
-                // Manejar el error aquí
             });
     }, []);
 
@@ -227,7 +226,7 @@ const Product = () => {
                                         Volver
                                     </button>
                                     <button className='bg-purple-800 text-white hover:bg-green-500 duration-100 transition-all ease-in-out p-2 rounded-xl' type='submit'>
-                                        Guardar producto
+                                        Actualizar
                                     </button>
                                 </div>
                             </div>

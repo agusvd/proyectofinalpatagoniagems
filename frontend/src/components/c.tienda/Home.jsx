@@ -28,7 +28,7 @@ const Home = () => {
 
     return (
         <div className="font-primary bg-white text-black pt-10 items-center justify-center">
-            <div className="overflow-hidden relative h-96] item-center justify-center flex flex-col bg-white">
+            <div className="overflow-hidden relative h-[500px] item-center justify-center flex flex-col bg-white">
                 <div className={`overflow-hidden relative min-h-md item-center justify-center flex ${currentIndex === 0 ? 'animate-slide-in-from-right' : ''}`} style={{ display: currentIndex === 0 ? "block" : "none" }}>
                     <div className="lex-row sm:flex items-center justify-center text-center gap-20">
                         <div className="flex-row sm:flex items-center justify-center text-center">

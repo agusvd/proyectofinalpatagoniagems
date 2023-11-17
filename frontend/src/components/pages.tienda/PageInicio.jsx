@@ -5,15 +5,19 @@ import ProductosDestacados from '../c.tienda/ProductosDestacados'
 import Footer from '../shared.tienda/Footer'
 import NavbarNormal from '../shared.tienda/NavbarNormal'
 import NavbarMobile from '../shared.tienda/NavbarMobile'
+import BannerCategoria from '../c.tienda/BannerCategoria'
+import NavMini from '../shared.tienda/NavMini'
 
 
 const PageInicio = () => {
     return (
         <div>
+            <NavMini/>
             <Anuncio />
             <NavbarNormal/>
             <NavbarMobile/>
             <Home />
+            <BannerCategoria/>
             <ProductosDestacados />
             <Footer />
         </div>
