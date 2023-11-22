@@ -15,7 +15,6 @@ const PageProductoEspecifico = () => {
             <NavbarNormal/>
             <NavbarMobile/>
             <ProductPage />
-            <ProductosDestacados />
             <Footer />
         </div>
     )

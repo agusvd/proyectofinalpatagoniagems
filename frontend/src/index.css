@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Laila&family=Open+Sans:wght@400;600&family=Playfair:wght@400;600&family=Poppins:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,7 +31,7 @@
 }
 
 .nav{
-    @apply relative tracking-[1px] font-bold text-gray-200 hover:text-white
+    @apply relative tracking-[1px] text-black hover:text-purple-600
 }
 .nav::after{
     @apply content-[''] bg-purple-600 h-[3px] w-[0%] -bottom-[5px] rounded-xl absolute duration-300 left-0

@@ -2,29 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 
-const CardProductoCategoriaMini = ({ producto, handleAgregarCarro }) => {
+const CardProductoCategoriaMini = ({ producto }) => {
     return (
-        <div key={producto.id} className="bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all w-[250px] h-[350px] justify-between flex flex-col">
-            <Link to={`/tienda/producto/${producto.nombre}`} className="flex items-center justify-center w-full h-[180px]">
-                <img src={producto.imagen} className="h-[180px] w-full object-contain" alt="Producto" />
+        <div key={producto.id} className="bg-white rounded-md w-[350px] h-[650px] justify-between flex flex-col border-2 border-red-500 gap-2">
+            <Link to={`/tienda/producto/${producto.nombre}`} className="flex items-center justify-center w-full border-2 border-green-500">
+                <img src={producto.imagen} className="h-[500px] w-full object-cover" alt="Producto" />
             </Link>
-            <div className="flex justify-start w-full">
+            <div className="flex items-start w-full h-full border-2 border-purple-600">
                 <div className="flex flex-col w-full">
-                    <Link to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold capitalize">
+                    <Link to={`/tienda/producto/${producto.nombre}`} className="text-lg capitalize font-bold">
                         {producto.nombre}
                     </Link>
-                    <p className="text-md text-gray-400">
+                    <p className="text-lg text-gray-800">
                         ${producto.precio}
                     </p>
                 </div>
-            </div>
-            <div className='flex justify-end items-center'>
-                <button className='bg-black text-white flex text-center justify-center px-2 py-2 m-1 rounded-full hover:bg-purple-500 hover:text-white hover:scale-125'
-                    onClick={() => {
-                        handleAgregarCarro(producto);
-                    }}>
-                    <BiCart size={25} />
-                </button>
             </div>
         </div>
     )

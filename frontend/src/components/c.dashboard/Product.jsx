@@ -21,7 +21,7 @@ const Product = () => {
     useEffect(() => {
         // Obtener las categorías desde el backend al cargar el componente
         axios
-            .get('http://localhost:8000/categorias')
+            .get('http://localhost:8000/dashboard/categorias')
             .then((res) => {
                 setCategorias(res.data);
             })

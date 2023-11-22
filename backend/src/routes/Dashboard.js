@@ -84,8 +84,8 @@ router.put('/dashboard/actualizar/:id', (req, res) => {
     const values = [
         req.body.nombre,
         req.body.categoria_id,
-        req.body.cantidad_gramos || null, 
-        req.body.cantidad_ml || null,   
+        req.body.cantidad_gramos || null,
+        req.body.cantidad_ml || null,
         req.body.stock,
         req.body.descripcion,
         req.body.imagen,
@@ -136,7 +136,7 @@ router.post('/dashboard/categorias', (req, res) => {
     ];
     db.query(sql, values, (err, data) => {
         if (err) {
-            console.log(err); // Agrega esta línea para imprimir el error en el servidor
+            console.log(err);
             return res.status(500).json({ error: 'Error al crear la categoría' });
         }
         return res.json(data);

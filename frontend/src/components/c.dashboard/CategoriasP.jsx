@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { redirect, useNavigate, useParams } from 'react-router-dom';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import { toast, Toaster } from 'react-hot-toast';
 import CardToastEliminarCategoria from '../cards/CardToastEliminarCategoria'
@@ -28,13 +28,21 @@ const CategoriasP = () => {
     // crear categoria
     const handleSubmit = (event) => {
         event.preventDefault();
-        const updateData = { categoria, imagen }
+        const updateData = { categoria, imagen };
         axios
-            .post('http://localhost:8000/dashboard/categorias', id + updateData)
+            .post('http://localhost:8000/dashboard/categorias', updateData)
             .then((res) => {
                 console.log(res);
                 setCategoria('');
                 setImagen('');
+                // Vuelve a cargar las categorías después de agregar una nueva
+                axios.get('http://localhost:8000/dashboard/categorias')
+                    .then((res) => {
+                        setCategorias(res.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             })
             .catch((error) => {
                 console.log(error);
@@ -71,6 +79,14 @@ const CategoriasP = () => {
                     draggable: true,
                     progress: undefined,
                 });
+                // Vuelve a cargar las categorías después de agregar una nueva
+                axios.get('http://localhost:8000/dashboard/categorias')
+                    .then((res) => {
+                        setCategorias(res.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             })
             .catch((error) => {
                 console.log(error);

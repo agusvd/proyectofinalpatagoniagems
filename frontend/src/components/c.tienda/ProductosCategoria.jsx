@@ -30,10 +30,10 @@ const ProductosCategoria = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(`http://localhost:8000/categorias/${categoriaId}`)
+            .get(`http://localhost:8000/dashboard/categorias/${categoriaId}`)
             .then((res) => {
                 console.log(res.data);
-                setCategoriaNombre(res.data.categoria);
+                setCategoriaNombre(res.data[0].categoria);
             })
             .catch((err) => console.log(err));
 
@@ -95,7 +95,7 @@ const ProductosCategoria = () => {
                 <h1 className="text-4xl font-bold text-purple-600 first-letter:uppercase">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 font-primary justify-center items-center gap-10 pb-5">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 font-primary justify-center items-center gap-5 pb-5">
                     {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
                             <CardProductoCategoriaMini key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />

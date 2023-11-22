@@ -22,7 +22,7 @@ const BannerCategoria = () => {
             <div className='flex w-full gap-2 justify-center items-center'>
                 {categorias.map(categoria => (
                     <div className="w-[600px] h-[600px] relative rounded-lg duration-300 ease-in-out  brightness-75 hover:brightness-105">
-                        <img src={imagen2} className="h-full w-full rounded-lg " alt="Imagen 1" />
+                        <img src={categoria.imagen} className="h-full w-full rounded-lg " alt="Imagen 1" />
                         <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
                             <p className='justify text-center text-white text-4xl'>
                                 {categoria.categoria}

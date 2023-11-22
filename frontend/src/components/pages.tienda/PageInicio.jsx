@@ -13,9 +13,9 @@ const PageInicio = () => {
     return (
         <div>
             <NavMini/>
-            <Anuncio />
             <NavbarNormal/>
             <NavbarMobile/>
+            <Anuncio />
             <Home />
             <BannerCategoria/>
             <ProductosDestacados />

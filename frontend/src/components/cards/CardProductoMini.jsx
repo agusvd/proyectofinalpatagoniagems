@@ -6,8 +6,8 @@ const CardProductoMini = ({ producto, getCategoriaNombre, handleAgregarCarro }) 
 
     return (
         <div key={producto.id} className='bg-white hover:shadow-md rounded-md p-2 hover:scale-105 ease-out relative duration-700 hover:shadow-purple-500 transition-all w-[250px] h-[350px] justify-between flex flex-col'>
-            <Link to={`/tienda/producto/${producto.nombre}`} className="flex items-center justify-center w-full h-[180px]">
-                <img src={producto.imagen} className="h-[180px] w-full object-contain" alt="Producto" />
+            <Link to={`/tienda/producto/${producto.nombre}`} className="flex items-center justify-center w-full h-[150px]">
+                <img src={producto.imagen} className="h-[150px] w-full object-contain" alt="Producto" />
             </Link>
             <div className="flex justify-start w-full">
                 <div className="flex flex-col w-full">

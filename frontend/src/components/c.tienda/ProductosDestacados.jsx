@@ -28,7 +28,7 @@ const ProductosDestacados = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get('http://localhost:8000/categorias')
+            .get('http://localhost:8000/dashboard/categorias')
             .then((res) => {
                 console.log(res.data);
                 setCategorias(res.data);
@@ -125,7 +125,7 @@ const ProductosDestacados = () => {
                 <h1 className="text-3xl text-white">Productos destacados</h1>
             </div>
             {/* CONTENEDOR DE CARDS */}
-            <div className="grid grid-cols-2 gap-10 p-5 sm:flex items-center sm:flex-row justify-center overflow-y-auto bg-white">
+            <div className="grid grid-cols-2 gap-5 p-5 sm:flex items-center sm:flex-row justify-center overflow-y-auto bg-white">
                 {/* CARDS */}
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (

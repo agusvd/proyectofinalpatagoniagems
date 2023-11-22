@@ -64,24 +64,24 @@ const Search = ({ onClose }) => {
     };
 
     return (
-        <div className="bg-[#202020] text-black absolute right-0 top-0 w-full h-screen z-99 font-primary md:w-2/6">
+        <div className="bg-white text-[#202020] absolute right-0 top-0 w-full h-screen z-99 font-primary md:w-2/6">
             <div className="flex-col items-center h-screen overflow-auto">
-                <div className="flex items-center justify-between bg-[#202020] p-2">
-                    <h2 className="text-white text-2xl">Buscar</h2>
-                    <BiArrowFromLeft size={30} className="text-white cursor-pointer hover:text-purple-500" onClick={onClose} />
+                <div className="flex items-center justify-between bg-white p-2">
+                    <h2 className="text-[#202020] text-2xl">Buscar</h2>
+                    <BiArrowFromLeft size={30} className="text-[#202020] cursor-pointer hover:text-purple-500" onClick={onClose} />
                 </div>
-                <div className='bg-[#202020] p-2'>
+                <div className='bg-whit p-2'>
                     <div className="flex items-center">
-                        <input type="text" placeholder="Buscar" className="py-2 px-5 bg-white text-black outline-none w-full border-2 rounded-full mx-10" value={searchText} onChange={(e) => setSearchText(e.target.value)}
+                        <input type="text" placeholder="Buscar" className="py-2 px-5 bg-gray-200 text-[#202020] outline-none w-full border-2 rounded-full mx-10" value={searchText} onChange={(e) => setSearchText(e.target.value)}
                             onKeyUp={handleSearch} />
                     </div>
                 </div>
                 {/* Mostrar los resultados de la búsqueda */}
-                <div className='bg-[#202020]' onScroll={handleScroll}>
+                <div className='bg-white' onScroll={handleScroll}>
                     {searchText.trim() !== '' &&
                         (
-                            <div className='text-center border-t border-b p-2 shadow-lg bg-[#202020]'>
-                                <h3 className='text-lg font-bold text-white'>Resultados de la búsqueda</h3>
+                            <div className='text-center border-t border-b p-2 shadow-lg bg-white'>
+                                <h3 className='text-lg font-bold text-[#202020]'>Resultados de la búsqueda</h3>
                             </div>
                         )
                     }

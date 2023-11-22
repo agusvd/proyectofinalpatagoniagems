@@ -40,7 +40,7 @@ const ProductosTotal = () => {
     // Obtener la informacion del backend
     // Aqui obtendremos las categorias
     useEffect(() => {
-        axios.get('http://localhost:8000/categorias')
+        axios.get('http://localhost:8000/dashboard/categorias')
             .then((res) => {
                 console.log(res.data) // luego eliminar
                 setCategorias(res.data)

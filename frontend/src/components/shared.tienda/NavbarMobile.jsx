@@ -52,7 +52,7 @@ const NavbarMobile = ({ onClose }) => {
 
     useEffect(() => {
         // Obtener las categorías desde el backend
-        axios.get('http://localhost:8000/categorias')
+        axios.get('http://localhost:8000/dashboard/categorias')
             .then(res => {
                 setCategorias(res.data);
             })

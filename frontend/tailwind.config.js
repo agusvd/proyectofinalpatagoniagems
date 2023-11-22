@@ -4,18 +4,15 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    require('daisyui'),
+    require('tailwindcss-animated')
+  ],
   theme: {
     extend: {
       fontFamily: {
-        'primary': ['Poppins']
+        'primary': ['Montserrat']
       }
     },
-    variants: {
-      display: ["group-hover"]
-    },
   },
-  plugins: [
-    require('tailwindcss-animated')
-  ],
 }
-
