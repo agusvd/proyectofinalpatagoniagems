@@ -75,13 +75,13 @@ const NavbarNormal = () => {
         <div className='sticky top-0 z-10 font-primary'>
             <div className='hidden bg-gray-200 w-full sm:flex sm:flex-col justify-center items-center p-4 h-[100px]'>
                 <div className='flex items-center justify-around w-full p-1'>
-                    <div className='flex items-center justify-center'>
-                        <Link to="/" className='text-black font-bold text-center text-2xl hover:text-purple-600'>PatagoniaGems</Link>
-                    </div>
                     <div className='flex items-center justify-center text-center'>
                         <div className='flex justify-center gap-5'>
+                            <div className='flex items-center justify-center'>
+                                <Link to="/" className='text-black font-bold text-center text-2xl hover:text-purple-600'>PatagoniaGems</Link>
+                            </div>
                             <div className="dropdown dropdown-hover text-black text-xl py-2">
-                                <label tabIndex={0} className="">Tienda</label>
+                            <Link to='/tienda' className={`text-black text-xl py-2 ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-black'}`}>Tienda</Link>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                     {categorias.map(categoria => (
                                         <li key={categoria.id}>

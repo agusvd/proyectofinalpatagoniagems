@@ -9,10 +9,11 @@ import NavMini from '../shared.tienda/NavMini'
 const PageTiendaGeneral = () => {
     return (
         <div>
-            <NavMini/>
             <Anuncio />
+            <NavMini />
             <NavbarNormal />
-            <NavbarMobile/>
+            <NavbarMobile />
+
             <ProductosTotal />
             <Footer />
         </div>

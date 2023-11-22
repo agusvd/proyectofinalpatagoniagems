@@ -10,8 +10,8 @@ import NavMini from '../shared.tienda/NavMini'
 const PageProductoEspecifico = () => {
     return (
         <div>
-            <NavMini/>
             <Anuncio />
+            <NavMini/>
             <NavbarNormal/>
             <NavbarMobile/>
             <ProductPage />

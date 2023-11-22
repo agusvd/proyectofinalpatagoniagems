@@ -136,7 +136,7 @@ router.post('/dashboard/categorias', (req, res) => {
     ];
     db.query(sql, values, (err, data) => {
         if (err) {
-            console.log(err);
+            console.log(err); 
             return res.status(500).json({ error: 'Error al crear la categoría' });
         }
         return res.json(data);

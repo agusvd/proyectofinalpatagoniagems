@@ -8,10 +8,10 @@ import NavMini from '../shared.tienda/NavMini'
 const PageCarrito = () => {
     return (
         <div>
-            <NavMini/>
             <Anuncio />
-            <NavbarNormal/>
-            <NavbarMobile/>
+            <NavMini />
+            <NavbarNormal />
+            <NavbarMobile />
             <CartPage />
             <Footer />
         </div>

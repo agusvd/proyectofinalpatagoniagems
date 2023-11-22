@@ -58,8 +58,8 @@ const Perfil = () => {
     return (
         <div className='h-screen flex items-center bg-white w-full font-primary'>
             {/* Navegacion */}
-            <div className='flex flex-col h-full sm:p-10 bg-[#202020] justify-start items-center'>
-                <div className='text-white flex justify-center items-center'>
+            <div className='flex flex-col h-full sm:p-10 bg-gray-200 justify-start items-center'>
+                <div className='text-[#202020] flex justify-center items-center'>
                     <BiUser size={50} />
                     <p></p>
                 </div>

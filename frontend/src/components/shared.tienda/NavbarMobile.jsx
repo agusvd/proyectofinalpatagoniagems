@@ -110,78 +110,58 @@ const NavbarMobile = ({ onClose }) => {
                                 <h2 className='text-white mr-4 text-xl'>Menu</h2>
                             </div>
                             <div className='flex flex-col justify-around items-center h-full'>
-                                <ul className='nav ml-10 flex flex-col gap-10 justify-center text-xl h-full'>
-                                    <li>
-                                        <Link to="/" onClick={HandleMenuVisible}>
-                                            Inicio
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/tienda" onClick={HandleMenuVisible}>
-                                            Todos los productos
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <a href="#" className='flex items-center justify-between' onClick={handleToggleCategories}>
-                                            Categorias {showCategories ? <BiMinus /> : <BiPlus />}
-                                        </a>
-                                        {showCategories && (
-                                            <ul className=" flex flex-col gap-10 pt-10">
-                                                {categorias.map(categoria => (
-                                                    <li className='' key={categoria.id}>
-                                                        <Link to={`/tienda/${categoria.id}`} className="nav">{categoria.categoria}</Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </li>
-                                    <li>
-                                        <Link to="/blogs" className="" onClick={HandleMenuVisible}>
-                                            Blogs
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/nosotros" className="" onClick={HandleMenuVisible}>
-                                            Nosotros
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/contacto" className="" onClick={HandleMenuVisible}>
-                                            Contacto
-                                        </Link>
-                                    </li>
-                                    {auth ? (
-                                        <div className='nav flex flex-col justify-center gap-10'>
-                                            <li>
-                                                <Link to="/perfil" className="" onClick={HandleMenuVisible}>
-                                                    Perfil
-                                                </Link>
-                                            </li>
-                                            {isAdmin === 'admin' && (
-                                                <li>
-                                                    <Link to="/dashboard" className="" onClick={HandleMenuVisible}>
-                                                        Dashboard
-                                                    </Link>
+                                <ul className='text-xl ml-10 flex flex-col gap-10 justify-center h-full'>
+                                    <Link to="/" className='text-white' onClick={HandleMenuVisible}>
+                                        Inicio
+                                    </Link>
+                                    <Link to="/tienda" className='text-white' onClick={HandleMenuVisible}>
+                                        Todos los productos
+                                    </Link>
+                                    <div className='flex items-center justify-between text-white' onClick={handleToggleCategories}>
+                                        Categorias {showCategories ? <BiMinus /> : <BiPlus />}
+                                    </div>
+                                    {showCategories && (
+                                        <ul className=" flex flex-col gap-10 pt-10">
+                                            {categorias.map(categoria => (
+                                                <li className='' key={categoria.id}>
+                                                    <Link to={`/tienda/${categoria.id}`} className="nav">{categoria.categoria}</Link>
                                                 </li>
-                                            )}
-                                            <li>
-                                                <Link to="/" className="" onClick={handleDelete}>
-                                                    Cerrar sesión
+                                            ))}
+                                        </ul>
+                                    )}
+                                    <Link to="/blogs" className="text-white" onClick={HandleMenuVisible}>
+                                        Blogs
+                                    </Link>
+                                    <Link to="/nosotros" className="text-white" onClick={HandleMenuVisible}>
+                                        Nosotros
+                                    </Link>
+                                    <Link to="/contacto" className="text-white" onClick={HandleMenuVisible}>
+                                        Contacto
+                                    </Link>
+                                    {auth ? (
+                                        <div className='text-white flex flex-col justify-center gap-10'>
+                                            <Link to="/perfil" className="" onClick={HandleMenuVisible}>
+                                                Perfil
+                                            </Link>
+                                            {isAdmin === 'admin' && (
+                                                <Link to="/dashboard" className="text-whit" onClick={HandleMenuVisible}>
+                                                    Dashboard
                                                 </Link>
-                                            </li>
+                                            )}
+                                            <Link to="/" className="text-white" onClick={handleDelete}>
+                                                Cerrar sesión
+                                            </Link>
                                         </div>
                                     ) : (
                                         <div>
-                                            <li>
-                                                <Link to="/login" onClick={HandleMenuVisible}>
-                                                    Iniciar sesión
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/register" onClick={HandleMenuVisible}>
-                                                    Registrarse
-                                                </Link>
-                                            </li>
+
+                                            <Link to="/login" className='text-white' onClick={HandleMenuVisible}>
+                                                Iniciar sesión
+                                            </Link>
+
+                                            <Link to="/register" className='text-white' onClick={HandleMenuVisible}>
+                                                Registrarse
+                                            </Link>
                                         </div>
                                     )}
                                 </ul>

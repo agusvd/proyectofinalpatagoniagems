@@ -6,8 +6,8 @@ import Cart from '../shared.tienda/Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi';
 import { toast, Toaster } from 'react-hot-toast';
-import CardProductoDestacadoMini from '../cards/CardProductoDestacadoMini';
 import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
+import CardProductoGeneral from '../cards/CardProductGeneral';
 
 const ProductosDestacados = () => {
     const [productos, setProductos] = useState([]);
@@ -121,15 +121,15 @@ const ProductosDestacados = () => {
         <div className="flex flex-col justify-center font-primary pb-5 bg-white">
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             {/* TITULO */}
-            <div className="text-center py-5 sm:py-20 px-8 mb-4 bg-[#202020]">
-                <h1 className="text-3xl text-white">Productos destacados</h1>
+            <div className="text-center py-5 sm:py-10 px-4 mb-4 bg-black">
+                <h1 className="text-3xl text-white">Nuevos productos</h1>
             </div>
             {/* CONTENEDOR DE CARDS */}
             <div className="grid grid-cols-2 gap-5 p-5 sm:flex items-center sm:flex-row justify-center overflow-y-auto bg-white">
                 {/* CARDS */}
                 {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                     productosDestacados.map((producto) => (
-                        <CardProductoDestacadoMini key={producto} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
+                        <CardProductoGeneral key={producto} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
                     ))
                 ) : (
                     <div className="flex justify-center items-center">

@@ -7,7 +7,7 @@ import Cart from '../shared.tienda/Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi'
 import { toast, Toaster } from 'react-hot-toast';
-import CardProductoCategoriaMini from '../cards/CardProductoCategoriaMini';
+import CardProductoGeneralEspecifico from '../cards/CardProductoGeneralEspecifico';
 import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
 
 const ProductosCategoria = () => {
@@ -89,16 +89,16 @@ const ProductosCategoria = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center font-primary bg-white'>
+        <div className='flex flex-col justify-center font-primary'>
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-            <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-4xl font-bold text-purple-600 first-letter:uppercase">{categoriaNombre}</h1>
+            <div className="bg-white text-center py-10 sm:py-20 px-8 mb-4">
+                <h1 className="text-4xl font-bold text-[#202020] uppercase">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 font-primary justify-center items-center gap-5 pb-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 font-primary justify-center items-center gap-5 pb-5">
                     {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
-                            <CardProductoCategoriaMini key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />
+                            <CardProductoGeneralEspecifico key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />
                         ))
                     ) : (
                         <div className='h-screen text-center w-screen flex justify-center items-center'>

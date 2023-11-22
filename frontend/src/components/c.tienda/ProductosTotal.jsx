@@ -6,7 +6,7 @@ import Cart from '../shared.tienda/Cart';
 import { Link } from 'react-router-dom';
 import { BiMessageSquareX } from 'react-icons/bi';
 import { toast, Toaster } from 'react-hot-toast';
-import CardProductoMini from '../cards/CardProductoMini';
+import CardProductoGeneral from '../cards/CardProductGeneral';
 import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
 
 const ProductosTotal = () => {
@@ -128,14 +128,14 @@ const ProductosTotal = () => {
     return (
         <div className="flex flex-col justify-center font-primary bg-white">
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-            <div className="bg-gray-200 text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-3xl text-purple-600">Todos los productos</h1>
+            <div className="bg-white text-center py-10 sm:py-20 px-8 mb-4">
+                <h1 className="text-4xl font-bold text-[#202020] uppercase">Todos los productos</h1>
             </div>
             <div className="flex justify-center">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 pb-5 gap-6 font-primary justify-center items-center ">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 font-primary justify-center items-center gap-5 pb-5">
                     {Array.isArray(productos) ? (
                         productos.map((producto) => (
-                            <CardProductoMini key={producto.id} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
+                            <CardProductoGeneral key={producto.id} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
                         ))
                     ) : (
                         <div className="flex justify-center items-center">

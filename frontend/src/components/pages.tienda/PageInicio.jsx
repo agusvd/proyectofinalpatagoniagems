@@ -12,12 +12,12 @@ import NavMini from '../shared.tienda/NavMini'
 const PageInicio = () => {
     return (
         <div>
-            <NavMini/>
-            <NavbarNormal/>
-            <NavbarMobile/>
             <Anuncio />
+            <NavMini />
+            <NavbarNormal />
+            <NavbarMobile />
             <Home />
-            <BannerCategoria/>
+            <BannerCategoria />
             <ProductosDestacados />
             <Footer />
         </div>

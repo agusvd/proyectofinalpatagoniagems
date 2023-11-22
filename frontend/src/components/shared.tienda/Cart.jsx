@@ -96,7 +96,7 @@ const Cart = ({ onClose }) => {
         <div className="fixed top-0 right-0 w-full sm:w-2/3 md:w-2/3 lg:w-1/3 h-screen font-primay bg-white">
             <header className="bg-white p-2 flex justify-between items-center">
                 <h2 className="text-[#202020] text-3xl">Carrito</h2>
-                <button className="text-[#202020] hover:text-purple-500 duration-300 hover:animate-rotate-x" onClick={onClose}>
+                <button className="text-[#202020] hover:text-purple-500 duration-300" onClick={onClose}>
                     <BiArrowFromLeft size={40} />
                 </button>
             </header>

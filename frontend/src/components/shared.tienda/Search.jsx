@@ -70,7 +70,7 @@ const Search = ({ onClose }) => {
                     <h2 className="text-[#202020] text-2xl">Buscar</h2>
                     <BiArrowFromLeft size={30} className="text-[#202020] cursor-pointer hover:text-purple-500" onClick={onClose} />
                 </div>
-                <div className='bg-whit p-2'>
+                <div className='bg-white p-2'>
                     <div className="flex items-center">
                         <input type="text" placeholder="Buscar" className="py-2 px-5 bg-gray-200 text-[#202020] outline-none w-full border-2 rounded-full mx-10" value={searchText} onChange={(e) => setSearchText(e.target.value)}
                             onKeyUp={handleSearch} />
@@ -80,7 +80,7 @@ const Search = ({ onClose }) => {
                 <div className='bg-white' onScroll={handleScroll}>
                     {searchText.trim() !== '' &&
                         (
-                            <div className='text-center border-t border-b p-2 shadow-lg bg-white'>
+                            <div className='text-center border-t border-b p-2 bg-white'>
                                 <h3 className='text-lg font-bold text-[#202020]'>Resultados de la búsqueda</h3>
                             </div>
                         )
