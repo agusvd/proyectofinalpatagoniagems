@@ -95,10 +95,10 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="h-full bg-white shadow-md font-primary">
-            <div className="p-2 h-4/5 overflow-y-auto">
+        <div className="h-full bg-white  font-primary">
+            <div className="p-2 overflow-y-auto">
                 <div>
-                    <h1 className='text-4xl pl-10'>Tu carrito</h1>
+                    <h1 className='text-4xl pl-10 text-black text-center'>Tu carrito</h1>
                 </div>
                 {carritoItems.length === 0 ? (
                     <div className="flex flex-col justify-center items-center m-2 gap-4">
@@ -109,26 +109,28 @@ const Cart = ({ onClose }) => {
                     </div>
                 ) : (
                     carritoItems.map((producto) => (
-                        <div className='p-2 w-full'>
+                        <div className='p-2 flex flex-col w-full justify-center items-center'>
                             <CardProductoCarritoGrande key={producto.id} producto={producto} onClose={onClose} carritoItem={carritoItems} cantidadProductos={cantidadProductos} carritoItems={carritoItems} actualizarProductoCarrito={actualizarProductoCarrito} eliminarProductoCarrito={eliminarProductoCarrito} />
                         </div>
                     ))
                 )}
             </div>
-            <div className='bg-[#202020]'>
+            <div className='bg-white w-full items-center justify-center flex flex-col'>
+
                 {carritoItems.length > 0 && (
-                    <div className="ml-2 items-center justify-end flex p-2 text-lg gap-5">
-                        <h1 className="text-white font-bold">Subtotal:</h1>
-                        <h2 className="text-white font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
+                    <div className="ml-2 items-center justify-center flex p-2 text-lg gap-5">
+                        <h1 className="text-black text-2xl">Total:</h1>
+                        <h2 className="text-black text-xl">${calcularPrecioTotalCarrito()} CLP</h2>
+                        {carritoItems.length > 0 && (
+                            <footer className="p-2 flex">
+                                <Link to="/pago" className="bg-purple-500 duration-300 ease-in-out text-white py-2 px-4 rounded hover:bg-green-500">
+                                    Proceder al pago
+                                </Link>
+                            </footer>
+                        )}
                     </div>
                 )}
-                {carritoItems.length > 0 && (
-                    <footer className="p-2 flex justify-end">
-                        <Link to="/pago" className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-green-500">
-                            Proceder al pago
-                        </Link>
-                    </footer>
-                )}
+
             </div>
         </div>
     );

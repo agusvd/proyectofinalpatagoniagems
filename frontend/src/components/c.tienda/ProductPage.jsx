@@ -9,9 +9,13 @@ import { BiMessageSquareX } from 'react-icons/bi';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { toast, Toaster } from 'react-hot-toast';
 import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { SpinnerCircular } from 'spinners-react';
+
 
 
 const ProductPage = () => {
+
     const [cantidad, setCantidad] = useState(1);
     const [producto, setProducto] = useState(null);
     const [carritoVisible, setCarritoVisible] = useState(false);
@@ -30,6 +34,7 @@ const ProductPage = () => {
                     setProducto(null);
                 } else {
                     setProducto(res.data[0]);
+                    console.log(producto)
                 }
             })
             .catch((err) => console.log(err));
@@ -46,18 +51,15 @@ const ProductPage = () => {
             setShowModal(true);
             return;
         }
-
         const productoExistente = carritoItems.find(item => item.nombre === producto.nombre);
         if (productoExistente) {
             toast.error('El producto ya está en el carrito');
             return;
         }
-
         // Obtener el ID del usuario del token
         const token = Cookies.get('token');
         const decodedToken = jwtDecode(token);
         const usuario_id = decodedToken.id;
-
         // Crear un objeto con los datos del carrito
         const datosCarrito = {
             usuario_id: usuario_id,
@@ -65,7 +67,7 @@ const ProductPage = () => {
             precio_total: producto.precio,
             cantidad_total: cantidad,
         };
-
+        //peticion
         axios
             .post('http://localhost:8000/carrito', datosCarrito)
             .then((res) => {
@@ -85,6 +87,48 @@ const ProductPage = () => {
             });
     };
 
+    // mercado pago
+
+    const [preferenceId, setPreferenceId] = useState(null)
+    const [isLoading, setIsLoading] = useState(false);
+
+    initMercadoPago("TEST-9e467044-7573-4752-9e22-6d63cbd13be4")
+
+    const createPreference = async () => {
+        try {
+            const response = await axios.post("http://localhost:8000/create_preference", {
+                descripcion: producto.nombre,
+                price: producto.precio,
+                quantity: cantidad,
+                currency_id: "CLP"
+            });
+
+            const { id } = response.data;
+            return id;
+
+        } catch (error) {
+            console.log(error.response.data);  // Muestra información del error en la consola
+            toast.error('Error al crear la preferencia');
+        }
+    };
+
+    const handleBuy = async () => {
+        setIsLoading(true);
+        const id = await createPreference()
+        if (id) {
+            setPreferenceId(id)
+        }
+    };
+    const renderSpinner = () => {
+        if (isLoading) {
+            return (
+                <div className="spinner-wrapper">
+                    <SpinnerCircular сolor='#009EE3' />
+                </div>
+            )
+        }
+    }
+
     if (producto === null) {
         return (
             <div>
@@ -98,8 +142,10 @@ const ProductPage = () => {
         );
     }
 
+
+
     return (
-        <div className='flex justify-center items-center h-full'>
+        <div className='flex justify-center items-center h-full bg-white font-primary'>
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             <div className="max-w-4xl mx-auto px-4 py-8 font-primary">
                 <div className="flex flex-col h-screen sm:flex-row">
@@ -108,8 +154,8 @@ const ProductPage = () => {
                     </div>
                     <div className="w-full lg:w-1/2 px-4 flex flex-col">
                         <p className="text-sm text-purple-600">PatagoniaGems</p>
-                        <h1 className="text-3xl capitalize">{producto.nombre}</h1>
-                        <h2 className="text-xl text-gray-600 capitalize">{producto.categoria}</h2>
+                        <h1 className="text-3xl capitalize text-black">{producto.nombre}</h1>
+                        <h2 className="text-xl text-black capitalize">{producto.categoria}</h2>
                         {(producto.cantidad_gramos > 0 || producto.cantidad_ml > 0) && (
                             <p className="text-lg text-gray-500 mb-5">
                                 {producto.cantidad_gramos && `Cantidad: ${producto.cantidad_gramos}g`}{' '}
@@ -133,6 +179,12 @@ const ProductPage = () => {
                                     <BiCart size={30} />
                                 </button>
                             </div>
+                        </div>
+                        <div className='flex w-full flex-col'>
+                            <button className='p-2 bg-black text-white text-xl rounded-md  active:bg-green-500 ' onClick={handleBuy}>
+                                Comprar
+                            </button>
+                            {preferenceId && <Wallet initialization={{ preferenceId }} />}
                         </div>
                         <div className="flex flex-col p-2 gap-2 border-t-2 border-b-2 justify-center sm:justify-normal sm:border-0 sm:gap-2">
                             <div className="sm:text-start text-center">

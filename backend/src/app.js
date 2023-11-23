@@ -11,6 +11,8 @@ import CarritoRoutes from './routes/Carrito.js'
 import PerfilRoutes from './routes/Perfil.js'
 import UsuariosRoutes from './routes/Usuarios.js'
 import BlogRoutes from './routes/Blog.js'
+import MercadoPagoRoutes from './routes/MercadoPago.js'
+
 
 const app = express();
 
@@ -37,6 +39,7 @@ app.use(CarritoRoutes);
 app.use(PerfilRoutes);
 app.use(UsuariosRoutes);
 app.use(BlogRoutes);
+app.use(MercadoPagoRoutes);
 
 
 

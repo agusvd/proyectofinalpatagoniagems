@@ -57,7 +57,7 @@ const NavMini = () => {
                             <div className='w-full flex flex-col sm:flex-row justify-center sm:justify-end sm:mr-32 items-center gap-2 sm:gap-10 text-sm'>
                                 <p className='nav2'>Hola {' ' + nombre + mensaje2}</p>
                                 {isAdmin === 'admin' && (
-                                    <Link to="/dashboard" className="nav">
+                                    <Link to="/dashboard" className="nav2">
                                         Dashboard
                                     </Link>
                                 )}
