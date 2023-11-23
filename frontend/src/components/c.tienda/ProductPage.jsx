@@ -147,11 +147,13 @@ const ProductPage = () => {
     return (
         <div className='flex justify-center items-center h-full bg-white font-primary'>
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-            <div className="max-w-4xl mx-auto px-4 py-8 font-primary">
-                <div className="flex flex-col h-screen sm:flex-row">
-                    <div className="w-[400px] h-[400px] lg:w-1/2 px-4 rounded-lg shadow-md p-1">
+            <div className="w-full mx-auto px-4 py-8 font-primary">
+                <div className="flex flex-col h-full lg:flex-row md:w-full justify-center items-center">
+                    {/* imagen */}
+                    <div className="md:w-[500px] sm:h-[700px] lg:w-1/3">
                         <img src={producto.imagen} alt="imagen" className="w-full h-full object-cover" />
                     </div>
+                    {/* Informacion */}
                     <div className="w-full lg:w-1/2 px-4 flex flex-col">
                         <p className="text-sm text-purple-600">PatagoniaGems</p>
                         <h1 className="text-3xl capitalize text-black">{producto.nombre}</h1>
@@ -164,7 +166,7 @@ const ProductPage = () => {
                         )}
                         <p className="text-lg text-gray-500 mb-5">${producto.precio} CLP</p>
                         <p className="text-lg text-jusitfy">{producto.descripcion}</p>
-                        <div className="flex items-center gap-5 text-center justify-between sm:justify-normal">
+                        <div className="flex items-center gap-5 text-center justify-between sm:justify-between">
                             <div className="flex">
                                 <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
                                     onClick={() => setCantidad(cantidad > 1 ? cantidad - 1 : 1)}>-

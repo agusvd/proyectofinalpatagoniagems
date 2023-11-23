@@ -2,7 +2,7 @@ import React from 'react'
 
 const Terminos = () => {
     return (
-        <div className='h-full font-primary'>
+        <div className='h-full font-primary bg-white text-black'>
             <div className='bg-gray-100 p-2'>
                 <h1 className="text-2xl text-purple-500 text-center font-bold mt-8 mb-8">Términos & Condiciones</h1>
             </div>

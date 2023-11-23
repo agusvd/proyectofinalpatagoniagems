@@ -42,8 +42,8 @@ const NavMini = () => {
     };
     return (
         <div className='w-full bg-gray-200 font-primary'>
-            <div className='flex flex-col sm:flex sm:flex-row items-center justify-center sm:justify-between w-full p-4 gap-5 sm:gap-0'>
-                <div className='flex gap-2 sm:ml-32'>
+            <div className='flex flex-col lg:flex lg:flex-row lg:justify-around w-full p-4 md:gap-5 sm:gap-0'>
+                <div className='flex gap-2 justify-center items-center'>
                     <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank">
                         <AiFillInstagram size={30} className="text-[#202020] hover:text-purple-500 duration-300 ease-in-out cursor-pointer" />
                     </a>
@@ -51,10 +51,10 @@ const NavMini = () => {
                         <AiFillFacebook size={30} className='text-[#202020] hover:text-purple-500 duration-300 ease-in-out cursor-pointer' />
                     </a>
                 </div>
-                <div className='w-full flex items-center '>
+                <div className=' flex items-center justify-center'>
                     {
                         auth ?
-                            <div className='w-full flex flex-col sm:flex-row justify-center sm:justify-end sm:mr-32 items-center gap-2 sm:gap-10 text-sm'>
+                            <div className='w-full flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-10 text-sm'>
                                 <p className='nav2'>Hola {' ' + nombre + mensaje2}</p>
                                 {isAdmin === 'admin' && (
                                     <Link to="/dashboard" className="nav2">

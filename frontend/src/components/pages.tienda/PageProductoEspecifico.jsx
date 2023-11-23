@@ -9,7 +9,7 @@ import NavMini from '../shared.tienda/NavMini'
 
 const PageProductoEspecifico = () => {
     return (
-        <div>
+        <div className='bg-white'>
             <Anuncio />
             <NavMini/>
             <NavbarNormal/>

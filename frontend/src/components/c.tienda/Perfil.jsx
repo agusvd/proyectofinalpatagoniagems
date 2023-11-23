@@ -58,10 +58,9 @@ const Perfil = () => {
     return (
         <div className='h-screen flex items-center bg-white w-full font-primary'>
             {/* Navegacion */}
-            <div className='flex flex-col h-full sm:p-10 bg-gray-200 justify-start items-center'>
-                <div className='text-[#202020] flex justify-center items-center'>
+            <div className='flex flex-col h-full sm:p-10 bg-black justify-start items-center'>
+                <div className='text-black flex justify-center items-center'>
                     <BiUser size={50} />
-                    <p></p>
                 </div>
                 <div className='flex flex-col gap-5 p-2 text-start pt-10'>
                     <div className='flex'>
@@ -80,7 +79,7 @@ const Perfil = () => {
             <div className='flex flex-col h-full justify-start items-start w-full'>
                 {step === 1 && (
                     <div className='sm:m-10 p-5 flex flex-col'>
-                        <h1 className='text-5xl pb-10'>Perfil</h1>
+                        <h1 className='text-5xl pb-10 text-black'>Perfil</h1>
                         <div className='border-2 border-[#202020] rounded-md'>
                             <h2 className='text-gray-500 font-bold text-lg pl-1'>Datos personales</h2>
                             <div className='flex flex-col gap-2 p-2'>
@@ -106,7 +105,7 @@ const Perfil = () => {
                             {/* card de direcciones */}
                             <div className='flex justify-around border-2 text-[#202020] border-[#202020] p-2 gap-52 hover:bg-[#202020] hover:text-white duration-300 hover:border-[#202020] ease-in-out group transition-all rounded-md'>
                                 <div className='flex flex-col justify-start items-start p-2 gap-2'>
-                                    <h2>Nombre completo..</h2>
+                                    <h2>{usuario.nombre}</h2>
                                     <h2 className='text-sm'>Chile</h2>
                                     <div className='text-sm border-2 p-1 border-[#202020] group-hover:bg-[#202020] group-hover:text-white group-hover:border-white duration-300 ease-in-out transition-all rounded-md'>
                                         Facturación

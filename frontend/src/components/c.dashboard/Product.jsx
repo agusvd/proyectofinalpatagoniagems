@@ -61,7 +61,7 @@ const Product = () => {
     };
 
     return (
-        <div className="h-screen w-full overflow-auto">
+        <div className="h-screen w-full overflow-auto text-black">
             <form className="flex flex-col bg-white" onSubmit={handleSubmit}>
                 <h2 className='text-4xl text-gray-500 font-extrabold leading-none text-center pt-10'>Agregar un nuevo producto</h2>
                 <div className='flex flex-col justify-center items-center'>
