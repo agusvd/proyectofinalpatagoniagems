@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-07-2023 a las 21:53:57
+-- Tiempo de generación: 23-11-2023 a las 22:24:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `img` varchar(1000) DEFAULT NULL,
+  `fechaPublicacion` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `blog`
+--
+
+INSERT INTO `blog` (`id`, `titulo`, `descripcion`, `img`, `fechaPublicacion`) VALUES
+(1, 'Que es patagoniaGems?', '<p>Es una tienda muy interesante, con muchos productos</p>', NULL, NULL),
+(2, 'nuevo blog pa', '<p>asdjoasjkdasafjafjajksdkakdjsjhdksad hola</p>', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/1.jpeg?alt=media&token=01d5bc7d-7359-4146-85ef-64320225d283', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `carrito`
 --
 
@@ -40,9 +62,11 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`id`, `usuario_id`, `producto_id`, `precio_total`, `cantidad_total`) VALUES
-(226, 4, 49, 9990000, 1),
-(227, 4, 53, 2000000, 1),
-(233, 2, 47, 2500000, 1);
+(249, 4, 45, 290000, 1),
+(286, 2, 45, 290000, 1),
+(292, 2, 46, 3400000, 1),
+(313, 2, 68, 8000, 1),
+(314, 1, 45, 30000, 1);
 
 -- --------------------------------------------------------
 
@@ -52,19 +76,27 @@ INSERT INTO `carrito` (`id`, `usuario_id`, `producto_id`, `precio_total`, `canti
 
 CREATE TABLE `categoria_id` (
   `id` int(11) NOT NULL,
-  `categoria` varchar(150) NOT NULL
+  `categoria` varchar(150) NOT NULL,
+  `imagen` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categoria_id`
 --
 
-INSERT INTO `categoria_id` (`id`, `categoria`) VALUES
-(1, 'Nike Dunks'),
-(6, 'categoria 2'),
-(8, 'Jabones'),
-(9, 'Joyas'),
-(10, 'Cartas');
+INSERT INTO `categoria_id` (`id`, `categoria`, `imagen`) VALUES
+(1, 'Nike', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/a.jpeg?alt=media&token=416e5322-5019-4da5-b995-f1ecbb3d13e1'),
+(18, 'Aromaterapia Esotérica', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/WhatsApp%20Image%202023-11-21%20at%2023.52.14.jpeg?alt=media&token=c17c8c7b-1364-431f-8ad9-94f8dad400d6'),
+(27, 'Aromaterapia Terapéutica', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/1.jpeg?alt=media&token=01d5bc7d-7359-4146-85ef-64320225d283'),
+(28, 'Cosmética Natural Emocional', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/2.jpeg?alt=media&token=ec303be6-cf1d-40f7-aa01-82025bd2e2ee'),
+(29, 'Joyas y Amuletos ', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/3.jpeg?alt=media&token=c8234f34-4ff4-49f8-a4fd-78749c9d8119'),
+(30, 'Accesorios mágicos', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10'),
+(31, 'Deco Energía', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10'),
+(32, 'Inciensos y difusores ', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10'),
+(33, 'Artículos para Terapéutas', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10'),
+(34, 'Tableros y rejillas energéticas', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10'),
+(35, 'Tarot y oráculos ', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10'),
+(36, 'Muñecos mágicos Espirituales ', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/4.jpeg?alt=media&token=4ea8b494-7f82-4f20-956f-1c72b4b38d10');
 
 -- --------------------------------------------------------
 
@@ -75,36 +107,37 @@ INSERT INTO `categoria_id` (`id`, `categoria`) VALUES
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `precio` int(11) NOT NULL,
-  `stock` int(11) NOT NULL,
   `categoria_id` int(11) NOT NULL,
-  `es_destacado` enum('si','no') NOT NULL DEFAULT 'no',
-  `imagen` varchar(1000) NOT NULL
+  `cantidad_gramos` int(11) DEFAULT NULL,
+  `cantidad_ml` int(11) DEFAULT NULL,
+  `stock` int(11) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `imagen` varchar(1000) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `es_destacado` enum('si','no') NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `stock`, `categoria_id`, `es_destacado`, `imagen`) VALUES
-(43, 'Nike dunk  panda', 'Tenis Dunk Low Retro en cuero y goma de color negro y blanco de NIKE con puntera redonda, suela plana de goma, cierre con agujetas en la parte delantera, plantilla con logo, detalle del logo y Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 120000, 5, 1, 'si', 'https://cdn-images.farfetch-contents.com/16/40/35/69/16403569_31750946_1000.jpg'),
-(44, 'SB Dunk Low Grateful Dead-Green Bear', 'SB Dunk Low Grateful Dead-Green Bear\n\nCaracterísticas\nverde\nparche del logo en la lengüeta\ncierre con agujetas en la parte delantera\ndetalle del logo\npuntera redonda\nsuela dentada de goma\nEstos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo', 1300000, 2, 1, 'no', 'https://cdn-images.farfetch-contents.com/15/64/58/72/15645872_28291164_1000.jpg'),
-(45, 'Dunk High SP de Nike x UNDEFEATED', 'tenis Dunk High SP de Nike x UNDEFEATED \n\n\nDetalle del logo, logo en relieve en la parte posterior, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Material: Gamuza. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..\n', 290000, 10, 1, 'no', 'https://cdn-images.farfetch-contents.com/17/37/23/06/17372306_36102523_1000.jpg'),
-(46, 'Nike x StrangeLove Dunk Low SB', 'Rojo, rosa, piel artificial, detalle del logo Swoosh característico, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, logo bordado en la parte posterior, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 3400000, 3, 1, 'si', 'https://cdn-images.farfetch-contents.com/15/16/56/64/15165664_40786743_1000.jpg'),
-(47, 'Air Force 1 Low MCA', 'Características\nazul\npuntera redonda\ncierre con lazo\nsuela plana de goma\nlogo de Nike\nEstos estilos son suministrados por un marketplace de zapatillas premium, el cual ofrece el calzado más codiciado y difícil de encontrar de todo el mundo.', 2500000, 4, 1, 'no', 'https://cdn-images.farfetch-contents.com/14/19/31/41/14193141_20010785_1000.jpg'),
-(48, 'bajos Nike Dunk x Off-White', 'Diseño a paneles, plantilla con logo, detalle del logo y diseño con perforaciones. Material: Cuero. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 980000, 5, 1, 'no', 'https://cdn-images.farfetch-contents.com/17/41/12/15/17411215_36029752_1000.jpg'),
-(49, 'Dunk SB Low Pro QS de Nike x Parra', 'Detalle del logo, logo estampado en la parte posterior, panel en contraste, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 9990000, 1, 1, 'si', 'https://cdn-images.farfetch-contents.com/17/57/17/52/17571752_36599119_1000.jpg'),
-(50, ' SB Dunk Low \"\"Gardenia\"\" de Nike x Fly Streetwear', 'Blanco, gris claro, azul real, cuero, panel de gamuza, detalle del logo Swoosh característico, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, contrafuerte en contraste, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..\n', 250000, 10, 1, 'no', 'https://cdn-images.farfetch-contents.com/20/08/29/97/20082997_45110786_1000.jpg'),
-(51, 'Dunk Mid de Nike x Social Status', 'Detalle del logo, panel en contraste, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 150000, 4, 1, 'no', 'https://cdn-images.farfetch-contents.com/17/30/50/30/17305030_36898669_1000.jpg'),
-(52, 'Dunk Hi SP', 'Detalle del logo, estampado de eslogan en el lateral, panel en contraste, agujetas en contraste, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, diseño por el tobillo, lengüeta con logo en la parte posterior, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 120000, 10, 1, 'no', 'https://cdn-images.farfetch-contents.com/17/08/35/27/17083527_34534020_1000.jpg'),
-(53, 'SB Dunk de Nike x Travis Scott', 'Características\nnegro/azul\ndetalle del logo Swoosh característico\npuntera redonda\ncierre con agujetas en la parte delantera\nsuela de goma\nEstos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 2000000, 5, 1, 'si', 'https://cdn-images.farfetch-contents.com/15/11/07/25/15110725_25718039_1000.jpg'),
-(54, ' Dunk Low SP \"\"Canteen\"\" de Nike x Undefeated Dunk Low SP ', 'Diseño a paneles, detalle del logo Swoosh característico, logo bordado en la parte posterior, logo bordado en el lateral, parche del logo en la lengüeta, puntera redonda, cierre con agujetas en la parte delantera y suela de goma. Material: Cuero. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 220000, 10, 1, 'no', 'https://cdn-images.farfetch-contents.com/17/02/38/32/17023832_35780735_1000.jpg'),
-(55, 'Dunk High Pro SB', 'Tenis Dunk High Pro SB en lona de color multicolor de Nike con puntera redonda, suela de goma, logo Nike, corte al tobillo, cierre con cordones en la parte delantera, parche del logo en la lengüeta y lengüeta en la parte posterior. Estos estilos llegan a nosotros gracias a un marketplace de tenis especializados y piezas difíciles de conseguir. Cada producto es rigurosamente inspeccionado por expertos que garantizan su autenticidad.', 1500000, 2, 1, 'no', 'https://cdn-images.farfetch-contents.com/14/46/37/00/14463700_21227359_1000.jpg'),
-(56, 'Dunk de Nike x Off-White', 'Negro, cuero, detalle del logo, logo estampado en la parte posterior, puntera redonda, cierre con agujetas en la parte delantera, plantilla con logo y suela de goma.', 1200000, 4, 1, 'no', 'https://cdn-images.farfetch-contents.com/17/24/11/61/17241161_35307052_1000.jpg'),
-(57, 'Dunk Low Premium SB', 'Tenis Dunk Low Premium SB en cuero de Nike con puntera redonda, suela de goma, cierre con lazo y logo Nike. Estos estilos llegan a nosotros gracias a un marketplace de tenis especializados y piezas difíciles de conseguir. Cada producto es rigurosamente inspeccionado por expertos que garantizan su autenticidad.', 3100000, 2, 1, 'no', 'https://cdn-images.farfetch-contents.com/14/55/35/73/14553573_22373674_1000.jpg'),
-(58, 'Nike Vulcanized Off White', 'Tenis bajos Vulcanized en algodón de color blanco y negro de OFF-WHITE con etiqueta Zip Tie característica, motivo Arrows característico, estampado a rayas Diag característico, logo estampado en el lateral, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo, suela de goma vulcanizada y Debido al proceso de teñido utilizado, este producto no debe entrar en contacto con agua..', 140000, 10, 1, 'si', 'https://cdn-images.farfetch-contents.com/17/59/36/78/17593678_37287546_1000.jpg'),
-(59, 'nike amarillo', 'hola', 10000, 2, 1, 'no', 'https://cdn-images.farfetch-contents.com/20/03/32/84/20033284_44995609_1000.jpg');
+INSERT INTO `productos` (`id`, `nombre`, `categoria_id`, `cantidad_gramos`, `cantidad_ml`, `stock`, `descripcion`, `imagen`, `precio`, `es_destacado`) VALUES
+(43, 'Nike dunk  panda', 1, NULL, NULL, 5, 'Tenis Dunk Low Retro en cuero y goma de color negro y blanco de NIKE con puntera redonda, suela plana de goma, cierre con agujetas en la parte delantera, plantilla con logo, detalle del logo y Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/16/40/35/69/16403569_31750946_1000.jpg', 10000, 'no'),
+(45, 'Dunk High SP de Nike x UNDEFEATED', 1, NULL, NULL, 10, 'tenis Dunk High SP de Nike x UNDEFEATED \n\n\nDetalle del logo, logo en relieve en la parte posterior, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Material: Gamuza. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..\n', 'https://cdn-images.farfetch-contents.com/17/37/23/06/17372306_36102523_1000.jpg', 30000, 'no'),
+(46, 'Nike x StrangeLove Dunk Low SB', 1, NULL, NULL, 3, 'Rojo, rosa, piel artificial, detalle del logo Swoosh característico, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, logo bordado en la parte posterior, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 'https://cdn-images.farfetch-contents.com/15/16/56/64/15165664_40786743_1000.jpg', 25000, 'si'),
+(47, 'Air Force 1 Low MCA', 1, NULL, NULL, 4, 'Características\nazul\npuntera redonda\ncierre con lazo\nsuela plana de goma\nlogo de Nike\nEstos estilos son suministrados por un marketplace de zapatillas premium, el cual ofrece el calzado más codiciado y difícil de encontrar de todo el mundo.', 'https://cdn-images.farfetch-contents.com/14/19/31/41/14193141_20010785_1000.jpg', 25000, 'no'),
+(48, 'bajos Nike Dunk x Off-White', 1, NULL, NULL, 5, 'Diseño a paneles, plantilla con logo, detalle del logo y diseño con perforaciones. Material: Cuero. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/17/41/12/15/17411215_36029752_1000.jpg', 98000, 'no'),
+(49, 'Dunk SB Low Pro QS de Nike x Parra', 1, NULL, NULL, 1, 'Detalle del logo, logo estampado en la parte posterior, panel en contraste, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/17/57/17/52/17571752_36599119_1000.jpg', 80000, 'si'),
+(50, ' SB Dunk Low \"\"Gardenia\"\" de Nike x Fly Streetwear', 1, NULL, NULL, 10, 'Blanco, gris claro, azul real, cuero, panel de gamuza, detalle del logo Swoosh característico, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, contrafuerte en contraste, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..\n', 'https://cdn-images.farfetch-contents.com/20/08/29/97/20082997_45110786_1000.jpg', 25000, 'no'),
+(51, 'Dunk Mid de Nike x Social Status', 1, NULL, NULL, 4, 'Detalle del logo, panel en contraste, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/17/30/50/30/17305030_36898669_1000.jpg', 15000, 'no'),
+(52, 'Dunk Hi SP', 1, NULL, NULL, 10, 'Detalle del logo, estampado de eslogan en el lateral, panel en contraste, agujetas en contraste, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, diseño por el tobillo, lengüeta con logo en la parte posterior, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 'https://cdn-images.farfetch-contents.com/17/08/35/27/17083527_34534020_1000.jpg', 40000, 'no'),
+(53, 'SB Dunk de Nike x Travis Scott', 1, NULL, NULL, 5, 'Características\nnegro/azul\ndetalle del logo Swoosh característico\npuntera redonda\ncierre con agujetas en la parte delantera\nsuela de goma\nEstos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 'https://cdn-images.farfetch-contents.com/15/11/07/25/15110725_25718039_1000.jpg', 60000, 'si'),
+(54, ' Dunk Low SP \"\"Canteen\"\" de Nike x Undefeated Dunk Low SP ', 1, NULL, NULL, 10, 'Diseño a paneles, detalle del logo Swoosh característico, logo bordado en la parte posterior, logo bordado en el lateral, parche del logo en la lengüeta, puntera redonda, cierre con agujetas en la parte delantera y suela de goma. Material: Cuero. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/17/02/38/32/17023832_35780735_1000.jpg', 40000, 'no'),
+(55, 'Dunk High Pro SB', 1, NULL, NULL, 2, 'Tenis Dunk High Pro SB en lona de color multicolor de Nike con puntera redonda, suela de goma, logo Nike, corte al tobillo, cierre con cordones en la parte delantera, parche del logo en la lengüeta y lengüeta en la parte posterior. Estos estilos llegan a nosotros gracias a un marketplace de tenis especializados y piezas difíciles de conseguir. Cada producto es rigurosamente inspeccionado por expertos que garantizan su autenticidad.', 'https://cdn-images.farfetch-contents.com/14/46/37/00/14463700_21227359_1000.jpg', 30000, 'no'),
+(56, 'Dunk de Nike x Off-White', 1, NULL, NULL, 4, 'Negro, cuero, detalle del logo, logo estampado en la parte posterior, puntera redonda, cierre con agujetas en la parte delantera, plantilla con logo y suela de goma.', 'https://cdn-images.farfetch-contents.com/17/24/11/61/17241161_35307052_1000.jpg', 70000, 'no'),
+(57, 'Dunk Low Premium SB', 1, NULL, NULL, 2, 'Tenis Dunk Low Premium SB en cuero de Nike con puntera redonda, suela de goma, cierre con lazo y logo Nike. Estos estilos llegan a nosotros gracias a un marketplace de tenis especializados y piezas difíciles de conseguir. Cada producto es rigurosamente inspeccionado por expertos que garantizan su autenticidad.', 'https://cdn-images.farfetch-contents.com/14/55/35/73/14553573_22373674_1000.jpg', 40000, 'no'),
+(58, 'Nike Vulcanized Off White', 1, NULL, NULL, 10, 'Tenis bajos Vulcanized en algodón de color blanco y negro de OFF-WHITE con etiqueta Zip Tie característica, motivo Arrows característico, estampado a rayas Diag característico, logo estampado en el lateral, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo, suela de goma vulcanizada y Debido al proceso de teñido utilizado, este producto no debe entrar en contacto con agua..', 'https://cdn-images.farfetch-contents.com/17/59/36/78/17593678_37287546_1000.jpg', 30000, 'si'),
+(68, 'milanesa', 18, NULL, NULL, 10, 'una milanesa con jamon y queso', 'https://www.lecturas.com/recetas/medio/2022/09/06/paso_a_paso_para_hacer_milanesa_de_cerdo_con_arroz_resultado_final_6e9669e2_1200x630.jpg', 8000, 'no');
 
 -- --------------------------------------------------------
 
@@ -143,6 +176,12 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `rol
 --
 
 --
+-- Indices de la tabla `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `carrito`
 --
 ALTER TABLE `carrito`
@@ -174,22 +213,28 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=315;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_id`
 --
 ALTER TABLE `categoria_id`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
