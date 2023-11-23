@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaInstagram } from 'react-icons/fa'
-import { AiFillFacebook, AiOutlineShopping, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineShopping, AiOutlineSearch } from 'react-icons/ai'
 import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
@@ -73,19 +72,19 @@ const NavbarNormal = () => {
 
     return (
         <div className='sticky top-0 z-10 font-primary'>
-            <div className='hidden bg-gray-200 w-full sm:flex sm:flex-col justify-center items-center p-4 h-[100px]'>
+            <div className='hidden bg-black w-full sm:flex sm:flex-col justify-center items-center p-4 h-[100px]'>
                 <div className='flex items-center justify-around w-full p-1'>
                     <div className='flex items-center justify-center text-center'>
                         <div className='flex justify-center gap-5'>
                             <div className='flex items-center justify-center'>
-                                <Link to="/" className='text-black font-bold text-center text-2xl hover:text-purple-600'>PatagoniaGems</Link>
+                                <Link to="/" className='text-white font-bold text-center text-2xl hover:text-purple-600'>PatagoniaGems</Link>
                             </div>
-                            <div className="dropdown dropdown-hover text-black text-xl py-2">
-                            <Link to='/tienda' className={`text-black text-xl py-2 ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-black'}`}>Tienda</Link>
-                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <div className="dropdown dropdown-hover text-white text-xl py-2">
+                            <Link to='/tienda' className={` nav text-xl py-2 ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-black rounded-box w-52">
                                     {categorias.map(categoria => (
                                         <li key={categoria.id}>
-                                            <Link to={`/tienda/${categoria.id}`}>
+                                            <Link to={`/tienda/${categoria.id}`} className='text-white'>
                                                 {categoria.categoria}
                                             </Link>
                                         </li>
@@ -95,21 +94,21 @@ const NavbarNormal = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <Link to='/blogs' className={`text-black text-xl py-2 ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-black'}`}>
+                            <Link to='/blogs' className={`text-xl py-2 ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-white'}`}>
                                 <h2 className='nav'>Blogs</h2>
                             </Link>
 
-                            <Link className={`text-black text-xl py-2 ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-black'}`}>
+                            <Link className={` text-xl py-2 ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-white'}`}>
                                 <h2 className='nav'>Contacto</h2>
                             </Link>
-                            <Link className={`text-black text-xl py-2 ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-black'}`}>
+                            <Link className={` text-xl py-2 ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-white'}`}>
                                 <h2 className='nav'>Nosotros</h2>
                             </Link>
                         </div>
                     </div>
                     <div className='flex gap-2'>
                         <button onClick={handleOpenSearchClick}>
-                            <AiOutlineSearch size={35} className='text-[#202020] hover:scale-110 duration-300' />
+                            <AiOutlineSearch size={35} className='text-white hover:scale-110 duration-300' />
                         </button>
                         {searchVisible && (
                             <div id='closeOut' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>
@@ -117,7 +116,7 @@ const NavbarNormal = () => {
                             </div>
                         )}
                         <button onClick={handleOpenCarritoClick}>
-                            <AiOutlineShopping size={35} className='text-[#202020] hover:scale-110 duration-300' />
+                            <AiOutlineShopping size={35} className='text-white hover:scale-110 duration-300' />
                         </button>
                         {carritoVisible && (
                             <div id='closeOut' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>

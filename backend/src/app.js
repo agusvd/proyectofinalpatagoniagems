@@ -10,6 +10,7 @@ import ProductosRoutes from './routes/Productos.js'
 import CarritoRoutes from './routes/Carrito.js'
 import PerfilRoutes from './routes/Perfil.js'
 import UsuariosRoutes from './routes/Usuarios.js'
+import BlogRoutes from './routes/Blog.js'
 
 const app = express();
 
@@ -34,7 +35,8 @@ app.use(DashboardRouter);
 app.use(ProductosRoutes);
 app.use(CarritoRoutes);
 app.use(PerfilRoutes);
-app.use(UsuariosRoutes)
+app.use(UsuariosRoutes);
+app.use(BlogRoutes);
 
 
 

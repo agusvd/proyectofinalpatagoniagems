@@ -23,7 +23,7 @@ const TablaInventario = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get('http://localhost:8000/categorias')
+            .get('http://localhost:8000/dashboard/categorias')
             .then((res) => {
                 setCategorias(res.data);
                 console.log('Categorías cargadas:', res.data);

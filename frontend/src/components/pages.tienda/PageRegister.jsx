@@ -52,21 +52,21 @@ const PageRegister = () => {
                     <div className='col-span-2 sm:col-span-1'>
                         <div>
                             <label className="block mb-2 text-purple-600 float-left">Nombre</label>
-                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none" type="text" name="apellido" onChange={e => setValues({ ...values, nombre: e.target.value })} placeholder="Escriba su nombre" />
+                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 bg-white border-gray-300 outline-none" type="text" name="apellido" onChange={e => setValues({ ...values, nombre: e.target.value })} placeholder="Escriba su nombre" />
                         </div>
                         <div>
                             <label className="block mb-2 text-purple-600">Apellido</label>
-                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none" type="text" name="apellido" onChange={e => setValues({ ...values, apellido: e.target.value })} placeholder="Escriba su apellido" />
+                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 bg-white border-gray-300 outline-none" type="text" name="apellido" onChange={e => setValues({ ...values, apellido: e.target.value })} placeholder="Escriba su apellido" />
                         </div>
                     </div>
                     <div className='col-span-2 sm:col-span-1'>
                         <div>
                             <label className="block mb-2 text-purple-600">Email</label>
-                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none" type="email" name="email" onChange={e => setValues({ ...values, email: e.target.value })} placeholder="Escriba su correo electrónico" />
+                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 bg-white border-gray-300 outline-none" type="email" name="email" onChange={e => setValues({ ...values, email: e.target.value })} placeholder="Escriba su correo electrónico" />
                         </div>
                         <div>
                             <label className="block mb-2 text-purple-600">Contraseña</label>
-                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 border-gray-300 outline-none" type="password" onChange={e => setValues({ ...values, contraseña: e.target.value })} placeholder="Escriba su contraseña" />
+                            <input required className="w-full p-2 mb-6 text-purple-600 border-b-2 bg-white border-gray-300 outline-none" type="password" onChange={e => setValues({ ...values, contraseña: e.target.value })} placeholder="Escriba su contraseña" />
                         </div>
                     </div>
                     <div className='col-span-2'>

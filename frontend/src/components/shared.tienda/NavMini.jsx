@@ -55,20 +55,20 @@ const NavMini = () => {
                     {
                         auth ?
                             <div className='w-full flex flex-col sm:flex-row justify-center sm:justify-end sm:mr-32 items-center gap-2 sm:gap-10 text-sm'>
-                                <p className='nav'>Hola {' ' + nombre + mensaje2}</p>
+                                <p className='nav2'>Hola {' ' + nombre + mensaje2}</p>
                                 {isAdmin === 'admin' && (
                                     <Link to="/dashboard" className="nav">
                                         Dashboard
                                     </Link>
                                 )}
-                                <Link to={`/perfil/${usuarioId}`} className="nav">Perfil</Link>
-                                <Link className="nav" onClick={handleDelete}>Cerrar sesion</Link>
+                                <Link to={`/perfil/${usuarioId}`} className="nav2">Perfil</Link>
+                                <Link className="nav2" onClick={handleDelete}>Cerrar sesion</Link>
 
                             </div>
                             :
                             <div className='w-full flex justify-end mr-32 items-center gap-10 text-sm'>
-                                <Link to="/login" className="nav">Iniciar sesion</Link>
-                                <Link to="/register" className="nav">Registrarse</Link>
+                                <Link to="/login" className="nav2">Iniciar sesion</Link>
+                                <Link to="/register" className="nav2">Registrarse</Link>
                             </div>
                     }
                 </div>

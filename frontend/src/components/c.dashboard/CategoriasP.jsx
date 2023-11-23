@@ -104,7 +104,7 @@ const CategoriasP = () => {
 
 
     return (
-        <div className="flex flex-col h-screen bg-white p-2">
+        <div className="flex flex-col h-screen bg-white p-2 overflow-x-auto">
             <Toaster position="top-right" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             {/* Crear categoria */}
             <form onSubmit={handleSubmit} className="mb-4">
@@ -136,35 +136,38 @@ const CategoriasP = () => {
                 </div>
             </form>
             {/* Ver categorias */}
-            <div className="h-screen w-full overflow-hidden">
-                <div className='flex gap-2 sm:ml-5 sm:mr-5'>
-                    {categorias.length > 0 ? (
-                        categorias.map((categoria) => (
-                            <div key={categoria.id} className=''>
-                                <div className='p-2 bg-gray-200 w-[300px] h-[300px] rounded-lg'>
-                                    <div className='text-2xl text-center'>
-                                        <h2>{categoria.categoria}</h2>
-                                    </div>
-                                    <div className='w-full h-[200px]'>
-                                        <img src={categoria.imagen} className='w-full h-full' />
-                                    </div>
-                                    <div className='flex justify-center items-center'>
-                                        <button className='p-2 hover:text-red-500 duration-300 ease-in-out'
-                                            onClick={() => handleDelete(categoria.id)}>
-                                            <BiTrash size={40} />
-                                        </button>
-                                        <Link to={`/dashboard/categorias/actualizar/${categoria.id}`} className='p-2 hover:text-purple-600 duration-300'>
-                                            <BiEdit size={40} />
-                                        </Link>
+            <div className="w-full h-full ">
+                <div className='flex justify-center items-center'>
+
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:ml-5 sm:mr-5'>
+                        {categorias.length > 0 ? (
+                            categorias.map((categoria) => (
+                                <div key={categoria.id} className=''>
+                                    <div className='p-2 bg-gray-200 w-[400px] h-[500px] rounded-lg'>
+                                        <div className='text-2xl text-center h-[100px]'>
+                                            <h2>{categoria.categoria}</h2>
+                                        </div>
+                                        <div className='w-full h-[300px]'>
+                                            <img src={categoria.imagen} className='w-full h-full' />
+                                        </div>
+                                        <div className='flex justify-center items-center h-[100px]'>
+                                            <button className='p-2 hover:text-red-500 duration-300 ease-in-out'
+                                                onClick={() => handleDelete(categoria.id)}>
+                                                <BiTrash size={40} />
+                                            </button>
+                                            <Link to={`/dashboard/categorias/actualizar/${categoria.id}`} className='p-2 hover:text-purple-600 duration-300'>
+                                                <BiEdit size={40} />
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p>
-                            No hay categegorias
-                        </p>
-                    )}
+                            ))
+                        ) : (
+                            <p>
+                                No hay categegorias
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

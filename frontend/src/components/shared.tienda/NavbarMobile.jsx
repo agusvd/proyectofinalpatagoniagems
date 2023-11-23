@@ -29,7 +29,6 @@ const NavbarMobile = ({ onClose }) => {
                     setIsAdmin(res.data.role)
                 } else {
                     setAuth(false);
-                    setMessage(res.data.Error);
                 }
             })
             .catch(err => console.log(err));

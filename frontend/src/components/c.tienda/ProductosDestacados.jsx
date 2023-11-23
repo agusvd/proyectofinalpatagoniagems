@@ -118,26 +118,28 @@ const ProductosDestacados = () => {
     );
 
     return (
-        <div className="flex flex-col justify-center font-primary pb-5 bg-white">
+        <div className="flex flex-col justify-center font-primary bg-white pt-10">
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             {/* TITULO */}
-            <div className="text-center py-5 sm:py-10 px-4 mb-4 bg-black">
-                <h1 className="text-3xl text-white">Nuevos productos</h1>
+            <div className="text-center py-5 px-4 bg-white">
+                <h1 className="text-4xl text-[#202020] font-bold">Nuevos productos</h1>
             </div>
             {/* CONTENEDOR DE CARDS */}
-            <div className="grid grid-cols-2 gap-5 p-5 sm:flex items-center sm:flex-row justify-center overflow-y-auto bg-white">
-                {/* CARDS */}
-                {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
-                    productosDestacados.map((producto) => (
-                        <CardProductoGeneral key={producto} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
-                    ))
-                ) : (
-                    <div className="flex justify-center items-center">
-                        <h1 className="text-center text-3xl">
-                            No hay productos destacados disponibles.
-                        </h1>
-                    </div>
-                )}
+            <div className='w-full flex justify-center items-center'>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-5 items-centerjustify-center overflow-y-auto bg-white">
+                    {/* CARDS */}
+                    {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
+                        productosDestacados.map((producto) => (
+                            <CardProductoGeneral key={producto} producto={producto} getCategoriaNombre={getCategoriaNombre} handleAgregarCarro={handleAgregarCarro} />
+                        ))
+                    ) : (
+                        <div className="flex justify-center items-center">
+                            <h1 className="text-center text-3xl">
+                                No hay productos destacados disponibles.
+                            </h1>
+                        </div>
+                    )}
+                </div>
             </div>
             {carritoVisible && (
                 <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">

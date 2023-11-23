@@ -27,6 +27,8 @@ import PrivateRoute from './utils/PrivateRoute';
 {/* Pagina blog */}
 import PageBlogInicio from './components/pages.blog/PageBlogInicio';
 import PageActualizarCategoria from './components/pages.dashboard/PageActualizarCategoria';
+import PageBlogNuevo from './components/pages.blog/PageBlogNuevo';
+import PageBlogPost from './components/pages.blog/PageBlogPost';
 
 
 
@@ -48,6 +50,10 @@ const App = () => {
           <Route path='/blogs' element={<PageBlogInicio />} />
           <Route path="/404" element={<Error />} />
           <Route path="*" element={<Navigate to="/404" />} />
+          <Route path='/blog/post/:id' element={<PageBlogPost />}/>
+          <Route exact path="/blog/nuevo" element={<PrivateRoute />}>
+            <Route exact path="/blog/nuevo" element={<PageBlogNuevo />} />
+          </Route>
           <Route exact path="/dashboard" element={<PrivateRoute />}>
             <Route exact path="/dashboard" element={<Dashboard />} />
           </Route>

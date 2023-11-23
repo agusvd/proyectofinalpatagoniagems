@@ -31,11 +31,21 @@
 }
 
 .nav{
-    @apply relative tracking-[1px] text-black hover:text-purple-600
+    @apply relative tracking-[1px] text-white hover:text-purple-600
 }
 .nav::after{
     @apply content-[''] bg-purple-600 h-[3px] w-[0%] -bottom-[5px] rounded-xl absolute duration-300 left-0
 }
 .nav:hover::after{
+    @apply w-[100%]
+}
+
+.nav2{
+    @apply relative tracking-[1px] text-black hover:text-purple-600
+}
+.nav2::after{
+    @apply content-[''] bg-purple-600 h-[3px] w-[0%] -bottom-[5px] rounded-xl absolute duration-300 left-0
+}
+.nav2:hover::after{
     @apply w-[100%]
 }

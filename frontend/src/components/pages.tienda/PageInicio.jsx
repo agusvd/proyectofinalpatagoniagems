@@ -17,8 +17,8 @@ const PageInicio = () => {
             <NavbarNormal />
             <NavbarMobile />
             <Home />
-            <BannerCategoria />
             <ProductosDestacados />
+            <BannerCategoria />
             <Footer />
         </div>
     )
