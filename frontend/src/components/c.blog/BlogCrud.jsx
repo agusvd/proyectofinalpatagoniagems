@@ -10,6 +10,8 @@ const BlogCrud = () => {
     const { id } = useParams();
     const [titulo, setTitulo] = useState("");
     const [descripcion, setDescripcion] = useState(""); //react quill
+    const [img, setImg] = useState("")
+    const [fechaPublicacion, setFechaPublicacion] = useState("")
     const [editar, setEditar] = useState(false)
     const navigate = useNavigate()
 
@@ -23,15 +25,18 @@ const BlogCrud = () => {
                         const post = res.data[0]
                         setTitulo(post.titulo)
                         setDescripcion(post.descripcion)
+                        setImg(post.img)
+                        setFechaPublicacion(post.fechaPublicacion)
                     }
                 })
                 .catch((err) => console.log(err.data))
         }
     }, [id])
+
     // CREAR UN POST NUEVO 
     const addPost = () => {
         //si el titulo y la descripcion están vacios no agrega un post
-        if (!titulo || !descripcion) {
+        if (!titulo || !descripcion || !img || !fechaPublicacion) {
             console.log("No se puede agregar un post vacío");
             alert("los campos titulo y descripcion son Obligatorios")
             return;
@@ -41,6 +46,7 @@ const BlogCrud = () => {
             .post(`http://localhost:8000/blog/create`, {
                 titulo: titulo,
                 descripcion: descripcion,
+                img: img,
             })
             .then((res) => {
                 console.log(res.data);
@@ -101,7 +107,16 @@ const BlogCrud = () => {
                             <label htmlFor="title" className="text-lg font-bold text-purple-500">Título</label>
                         </div>
                         <div className=" bg-gray-100 p-2 rounded-lg">
-                            <input type="text" id="title" value={titulo} placeholder='Agregar Título' className="flex flex-col w-full p-2  rounded-lg bg-gray-100 text-black" onChange={(event) => { setTitulo(event.target.value) }} />
+                            <input type="text" id="title" value={titulo} placeholder='Agregar Título' className="flex w-full p-2  rounded-lg bg-gray-100 text-black" onChange={(event) => { setTitulo(event.target.value) }} />
+                        </div>
+                        <div className='bg-gray-100 p-2 rounded-lg mt-5'>
+                            <input required className="flex w-full p-2  rounded-lg bg-gray-100 text-black"
+                                type="text" placeholder="url" value={img}
+                                onChange={(event) => { setImg(event.target.value) }}
+                            />
+                        </div>
+                        <div className="mt-5">
+                            <input type="date" value={fechaPublicacion} className="flex w-full p-2 rounded-lg bg-gray-100 text-black" onChange={(event) => { setFechaPublicacion(event.target.value) }}/>
                         </div>
                         <div id="editorContainer" className="pt-10">
                             <div className="mb-2">
@@ -131,8 +146,6 @@ const BlogCrud = () => {
                     <div id='menu' className='flex flex-col  bg-[#202020] text-white rounded-lg  shadow-xl  p-4 min-w-[270px] max-h-[210px]'>
                         <div id='item1'>
                             <h1 className="text-xl text-center font-bold mb-4 ">Publicar</h1>
-                            <input className='hidden p-2 ' type="file" id='file' onChange={e => setFile(e.target.files[0])} />
-                            <label htmlFor="file" className="flex items-center justify-center cursor-pointer">Subir imagen</label>
                             <div id="buttons" className="flex flex-col mt-8 justify-between font-bold">
                                 <button onClick={DeletePost}>Eliminar Post</button>
                                 <button className="rounded-full py-2 hover:text-blue-700" onClick={updatePost}>Update</button>

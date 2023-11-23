@@ -35,16 +35,15 @@ router.get("/blog/post/:id", (req, res) => {
 
 //AÑADIR NUEVO POST
 router.post("/blog/create", (req, res) => {
-    const { id, titulo, descripcion, img, fechaPublicacion } = req.body;
+    const { titulo, descripcion, img, fechaPublicacion } = req.body;
 
-    const q = "INSERT INTO blog (id,titulo,descripcion,img,fechaPublicacion) VALUES (?, ?, ?, ?, ?)"
+    const q = "INSERT INTO blog (titulo, descripcion, img, fechaPublicacion) VALUES (?, ?, ?, ?)"
 
     const values = [
-        req.body.id,
         req.body.titulo,
         req.body.descripcion,
-        req.body.date,
-        req.body.img
+        req.body.img || null,
+        req.body.fechaPublicacion || null,
     ]
 
     db.query(q, values, (err, data) => {
@@ -52,7 +51,7 @@ router.post("/blog/create", (req, res) => {
             console.error("Error al Ejecutar consula", err)
             return res.status(500).json({ err: "error al Agregar nuevo post" })
         } else {
-            return res.status(200).json({message:"Post agregado correctamente",data})
+            return res.status(200).json({ message: "Post agregado correctamente", data })
         }
     })
 })
@@ -67,8 +66,8 @@ router.delete("/blog/delete/:id", (req, res) => {
             console.error("error al ejecutar consulta:", err)
             return res.status(500).json({ err: "error Al eliminar el post" })
         } else {
-            console.log("eL Post ha sido eliminado",data)
-            return res.status(200).json({message:"El post ha sido eliminado correctamente",data})
+            console.log("eL Post ha sido eliminado", data)
+            return res.status(200).json({ message: "El post ha sido eliminado correctamente", data })
         }
     })
 })
@@ -79,15 +78,15 @@ router.put("/blog/update/:id", (req, res) => {
     const { titulo, descripcion, date, img, fechaPublicacion } = req.body
     const q = "UPDATE blog SET titulo= ?, descripcion= ?  WHERE id=?";
 
-    const values = [titulo, descripcion,id]
+    const values = [titulo, descripcion, id]
     db.query(q, values, (err, data) => {
         if (err) {
             console.log(err)
-            return res.status(500).json("el post no ha sido actualizado",err)
+            return res.status(500).json("el post no ha sido actualizado", err)
 
         } else {
             console.log("el post ha sido actualizado", data)
-            return res.json({message:"el post  ha sido actualizado",data})
+            return res.json({ message: "el post  ha sido actualizado", data })
         }
     })
 });
