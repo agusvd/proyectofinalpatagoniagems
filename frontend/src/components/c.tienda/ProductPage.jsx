@@ -10,7 +10,8 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { toast, Toaster } from 'react-hot-toast';
 import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { SpinnerCircular } from 'spinners-react';
+import { AiOutlineLoading } from "react-icons/ai";
+
 
 
 
@@ -119,15 +120,6 @@ const ProductPage = () => {
             setPreferenceId(id)
         }
     };
-    const renderSpinner = () => {
-        if (isLoading) {
-            return (
-                <div className="spinner-wrapper">
-                    <SpinnerCircular сolor='#009EE3' />
-                </div>
-            )
-        }
-    }
 
     if (producto === null) {
         return (
@@ -183,9 +175,16 @@ const ProductPage = () => {
                             </div>
                         </div>
                         <div className='flex w-full flex-col'>
-                            <button className='p-2 bg-black text-white text-xl rounded-md  active:bg-green-500 ' onClick={handleBuy}>
-                                Comprar
-                            </button>
+                            {isLoading ?
+                                <button className='p-2 bg-black text-white text-xl rounded-md active:bg-green-500 w-full items-center flex justify-center'>
+                                    <AiOutlineLoading size={35} className='animate-spin' />
+                                </button>
+
+                                :
+                                <button className='p-2 bg-black text-white text-xl rounded-md  active:bg-green-500 ' onClick={handleBuy}>
+                                    Comprar
+                                </button>
+                            }
                             {preferenceId && <Wallet initialization={{ preferenceId }} />}
                         </div>
                         <div className="flex flex-col p-2 gap-2 border-t-2 border-b-2 justify-center sm:justify-normal sm:border-0 sm:gap-2">
