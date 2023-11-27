@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BiUser, BiArrowBack } from 'react-icons/bi'
 import { LuMoreHorizontal } from 'react-icons/lu'
-import CardPerfilPedidos from '../cards/CardPerfilPedidos';
+import CardPerfilPedidos from '../cards.tienda/CardPerfilPedidos';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 

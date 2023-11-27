@@ -4,7 +4,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { toast } from 'react-hot-toast';
-import CardProductoCarritoGrande from '../cards/CardProductoCarritoGrande';
+import CardProductoCarritoGrande from '../cards.tienda/CardProductoCarritoGrande';
 
 
 const Cart = ({ onClose }) => {

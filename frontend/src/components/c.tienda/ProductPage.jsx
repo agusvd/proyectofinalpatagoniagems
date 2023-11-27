@@ -8,7 +8,7 @@ import { BiCart } from 'react-icons/bi';
 import { BiMessageSquareX } from 'react-icons/bi';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { toast, Toaster } from 'react-hot-toast';
-import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
+import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { AiOutlineLoading } from "react-icons/ai";
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import { toast, Toaster } from 'react-hot-toast';
-import CardToastEliminarCategoria from '../cards/CardToastEliminarCategoria'
+import CardToastEliminarCategoria from '../cards.tienda/CardToastEliminarCategoria'
 import { Link } from 'react-router-dom';
 
 const CategoriasP = () => {

@@ -3,11 +3,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import Cart from '../shared.tienda/Cart';
-import { Link } from 'react-router-dom';
-import { BiMessageSquareX } from 'react-icons/bi';
 import { toast, Toaster } from 'react-hot-toast';
-import CardProductoGeneral from '../cards/CardProductGeneral';
-import CardToastAgregarCarro from '../cards/CardToastAgregarCarro';
+import CardProductoGeneral from '../cards.tienda/CardProductGeneral';
+import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
+import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 
 const ProductosTotal = () => {
     const [productos, setProductos] = useState([]);
@@ -149,18 +148,7 @@ const ProductosTotal = () => {
                     </div>
                 )}
                 {showModal && (
-                    <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] font-primary">
-                        <div className="bg-white p-4 rounded-md">
-                            <button className="absolute top-2 right-2 focus:outline-none" onClick={() => setShowModal(false)}>
-                                <BiMessageSquareX size={50} className="text-white hover:text-red-500" />
-                            </button>
-                            <h2 className="text-xl text-center">¡Necesitas estar registrado!</h2>
-                            <div className="flex justify-center">
-                                <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">Iniciar sesión</Link>
-                                <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">Registrarse</Link>
-                            </div>
-                        </div>
-                    </div>
+                    <CardToastIniciarSesion onClose={() => setShowModal(false)}/>
                 )}
             </div>
         </div>

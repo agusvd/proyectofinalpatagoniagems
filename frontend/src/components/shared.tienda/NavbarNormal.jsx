@@ -8,14 +8,6 @@ import Search from './Search';
 const NavbarNormal = () => {
     const location = useLocation();
 
-    // funcionalidad para mostrar tienda (categorias)
-    const [showTienda, setShowTienda] = useState(false)
-
-    const handleShowTienda = () => {
-        setShowTienda(!showTienda)
-    }
-
-
     // obtener categorias del backend
     const [categorias, setCategorias] = useState([]);
     useEffect(() => {
@@ -27,7 +19,11 @@ const NavbarNormal = () => {
             .catch(err => console.error('Error al obtener las categorías:', err));
     }, []);
 
+    console.log(categorias)
+
+
     // carrito
+    const [productosCarrito, setProductosCarrito] = useState([]);
     useEffect(() => {
         // Obtener los datos del carrito desde el backend
         axios.get('http://localhost:8000/carrito')
@@ -39,7 +35,6 @@ const NavbarNormal = () => {
             });
     }, []);
 
-    const [productosCarrito, setProductosCarrito] = useState([]);
     const [carritoVisible, setCarritoVisible] = useState(false);
 
     const handleOpenCarritoClick = () => {
@@ -63,7 +58,7 @@ const NavbarNormal = () => {
 
     // cerrar el carrito y el search
     const handleClose = (e) => {
-        if (e.target.id === 'closeOut') {
+        if (e.target.id === 'cerrar') {
             handleCloseSearchClick();
             handleCloseCarritoClick();
             console.log("click")
@@ -77,10 +72,10 @@ const NavbarNormal = () => {
                     <div className='flex items-center justify-center text-center'>
                         <div className='flex justify-center gap-5'>
                             <div className='flex items-center justify-center'>
-                                <Link to="/" className='text-white font-bold text-center text-2xl hover:text-purple-600'>PatagoniaGems</Link>
+                                <Link to="/" className={` font-bold text-center text-2xl hover:text-purple-600 ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>PatagoniaGems</Link>
                             </div>
                             <div className="dropdown dropdown-hover text-white text-xl py-2">
-                            <Link to='/tienda' className={` nav text-xl py-2 ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
+                                <Link to='/tienda' className={`nav text-xl py-2 ${location.pathname === '/tienda' ? 'text-purple-500' : 'text-white'}`}>Tienda</Link>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-black rounded-box w-52">
                                     {categorias.map(categoria => (
                                         <li key={categoria.id}>
@@ -104,7 +99,7 @@ const NavbarNormal = () => {
                             <AiOutlineSearch size={35} className='text-white hover:scale-110 duration-300' />
                         </button>
                         {searchVisible && (
-                            <div id='closeOut' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>
+                            <div id='cerrar' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>
                                 <Search onClose={handleCloseSearchClick} />
                             </div>
                         )}
@@ -112,37 +107,13 @@ const NavbarNormal = () => {
                             <AiOutlineShopping size={35} className='text-white hover:scale-110 duration-300' />
                         </button>
                         {carritoVisible && (
-                            <div id='closeOut' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>
+                            <div id='cerrar' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>
                                 <Cart onClose={handleCloseCarritoClick} />
                             </div>
                         )}
                     </div>
                 </div>
             </div>
-            {/* navegacion principal */}
-
-            {/* Categorias de la tienda */}
-            {showTienda && (
-                <div id='tienda' className={`bg-[#202020] text-black flex justify-around items-center w-full transition-all duration-500 gap-1 pt-2 pb-2 text-lg -space-x-32 ${showTienda ? " ease-in-out  animate-fade-down animate-duration-500 animate-delay-100" : "animate-duration-500"}`}>
-                    <div className='flex flex-col items-center justify-center'>
-                        <h2 className='text-black text-2xl text-start  justify-center w-full pb-2'>Categorias</h2>
-                        <div className='flex flex-col gap-3'>
-                            {categorias.map(categoria => (
-                                <div className='' key={categoria.id}>
-                                    <Link to={`/tienda/${categoria.id}`}>
-                                        <h2 className='text-black hover:text-purple-600 duration-300 ease-in-out transition-all'>
-                                            {categoria.categoria}
-                                        </h2>
-                                    </Link>
-                                </div>
-                            ))}
-                            <div className=' flex flex-col justify-start items-start'>
-                                <Link to='/tienda' className='text-black hover:text-purple-600 duration-300 ease-in-out transition-all'>Todos los productos</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
 
 
