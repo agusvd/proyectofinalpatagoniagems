@@ -54,6 +54,9 @@ const App = () => {
           <Route exact path="/blog/nuevo" element={<PrivateRoute />}>
             <Route exact path="/blog/nuevo" element={<PageBlogNuevo />} />
           </Route>
+          <Route exact path="/editar/post/:id" element={<PrivateRoute />}>
+            <Route exact path="/editar/post/:id" element={<PageBlogNuevo />} />
+          </Route>
           <Route exact path="/dashboard" element={<PrivateRoute />}>
             <Route exact path="/dashboard" element={<Dashboard />} />
           </Route>

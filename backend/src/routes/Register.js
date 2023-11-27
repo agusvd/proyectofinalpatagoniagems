@@ -23,31 +23,45 @@ const validarRegistro = () => {
     ];
 };
 
+
 // Ruta /register
-router.post('/register', validarRegistro(), async (req, res) => {
+router.post('/register', validarRegistro(), (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ Error: "Faltan campos requeridos" });
+        return res.status(400).json({ error: "Faltan campos requeridos" });
     }
+    const { nombre, apellido, email, contraseña } = req.body;
 
-    try {
-        // valores que guardamos del formulario
-        const { nombre, apellido, email, contraseña } = req.body
+    const correoExistenteQuery = "SELECT * FROM usuarios WHERE email = ?";
+    db.query(correoExistenteQuery, [email], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: "Error al verificar la existencia del correo" });
+        }
 
-        // Hash de la contraseña usando bcrypt
-        const hashedPassword = await bcrypt.hash(contraseña, rondas)
+        if (results.length > 0) {
+            // El correo ya existe
+            return res.status(400).json({ error: "El correo electrónico ya está registrado" });
+        }
 
-        // Comando MYSQL 
-        const sql = "INSERT INTO usuarios (`nombre`, `apellido`, `email`, `contraseña`, `role`) VALUES (?, ?, ?, ?, ?)"
+        // El correo no existe, proceder con el registro
+        bcrypt.hash(contraseña, rondas, (hashError, hashedPassword) => {
+            if (hashError) {
+                console.error(hashError);
+                return res.status(500).json({ error: "Error al generar el hash de la contraseña" });
+            }
 
-        // Ejecucion de la consulta SQL usando promesas
-        await db.query(sql, [capitalize(nombre), capitalize(apellido), email, hashedPassword, 'user'])
+            const insertQuery = "INSERT INTO usuarios (`nombre`, `apellido`, `email`, `contraseña`, `role`) VALUES (?, ?, ?, ?, ?)";
+            db.query(insertQuery, [capitalize(nombre), capitalize(apellido), email, hashedPassword, 'user'], (insertError) => {
+                if (insertError) {
+                    console.error(insertError);
+                    return res.status(500).json({ error: "Error al registrar el usuario" });
+                }
 
-        res.json({ Status: "Perfecto" })
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({ Error: "Error al resgitrar el usuario" })
-    }
+                res.json({ Status: "Perfecto" });
+            });
+        });
+    });
 })
 
 export default router

@@ -16,29 +16,34 @@ const PageRegister = () => {
 
     const navigate = useNavigate()
     const handleSubmit = (e) => {
-
         e.preventDefault();
-
         if (values.contraseña.length < 8) {
             setPasswordValid(false);
             toast.error('La contraseña debe tener al menos 8 caracteres.');
             return;
         }
 
-        console.log(values)
         axios.post('http://localhost:8000/register', values)
             .then(res => {
                 if (res.data.Status === "Perfecto") {
-                    toast.success("Registrado correctamente")
+                    toast.success("Registrado correctamente");
                     setTimeout(() => {
                         navigate('/login');
-                    }, 1000)
+                    }, 1000);
                 } else {
-                    alert("Error")
+                    toast.error(res.data.error || "Error al registrar el usuario");
                 }
             })
-            .then(err => console.log(err))
-    }
+            .catch(err => {
+                if (err.response && err.response.status === 400) {
+                    // Manejar errores específicos del servidor cuando el código de estado es 400
+                    toast.error(err.response.data.error || "Error de solicitud incorrecta");
+                } else {
+                    console.error(err);
+                    toast.error("Error de red");
+                }
+            });
+    };
 
 
     return (

@@ -91,7 +91,7 @@ router.put('/carrito/:id', (req, res) => {
         }
 
         // El producto se actualizó exitosamente en el carrito
-        return res.json({ message: 'Producto actualizado en el carrito correctamente' });
+        return res.json({ mensaje: 'Producto actualizado en el carrito correctamente' });
     });
 });
 

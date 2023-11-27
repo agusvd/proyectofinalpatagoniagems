@@ -43,7 +43,7 @@ const PageLogin = () => {
                         }, 1000);
                     }
                 } else {
-                    toast.error(res.data.Error, {
+                    toast.error(res.data.error, {
                         className: 'bg-purple-600 text-white',
                     });
                 }

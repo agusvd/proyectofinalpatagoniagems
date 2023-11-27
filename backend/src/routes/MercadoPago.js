@@ -34,6 +34,7 @@ router.post("/create_preference", (req, res) => {
         .catch(function (error) {
             console.log(error)
         })
+        
 })
 
 export default router

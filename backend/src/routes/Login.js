@@ -12,8 +12,8 @@ router.post('/login', (req, res) => {
 
     db.query(sql, [req.body.email], (err, data) => {
         if (err) {
-            console.error("Error en la consulta SQL:", err);
-            return res.json({ Error: "Login Error SQL index.js" });
+            console.error("error en la consulta SQL:", err);
+            return res.json({ error: "Login Error SQL index.js" });
         }
 
         if (data.length > 0) {
@@ -22,8 +22,8 @@ router.post('/login', (req, res) => {
                 data[0].contraseña,
                 (err, response) => {
                     if (err) {
-                        console.error("Error en la comparación de la contraseña:", err);
-                        return res.json({ Error: "Error en la comparacion de la contraseña" });
+                        console.error("error en la comparación de la contraseña:", err);
+                        return res.json({ error: "Error en la comparacion de la contraseña" });
                     }
 
                     if (response) {
@@ -61,13 +61,13 @@ router.post('/login', (req, res) => {
                         return res.json({ Status: "Perfecto", token, message });
                     } else {
                         console.log("Contraseña incorrecta");
-                        return res.json({ Error: "Contraseña invalida" });
+                        return res.json({ error: "Contraseña invalida" });
                     }
                 }
             );
         } else {
             console.log("No existe este email");
-            return res.json({ Error: "No existe este email" });
+            return res.json({ error: "No existe este email" });
         }
     });
 });

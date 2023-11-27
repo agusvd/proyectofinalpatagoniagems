@@ -97,13 +97,6 @@ const NavbarNormal = () => {
                             <Link to='/blogs' className={`text-xl py-2 ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-white'}`}>
                                 <h2 className='nav'>Blogs</h2>
                             </Link>
-
-                            <Link className={` text-xl py-2 ${location.pathname === '/contacto' ? 'text-purple-500' : 'text-white'}`}>
-                                <h2 className='nav'>Contacto</h2>
-                            </Link>
-                            <Link className={` text-xl py-2 ${location.pathname === '/nosotros' ? 'text-purple-500' : 'text-white'}`}>
-                                <h2 className='nav'>Nosotros</h2>
-                            </Link>
                         </div>
                     </div>
                     <div className='flex gap-2'>

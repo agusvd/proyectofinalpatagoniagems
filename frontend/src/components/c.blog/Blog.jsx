@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DOMPurify from 'dompurify'; //evitar ataques XSS
@@ -54,19 +54,21 @@ const Blog = () => {
         navigate(`/editar/post/${id}`)
     }
     return (
-        <div className="bg-gray-100 font-sans h-screen">
-            <header className="flex bg-white shadow-lg">
-                <img alt="Imagen de encabezado" className="w-full h-80 object-cover" />
+        <div className="bg-white font-sans h-screen">
+            <header className="flex">
+                <img src={post.img} alt="Imagen de encabezado" className="w-full h-80 object-cover" />
             </header>
             <div className="container mx-auto my-8 text-black">
-                <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="bg-white p-6 rounded-lg">
                     <div className='mb-4'>
                         <div className='flex justify-end'>
-                        {isAdmin === 'admin' && (
-                            <button onClick={editPost}>
-                                <TiEdit size={35} />
-                            </button>
-                        )}
+                            {isAdmin === 'admin' && (
+                                <>
+                                    <Link to={`/editar/post/${id}`} className='hover:text-red-500'>
+                                        <TiEdit size={35} />
+                                    </Link>
+                                </>
+                            )}
                         </div>
                         <h1 className='text-3xl font-bold mb-10'>{post.titulo}</h1>
                     </div>
@@ -78,7 +80,7 @@ const Blog = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

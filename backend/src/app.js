@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+
 import LoginRouter from './Routes/Login.js'
 import RegisterRouter from './Routes/Register.js'
 import MiddlewareRouter from './routes/Middleware.js'
@@ -12,7 +13,6 @@ import PerfilRoutes from './routes/Perfil.js'
 import UsuariosRoutes from './routes/Usuarios.js'
 import BlogRoutes from './routes/Blog.js'
 import MercadoPagoRoutes from './routes/MercadoPago.js'
-
 
 const app = express();
 

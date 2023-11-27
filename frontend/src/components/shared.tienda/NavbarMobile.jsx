@@ -131,12 +131,6 @@ const NavbarMobile = ({ onClose }) => {
                                     <Link to="/blogs" className="text-white" onClick={HandleMenuVisible}>
                                         Blogs
                                     </Link>
-                                    <Link to="/nosotros" className="text-white" onClick={HandleMenuVisible}>
-                                        Nosotros
-                                    </Link>
-                                    <Link to="/contacto" className="text-white" onClick={HandleMenuVisible}>
-                                        Contacto
-                                    </Link>
                                     {auth ? (
                                         <div className='text-white flex flex-col justify-center gap-10'>
                                             <Link to="/perfil" className="" onClick={HandleMenuVisible}>

@@ -19,7 +19,7 @@ const BlogCrud = () => {
     //para diferenciar crear un post nuevo o editar uno
     useEffect(() => {
         if (id) {
-            axios.get(`http://localhost:8000/blogs/post/${id}`)
+            axios.get(`http://localhost:8000/blog/post/${id}`)
                 .then((res) => {
                     if (res.data.length > 0) {
                         const post = res.data[0]
