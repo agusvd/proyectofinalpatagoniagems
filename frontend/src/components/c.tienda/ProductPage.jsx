@@ -4,13 +4,14 @@ import axios from 'axios';
 import Cart from '../shared.tienda/Cart';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { BiCart } from 'react-icons/bi';
+import { AiOutlineShopping } from 'react-icons/ai'
 import { BiMessageSquareX } from 'react-icons/bi';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { toast, Toaster } from 'react-hot-toast';
 import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { AiOutlineLoading } from "react-icons/ai";
+import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 
 
 
@@ -48,6 +49,7 @@ const ProductPage = () => {
     }, [nombre]);
 
     const handleAgregarCarro = (producto) => {
+        {/* Verificar si el usuario esta logeado */ }
         if (!isLoggedIn) {
             setShowModal(true);
             return;
@@ -114,6 +116,11 @@ const ProductPage = () => {
     };
 
     const handleBuy = async () => {
+        {/* Veriifica si esta logeado el usuario */ }
+        if (!isLoggedIn) {
+            setShowModal(true);
+            return;
+        }
         setIsLoading(true);
         const id = await createPreference()
         if (id) {
@@ -137,95 +144,98 @@ const ProductPage = () => {
 
 
     return (
-        <div className='flex justify-center items-center h-full bg-white font-primary'>
-            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-            <div className="w-full mx-auto px-4 py-8 font-primary">
-                <div className="flex flex-col h-full lg:flex-row md:w-full justify-center items-center">
-                    {/* imagen */}
-                    <div className="md:w-[500px] sm:h-[700px] lg:w-1/3">
-                        <img src={producto.imagen} alt="imagen" className="w-full h-full object-cover" />
-                    </div>
-                    {/* Informacion */}
-                    <div className="w-full lg:w-1/2 px-4 flex flex-col">
-                        <p className="text-sm text-purple-600">PatagoniaGems</p>
-                        <h1 className="text-3xl capitalize text-black">{producto.nombre}</h1>
-                        <h2 className="text-xl text-black capitalize">{producto.categoria}</h2>
-                        {(producto.cantidad_gramos > 0 || producto.cantidad_ml > 0) && (
-                            <p className="text-lg text-gray-500 mb-5">
-                                {producto.cantidad_gramos && `Cantidad: ${producto.cantidad_gramos}g`}{' '}
-                                {producto.cantidad_ml && `Cantidad: ${producto.cantidad_ml}ml`}
-                            </p>
-                        )}
-                        <p className="text-lg text-gray-500 mb-5">${producto.precio} CLP</p>
-                        <p className="text-lg text-jusitfy">{producto.descripcion}</p>
-                        <div className="flex items-center gap-5 text-center justify-between sm:justify-between">
-                            <div className="flex">
-                                <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
-                                    onClick={() => setCantidad(cantidad > 1 ? cantidad - 1 : 1)}>-
-                                </button>
-                                <p className="bg-purple-500 text-white py-2 px-4 mx-2 rounded">{cantidad}</p>
-                                <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
-                                    onClick={() => setCantidad(cantidad + 1)}>+
-                                </button>
-                            </div>
-                            <div className="flex">
-                                <button className="bg-black text-white flex text-center justify-center px-3 py-3 m-1 rounded-full hover:bg-purple-500 hover:text-white" onClick={() => handleAgregarCarro(producto)}>
-                                    <BiCart size={30} />
-                                </button>
-                            </div>
-                        </div>
-                        <div className='flex w-full flex-col'>
-                            {isLoading ?
-                                <button className='p-2 bg-black text-white text-xl rounded-md active:bg-green-500 w-full items-center flex justify-center'>
-                                    <AiOutlineLoading size={35} className='animate-spin' />
-                                </button>
+        <div className='flex justify-center items-center h-screen w-full bg-white font-primary'>
 
-                                :
-                                <button className='p-2 bg-black text-white text-xl rounded-md  active:bg-green-500 ' onClick={handleBuy}>
-                                    Comprar
-                                </button>
-                            }
-                            {preferenceId && <Wallet initialization={{ preferenceId }} />}
+            <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
+            {/* Contenedor del producto */}
+            <div className='flex flex-col md:flex md:flex-row w-full h-screen overflow-x-hidden'>
+                {/* Izquierda imagenes */}
+                <div className='bg-white w-full overflow-auto'>
+                    <div className='h-full'>
+                        <img src={producto.imagen} className=' object-contain w-full h-full border-2' />
+                        <img src={producto.imagen} className=' object-contain w-full h-full border-2' />
+                    </div>
+                </div>
+                {/* derecha todo los detalles para comprar etc */}
+                <div className='md:sticky md:right-0 md:w-[800px]'>
+                    <div className='flex flex-col bg-white h-full md:w-[800px]'>
+                        {/* Nombre y precio */}
+                        <div className='flex flex-col p-2 pt-10'>
+                            <h2 className='text-2xl text-black font-bold'>{producto.nombre}</h2>
+                            <h3 className='text-xl text-gray-700'>${producto.precio}</h3>
                         </div>
-                        <div className="flex flex-col p-2 gap-2 border-t-2 border-b-2 justify-center sm:justify-normal sm:border-0 sm:gap-2">
-                            <div className="sm:text-start text-center">
-                                <h1>Redes sociales</h1>
+                        {/* Contenedor Botones */}
+                        <div className='w-full flex flex-col gap-2'>
+                            {/* Boton para aumentar la cantidad del producto */}
+                            <div className="flex flex-col items-center justify-start">
+                                <div className="flex bg-black rounded-md items-center">
+                                    <button className="bg-black hover:bg-[#474A56] duration-300 ease-in-out text-white font-bold py-2 px-4 rounded-md"
+                                        onClick={() => setCantidad(cantidad > 1 ? cantidad - 1 : 1)}>
+                                        <p className='text-2xl'>-</p>
+                                    </button>
+                                    <p className="bg-black text-white py-2 px-4 mx-2 rounded text-xl">
+                                        {cantidad}
+                                    </p>
+                                    <button className="bg-black hover:bg-[#474A56] duration-300 ease-in-out text-white font-bold py-2 px-4 rounded-md"
+                                        onClick={() => setCantidad(cantidad + 1)}>
+                                        <p className='text-2xl'>+</p>
+                                    </button>
+                                </div>
                             </div>
-                            <div className="justify-center flex gap-5 sm:justify-normal">
-                                <a href="https://www.facebook.com/Patagoniagems/" target="_blank" className="text-black hover:text-blue-700">
-                                    <FaFacebook size={25} />
-                                </a>
-                                <a href="https://www.instagram.com/patagoniagems/?hl=es" target="_blank" className="text-black hover:text-orange-500">
-                                    <FaInstagram size={25} />
-                                </a>
+                            {/* Botones para agregar al carro y pagar  */}
+                            <div className='w-full flex flex-col gap-2 p-2'>
+                                <button className="w-full p-2 text-white text-xl rounded-md  active:bg-green-500 duration-300 ease-in-out bg-black hover:bg-purple-500 flex items-center justify-center" onClick={() => handleAgregarCarro(producto)}>
+                                    <AiOutlineShopping size={30} />
+                                </button>
+                                {isLoading ?
+                                    <div className='-mt-4'>
+                                        {preferenceId && <Wallet initialization={{ preferenceId }} />}
+                                    </div>
+                                    :
+                                    <button className='p-2 bg-black hover:bg-[#474A56]  text-white active:bg-green-500 duration-300 ease-in-out text-xl rounded-md  w-full items-center flex justify-center' onClick={handleBuy}>
+                                        Comprar
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                        {/* informacion del producto */}
+                        <div className="collapse collapse-arrow bg-white">
+                            <input type="radio" name="my-accordion-2" checked="checked" />
+                            <div className="collapse-title text-xl text-black">
+                                Descripción
+                            </div>
+                            <div className="collapse-content">
+                                <p className='text-black'>{producto.descripcion}</p>
+                            </div>
+                        </div>
+                        <div className="collapse collapse-arrow bg-white">
+                            <input type="radio" name="my-accordion-2" />
+                            <div className="collapse-title text-xl text-black">
+                                Detalles
+                            </div>
+                            <div className="collapse-content">
+                                <p className='text-black'>Nada</p>
+                            </div>
+                        </div>
+                        <div className="collapse collapse-arrow bg-white">
+                            <input type="radio" name="my-accordion-2" />
+                            <div className="collapse-title text-xl text-black">
+                                Extra
+                            </div>
+                            <div className="collapse-content">
+                                <p className='text-black'>Nada</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             {carritoVisible && (
                 <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99]">
                     <Cart onClose={() => setCarritoVisible(false)} />
                 </div>
             )}
             {showModal && (
-                <div className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] font-primary">
-                    <div className="bg-white p-4 rounded-md">
-                        <button className="absolute top-2 right-2 focus:outline-none" onClick={() => setShowModal(false)}>
-                            <BiMessageSquareX size={50} className="text-white hover:text-red-500" />
-                        </button>
-                        <h2 className="text-xl text-center">Necesitas estar registrado!</h2>
-                        <div className="flex justify-center">
-                            <Link to="/login" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
-                                Iniciar sesión
-                            </Link>
-                            <Link to="/register" className="bg-gray-100 text-black px-3 py-2 m-1 rounded-xl hover:bg-purple-500 hover:text-white">
-                                Registrarse
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                <CardToastIniciarSesion onClose={() => setShowModal(false)} />
             )}
         </div>
     );

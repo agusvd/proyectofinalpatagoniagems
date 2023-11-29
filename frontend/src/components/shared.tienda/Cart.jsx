@@ -108,7 +108,7 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="fixed top-0 right-0 w-full sm:w-2/3 md:w-2/3 lg:w-1/3 h-screen font-primay bg-white">
+        <div className="fixed top-0 right-0 w-full sm:w-2/3 md:w-2/3 lg:w-2/4 xl:w-1/3 h-screen font-primay bg-white">
             {/* Encabezado del carrito */}
             <header className="bg-white p-2 flex justify-between items-center">
                 <h2 className="text-[#202020] text-3xl">Carrito</h2>
@@ -147,22 +147,22 @@ const Cart = ({ onClose }) => {
                     ))
                 )}
 
-                {/* Mostrar el subtotal si hay productos en el carrito */}
-                {carritoItems.length > 0 && (
-                    <div className="bg-white w-full items-center justify-between flex p-2 text-lg border-t-2 border-b-2">
-                        <h1 className="text-[#202020] font-bold">Subtotal:</h1>
-                        <h2 className="text-[#202020] font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
-                    </div>
-                )}
             </div>
 
             {/* Pie de página con enlaces para ver el carrito y proceder al pago */}
             {carritoItems.length > 0 && (
                 <footer className="p-2 flex flex-col">
-                    <Link to="/carrito" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-gray-500" >
+                    {/* Mostrar el subtotal si hay productos en el carrito */}
+                    {carritoItems.length > 0 && (
+                        <div className="bg-white w-full items-center justify-between flex p-2 text-lg border-t-2 border-b-2">
+                            <h1 className="text-[#202020] font-bold">Subtotal:</h1>
+                            <h2 className="text-[#202020] font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
+                        </div>
+                    )}
+                    <Link to="/carrito" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-[#474A56] duration-300 ease-in-out active:bg-purple-600" >
                         Ver Carrito
                     </Link>
-                    <Link to="/pago" className="text-white py-2 px-4 rounded bg-purple-500 hover:bg-green-500">
+                    <Link to="/pago" className="text-white py-2 px-4 rounded bg-black hover:bg-[#474A56] active:bg-green-500 duration-300 ease-in-out">
                         Proceder al pago
                     </Link>
                 </footer>

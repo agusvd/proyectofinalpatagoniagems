@@ -95,8 +95,8 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="h-full bg-white  font-primary">
-            <div className="p-2 overflow-y-auto">
+        <div className="h-full bg-white font-primary">
+            <div className="p-2 overflow-auto">
                 <div>
                     <h1 className='text-4xl pl-10 text-black text-center'>Tu carrito</h1>
                 </div>
@@ -116,7 +116,6 @@ const Cart = ({ onClose }) => {
                 )}
             </div>
             <div className='bg-white w-full items-center justify-center flex flex-col'>
-
                 {carritoItems.length > 0 && (
                     <div className="ml-2 items-center justify-center flex p-2 text-lg gap-5">
                         <h1 className="text-black text-2xl">Total:</h1>
