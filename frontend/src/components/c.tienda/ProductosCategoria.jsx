@@ -91,8 +91,8 @@ const ProductosCategoria = () => {
     return (
         <div className='flex flex-col justify-center font-primary bg-white'>
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-            <div className="bg-white text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-4xl font-bold text-[#202020] uppercase">{categoriaNombre}</h1>
+            <div className="bg-black text-center py-10 sm:py-20 px-8 mb-4">
+                <h1 className="text-4xl font-bold text-white uppercase">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 font-primary justify-center items-center gap-5 pb-5">

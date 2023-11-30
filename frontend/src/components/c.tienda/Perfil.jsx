@@ -58,18 +58,18 @@ const Perfil = () => {
     return (
         <div className='h-screen flex items-center bg-white w-full font-primary'>
             {/* Navegacion */}
-            <div className='flex flex-col h-full sm:p-10 bg-black justify-start items-center'>
+            <div className='flex flex-col h-full sm:p-10 bg-white justify-start items-center'>
                 <div className='text-black flex justify-center items-center'>
                     <BiUser size={50} />
                 </div>
                 <div className='flex flex-col gap-5 p-2 text-start pt-10'>
                     <div className='flex'>
-                        <button className='nav' onClick={stepPerfil}>
+                        <button className='text-black' onClick={stepPerfil}>
                             Perfil
                         </button>
                     </div>
                     <div className='flex' onClick={stepPedidos}>
-                        <button className='nav'>
+                        <button className='text-black'>
                             Pedidos
                         </button>
                     </div>

@@ -51,7 +51,7 @@ const Home = () => {
                                 <Link to="/tienda" className="text-lg rounded-full bg-purple-500 hover:bg-pink-600 text-white duration-300 transition-all ease-out hover:scale-125">Ir de compras</Link>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

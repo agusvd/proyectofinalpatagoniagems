@@ -152,13 +152,12 @@ const ProductPage = () => {
                 {/* Izquierda imagenes */}
                 <div className='bg-white w-full overflow-auto'>
                     <div className='h-full'>
-                        <img src={producto.imagen} className=' object-contain w-full h-full border-2' />
-                        <img src={producto.imagen} className=' object-contain w-full h-full border-2' />
+                        <img src={producto.imagen} className=' object-contain w-full h-full' />
                     </div>
                 </div>
                 {/* derecha todo los detalles para comprar etc */}
-                <div className='md:sticky md:right-0 md:w-[800px]'>
-                    <div className='flex flex-col bg-white h-full md:w-[600px]'>
+                <div className='md:sticky md:right-0 md:w-[500px]'>
+                    <div className='flex flex-col bg-white h-full md:w-[500px]'>
                         {/* Nombre y precio */}
                         <div className='flex flex-col p-2 pt-10'>
                             <h2 className='text-2xl text-black font-bold'>{producto.nombre}</h2>
@@ -184,7 +183,7 @@ const ProductPage = () => {
                             </div>
                             {/* Botones para agregar al carro y pagar  */}
                             <div className='w-full flex flex-col gap-2 p-2'>
-                                <button className="w-full p-2 text-white text-xl rounded-md  active:bg-green-500 duration-300 ease-in-out bg-black hover:bg-purple-500 flex items-center justify-center" onClick={() => handleAgregarCarro(producto)}>
+                                <button className="w-full p-2 text-white text-xl rounded-md  active:bg-green-500 active:scale-95 duration-300 ease-in-out bg-black hover:bg-purple-500 flex items-center justify-center" onClick={() => handleAgregarCarro(producto)}>
                                     <AiOutlineShopping size={30} />
                                 </button>
                                 {isLoading ?
@@ -192,7 +191,7 @@ const ProductPage = () => {
                                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
                                     </div>
                                     :
-                                    <button className='p-2 bg-black hover:bg-[#474A56]  text-white active:bg-green-500 duration-300 ease-in-out text-xl rounded-md  w-full items-center flex justify-center' onClick={handleBuy}>
+                                    <button className='p-2 bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-xl rounded-md  w-full items-center flex justify-center' onClick={handleBuy}>
                                         Comprar
                                     </button>
                                 }
@@ -201,29 +200,29 @@ const ProductPage = () => {
                         {/* informacion del producto */}
                         <div className="collapse collapse-arrow bg-white">
                             <input type="radio" name="my-accordion-2" checked="checked" />
-                            <div className="collapse-title text-xl text-black">
+                            <div className="collapse-title text-md text-black">
                                 Descripción
                             </div>
                             <div className="collapse-content">
-                                <p className='text-black'>{producto.descripcion}</p>
+                                <p className='text-black text-sm'>{producto.descripcion}</p>
                             </div>
                         </div>
                         <div className="collapse collapse-arrow bg-white">
                             <input type="radio" name="my-accordion-2" />
-                            <div className="collapse-title text-xl text-black">
+                            <div className="collapse-title text-md text-black">
                                 Detalles
                             </div>
                             <div className="collapse-content">
-                                <p className='text-black'>Nada</p>
+                                <p className='text-black text-sm'>Nada</p>
                             </div>
                         </div>
                         <div className="collapse collapse-arrow bg-white">
                             <input type="radio" name="my-accordion-2" />
-                            <div className="collapse-title text-xl text-black">
+                            <div className="collapse-title text-md text-black">
                                 Extra
                             </div>
                             <div className="collapse-content">
-                                <p className='text-black'>Nada</p>
+                                <p className='text-black text-sm'>Nada</p>
                             </div>
                         </div>
                     </div>
