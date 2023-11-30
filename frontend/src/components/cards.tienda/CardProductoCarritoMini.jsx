@@ -16,7 +16,7 @@ const CardProductoCarritoMini = ({ producto, onClose, carritoItems, cantidadProd
             <div className="flex flex-col justify-between ml-2 sm:ml-5 text-black text-start gap-1 bg-white">
                 <div>
                     <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="text-md font-bold">{producto.nombre}</Link>
-                    <h3 className="text-gray-500 text-md font-bold pb-3">${producto.precio}</h3>
+                    <h3 className="text-gray-500 text-md font-bold pb-3">${producto.precio} CLP</h3>
                 </div>
                 <div className='flex items-center gap-5'>
                     {carritoItems.length > 0 && (

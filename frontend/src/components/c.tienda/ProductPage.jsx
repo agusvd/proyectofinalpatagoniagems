@@ -158,11 +158,11 @@ const ProductPage = () => {
                 </div>
                 {/* derecha todo los detalles para comprar etc */}
                 <div className='md:sticky md:right-0 md:w-[800px]'>
-                    <div className='flex flex-col bg-white h-full md:w-[800px]'>
+                    <div className='flex flex-col bg-white h-full md:w-[600px]'>
                         {/* Nombre y precio */}
                         <div className='flex flex-col p-2 pt-10'>
                             <h2 className='text-2xl text-black font-bold'>{producto.nombre}</h2>
-                            <h3 className='text-xl text-gray-700'>${producto.precio}</h3>
+                            <h3 className='text-xl text-gray-700'>${producto.precio} CLP</h3>
                         </div>
                         {/* Contenedor Botones */}
                         <div className='w-full flex flex-col gap-2'>

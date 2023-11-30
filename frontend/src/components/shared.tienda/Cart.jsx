@@ -108,65 +108,68 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="fixed top-0 right-0 w-full sm:w-2/3 md:w-2/3 lg:w-2/4 xl:w-1/3 h-screen font-primay bg-white">
+        <div className="absolute top-0 right-0 w-full sm:w-2/3 md:w-2/3 lg:w-2/4 xl:w-1/3 h-full font-primay bg-white">
             {/* Encabezado del carrito */}
-            <header className="bg-white p-2 flex justify-between items-center">
-                <h2 className="text-[#202020] text-3xl">Carrito</h2>
-                <button className="text-[#202020] hover:text-purple-500 duration-300" onClick={onClose}>
-                    <BiArrowFromLeft size={40} />
-                </button>
-            </header>
-
-            {/* Contenido del carrito */}
-            <div className="h-4/5 overflow-y-auto gap-2">
-                {carritoItems.length === 0 ? (
-                    // Mostrar mensaje si el carrito está vacío
-                    <div className="flex flex-col justify-center items-center p-2 gap-4">
-                        <h1 className="text-[#202020] text-4xl text-center pt-6">Tu carrito está vacío.</h1>
-                        {/* Enlace para ir de compras */}
-                        <Link to="/tienda" onClick={onClose} className="flex px-4 py-2 text-white text-xl hover:bg-purple-600 rounded-lg bg-black duration-300 transition-all ease-in">
-                            Ir de compras
-                        </Link>
-                    </div>
-                ) : (
-                    // Mostrar productos en el carrito
-                    carritoItems.map((producto) => (
-                        <div className='p-5 w-full bg-white items-center flex justify-center'>
-                            {/* Usar el componente CardProductoCarritoMini para mostrar información del producto */}
-                            <CardProductoCarritoMini
-                                key={producto.id}
-                                producto={producto}
-                                onClose={onClose}
-                                carritoItem={carritoItems}
-                                cantidadProductos={cantidadProductos}
-                                carritoItems={carritoItems}
-                                actualizarProductoCarrito={actualizarProductoCarrito}
-                                eliminarProductoCarrito={eliminarProductoCarrito}
-                            />
+            <div className='items-center h-full'>
+                <div className="bg-white p-2 flex justify-between items-center">
+                    <h2 className="text-[#202020] text-3xl">Carrito</h2>
+                    <button className="text-[#202020] hover:text-purple-500 duration-300" onClick={onClose}>
+                        <BiArrowFromLeft size={40} />
+                    </button>
+                </div>
+                {/* Contenido del carrito */}
+                <div className="h-screen gap-2 overflow-auto">
+                    {carritoItems.length === 0 ? (
+                        // Mostrar mensaje si el carrito está vacío
+                        <div className="flex flex-col justify-center items-center p-2 gap-4">
+                            <h1 className="text-[#202020] text-4xl text-center pt-6">Tu carrito está vacío.</h1>
+                            {/* Enlace para ir de compras */}
+                            <Link to="/tienda" onClick={onClose} className="flex px-4 py-2 text-white text-xl hover:bg-purple-600 rounded-lg bg-black duration-300 transition-all ease-in">
+                                Ir de compras
+                            </Link>
                         </div>
-                    ))
-                )}
-
-            </div>
-
-            {/* Pie de página con enlaces para ver el carrito y proceder al pago */}
-            {carritoItems.length > 0 && (
-                <footer className="p-2 flex flex-col">
-                    {/* Mostrar el subtotal si hay productos en el carrito */}
-                    {carritoItems.length > 0 && (
-                        <div className="bg-white w-full items-center justify-between flex p-2 text-lg border-t-2 border-b-2">
-                            <h1 className="text-[#202020] font-bold">Subtotal:</h1>
-                            <h2 className="text-[#202020] font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
+                    ) : (
+                        // Mostrar productos en el carrito
+                        <div className='overflow-auto max-h-[70vh]'>
+                            {carritoItems.map((producto) => (
+                                <div className='p-5 w-full bg-white items-center flex justify-center'>
+                                    {/* Usar el componente CardProductoCarritoMini para mostrar información del producto */}
+                                    <CardProductoCarritoMini
+                                        key={producto.id}
+                                        producto={producto}
+                                        onClose={onClose}
+                                        carritoItem={carritoItems}
+                                        cantidadProductos={cantidadProductos}
+                                        carritoItems={carritoItems}
+                                        actualizarProductoCarrito={actualizarProductoCarrito}
+                                        eliminarProductoCarrito={eliminarProductoCarrito}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     )}
-                    <Link to="/carrito" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-[#474A56] duration-300 ease-in-out active:bg-purple-600" >
-                        Ver Carrito
-                    </Link>
-                    <Link to="/pago" className="text-white py-2 px-4 rounded bg-black hover:bg-[#474A56] active:bg-green-500 duration-300 ease-in-out">
-                        Proceder al pago
-                    </Link>
-                </footer>
-            )}
+                </div>
+            </div>
+            <div className='sticky bottom-0'>
+                {/* Pie de página con enlaces para ver el carrito y proceder al pago */}
+                {carritoItems.length > 0 && (
+                    <footer className="p-2 flex flex-col">
+                        {/* Mostrar el subtotal si hay productos en el carrito */}
+                        {carritoItems.length > 0 && (
+                            <div className="bg-white w-full items-center justify-between flex p-2 text-lg border-t-2 border-b-2">
+                                <h1 className="text-[#202020] font-bold">Subtotal:</h1>
+                                <h2 className="text-[#202020] font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
+                            </div>
+                        )}
+                        <Link to="/carrito" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-[#474A56] duration-300 ease-in-out active:bg-purple-600" >
+                            Ver Carrito
+                        </Link>
+                        <Link to="/pago" className="text-white py-2 px-4 rounded bg-black hover:bg-[#474A56] active:bg-green-500 duration-300 ease-in-out">
+                            Proceder al pago
+                        </Link>
+                    </footer>
+                )}
+            </div>
         </div>
     );
 };

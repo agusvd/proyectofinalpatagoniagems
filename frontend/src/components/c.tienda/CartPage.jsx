@@ -47,6 +47,8 @@ const Cart = ({ onClose }) => {
         return total;
     };
 
+
+
     const actualizarProductoCarrito = (producto_id, cantidad) => {
         setCantidadProductos((prevCantidadProductos) => ({
             ...prevCantidadProductos,
@@ -66,6 +68,7 @@ const Cart = ({ onClose }) => {
 
         // Actualizar la base de datos
         const nuevoPrecioTotal = carritoItem.precio * cantidad;
+
         axios
             .put(`http://localhost:8000/carrito/${carritoItem.id}`, {
                 cantidad_total: cantidad,
@@ -95,22 +98,30 @@ const Cart = ({ onClose }) => {
     };
 
     return (
-        <div className="h-full bg-white font-primary">
-            <div className="p-2 overflow-auto">
-                <div>
-                    <h1 className='text-4xl pl-10 text-black text-center'>Tu carrito</h1>
-                </div>
+        <div className="bg-white font-primary min-h-screen overflow-auto">
+            <div className="p-2 w-full flex justify-center items-center flex-col">
+            <div>
+                <h3 className='text-4xl text-black'>Tu carrito</h3>
+            </div>
                 {carritoItems.length === 0 ? (
-                    <div className="flex flex-col justify-center items-center m-2 gap-4">
-                        <h1 className="text-black text-xl text-center pt-6">Tu carrito está vacío.</h1>
-                        <Link to="/tienda" onClick={onClose} className="flex px-4 py-2 text-white font-bold text-xl bg-purple-600 rounded-full hover:bg-black duration-300 transition-all ease-in">
+                    <div className="flex flex-col justify-center items-center m-2 gap-4 w-full">
+                        <h1 className="text-black text-xl text-center pt-6 border-2 w-full">Tu carrito está vacío.</h1>
+                        <Link to="/tienda" onClick={onClose} className="flex px-4 py-2 text-white font-bold text-xl hover:bg-purple-600 rounded-md bg-black duration-300 transition-all ease-in">
                             Ir de compras
                         </Link>
                     </div>
                 ) : (
                     carritoItems.map((producto) => (
-                        <div className='p-2 flex flex-col w-full justify-center items-center'>
-                            <CardProductoCarritoGrande key={producto.id} producto={producto} onClose={onClose} carritoItem={carritoItems} cantidadProductos={cantidadProductos} carritoItems={carritoItems} actualizarProductoCarrito={actualizarProductoCarrito} eliminarProductoCarrito={eliminarProductoCarrito} />
+                        <div className='p-2 flex flex-col w-full justify-center items-center overflow-auto'>
+                            <CardProductoCarritoGrande
+                            key={producto.id} 
+                            producto={producto} 
+                            onClose={onClose} 
+                            carritoItem={carritoItems} 
+                            cantidadProductos={cantidadProductos} 
+                            carritoItems={carritoItems}
+                            actualizarProductoCarrito={actualizarProductoCarrito} 
+                            eliminarProductoCarrito={eliminarProductoCarrito} />
                         </div>
                     ))
                 )}
@@ -122,7 +133,7 @@ const Cart = ({ onClose }) => {
                         <h2 className="text-black text-xl">${calcularPrecioTotalCarrito()} CLP</h2>
                         {carritoItems.length > 0 && (
                             <footer className="p-2 flex">
-                                <Link to="/pago" className="bg-purple-500 duration-300 ease-in-out text-white py-2 px-4 rounded hover:bg-green-500">
+                                <Link to="/pago" className="bg-black hover:bg-purple-500 duration-300 ease-in-out text-white py-2 px-4 rounded active:bg-green-500">
                                     Proceder al pago
                                 </Link>
                             </footer>

@@ -87,7 +87,7 @@ const Search = ({ onClose }) => {
 
     return (
         <div className="bg-white text-[#202020] absolute right-0 top-0 w-full h-screen z-99 font-primary md:w-2/6">
-            <div className="flex-col items-center h-screen overflow-auto">
+            <div className="items-center h-full">
                 <div className="flex items-center justify-between bg-white p-2">
                     <h2 className="text-[#202020] text-2xl">Buscar</h2>
                     <BiArrowFromLeft size={30} className="text-[#202020] cursor-pointer hover:text-purple-500" onClick={onClose} />
@@ -99,22 +99,24 @@ const Search = ({ onClose }) => {
                     </div>
                 </div>
                 {/* Mostrar los resultados de la búsqueda */}
-                <div className='bg-white' onScroll={handleScroll}>
+                <div className=''>
                     {searchText.trim() !== '' &&
                         (
                             <div className='text-center border-t border-b p-2 bg-white'>
                                 <h3 className='text-lg font-bold text-[#202020]'>Resultados de la búsqueda</h3>
                             </div>
                         )
-
                     }
-                    <ul className=''>
-                        {/* CARD productos de busqueda */}
-                        {searchResults.slice(0, currentPage * 20).map((producto) => (
-                            <CardProductoSearch key={producto.id} producto={producto} getCategoriaNombre={getCategoriaNombre} onClose={onClose} />
-                        ))}
-                    </ul>
+                    <div className='bg-white h-screen overflow-auto max-h-[80vh]' onScroll={handleScroll}>
+                        <ul className=''>
+                            {/* CARD productos de busqueda */}
+                            {searchResults.slice(0, currentPage * 20).map((producto) => (
+                                <CardProductoSearch key={producto.id} producto={producto} getCategoriaNombre={getCategoriaNombre} onClose={onClose} />
+                            ))}
+                        </ul>
+                    </div>
                 </div>
+
             </div>
         </div>
     );

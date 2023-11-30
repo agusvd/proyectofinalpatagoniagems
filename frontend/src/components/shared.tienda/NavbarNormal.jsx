@@ -67,7 +67,7 @@ const NavbarNormal = () => {
 
     return (
         <div className='sticky top-0 z-10 font-primary'>
-            <div className='hidden bg-black w-full sm:flex sm:flex-col justify-center items-center p-4 h-[100px]'>
+            <div className='hidden bg-black w-full sm:flex sm:flex-col justify-center items-center p-4 h-[80px]'>
                 <div className='flex items-center justify-around w-full p-1'>
                     <div className='flex items-center justify-center text-center'>
                         <div className='flex justify-center gap-5'>

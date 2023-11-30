@@ -21,7 +21,7 @@ const CardProductoGeneral = ({ producto, getCategoriaNombre, handleAgregarCarro 
                         {getCategoriaNombre(producto.categoria_id)}
                     </p>
                     <p className="text-md text-gray-700 font-bold">
-                        ${producto.precio}
+                        ${producto.precio} CLP
                     </p>
                 </div>
 

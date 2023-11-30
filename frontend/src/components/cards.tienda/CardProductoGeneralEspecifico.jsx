@@ -17,7 +17,7 @@ const CardProductoGeneralEspecifico = ({ producto, handleAgregarCarro }) => {
                         {producto.nombre}
                     </Link>
                     <p className="text-md text-gray-700 font-bold">
-                        ${producto.precio}
+                        ${producto.precio} CLP
                     </p>
                 </div>
 
