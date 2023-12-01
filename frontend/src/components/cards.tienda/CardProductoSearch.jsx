@@ -10,7 +10,7 @@ const CardProductoSearch = ({ producto, getCategoriaNombre, onClose }) => {
                 </Link>
             </div>
             <div className="flex flex-col text-start p-2">
-                <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="text-black">{producto.nombre}</Link>
+                <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="text-black font-bold">{producto.nombre}</Link>
                 <p className='text-gray-600'>{getCategoriaNombre(producto.categoria_id)}</p>
                 <p className="text-gray-700">${producto.precio} CLP</p>
             </div>

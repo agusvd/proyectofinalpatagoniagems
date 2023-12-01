@@ -14,9 +14,14 @@ const Perfil = () => {
         setStep(1);
     }
 
-    const stepPedidos = () => {
+    const stepDirecciones = () => {
         setStep(2);
     }
+
+    const stepPedidos = () => {
+        setStep(3);
+    }
+
 
     //mostrar opcion de direccion
     const [showOption, setShowOption] = useState(false)
@@ -56,48 +61,59 @@ const Perfil = () => {
     }
 
     return (
-        <div className='h-screen flex items-center bg-white w-full font-primary'>
+        <div className='h-screen flex flex-col items-center bg-white w-full font-primary'>
             {/* Navegacion */}
-            <div className='flex flex-col h-full sm:p-10 bg-white justify-start items-center'>
-                <div className='text-black flex justify-center items-center'>
-                    <BiUser size={50} />
-                </div>
-                <div className='flex flex-col gap-5 p-2 text-start pt-10'>
+            <div className='flex w-full bg-black justify-center items-center'>
+                <div className='flex gap-5 p-2 text-center items-center'>
                     <div className='flex'>
-                        <button className='text-black' onClick={stepPerfil}>
+                        <button className={`hover:text-gray-700 duration-300 ease-out font-bold ${step === 1 ? 'text-purple-600' : 'text-white'}`} onClick={stepPerfil}>
                             Perfil
                         </button>
                     </div>
+                    <div className='flex' onClick={stepDirecciones}>
+                        <button className={`hover:text-gray-700 duration-300 ease-out font-bold ${step === 2 ? 'text-purple-600' : 'text-white'}`}>
+                            Direcciones
+                        </button>
+                    </div>
                     <div className='flex' onClick={stepPedidos}>
-                        <button className='text-black'>
+                        <button className={`hover:text-gray-700 duration-300 ease-out font-bold ${step === 3 ? 'text-purple-600' : 'text-white'}`}>
                             Pedidos
                         </button>
                     </div>
                 </div>
             </div>
             {/* Ventanas */}
-            <div className='flex flex-col h-full justify-start items-start w-full'>
+            <div className='flex h-full justify-center items-start w-full'>
                 {step === 1 && (
-                    <div className='sm:m-10 p-5 flex flex-col'>
-                        <h1 className='text-5xl pb-10 text-black'>Perfil</h1>
-                        <div className='border-2 border-[#202020] rounded-md'>
-                            <h2 className='text-gray-500 font-bold text-lg pl-1'>Datos personales</h2>
-                            <div className='flex flex-col gap-2 p-2'>
-                                <div className=''>
-                                    <h3 className='text-xl text-[#202020]'>Nombre</h3>
-                                    <h3 className='text-gray-500 text-md'>{usuario.nombre}</h3>
-                                </div>
-                                <div className=''>
-                                    <h3 className='text-xl text-[#202020]'>Apellido</h3>
-                                    <h3 className='text-gray-500 text-md'>{usuario.apellido}</h3>
-                                </div>
-                                <div className=''>
-                                    <h3 className='text-xl text-[#202020]'>Email</h3>
-                                    <h3 className='text-gray-500 text-md'>{usuario.email}</h3>
+                    <div className='sm:m-10 p-5 sm:[w-100%]'>
+                        <div className='flex flex-col w-[300px] sm:w-[600px]'>
+                            <h1 className='text-5xl pb-10 text-black'>Perfil</h1>
+                            <div className='border-2 border-[#202020] rounded-md'>
+                                <h2 className='text-black font-bold text-lg pl-1'>Datos personales</h2>
+                                <div className='flex flex-col gap-2 p-2'>
+                                    <div className=''>
+                                        <h3 className='text-xl text-[#202020]'>Nombre</h3>
+                                        <h3 className='text-gray-500 text-md'>{usuario.nombre}</h3>
+                                    </div>
+                                    <div className=''>
+                                        <h3 className='text-xl text-[#202020]'>Apellido</h3>
+                                        <h3 className='text-gray-500 text-md'>{usuario.apellido}</h3>
+                                    </div>
+                                    <div className=''>
+                                        <h3 className='text-xl text-[#202020]'>Email</h3>
+                                        <h3 className='text-gray-500 text-md'>{usuario.email}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <h1 className='text-5xl pb-4 pt-10'>Direcciones</h1>
+                    </div>
+                )}
+                {step === 2 && (
+                    <div className='sm:m-10 p-5 sm:[w-100%]'>
+                        <button className='flex items-center gap-2 text-lg text-[#202020] hover:scale-110 duration-300 pb-4' onClick={stepPerfil}>
+                            <BiArrowBack size={25} />Atras
+                        </button>
+                        <h1 className='text-5xl pb-4 text-black'>Direcciones</h1>
                         <button className='border-2 border-[#202020] p-2 hover:bg-[#202020] hover:text-white duration-200 hover:animate-jump rounded-md'>
                             Añadir dirección
                         </button>
@@ -125,12 +141,12 @@ const Perfil = () => {
                         </div>
                     </div>
                 )}
-                {step === 2 && (
-                    <div className='rounded-lg sm:m-10 p-5 sm:[w-100%]'>
+                {step === 3 && (
+                    <div className='sm:m-10 p-5 sm:[w-100%]'>
                         <button className='flex items-center gap-2 text-lg text-[#202020] hover:scale-110 duration-300 pb-4' onClick={stepPerfil}>
                             <BiArrowBack size={25} />Atras
                         </button>
-                        <h1 className='text-5xl pb-5'>Pedidos</h1>
+                        <h1 className='text-5xl pb-5 text-black'>Pedidos</h1>
                         <div className='flex flex-col gap-4'>
                             <CardPerfilPedidos />
                         </div>

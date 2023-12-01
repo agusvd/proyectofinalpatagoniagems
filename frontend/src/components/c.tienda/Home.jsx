@@ -48,7 +48,7 @@ const Home = () => {
                         <div className="flex-row sm:flex items-center justify-center text-center">
                             <div className="flex flex-col space-y-4">
                                 <h1 className="text-4xl font-bold">PatagoniaGems</h1>
-                                <Link to="/tienda" className="text-lg rounded-full bg-purple-500 hover:bg-pink-600 text-white duration-300 transition-all ease-out hover:scale-125">Ir de compras</Link>
+                                <Link to="/tienda" className="text-lg rounded-md bg-black active:bg-purple-600 text-white duration-300 transition-all ease-out active:scale-95 hover:-translate-y-2">Ir de compras</Link>
                             </div>
                         </div>
 

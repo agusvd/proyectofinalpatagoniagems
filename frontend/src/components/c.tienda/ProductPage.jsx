@@ -5,13 +5,11 @@ import Cart from '../shared.tienda/Cart';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { AiOutlineShopping } from 'react-icons/ai'
-import { BiMessageSquareX } from 'react-icons/bi';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { toast, Toaster } from 'react-hot-toast';
+import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { AiOutlineLoading } from "react-icons/ai";
-import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
+
 
 
 

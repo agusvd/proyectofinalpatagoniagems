@@ -103,7 +103,6 @@ const ProductosTotal = () => {
             precio_total: producto.precio,
             cantidad_total: 1,
         };
-
         axios
             .post('http://localhost:8000/carrito', datosCarrito)
             .then((res) => {

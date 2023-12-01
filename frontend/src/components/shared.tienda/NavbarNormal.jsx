@@ -4,15 +4,14 @@ import { AiOutlineShopping, AiOutlineSearch, AiOutlineUser } from 'react-icons/a
 import axios from 'axios';
 import Cart from './Cart';
 import Search from './Search';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 
 const NavbarNormal = () => {
     const location = useLocation();
 
     // obtener la info del usuario
     const [auth, setAuth] = useState(false)
-    const [mensaje, setMensaje] = useState('')
-    const [mensaje2, setMensaje2] = useState('')
-    const [nombre, setNombre] = useState('')
     const [isAdmin, setIsAdmin] = useState(false);
     const [usuarioId, setUsuarioId] = useState('')
 
@@ -23,12 +22,9 @@ const NavbarNormal = () => {
                 if (res.data.Status === "Perfecto") {
                     setAuth(true);
                     setUsuarioId(res.data.id)
-                    setNombre(res.data.nombre);
                     setIsAdmin(res.data.role)
-                    setMensaje2('😃');
                 } else {
                     setAuth(false);
-                    setMensaje(res.data.Error);
                 }
             })
             .catch(err => console.log(err));
@@ -56,36 +52,34 @@ const NavbarNormal = () => {
             .catch(err => console.error('Error al obtener las categorías:', err));
     }, []);
 
-    console.log(categorias)
-
-
     // carrito
-    const [productosCarrito, setProductosCarrito] = useState([]);
+    const [totalCarrito, setTotalCarrito] = useState(0);
     useEffect(() => {
-        // Obtener los datos del carrito desde el backend
-        axios.get('http://localhost:8000/carrito')
-            .then((res) => {
-                setProductosCarrito(res.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }, []);
+        if (auth) {
+            const token = Cookies.get('token');
+            const decodedToken = jwtDecode(token);
+            const usuario_id = decodedToken.id;
+            axios.get(`http://localhost:8000/carrito?usuario_id=${usuario_id}`)
+                .then(res => {
+                    const productosCarrito = res.data.reduce((acc, item) => acc + item.cantidad_total, 0);
+                    setTotalCarrito(productosCarrito);
+                })
+                .catch(error => console.error('Error al obtener los productos del carrito:', error));
+                console.log('Uusario autentificado')
+        } else {
+            console.log('Usuario no auntentificado')
+        }
+    },);
 
     const [carritoVisible, setCarritoVisible] = useState(false);
-
     const handleOpenCarritoClick = () => {
         setCarritoVisible(true);
     };
-
     const handleCloseCarritoClick = () => {
         setCarritoVisible(false);
-    };
-
-    // search productos
+    }
 
     const [searchVisible, setSearchVisible] = useState(false)
-
     const handleOpenSearchClick = () => {
         setSearchVisible(true)
     }
@@ -102,7 +96,7 @@ const NavbarNormal = () => {
         }
     };
 
-    
+
 
     return (
         <div className='sticky top-0 z-10 font-primary'>
@@ -138,7 +132,7 @@ const NavbarNormal = () => {
                         </div>
                     </div>
                     <div className='absolute left-1/2 transform -translate-x-1/2'>
-                        <Link to='/' className='text-xl text-black'>
+                        <Link to='/' className='text-xl font-bold text-black'>
                             PatagoniaGems
                         </Link>
                     </div>
@@ -152,7 +146,15 @@ const NavbarNormal = () => {
                             </div>
                         )}
                         <button onClick={handleOpenCarritoClick}>
-                            <AiOutlineShopping size={35} className='text-black active:scale-95 duration-300' />
+                            <div className="indicator">
+                                <AiOutlineShopping size={35} className='text-black active:scale-95 duration-300' />
+                                {auth ?
+                                    <span className="badge badge-ghost badge-sm indicator-item text-white">{totalCarrito}</span>
+                                    :
+                                    <span className="badge badge-ghost badge-sm indicator-item text-white">0</span>
+                                }
+
+                            </div>
                         </button>
                         {carritoVisible && (
                             <div id='cerrar' className="fixed top-0 right-0 h-screen w-screen bg-black bg-opacity-50 flex justify-center items-center z-[99] animate-fade-left animate-duration-300" onClick={handleClose}>
