@@ -9,14 +9,15 @@ mercadopago.configure({
 });
 
 router.post("/create_preference", (req, res) => {
+    console.log("Request Body:", req.body);
+
+    // Agregar la información del carrito desde req.body a la variable preference
     let preference = {
-        items: [
-            {
-                title: req.body.description,
-                unit_price: Number(req.body.price),
-                quantity: Number(req.body.quantity),
-            },
-        ],
+        items: req.body.items.map(item => ({
+            title: item.description,
+            unit_price: Number(item.price),
+            quantity: Math.floor(Number(item.quantity)),
+        })),
         back_urls: {
             success: "http://localhost:5173",
             failure: "http://localhost:5173",
@@ -24,6 +25,7 @@ router.post("/create_preference", (req, res) => {
         },
         auto_return: "approved",
     };
+    
     mercadopago.preferences
         .create(preference)
         .then(function (response) {
@@ -33,8 +35,8 @@ router.post("/create_preference", (req, res) => {
         })
         .catch(function (error) {
             console.log(error)
+            res.status(500).json({ error: 'Error al crear la preferencia' });
         })
-        
-})
+});
 
 export default router

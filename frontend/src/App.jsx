@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-{/* Pages dashboard */}
+{/* Pages dashboard */ }
 import Dashboard from './components/pages.dashboard/PageInicio';
 import Inventory from './components/pages.dashboard/PageInventario';
 import NewProduct from './components/pages.dashboard/PageAgregarProducto';
@@ -8,7 +8,7 @@ import UpdateProduct from './components/pages.dashboard/PageActualizarProducto'
 import Clientes from './components/pages.dashboard/PageClientes';
 import PedidosP from './components/pages.dashboard/PagePedidos';
 import NCategoria from './components/pages.dashboard/PageNuevaCategoria';
-{/* Pagina tienda */}
+{/* Pagina tienda */ }
 import Login from './components/pages.tienda/PageLogin';
 import Register from './components/pages.tienda/PageRegister';
 import Error from './components/pages.tienda/PageError';
@@ -17,18 +17,19 @@ import PageTiendaGeneral from './components/pages.tienda/PageTiendaGeneral';
 import PageTiendaPorCategoria from './components/pages.tienda/PageTiendaPorCategoria';
 import PagePerfil from './components/pages.tienda/PagePerfil';
 import PageCarrito from './components/pages.tienda/PageCarrito';
-import PagePago from './components/pages.tienda/PagePago';
 import PageProductoEspecifico from './components/pages.tienda/PageProductoEspecifico';
 import PageTerminos from './components/pages.tienda/PageTerminos';
-{/* Seguridad de google */}
+import PageCheckOut from './components/pages.tienda/PageCheckOut';
+{/* Seguridad de google */ }
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-{/* Proteccion de rutas */}
+{/* Proteccion de rutas */ }
 import PrivateRoute from './utils/PrivateRoute';
-{/* Pagina blog */}
+{/* Pagina blog */ }
 import PageBlogInicio from './components/pages.blog/PageBlogInicio';
 import PageActualizarCategoria from './components/pages.dashboard/PageActualizarCategoria';
 import PageBlogNuevo from './components/pages.blog/PageBlogNuevo';
 import PageBlogPost from './components/pages.blog/PageBlogPost';
+
 
 
 
@@ -37,20 +38,22 @@ const App = () => {
     <GoogleReCaptchaProvider reCaptchaKey="6LfS5RsnAAAAAHNasTesF3XiLU3ZNJtyNclR7ycz">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PageInicio/>} />
+          <Route path="/" element={<PageInicio />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/tienda" element={<PageTiendaGeneral />} />
           <Route path="/tienda/:categoriaId" element={<PageTiendaPorCategoria />} />
           <Route path="/perfil/:id" element={<PagePerfil />} />
-          <Route path="/carrito" element={<PageCarrito />} />
-          <Route path='/pago' element={<PagePago/>} />
-          <Route path='/tienda/producto/:nombre' element={<PageProductoEspecifico />}/>
-          <Route path='/terminos-y-condiciones' element={<PageTerminos/>} />
+          <Route path="/cart" element={<PageCarrito />} />
+          <Route path='/tienda/producto/:nombre' element={<PageProductoEspecifico />} />
+          <Route path='/terminos-y-condiciones' element={<PageTerminos />} />
           <Route path='/blogs' element={<PageBlogInicio />} />
           <Route path="/404" element={<Error />} />
           <Route path="*" element={<Navigate to="/404" />} />
-          <Route path='/blog/post/:id' element={<PageBlogPost />}/>
+          {/* pago */}
+          <Route path='/checkout' element={<PageCheckOut />} />
+          {/* Fin pago */}
+          <Route path='/blog/post/:id' element={<PageBlogPost />} />
           <Route exact path="/blog/nuevo" element={<PrivateRoute />}>
             <Route exact path="/blog/nuevo" element={<PageBlogNuevo />} />
           </Route>
@@ -79,7 +82,7 @@ const App = () => {
             <Route exact path="/dashboard/categorias" element={<NCategoria />} />
           </Route>
           <Route exact path="/dashboard/categorias/actualizar/:id" element={<PrivateRoute />}>
-            <Route exact path="/dashboard/categorias/actualizar/:id" element={<PageActualizarCategoria/>} />
+            <Route exact path="/dashboard/categorias/actualizar/:id" element={<PageActualizarCategoria />} />
           </Route>
         </Routes>
       </BrowserRouter>

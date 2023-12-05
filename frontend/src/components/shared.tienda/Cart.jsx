@@ -161,10 +161,10 @@ const Cart = ({ onClose }) => {
                                 <h2 className="text-[#202020] font-bold">${calcularPrecioTotalCarrito()} CLP</h2>
                             </div>
                         )}
-                        <Link to="/carrito" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-[#474A56] duration-300 ease-in-out active:bg-purple-600" >
+                        <Link to="/cart" className="bg-black text-white py-2 px-4 rounded mb-2 hover:bg-[#474A56] duration-300 ease-in-out active:bg-purple-600" >
                             Ver Carrito
                         </Link>
-                        <Link to="/pago" className="text-white py-2 px-4 rounded bg-black hover:bg-[#474A56] active:bg-green-500 duration-300 ease-in-out">
+                        <Link to="/checkout" className="text-white py-2 px-4 rounded bg-black hover:bg-[#474A56] active:bg-green-500 duration-300 ease-in-out">
                             Proceder al pago
                         </Link>
                     </footer>

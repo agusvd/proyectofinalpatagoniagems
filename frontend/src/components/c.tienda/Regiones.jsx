@@ -25,10 +25,7 @@ const Regiones = ({ selectedRegion, handleRegionChange, handleComunaChange, comu
 
     return (
         <div>
-            <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                Región
-            </label>
-            <select id="region" className="mt-1 block w-full border-gray-300 bg-white text-black rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={selectedRegion} onChange={handleRegionChange}>
+            <select id="region" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={selectedRegion} onChange={handleRegionChange}>
                 <option value="">Selecciona una región</option>
                 {regiones.map((region) => (
                     <option key={region} value={region}>

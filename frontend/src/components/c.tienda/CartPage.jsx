@@ -133,7 +133,7 @@ const Cart = ({ onClose }) => {
                         <h2 className="text-black text-xl">${calcularPrecioTotalCarrito()} CLP</h2>
                         {carritoItems.length > 0 && (
                             <footer className="p-2 flex">
-                                <Link to="/pago" className="bg-black hover:bg-purple-500 duration-300 ease-in-out text-white py-2 px-4 rounded active:bg-green-500">
+                                <Link to="/checkout" className="bg-black hover:bg-purple-500 duration-300 ease-in-out text-white py-2 px-4 rounded active:bg-green-500">
                                     Proceder al pago
                                 </Link>
                             </footer>

@@ -116,7 +116,6 @@ const ProductPage = () => {
     const handleBuy = async () => {
         {/* Veriifica si esta logeado el usuario */ }
         if (!isLoggedIn) {
-            setShowModal(true);
             return;
         }
         setIsLoading(true);
