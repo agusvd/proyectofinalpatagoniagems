@@ -144,7 +144,7 @@ const Cart = ({ onClose }) => {
                                                     <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="w-[100px]">
                                                         <img src={producto.imagen} className="w-full object-contain" alt={producto.nombre} />
                                                     </Link>
-                                                    <div className='flex flex-col justify-center h-full'>
+                                                    <div className='flex flex-col justify-center h-full w-full'>
                                                         <Link onClick={onClose} to={`/tienda/producto/${producto.nombre}`} className="text-md text-black font-bold">
                                                             {producto.nombre}
                                                         </Link>
@@ -183,7 +183,7 @@ const Cart = ({ onClose }) => {
                                                         <BiTrash size={30} className="hover:text-purple-500 text-gray-600" />
                                                     </button>
                                                 </td>
-                                                <td className='hidden sm:inline-table'>
+                                                <td className='hidden sm:table-cell'>
                                                     <p className='text-sm text-black'>${producto.precio * cantidadProductos[producto.producto_id]} CLP</p>
                                                 </td>
                                             </tr>
