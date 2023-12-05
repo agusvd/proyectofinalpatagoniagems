@@ -36,10 +36,7 @@ const Regiones = ({ selectedRegion, handleRegionChange, handleComunaChange, comu
 
             {selectedRegion && (
                 <div>
-                    <label htmlFor="comuna" className="block text-sm font-medium text-gray-700">
-                        Comuna
-                    </label>
-                    <select id="comuna" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" value={selectedComuna} onChange={handleComunaChange}>
+                    <select id="comuna" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={selectedComuna} onChange={handleComunaChange}>
                         <option value="">Selecciona una comuna</option>
                         {comunas.map((comuna) => (
                             <option key={comuna} value={comuna}>
