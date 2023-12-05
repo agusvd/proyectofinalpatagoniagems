@@ -82,7 +82,7 @@ const TablaInventario = () => {
                                 setProductosFiltrados(filtrados);
                             }} />
                     </div>
-                    <Link to="/dashboard/inventario/agregar" className='hover:bg-white hover:text-black shadow-xl rounded-xl p-2 bg-purple-600 text-white'>
+                    <Link to="/dashboard/inventario/agregar" className='hover:bg-black hover:text-white  shadow-md duration-300 rounded-md p-2 bg-purple-600 text-white active:bg-green-500'>
                         Nuevo producto
                     </Link>
                 </div>
