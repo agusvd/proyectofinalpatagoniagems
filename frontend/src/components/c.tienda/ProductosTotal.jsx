@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import Cart from '../shared.tienda/Cart';
 import { toast, Toaster } from 'react-hot-toast';
-import CardProductoGeneral from '../cards.tienda/CardProductGeneral';
+import CardProductoGeneral from '../cards.tienda/CardProductoGeneral';
 import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
 import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 

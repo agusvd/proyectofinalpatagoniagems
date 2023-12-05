@@ -6,9 +6,9 @@ import { AiOutlineShopping } from 'react-icons/ai'
 const CardProductoGeneral = ({ producto, getCategoriaNombre, handleAgregarCarro }) => {
 
     return (
-        <div key={producto.id} className="rounded-md w-[350px] h-[420px] flex flex-col font-primary">
+        <div key={producto.id} className="rounded-md w-[350px] h-[450px] flex flex-col font-primary">
             {/* Imagen */}
-            <Link to={`/tienda/producto/${producto.nombre}`} className="flex items-center justify-center w-full h-[300px]">
+            <Link to={`/tienda/producto/${producto.nombre}`} className="mask mask-square flex items-center justify-center w-full h-[300px]">
                 <img src={producto.imagen} className="h-[300px] w-full object-contain" alt="Producto" />
             </Link>
             {/* Informacion */}

@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import Cart from '../shared.tienda/Cart';
 import { toast, Toaster } from 'react-hot-toast';
 import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
-import CardProductoGeneral from '../cards.tienda/CardProductGeneral';
+import CardProductoGeneral from '../cards.tienda/CardProductoGeneral';
 import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 
 const ProductosDestacados = () => {
