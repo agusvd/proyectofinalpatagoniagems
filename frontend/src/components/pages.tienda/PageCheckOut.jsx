@@ -6,6 +6,7 @@ import Regiones from '../c.tienda/Regiones';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import mercadopagoicono from '../../assets/mercado-pago.svg'
 
 const PageCheckOut = () => {
 
@@ -144,7 +145,7 @@ const PageCheckOut = () => {
     const createPreference = async (carritoItems, cantidadProductos) => {
         try {
             const items = carritoItems.map(item => ({
-                description: item.nombre, 
+                description: item.nombre,
                 price: item.precio,
                 quantity: parseInt(cantidadProductos[item.producto_id], 10), // Asegura que el valor es un entero
                 currency_id: "CLP"
@@ -226,9 +227,10 @@ const PageCheckOut = () => {
             <div className='flex flex-col sm:flex sm:flex-row w-full h-full overflow-hidden'>
                 {/* Left side form */}
                 <div className='bg-white w-full h-full overflow-auto'>
-                <Toaster/>
-                    <div className='flex flex-col justify-center items-center'>
+                    <Toaster />
+                    <div className='flex flex-col justify-center items-center gap-5'>
                         <h1 className='text-black font-bold text-2xl pt-10'>PatagoniaGems</h1>
+                        <img src={mercadopagoicono} className='w-[100px]'/>
                         <div className="text-sm breadcrumbs text-black">
                             <ul>
                                 <li><Link to='/cart'>Carrito</Link></li>
@@ -297,15 +299,23 @@ const PageCheckOut = () => {
                                     )}
                                 </div>
                             </form>
-                            <div className='pb-5 w-full flex justify-end items-center pr-5'>
+                            <div className='pb-5 w-full flex flex-col justify-end items-end pr-5 gap-2'>
+                                {isLoading ?
+                                <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center'>
+                                    <span className="loading loading-dots loading-sm"></span>
+                                </button>
+                                :
+                                <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center' onClick={handleBuy}>
+                                        <p>Continuar con el pago</p>
+                                    </button>
+                                }
                                 {isLoading ?
                                     <div className='-mt-4'>
                                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
                                     </div>
                                     :
-                                    <button className='p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center' onClick={handleBuy}>
-                                        <p>Continuar con el pago</p>
-                                    </button>
+                                    <>
+                                    </>
                                 }
                             </div>
                         </div>

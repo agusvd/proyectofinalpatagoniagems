@@ -8,7 +8,6 @@ import { AiOutlineShopping } from 'react-icons/ai'
 import { toast, Toaster } from 'react-hot-toast';
 import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 
 
@@ -88,43 +87,7 @@ const ProductPage = () => {
             });
     };
 
-    // mercado pago
-
-    const [preferenceId, setPreferenceId] = useState(null)
-    const [isLoading, setIsLoading] = useState(false);
-
-    initMercadoPago("TEST-9e467044-7573-4752-9e22-6d63cbd13be4")
-
-    const createPreference = async () => {
-        try {
-            const response = await axios.post("http://localhost:8000/create_preference", {
-                descripcion: producto.nombre,
-                price: producto.precio,
-                quantity: cantidad,
-                currency_id: "CLP"
-            });
-
-            const { id } = response.data;
-            return id;
-
-        } catch (error) {
-            console.log(error.response.data);  // Muestra información del error en la consola
-            toast.error('Error al crear la preferencia');
-        }
-    };
-
-    const handleBuy = async () => {
-        {/* Veriifica si esta logeado el usuario */ }
-        if (!isLoggedIn) {
-            return;
-        }
-        setIsLoading(true);
-        const id = await createPreference()
-        if (id) {
-            setPreferenceId(id)
-        }
-    };
-
+    
     if (producto === null) {
         return (
             <div>
@@ -183,15 +146,7 @@ const ProductPage = () => {
                                 <button className="w-full p-2 text-white text-xl rounded-md  active:bg-green-500 active:scale-95 duration-300 ease-in-out bg-black hover:bg-purple-500 flex items-center justify-center" onClick={() => handleAgregarCarro(producto)}>
                                     <AiOutlineShopping size={30} />
                                 </button>
-                                {isLoading ?
-                                    <div className='-mt-4'>
-                                        {preferenceId && <Wallet initialization={{ preferenceId }} />}
-                                    </div>
-                                    :
-                                    <button className='p-2 bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-xl rounded-md  w-full items-center flex justify-center' onClick={handleBuy}>
-                                        Comprar
-                                    </button>
-                                }
+
                             </div>
                         </div>
                         {/* informacion del producto */}
