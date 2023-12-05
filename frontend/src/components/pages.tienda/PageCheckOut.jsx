@@ -91,10 +91,6 @@ const PageCheckOut = () => {
         setPhone(e.target.value);
     };
 
-    const handleSubscribeChange = (e) => {
-        setSubscribe(e.target.checked);
-    };
-
     const handleShippingMethodChange = (e) => {
         setShippingMethod(e.target.value);
     };
@@ -127,14 +123,10 @@ const PageCheckOut = () => {
     };
 
     const handleComunaChange = (e) => {
-        // Actualiza la comuna seleccionada
+
         setSelectedComuna(e.target.value);
     };
 
-    const handleSaveInfoChange = (e) => {
-        // Actualiza el estado para guardar información para futuras compras
-        setSaveInfo(e.target.checked);
-    };
 
     // mercadopago
     const [preferenceId, setPreferenceId] = useState(null)

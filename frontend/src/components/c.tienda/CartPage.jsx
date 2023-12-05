@@ -194,12 +194,10 @@ const Cart = ({ onClose }) => {
                             )}
                             <div className='bg-white w-full sticky bottom-0'>
                                 {carritoItems.length > 0 && (
-                                    <div className="ml-2 items-center justify-around flex p-2 text-lg gap-5">
-                                        <div className='flex items-center gap-2 justify-center'>
-                                            <h1 className="text-black text-2xl">Total:</h1>
-                                            <h2 className="text-black text-xl">${calcularPrecioTotalCarrito()} CLP</h2>
-                                        </div>
-
+                                    <div className="items-end justify-end flex flex-col p-2 text-lg gap-2">
+                                        <h2 className="text-black text-md font-semibold">
+                                            Total: ${calcularPrecioTotalCarrito()} CLP
+                                        </h2>
                                         {carritoItems.length > 0 && (
                                             <footer className="p-2 flex">
                                                 <Link to="/checkout" className="bg-black hover:bg-purple-500 duration-300 ease-in-out text-white py-2 px-4 rounded active:bg-green-500">
