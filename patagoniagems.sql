@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-11-2023 a las 22:24:37
+-- Tiempo de generación: 06-12-2023 a las 23:44:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,7 +40,6 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`id`, `titulo`, `descripcion`, `img`, `fechaPublicacion`) VALUES
-(1, 'Que es patagoniaGems?', '<p>Es una tienda muy interesante, con muchos productos</p>', NULL, NULL),
 (2, 'nuevo blog pa', '<p>asdjoasjkdasafjafjajksdkakdjsjhdksad hola</p>', 'https://firebasestorage.googleapis.com/v0/b/patagoniagems-5fad5.appspot.com/o/1.jpeg?alt=media&token=01d5bc7d-7359-4146-85ef-64320225d283', NULL);
 
 -- --------------------------------------------------------
@@ -63,10 +62,12 @@ CREATE TABLE `carrito` (
 
 INSERT INTO `carrito` (`id`, `usuario_id`, `producto_id`, `precio_total`, `cantidad_total`) VALUES
 (249, 4, 45, 290000, 1),
-(286, 2, 45, 290000, 1),
-(292, 2, 46, 3400000, 1),
-(313, 2, 68, 8000, 1),
-(314, 1, 45, 30000, 1);
+(336, 37, 49, 160000, 2),
+(337, 37, 53, 60000, 1),
+(395, 2, 45, 30000, 1),
+(397, 1, 58, 60000, 2),
+(398, 1, 53, 120000, 2),
+(416, 2, 58, 30000, 1);
 
 -- --------------------------------------------------------
 
@@ -101,6 +102,34 @@ INSERT INTO `categoria_id` (`id`, `categoria`, `imagen`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `preference_id` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `transaction_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_description` varchar(255) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -122,7 +151,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `categoria_id`, `cantidad_gramos`, `cantidad_ml`, `stock`, `descripcion`, `imagen`, `precio`, `es_destacado`) VALUES
-(43, 'Nike dunk  panda', 1, NULL, NULL, 5, 'Tenis Dunk Low Retro en cuero y goma de color negro y blanco de NIKE con puntera redonda, suela plana de goma, cierre con agujetas en la parte delantera, plantilla con logo, detalle del logo y Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/16/40/35/69/16403569_31750946_1000.jpg', 10000, 'no'),
+(43, 'Nike dunk panda', 1, NULL, NULL, 5, 'Tenis Dunk Low Retro en cuero y goma de color negro y blanco de NIKE con puntera redonda, suela plana de goma, cierre con agujetas en la parte delantera, plantilla con logo, detalle del logo y Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..', 'https://cdn-images.farfetch-contents.com/16/40/35/69/16403569_31750946_1000.jpg', 10000, 'no'),
 (45, 'Dunk High SP de Nike x UNDEFEATED', 1, NULL, NULL, 10, 'tenis Dunk High SP de Nike x UNDEFEATED \n\n\nDetalle del logo, logo en relieve en la parte posterior, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, plantilla con logo y suela de goma. Material: Gamuza. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo..\n', 'https://cdn-images.farfetch-contents.com/17/37/23/06/17372306_36102523_1000.jpg', 30000, 'no'),
 (46, 'Nike x StrangeLove Dunk Low SB', 1, NULL, NULL, 3, 'Rojo, rosa, piel artificial, detalle del logo Swoosh característico, puntera redonda, cierre con agujetas en la parte delantera, parche del logo en la lengüeta, logo bordado en la parte posterior, plantilla con logo y suela de goma. Estos estilos son suministrados por un marketplace de tenis, el cual ofrece los artículos más codiciados y difíciles de encontrar de todo el mundo.', 'https://cdn-images.farfetch-contents.com/15/16/56/64/15165664_40786743_1000.jpg', 25000, 'si'),
 (47, 'Air Force 1 Low MCA', 1, NULL, NULL, 4, 'Características\nazul\npuntera redonda\ncierre con lazo\nsuela plana de goma\nlogo de Nike\nEstos estilos son suministrados por un marketplace de zapatillas premium, el cual ofrece el calzado más codiciado y difícil de encontrar de todo el mundo.', 'https://cdn-images.farfetch-contents.com/14/19/31/41/14193141_20010785_1000.jpg', 25000, 'no'),
@@ -142,6 +171,27 @@ INSERT INTO `productos` (`id`, `nombre`, `categoria_id`, `cantidad_gramos`, `can
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `shipping_details`
+--
+
+CREATE TABLE `shipping_details` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `apellido` varchar(100) DEFAULT NULL,
+  `correo` varchar(500) DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `metodo_envio` varchar(50) DEFAULT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `comuna` varchar(100) DEFAULT NULL,
+  `codigo_postal` varchar(20) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `numero_casa` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -151,25 +201,18 @@ CREATE TABLE `usuarios` (
   `apellido` varchar(45) NOT NULL,
   `email` varchar(150) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
-  `role` enum('user','admin') NOT NULL DEFAULT 'user',
-  `region` varchar(255) DEFAULT NULL,
-  `comuna` varchar(255) DEFAULT NULL,
-  `nombreCalle` varchar(255) DEFAULT NULL,
-  `numeroCalle` int(11) DEFAULT NULL,
-  `ciudad` varchar(255) DEFAULT NULL,
-  `numeroDepa` int(11) DEFAULT NULL
+  `role` enum('user','admin') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `role`, `region`, `comuna`, `nombreCalle`, `numeroCalle`, `ciudad`, `numeroDepa`) VALUES
-(1, 'Agustin', 'Villarroel', 'agus@gmail.com', '$2b$10$.HGssuNG2.iFLQCVoewx6.adML8/yFRpgPBaskftyhq5VbdqQFdgu', 'admin', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Claudio', 'Arias', 'claudio@gmail.com', '$2b$10$l/BQmYG0XwXIq3Wyb/WtH.L90XoFKS9UFoGtkUxfVhW2rO0Fj//Ba', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Sebastian', 'Godoy', 'seba@gmail.com', '$2b$10$W3VmpvkBwY3BNws58SUWz.RBANA.pdibEcHEjVqy2jtYi63o0K8jW', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 'Karlos', 'Kkkk', 'kkkk@gmail.con', '$2b$10$DBaqu2d8FqT.qcfPEjv/.OJitulVy5A.cR1v.uxXYQR.aG7mTy9yy', 'user', NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 'Profesor', 'Profesor2', 'profe@gmail.com', '$2b$10$GPpmxBdvs3owabPZZWd2ve38LCjx4L6h78x5z0l2klpu4CGKxQuxK', 'user', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `role`) VALUES
+(1, 'Agustin', 'Villarroel', 'agus@gmail.com', '$2b$10$.HGssuNG2.iFLQCVoewx6.adML8/yFRpgPBaskftyhq5VbdqQFdgu', 'admin'),
+(2, 'Claudio', 'Arias', 'claudio@gmail.com', '$2b$10$l/BQmYG0XwXIq3Wyb/WtH.L90XoFKS9UFoGtkUxfVhW2rO0Fj//Ba', 'user'),
+(4, 'Sebastian', 'Godoy', 'seba@gmail.com', '$2b$10$W3VmpvkBwY3BNws58SUWz.RBANA.pdibEcHEjVqy2jtYi63o0K8jW', 'user'),
+(37, 'Agustin', 'Asdasdd', 'agus2@gmail.com', '$2b$10$aVDRRjx.Qc5zzugwdBQ3DOeABA2ggGLwiqbkgxFGVjSLHBscEMxjO', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -196,11 +239,32 @@ ALTER TABLE `categoria_id`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indices de la tabla `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `categoria_id` (`categoria_id`);
+
+--
+-- Indices de la tabla `shipping_details`
+--
+ALTER TABLE `shipping_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -222,7 +286,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=315;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=417;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_id`
@@ -231,16 +295,34 @@ ALTER TABLE `categoria_id`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
+-- AUTO_INCREMENT de la tabla `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
+-- AUTO_INCREMENT de la tabla `shipping_details`
+--
+ALTER TABLE `shipping_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Restricciones para tablas volcadas
@@ -254,10 +336,28 @@ ALTER TABLE `carrito`
   ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+
+--
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria_id` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `shipping_details`
+--
+ALTER TABLE `shipping_details`
+  ADD CONSTRAINT `shipping_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
