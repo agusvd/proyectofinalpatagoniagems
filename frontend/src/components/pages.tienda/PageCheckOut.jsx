@@ -85,34 +85,39 @@ const PageCheckOut = () => {
     const [comunas, setComunas] = useState([]);
 
     // Manejadores de eventos para cambios en los campos de entrada
+
+    // Campos de contacto
+    // Nombre
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
+    };
+    // Apellido
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    };
+    // Correo
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
-
+    // Numero de telefono
     const handlePhoneChange = (e) => {
         setPhone(e.target.value);
     };
 
+    // seleccionar el metodo de envio
     const handleShippingMethodChange = (e) => {
         setShippingMethod(e.target.value);
     };
-
+    // informacion de envio
+    // direccion
     const handleAddressChange = (e) => {
         setAddress(e.target.value);
     };
-
-    const handleFirstNameChange = (e) => {
-        setFirstName(e.target.value);
-    };
-
-    const handleLastNameChange = (e) => {
-        setLastName(e.target.value);
-    };
-
+    // numero de casa o departamento
     const handleAddressLineChange = (e) => {
         setAddressLine(e.target.value);
     };
-
+    // codigo postal
     const handlePostalCodeChange = (e) => {
         setPostalCode(e.target.value);
     };
@@ -123,9 +128,8 @@ const PageCheckOut = () => {
         setSelectedComuna('');
         setComunas(comunasPorRegion[selectedRegion] || []);
     };
-
+    // comuna
     const handleComunaChange = (e) => {
-
         setSelectedComuna(e.target.value);
     };
 
@@ -283,60 +287,61 @@ const PageCheckOut = () => {
                                 <li><p>Pago</p></li>
                             </ul>
                         </div>
-                        {/* formulario */}
+                        {/* Contenedor  */}
                         <div className='w-full h-full overflow-hidden'>
-                            <form className="justify-center items-center flex flex-col sm:h-auto sm:block p-4 gap-2">
-                                <h2 className="text-xl text-black font-semibold pb-4">Contacto</h2>
-                                <div className="w-full">
-                                    {/* Campos de entrada para el email y el teléfono */}
-                                    <div className='flex flex-col w-full gap-2'>
-                                        <input placeholder='Email' id="email" type="email" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={email} onChange={handleEmailChange} />
-
-                                        <input placeholder='Telefono' id="phone" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={phone} onChange={handlePhoneChange}
-                                        />
+                            <div className="justify-center items-center flex flex-col sm:h-auto sm:block p-4 gap-2">
+                                <form className="w-full" onSubmit={handleBuy}>
+                                    <h2 className='text-xl font-semibold text-black'>
+                                        Informacion de contacto
+                                    </h2>
+                                    <div>
+                                        <input placeholder='Nombre' id="firstName" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={firstName} onChange={handleFirstNameChange} required />
+                                    </div>
+                                    <div>
+                                        <input placeholder='Apellido' id="lastName" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={lastName} onChange={handleLastNameChange} required />
+                                    </div>
+                                    <div>
+                                        <input placeholder='Correo' id="email" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={email} onChange={handleEmailChange} required />
+                                    </div>
+                                    <div>
+                                        <input placeholder='Numero de telefono' id="phone" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={phone} onChange={handlePhoneChange} required />
                                     </div>
                                     {/* Selección del método de envío */}
                                     <h2 className="text-xl text-black font-semibold pb-2 pt-2">Método de envío</h2>
                                     <div className="space-y-4 pb-2">
                                         <div className="flex items-center ">
-                                            <input id="pickup" type="radio" value="retiro" name="radio-1" className="mr-2 radio radio-primary " checked={shippingMethod === 'retiro'} onChange={handleShippingMethodChange} />
-                                            <label htmlFor="pickup" className="text-sm font-medium text-gray-700">
-                                                Retiro (Solo Punta Arenas)
+                                            <input id="retiro" type="radio" value="retiro" className="mr-2 radio radio-primary" checked={shippingMethod === 'retiro'} onChange={handleShippingMethodChange} />
+                                            <label className="text-sm font-medium text-gray-700">
+                                                Retiro en tienda (Solo Punta Arenas)
                                             </label>
                                         </div>
                                         <div className="flex items-center">
-                                            <input id="raparto" type="radio" value="reparto" className="mr-2 radio" checked={shippingMethod === 'reparto'} onChange={handleShippingMethodChange} />
-                                            <label htmlFor="pickup" className="text-sm font-medium text-gray-700">
-                                                Reparto (Solo Punta Arenas)
+                                            <input id="raparto" type="radio" value="reparto" className="mr-2 radio radio-primary" checked={shippingMethod === 'reparto'} onChange={handleShippingMethodChange} />
+                                            <label className="text-sm font-medium text-gray-700">
+                                                Reparto a domicilio (Solo Punta Arenas)
                                             </label>
                                         </div>
                                         <div className="flex items-center">
-                                            <input id="shipping" type="radio" value="envio" className="mr-2 radio" checked={shippingMethod === 'envio'} onChange={handleShippingMethodChange} />
-                                            <label htmlFor="shipping" className="text-sm font-medium text-gray-700">
-                                                Envío (Solo Chile)
+                                            <input id="shipping" type="radio" value="envio" className="mr-2 radio radio-primary" checked={shippingMethod === 'envio'} onChange={handleShippingMethodChange} />
+                                            <label className="text-sm font-medium text-gray-700">
+                                                Envío, por pagar (Solo Chile)
                                             </label>
                                         </div>
                                     </div>
                                     {/* Sección de dirección de envío */}
+                                    {/* Cada metodo de envio tiene su propio formulario.. */}
                                     {shippingMethod === 'envio' && (
                                         <div className='w-full'>
                                             <h2 className="text-2xl font-semibold">Dirección de envío</h2>
                                             <div className="space-y-4 w-full">
                                                 {/* Selección de región y comuna */}
                                                 <div className="grid grid-cols-2 gap-4">
-                                                    <div className=''>
+                                                    <div>
                                                         <Regiones selectedRegion={selectedRegion} handleRegionChange={handleRegionChange} handleComunaChange={handleComunaChange} comunas={comunas} selectedComuna={selectedComuna} />
                                                     </div>
                                                     <div>
                                                         <input placeholder='Codigo Postal' id="postalCode" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={postalCode} onChange={handlePostalCodeChange} />
                                                     </div>
-                                                </div>
-                                                {/* Campos de entrada para el nombre, apellido, dirección, etc. */}
-                                                <div>
-                                                    <input placeholder='Nombre' id="firstName" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={firstName} onChange={handleFirstNameChange} />
-                                                </div>
-                                                <div>
-                                                    <input placeholder='Apellido' id="lastName" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={lastName} onChange={handleLastNameChange} />
                                                 </div>
                                                 <div>
                                                     <input placeholder='Dirección' id="address" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={address} onChange={handleAddressChange} />
@@ -348,8 +353,19 @@ const PageCheckOut = () => {
                                             </div>
                                         </div>
                                     )}
-                                </div>
-                            </form>
+                                    {shippingMethod == 'reparto' && (
+                                        <div className='w-full'>
+                                            <div>
+                                                <input placeholder='Dirección' id="address" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={address} onChange={handleAddressChange} />
+                                            </div>
+                                            <div>
+                                                <input placeholder='Casa, Dpto, etc.' id="addressLine" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={addressLine}
+                                                    onChange={handleAddressLineChange} />
+                                            </div>
+                                        </div>
+                                    )}
+                                </form>
+                            </div>
                             <div className='pb-5 w-full flex flex-col justify-end items-end pr-5 gap-2'>
                                 {isLoading ?
                                     <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center'>
