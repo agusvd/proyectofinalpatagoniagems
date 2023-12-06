@@ -7,6 +7,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import mercadopagoicono from '../../assets/mercado-pago.svg'
+import { AiOutlineShopping } from "react-icons/ai";
+
 
 const PageCheckOut = () => {
 
@@ -222,7 +224,58 @@ const PageCheckOut = () => {
                     <Toaster />
                     <div className='flex flex-col justify-center items-center gap-5'>
                         <h1 className='text-black font-bold text-2xl pt-10'>PatagoniaGems</h1>
-                        <img src={mercadopagoicono} className='w-[100px]'/>
+                        <div className='sm:hidden w-full'>
+                            <details className="collapse collapse-arrow bg-gray-100 border-2 flex w-full rounded-none">
+                                <summary className="collapse-title items-center flex justify-between">
+                                    <div className='flex items-center justify-between'>
+                                        <div className='flex gap-2 items-center'>
+                                            <AiOutlineShopping size={30} className='text-black' /><h2 className='text-black text-sm'>Mostrar resumen de orden</h2>
+                                        </div>
+                                        <h2 className="text-black text-md">${calcularPrecioTotalCarrito()} CLP</h2>
+                                    </div>
+                                </summary>
+                                <div className="collapse-content bg-purple-600">
+                                    {/* Contenedor dos */}
+                                    <div className='w-full h-full'>
+                                        <div className='max-h-[70vh] flex flex-col justify-between'>
+                                            {carritoItems.map((producto) => (
+                                                <table key={producto} className='w-full h-full'>
+                                                    <tbody>
+                                                        <tr className='flex gap-2 pt-5 items-center w-full'>
+                                                            <td className='indicator p-2 bg-white rounded-xl h-full'>
+                                                                <div className='w-[60px]'>
+                                                                    <img src={producto.imagen} alt={`Imagen ${producto.nombre}`} className='w-full h-[60px] object-contain' />
+                                                                    <span className="badge badge-md indicator-item text-white  w-[20px] h-[20px] bg-black border-none">
+                                                                        {cantidadProductos[producto.producto_id]}
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                            <td className='w-full h-full flex'>
+                                                                <h2 className='text-white font-semibold text-md w-full h-full'>
+                                                                    {producto.nombre}
+                                                                </h2>
+                                                            </td>
+                                                            <td className='w-[200px] h-full'>
+                                                                <p className='text-white font-semibold text-sm w-full h-full'>
+                                                                    ${producto.precio * cantidadProductos[producto.producto_id]} CLP
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            ))}
+                                        </div>
+                                        <div className="divider"></div>
+                                        <div className="flex w-full justify-between sticky">
+                                            <h1 className="text-white font-semibold">Total</h1>
+                                            <h2 className="text-white font-semibold">${calcularPrecioTotalCarrito()} CLP</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+
+                        </div>
+                        <img src={mercadopagoicono} className='w-[100px]' />
                         <div className="text-sm breadcrumbs text-black">
                             <ul>
                                 <li><Link to='/cart'>Carrito</Link></li>
@@ -232,37 +285,43 @@ const PageCheckOut = () => {
                         </div>
                         {/* formulario */}
                         <div className='w-full h-full overflow-hidden'>
-                            <form className=" justify-center items-center flex flex-col sm:h-auto sm:block p-8">
-                                <h2 className="text-xl text-black font-semibold mb-4">Contacto</h2>
-                                <div className="space-y-4">
+                            <form className="justify-center items-center flex flex-col sm:h-auto sm:block p-4 gap-2">
+                                <h2 className="text-xl text-black font-semibold pb-4">Contacto</h2>
+                                <div className="w-full">
                                     {/* Campos de entrada para el email y el teléfono */}
-                                    <div>
+                                    <div className='flex flex-col w-full gap-2'>
                                         <input placeholder='Email' id="email" type="email" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={email} onChange={handleEmailChange} />
 
                                         <input placeholder='Telefono' id="phone" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={phone} onChange={handlePhoneChange}
                                         />
                                     </div>
                                     {/* Selección del método de envío */}
-                                    <h2 className="text-xl text-black font-semibold mb-4">Método de envío</h2>
-                                    <div className="space-y-4">
-                                        <div className="flex items-center">
-                                            <input id="shipping" type="radio" value="envio" className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded" checked={shippingMethod === 'envio'} onChange={handleShippingMethodChange} />
-                                            <label htmlFor="shipping" className="text-sm font-medium text-gray-700">
-                                                Envío (Solo Chile)
+                                    <h2 className="text-xl text-black font-semibold pb-2 pt-2">Método de envío</h2>
+                                    <div className="space-y-4 pb-2">
+                                        <div className="flex items-center ">
+                                            <input id="pickup" type="radio" value="retiro" name="radio-1" className="mr-2 radio radio-primary " checked={shippingMethod === 'retiro'} onChange={handleShippingMethodChange} />
+                                            <label htmlFor="pickup" className="text-sm font-medium text-gray-700">
+                                                Retiro (Solo Punta Arenas)
                                             </label>
                                         </div>
                                         <div className="flex items-center">
-                                            <input id="pickup" type="radio" value="retiro" className="mr-2 focus:ring-purple-500 h-4 w-4 text-purple-500 border-gray-300 rounded" checked={shippingMethod === 'retiro'} onChange={handleShippingMethodChange} />
+                                            <input id="raparto" type="radio" value="reparto" className="mr-2 radio" checked={shippingMethod === 'reparto'} onChange={handleShippingMethodChange} />
                                             <label htmlFor="pickup" className="text-sm font-medium text-gray-700">
-                                                Retiro (Solo Punta Arenas)
+                                                Reparto (Solo Punta Arenas)
+                                            </label>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <input id="shipping" type="radio" value="envio" className="mr-2 radio" checked={shippingMethod === 'envio'} onChange={handleShippingMethodChange} />
+                                            <label htmlFor="shipping" className="text-sm font-medium text-gray-700">
+                                                Envío (Solo Chile)
                                             </label>
                                         </div>
                                     </div>
                                     {/* Sección de dirección de envío */}
                                     {shippingMethod === 'envio' && (
-                                        <div className=''>
-                                            <h2 className="text-2xl font-semibold mb-4">Dirección de envío</h2>
-                                            <div className="space-y-4">
+                                        <div className='w-full'>
+                                            <h2 className="text-2xl font-semibold">Dirección de envío</h2>
+                                            <div className="space-y-4 w-full">
                                                 {/* Selección de región y comuna */}
                                                 <div className="grid grid-cols-2 gap-4">
                                                     <div className=''>
@@ -293,11 +352,11 @@ const PageCheckOut = () => {
                             </form>
                             <div className='pb-5 w-full flex flex-col justify-end items-end pr-5 gap-2'>
                                 {isLoading ?
-                                <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center'>
-                                    <span className="loading loading-dots loading-sm"></span>
-                                </button>
-                                :
-                                <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center' onClick={handleBuy}>
+                                    <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center'>
+                                        <span className="loading loading-dots loading-sm"></span>
+                                    </button>
+                                    :
+                                    <button className='w-[280px] p-[25px] bg-black hover:bg-[#474A56]  text-white active:bg-green-500 active:scale-95 duration-300 ease-in-out text-sm font-semibold rounded-md  items-center flex justify-center' onClick={handleBuy}>
                                         <p>Continuar con el pago</p>
                                     </button>
                                 }
@@ -315,7 +374,7 @@ const PageCheckOut = () => {
                 </div>
                 {/* Right side cart */}
                 {/* Contenedor principal */}
-                <div className='bg-purple-600 w-full h-full flex justify-start p-10'>
+                <div className='bg-purple-600 w-full h-full sm:flex justify-start p-10 hidden'>
                     {/* Contenedor dos */}
                     <div className='w-full h-full'>
                         <div className='max-h-[70vh] overflow-auto flex flex-col justify-between'>
