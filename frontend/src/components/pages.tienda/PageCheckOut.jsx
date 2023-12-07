@@ -72,17 +72,18 @@ const PageCheckOut = () => {
 
     // formulario de envio
     // Definición de los estados utilizando el hook useState
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [shippingMethod, setShippingMethod] = useState('');
-    const [address, setAddress] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [addressLine, setAddressLine] = useState('');
-    const [postalCode, setPostalCode] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedComuna, setSelectedComuna] = useState('');
     const [comunas, setComunas] = useState([]);
+    const [address, setAddress] = useState('');
+    const [addressLine, setAddressLine] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+
 
     // Manejadores de eventos para cambios en los campos de entrada
 
@@ -104,9 +105,13 @@ const PageCheckOut = () => {
         setPhone(e.target.value);
     };
 
-    // seleccionar el metodo de envio
+    // Nuevo estado para el método de envío seleccionado
+    const [selectedShippingMethod, setSelectedShippingMethod] = useState('');
+
+    // Manejador de cambio para el método de envío
     const handleShippingMethodChange = (e) => {
-        setShippingMethod(e.target.value);
+        setSelectedShippingMethod(e.target.value);
+        setShippingMethod(e.target.value); // Actualizar el estado original si es necesario
     };
     // informacion de envio
     // direccion
@@ -140,8 +145,65 @@ const PageCheckOut = () => {
 
     initMercadoPago("TEST-9e467044-7573-4752-9e22-6d63cbd13be4")
 
+
+
+
+    const handleBuy = async () => {
+        // Verifica si está logeado el usuario
+        if (!isLoggedIn) {
+            console.log("No está logeado");
+            return;
+        }
+
+        // Verifica si el formulario está completo
+        const isFormValid =
+            firstName.trim() !== '' &&
+            lastName.trim() !== '' &&
+            email.trim() !== '' &&
+            phone.trim() !== '';
+
+        if (!isFormValid) {
+            toast.error('Tienes que rellenar el formulario');
+            return;
+        }
+
+        // verificamos si selecciono un metodo de envio
+        if (!selectedShippingMethod) {
+            toast.error('Debes seleccionar un método de envío');
+            return;
+        }
+
+        // Validaciones específicas para cada método de envío
+        if (selectedShippingMethod === 'reparto') {
+            // Validar campos para reparto
+            if (!address || !addressLine) {
+                toast.error('Debes llenar la dirección para el reparto');
+                return;
+            }
+        } else if (selectedShippingMethod === 'envio') {
+            // Validar campos para envío
+            if (!selectedRegion || !selectedComuna || !address || !addressLine || !postalCode) {
+                toast.error('Debes llenar todos los campos para el envío');
+                return;
+            }
+        }
+
+        setIsLoading(true);
+        const id = await createPreference(carritoItems, cantidadProductos);
+
+        if (id) {
+            setPreferenceId(id);
+        }
+    };
+
+
     const createPreference = async (carritoItems, cantidadProductos) => {
         try {
+            // para obtener el user_id que lo enviaremos al backend
+            const token = Cookies.get('token');
+            const decodedToken = jwtDecode(token);
+            const user_id = decodedToken.id;
+
             const items = carritoItems.map(item => ({
                 description: item.nombre,
                 price: item.precio,
@@ -149,7 +211,21 @@ const PageCheckOut = () => {
                 currency_id: "CLP"
             }));
 
-            const response = await axios.post("http://localhost:8000/create_preference", { items });
+            const response = await axios.post("http://localhost:8000/create_preference", {
+                items,
+                user_id,
+                firstName,
+                lastName,
+                email,
+                phone,
+                shippingMethod,
+                selectedRegion,
+                selectedComuna,
+                postalCode,
+                address,
+                addressLine
+            });
+
 
             const { id } = response.data;
             return id;
@@ -159,18 +235,7 @@ const PageCheckOut = () => {
         }
     };
 
-    const handleBuy = async () => {
-        // Verifica si está logeado el usuario
-        if (!isLoggedIn) {
-            console.log("No está logeado");
-            return;
-        }
-        setIsLoading(true);
-        const id = await createPreference(carritoItems, cantidadProductos); // Pasa los argumentos necesarios
-        if (id) {
-            setPreferenceId(id);
-        }
-    };
+
 
     const comunasPorRegion = {
         'Región Metropolitana': ['Cerrillos', 'La Reina', 'Pudahuel', 'Cerro Navia', 'Las Condes', 'Quilicura', 'Conchalí', 'Lo Barnechea', 'Quinta Normal',
