@@ -126,7 +126,7 @@ const ProductosDestacados = () => {
             </div>
             {/* CONTENEDOR DE CARDS */}
             <div className='w-full flex justify-center items-center'>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-5 items-centerjustify-center overflow-y-auto bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4  gap-5 p-5 items-center justify-center overflow-y-auto bg-white">
                     {/* CARDS */}
                     {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                         productosDestacados.map((producto) => (

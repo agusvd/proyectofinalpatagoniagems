@@ -5,7 +5,6 @@ import jwtDecode from 'jwt-decode';
 import Regiones from '../c.tienda/Regiones';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import mercadopagoicono from '../../assets/mercado-pago.svg'
 import { AiOutlineShopping } from "react-icons/ai";
 
@@ -112,6 +111,14 @@ const PageCheckOut = () => {
     const handleShippingMethodChange = (e) => {
         setSelectedShippingMethod(e.target.value);
         setShippingMethod(e.target.value); // Actualizar el estado original si es necesario
+
+        // Restablecer los estados de los inputs cuando cambia el método de envío
+        setAddress('');
+        setAddressLine('');
+        setPostalCode('');
+        setSelectedRegion('');
+        setSelectedComuna('');
+        setComunas([]);
     };
     // informacion de envio
     // direccion
@@ -140,13 +147,7 @@ const PageCheckOut = () => {
 
 
     // mercadopago
-    const [preferenceId, setPreferenceId] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
-
-    initMercadoPago("TEST-9e467044-7573-4752-9e22-6d63cbd13be4")
-
-
-
 
     const handleBuy = async () => {
         // Verifica si está logeado el usuario
@@ -156,6 +157,30 @@ const PageCheckOut = () => {
         }
 
         // Verifica si el formulario está completo
+        const isValidName = (value) => /^[A-Za-z]+$/.test(value);
+        const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        const isValidPhoneNumber = (value) => /^\d{9}$/.test(value);
+
+        if (!isValidName(firstName)) {
+            toast.error('Por favor, ingrese un nombre válido');
+            return;
+        }
+
+        if (!isValidName(lastName)) {
+            toast.error('Por favor, ingrese un apellido válido');
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            toast.error('Por favor, ingrese un correo electrónico válido');
+            return;
+        }
+
+        if (!isValidPhoneNumber(phone)) {
+            toast.error('Por favor, ingrese un número de teléfono válido de 9 digitos');
+            return;
+        }
+
         const isFormValid =
             firstName.trim() !== '' &&
             lastName.trim() !== '' &&
@@ -173,6 +198,8 @@ const PageCheckOut = () => {
             return;
         }
 
+        const isValidPostalCode = (value) => /^\d/.test(value);
+
         // Validaciones específicas para cada método de envío
         if (selectedShippingMethod === 'reparto') {
             // Validar campos para reparto
@@ -186,18 +213,20 @@ const PageCheckOut = () => {
                 toast.error('Debes llenar todos los campos para el envío');
                 return;
             }
+            if (!isValidPostalCode(postalCode)) {
+                toast.error('Por favor, ingrese un número codigo postal valido');
+                return;
+            }
+            if (!isValidName(address)) {
+                toast.error('Por favor, ingrese una dirección correcta');
+                return;
+            }
+        } else if (selectedShippingMethod === 'retiro') {
+            // Omitir la validación de dirección para retiro
         }
 
         setIsLoading(true);
-        const id = await createPreference(carritoItems, cantidadProductos);
 
-        if (id) {
-            setPreferenceId(id);
-        }
-    };
-
-
-    const createPreference = async (carritoItems, cantidadProductos) => {
         try {
             // para obtener el user_id que lo enviaremos al backend
             const token = Cookies.get('token');
@@ -211,7 +240,7 @@ const PageCheckOut = () => {
                 currency_id: "CLP"
             }));
 
-            const response = await axios.post("http://localhost:8000/create_preference", {
+            const response = await axios.post("http://localhost:8000/checkout", {
                 items,
                 user_id,
                 firstName,
@@ -223,18 +252,14 @@ const PageCheckOut = () => {
                 selectedComuna,
                 postalCode,
                 address,
-                addressLine
+                addressLine,
             });
-
-
-            const { id } = response.data;
-            return id;
+            window.location.href = response.data;
         } catch (error) {
             console.log(error.response.data);
             toast.error('Error al crear la preferencia');
         }
     };
-
 
 
     const comunasPorRegion = {
@@ -308,7 +333,7 @@ const PageCheckOut = () => {
                                     <div className='w-full h-full'>
                                         <div className='max-h-[70vh] flex flex-col justify-between'>
                                             {carritoItems.map((producto) => (
-                                                <table key={producto} className='w-full h-full'>
+                                                <table key={producto.producto_id} className='w-full h-full'>
                                                     <tbody>
                                                         <tr className='flex gap-2 pt-5 items-center w-full'>
                                                             <td className='indicator p-2 bg-white rounded-xl h-full'>
@@ -357,7 +382,7 @@ const PageCheckOut = () => {
                             <div className="justify-center items-center flex flex-col sm:h-auto sm:block p-4 gap-2">
                                 <form className="w-full" onSubmit={handleBuy}>
                                     <h2 className='text-xl font-semibold text-black'>
-                                        Informacion de contacto
+                                        Información de contacto
                                     </h2>
                                     <div>
                                         <input placeholder='Nombre' id="firstName" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={firstName} onChange={handleFirstNameChange} required />
@@ -369,6 +394,9 @@ const PageCheckOut = () => {
                                         <input placeholder='Correo' id="email" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={email} onChange={handleEmailChange} required />
                                     </div>
                                     <div>
+                                        <label className='text-sm text-gray-700'>
+                                            Numero de telefono, ejemplo (912345678)
+                                        </label>
                                         <input placeholder='Numero de telefono' id="phone" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={phone} onChange={handlePhoneChange} required />
                                     </div>
                                     {/* Selección del método de envío */}
@@ -412,7 +440,7 @@ const PageCheckOut = () => {
                                                     <input placeholder='Dirección' id="address" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={address} onChange={handleAddressChange} />
                                                 </div>
                                                 <div>
-                                                    <input placeholder='Casa, Dpto, etc.' id="addressLine" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={addressLine}
+                                                    <input placeholder='Numeración Casa, Dpto, etc.' id="addressLine" type="text" className="text-black mt-1 block w-full rounded-md shadow-sm border-2 focus:border-purple-600 bg-white outline-none sm:text-sm p-2" value={addressLine}
                                                         onChange={handleAddressLineChange} />
                                                 </div>
                                             </div>
@@ -441,14 +469,6 @@ const PageCheckOut = () => {
                                         <p>Continuar con el pago</p>
                                     </button>
                                 }
-                                {isLoading ?
-                                    <div className='-mt-4'>
-                                        {preferenceId && <Wallet initialization={{ preferenceId }} />}
-                                    </div>
-                                    :
-                                    <>
-                                    </>
-                                }
                             </div>
                         </div>
                     </div>
@@ -460,7 +480,7 @@ const PageCheckOut = () => {
                     <div className='w-full h-full'>
                         <div className='max-h-[70vh] overflow-auto flex flex-col justify-between'>
                             {carritoItems.map((producto) => (
-                                <table key={producto} className='w-full h-full'>
+                                <table key={producto.producto_id} className='w-full h-full'>
                                     <tbody>
                                         <tr className='flex gap-2 pt-5 items-center w-full'>
                                             <td className='indicator p-2 bg-white rounded-xl h-full'>

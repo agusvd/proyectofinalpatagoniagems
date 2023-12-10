@@ -1,42 +1,63 @@
-import mercadopago from 'mercadopago'
-import express from 'express'
-import db from '../db.js';
+import express from 'express';
+import mercadopago from 'mercadopago';
 
-const router = express.Router()
+const router = express.Router();
 
 mercadopago.configure({
-    access_token: 'TEST-2931986456961868-112316-49e032a003c5d3954a230353340a8985-1563131036',
+    access_token: "TEST-2550155760366803-112315-85a9859690c381dc1a3acf947d087769-1561246425",
 });
 
-router.post("/create_preference", (req, res) => {
+router.post("/checkout", async (req, res) => {
     console.log("Request Body:", req.body);
 
-    // Agregar la información del carrito desde req.body a la variable preference
-    let preference = {
-        items: req.body.items.map(item => ({
-            title: item.description,
-            unit_price: Number(item.price),
-            quantity: Math.floor(Number(item.quantity)),
-        })),
-        back_urls: {
-            success: "http://localhost:5173",
-            failure: "http://localhost:5173",
-            pending: "",
-        },
-        auto_return: "approved",
-    };
-    
-    mercadopago.preferences
-        .create(preference)
-        .then(function (response) {
-            res.json({
-                id: response.body.id
-            })
-        })
-        .catch(function (error) {
-            console.log(error)
-            res.status(500).json({ error: 'Error al crear la preferencia' });
-        })
+    try {
+        const preference = {
+            items: req.body.items.map(item => ({
+                title: item.description,
+                unit_price: Number(item.price),
+                quantity: Math.floor(Number(item.quantity)),
+            })),
+            back_urls: {
+                success: "http://localhost:5173/sucess",
+                failure: "http://localhost:5173/failure",
+            },
+            auto_return: "approved",
+        };
+        const respuesta = await mercadopago.preferences.create(preference);
+        console.log(respuesta);
+        res.status(200).json(respuesta.response.init_point)
+
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json(error.message)
+    }
 });
 
-export default router
+
+router.get("/success", async  (req, res) => {
+    try {
+        const paymentId = req.query.payment_id;
+        const paymentStatus = req.query.status;
+
+        const transactionDetails = {
+            paymentId,
+            paymentStatus,
+        };
+        console.log(paymentId)
+        console.log(paymentStatus)
+
+        // Devuelve los detalles al frontend
+        res.json({ success: true, transactionDetails });
+    } catch (error) {
+        console.error(error);
+        // Maneja los errores de manera apropiada
+        res.status(500).json({ success: false, error: "Error al obtener detalles del pago" });
+    }
+});
+
+router.get("/failure", (req, res) => {
+    // Manejar el caso de pago fallido
+    res.send("Pago fallido");
+});
+export default router;
+
