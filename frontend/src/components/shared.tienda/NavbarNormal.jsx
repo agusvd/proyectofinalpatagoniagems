@@ -106,12 +106,12 @@ const NavbarNormal = () => {
                     <div className='flex items-center justify-center text-center h-full'>
                         <div className='flex items-center justify-center gap-5 h-full'>
                             <div className='flex items-center justify-center py-2'>
-                                <Link to="/" className={`text-center text-xl font-semibold hover:text-gray-500 active:text-purple-600 ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>
+                                <Link to="/" className={`text-center text-xl font-semibold hover:text-purple-500 ${location.pathname === '/' ? 'text-purple-500' : 'text-white'}`}>
                                     Inicio
                                 </Link>
                             </div>
                             <button className="dropdown dropdown-hover h-full">
-                                <Link to='/tienda' className={`text-xl h-full flex items-center font-semibold hover:text-gray-500 ${location.pathname.startsWith('/tienda') ? 'text-purple-500' : 'text-white'}`}>
+                                <Link to='/tienda' className={`text-xl h-full flex items-center font-semibold hover:text-purple-500 ${location.pathname.startsWith('/tienda') ? 'text-purple-500' : 'text-white'}`}>
                                     Tienda
                                 </Link>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content z-[1] p-2 shadow bg-black rounded-box w-52">
@@ -128,7 +128,7 @@ const NavbarNormal = () => {
                                 </ul>
                             </button>
                             <Link to='/blogs' className={`text-xl font-semibold py-2 ${location.pathname === '/blogs' ? 'text-purple-500' : 'text-white'}`}>
-                                <h2 className='text-white hover:text-gray-500 duration-300 active:text-purple-600'>Blogs</h2>
+                                <h2 className='text-white hover:text-purple-500 duration-300 active:text-purple-600'>Blogs</h2>
                             </Link>
                         </div>
                     </div>
