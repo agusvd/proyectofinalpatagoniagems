@@ -9,9 +9,9 @@ import NavbarMobile from '../shared.tienda/NavbarMobile'
 const PageProductoEspecifico = () => {
     return (
         <div className='bg-white'>
-            <Anuncio />
             <NavbarNormal/>
             <NavbarMobile/>
+            <Anuncio />
             <ProductPage />
             <Footer />
         </div>

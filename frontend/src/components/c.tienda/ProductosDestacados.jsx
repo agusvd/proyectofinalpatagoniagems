@@ -122,11 +122,11 @@ const ProductosDestacados = () => {
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             {/* TITULO */}
             <div className="text-center py-5 px-4 bg-white">
-                <h1 className="text-4xl text-[#202020] font-bold">Nuevos productos</h1>
+                <h1 className="text-4xl text-black">Nuevos productos</h1>
             </div>
             {/* CONTENEDOR DE CARDS */}
             <div className='w-full flex justify-center items-center'>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4  gap-5 p-5 items-center justify-center overflow-y-auto bg-white">
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 items-center bg-white">
                     {/* CARDS */}
                     {Array.isArray(productosDestacados) && productosDestacados.length > 0 ? (
                         productosDestacados.map((producto) => (

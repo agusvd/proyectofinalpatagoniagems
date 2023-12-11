@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-const PageSucess = () => {
+const PageSuccess = () => {
     const [transactionDetails, setTransactionDetails] = useState(null);
 
     useEffect(() => {
@@ -39,4 +39,4 @@ const PageSucess = () => {
 
 }
 
-export default PageSucess
+export default PageSuccess

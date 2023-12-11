@@ -8,10 +8,10 @@ import NavbarMobile from '../shared.tienda/NavbarMobile'
 const PageTiendaPorCategoria = () => {
     return (
         <div>
-            <Anuncio />
             <NavbarNormal />
             <NavbarMobile />
             <ProductosCategoria />
+            <Anuncio />
             <Footer />
         </div>
     )

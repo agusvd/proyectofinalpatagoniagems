@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import Cart from '../shared.tienda/Cart';
 import { toast, Toaster } from 'react-hot-toast';
-import CardProductoGeneralEspecifico from '../cards.tienda/CardProductoGeneralEspecifico';
+import CardProductoGeneral from '../cards.tienda/CardProductoGeneral';
 import CardToastAgregarCarro from '../cards.tienda/CardToastAgregarCarro';
 import CardToastIniciarSesion from '../cards.tienda/CardToastIniciarSesion';
 
@@ -43,6 +43,8 @@ const ProductosCategoria = () => {
             setIsLoggedIn(true);
         }
     }, [categoriaId]);
+
+
 
     const handleAgregarCarro = (producto) => {
         if (!isLoggedIn) {
@@ -92,13 +94,13 @@ const ProductosCategoria = () => {
         <div className='flex flex-col justify-center font-primary bg-white'>
             <Toaster position="bottom-left" reverseOrder={false} toastOptions={{ duration: 3000 }} />
             <div className="bg-black text-center py-10 sm:py-20 px-8 mb-4">
-                <h1 className="text-4xl font-bold text-white uppercase">{categoriaNombre}</h1>
+                <h1 className="text-4xl font-bold text-white">{categoriaNombre}</h1>
             </div>
             <div className='flex justify-center'>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 font-primary justify-center items-center gap-5 pb-5">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 font-primary justify-center items-center gap-2 sm:gap-4 pb-5">
                     {Array.isArray(productos) && productos.length > 0 ? (
                         productos.map((producto) => (
-                            <CardProductoGeneralEspecifico key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} />
+                            <CardProductoGeneral key={producto.id} producto={producto} handleAgregarCarro={handleAgregarCarro} categoria={categoriaNombre} />
                         ))
                     ) : (
                         <div className='h-screen text-center w-screen flex justify-center items-center'>

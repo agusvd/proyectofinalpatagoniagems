@@ -29,7 +29,7 @@ import PageBlogInicio from './components/pages.blog/PageBlogInicio';
 import PageActualizarCategoria from './components/pages.dashboard/PageActualizarCategoria';
 import PageBlogNuevo from './components/pages.blog/PageBlogNuevo';
 import PageBlogPost from './components/pages.blog/PageBlogPost';
-import PageSucess from './components/pages.tienda/PageSucess';
+import PageSuccess from './components/pages.tienda/PageSuccess';
 import PageFailure from './components/pages.tienda/PageFailure';
 
 
@@ -54,7 +54,7 @@ const App = () => {
           <Route path="*" element={<Navigate to="/404" />} />
           {/* pago */}
           <Route path='/checkout' element={<PageCheckOut />} />
-          <Route path='/sucess' element={<PageSucess />} />
+          <Route path='/success' element={<PageSuccess />} />
           <Route path='/failure' element={<PageFailure />} />
 
           

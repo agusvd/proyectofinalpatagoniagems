@@ -10,9 +10,9 @@ import BannerCategoria from '../c.tienda/BannerCategoria'
 const PageInicio = () => {
     return (
         <div>
-            <Anuncio />
             <NavbarNormal />
             <NavbarMobile />
+            <Anuncio />
             <Home />
             <ProductosDestacados />
             <BannerCategoria />

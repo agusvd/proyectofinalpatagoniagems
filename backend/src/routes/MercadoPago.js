@@ -18,7 +18,7 @@ router.post("/checkout", async (req, res) => {
                 quantity: Math.floor(Number(item.quantity)),
             })),
             back_urls: {
-                success: "http://localhost:5173/sucess",
+                success: "http://localhost:5173/success",
                 failure: "http://localhost:5173/failure",
             },
             auto_return: "approved",
@@ -50,13 +50,11 @@ router.get("/success", async  (req, res) => {
         res.json({ success: true, transactionDetails });
     } catch (error) {
         console.error(error);
-        // Maneja los errores de manera apropiada
         res.status(500).json({ success: false, error: "Error al obtener detalles del pago" });
     }
 });
 
 router.get("/failure", (req, res) => {
-    // Manejar el caso de pago fallido
     res.send("Pago fallido");
 });
 export default router;
