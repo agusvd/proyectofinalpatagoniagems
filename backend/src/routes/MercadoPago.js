@@ -4,7 +4,7 @@ import mercadopago from 'mercadopago';
 const router = express.Router();
 
 mercadopago.configure({
-    access_token: "TEST-2550155760366803-112315-85a9859690c381dc1a3acf947d087769-1561246425",
+    access_token: "",
 });
 
 router.post("/checkout", async (req, res) => {
